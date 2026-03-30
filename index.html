@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handmade Online Store Academy | 会員サイト</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #c8956c;
+    --primary-light: #e8c4a8;
+    --primary-dark: #a0714e;
+    --bg: #faf7f4;
+    --bg-card: #ffffff;
+    --text: #4a3f35;
+    --text-light: #8a7e72;
+    --text-dark: #2d2520;
+    --accent: #d4a373;
+    --accent-green: #7d9b76;
+    --accent-pink: #d4868c;
+    --accent-purple: #9b8ec4;
+    --border: #ebe5de;
+    --shadow: 0 2px 12px rgba(74,63,53,0.08);
+    --shadow-hover: 0 4px 24px rgba(74,63,53,0.14);
+    --radius: 12px;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ===== LOGIN ===== */
+  .login-screen {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #faf7f4 0%, #f0e8df 100%);
+    padding: 20px;
+  }
+  .login-box {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 420px; width: 100%;
+    box-shadow: var(--shadow-hover);
+    text-align: center;
+  }
+  .login-logo {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 1.8rem;
+  }
+  .login-box h1 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-dark); margin-bottom: 4px; }
+  .login-box .subtitle { font-size: 0.8rem; color: var(--text-light); margin-bottom: 32px; }
+  .login-box input {
+    width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 0.9rem; margin-bottom: 12px; font-family: inherit; background: var(--bg); transition: border 0.3s;
+  }
+  .login-box input:focus { outline: none; border-color: var(--primary); }
+  .login-box button {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700;
+    cursor: pointer; font-family: inherit; margin-top: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .login-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,149,108,0.4); }
+  .login-error { color: var(--accent-pink); font-size: 0.8rem; margin-top: 8px; display: none; }
+
+  /* ===== APP ===== */
+  .app { display: none; min-height: 100vh; }
+  .app.active { display: flex; }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px; background: var(--bg-card); border-right: 1px solid var(--border);
+    padding: 24px 0; display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 100; transition: transform 0.3s;
+  }
+  .sidebar-header { padding: 0 24px 24px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .sidebar-header h2 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-dark); }
+  .sidebar-header p { font-size: 0.7rem; color: var(--text-light); }
+  .sidebar-nav { flex: 1; padding: 8px 12px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 8px; cursor: pointer;
+    font-size: 0.85rem; color: var(--text-light); transition: all 0.2s; margin-bottom: 2px;
+  }
+  .nav-item:hover { background: var(--bg); color: var(--text); }
+  .nav-item.active { background: linear-gradient(135deg, rgba(200,149,108,0.1), rgba(212,163,115,0.1)); color: var(--primary-dark); font-weight: 700; }
+  .nav-item .icon { width: 20px; text-align: center; font-size: 1rem; }
+  .nav-item .badge { margin-left: auto; background: var(--accent-pink); color: #fff; font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: 700; }
+
+  .sidebar-user { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .user-avatar {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; color: #fff;
+  }
+  .user-info .name { font-size: 0.8rem; font-weight: 700; }
+  .user-info .role { font-size: 0.65rem; color: var(--text-light); }
+
+  /* Main */
+  .main { flex: 1; margin-left: 260px; padding: 32px 40px; max-width: 1000px; }
+  .page { display: none; }
+  .page.active { display: block; }
+  .page-header { margin-bottom: 32px; }
+  .page-header h1 { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+  .page-header p { font-size: 0.85rem; color: var(--text-light); }
+
+  /* ===== DASHBOARD ===== */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--bg-card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .stat-card .label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px; }
+  .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--text-dark); }
+  .stat-card .sub { font-size: 0.7rem; color: var(--accent-green); margin-top: 4px; }
+  .progress-bar-bg { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-top: 12px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; transition: width 0.8s ease; }
+
+  /* Announce */
+  .announce-list { margin-top: 16px; }
+  .announce-item {
+    background: var(--bg-card); border-radius: var(--radius); padding: 20px 24px;
+    margin-bottom: 12px; box-shadow: var(--shadow);
+    display: flex; gap: 16px; align-items: flex-start; transition: box-shadow 0.2s;
+  }
+  .announce-item:hover { box-shadow: var(--shadow-hover); }
+  .announce-date { min-width: 48px; text-align: center; padding: 8px; background: var(--bg); border-radius: 8px; }
+  .announce-date .month { font-size: 0.6rem; color: var(--text-light); text-transform: uppercase; }
+  .announce-date .day { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); }
+  .announce-content h3 { font-size: 0.9rem; margin-bottom: 4px; }
+  .announce-content p { font-size: 0.78rem; color: var(--text-light); }
+  .announce-tag { display: inline-block; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; background: rgba(200,149,108,0.1); color: var(--primary-dark); margin-bottom: 6px; font-weight: 700; }
+  .announce-tag.important { background: rgba(212,134,140,0.1); color: var(--accent-pink); }
+
+  /* ===== CONTENT ===== */
+  .module-list { margin-top: 16px; }
+  .module-card {
+    background: var(--bg-card); border-radius: var(--radius); margin-bottom: 16px;
+    box-shadow: var(--shadow); overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .module-card:hover { box-shadow: var(--shadow-hover); }
+  .module-header {
+    padding: 20px 24px; display: flex; align-items: center; gap: 16px; cursor: pointer;
+  }
+  .module-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .module-num.locked { background: var(--border); color: var(--text-light); }
+  .module-info { flex: 1; }
+  .module-info h3 { font-size: 0.95rem; margin-bottom: 2px; }
+  .module-info p { font-size: 0.72rem; color: var(--text-light); }
+  .module-status { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; font-weight: 700; white-space: nowrap; }
+  .module-status.completed { background: rgba(125,155,118,0.1); color: var(--accent-green); }
+  .module-status.current { background: rgba(200,149,108,0.1); color: var(--primary-dark); }
+  .module-status.locked { background: var(--bg); color: var(--text-light); }
+
+  .module-lessons { display: none; padding: 0 24px 20px; border-top: 1px solid var(--border); }
+  .module-card.open .module-lessons { display: block; }
+
+  /* Lesson row - clickable */
+  .lesson-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.82rem; cursor: pointer; transition: background 0.15s;
+    margin: 0 -24px; padding-left: 24px; padding-right: 24px;
+  }
+  .lesson-item:last-child { border-bottom: none; }
+  .lesson-item:hover { background: rgba(200,149,108,0.04); }
+  .lesson-item.locked-lesson { cursor: default; opacity: 0.5; }
+  .lesson-item.locked-lesson:hover { background: none; }
+  .lesson-icon { font-size: 1rem; width: 24px; text-align: center; }
+  .lesson-title { flex: 1; }
+  .lesson-meta { font-size: 0.65rem; color: var(--text-light); }
+  .lesson-check { color: var(--accent-green); font-weight: 700; }
+  .lesson-arrow { color: var(--text-light); font-size: 0.8rem; }
+  .work-badge-inline {
+    font-size: 0.6rem; padding: 2px 8px; border-radius: 10px;
+    font-weight: 700; margin-left: 4px;
+  }
+  .work-badge-inline.submitted { background: rgba(125,155,118,0.1); color: var(--accent-green); }
+  .work-badge-inline.pending { background: rgba(200,149,108,0.15); color: var(--primary-dark); }
+
+  /* ===== LESSON DETAIL VIEW ===== */
+  .lesson-detail {
+    display: none;
+  }
+  .lesson-detail.active {
+    display: block;
+  }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; color: var(--primary-dark); cursor: pointer;
+    margin-bottom: 20px; padding: 8px 16px;
+    background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border);
+    font-family: inherit; transition: background 0.2s;
+  }
+  .back-btn:hover { background: var(--bg); }
+
+  .lesson-detail-title {
+    font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;
+  }
+  .lesson-detail-meta {
+    font-size: 0.78rem; color: var(--text-light); margin-bottom: 24px;
+  }
+
+  /* Video placeholder */
+  .video-container {
+    background: #1a1a2e;
+    border-radius: var(--radius);
+    aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-play-btn {
+    width: 72px; height: 72px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .video-play-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.3); }
+  .video-play-btn::after {
+    content: '';
+    border-style: solid;
+    border-width: 14px 0 14px 24px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 4px;
+  }
+  .video-duration {
+    position: absolute; bottom: 12px; right: 12px;
+    background: rgba(0,0,0,0.7); color: #fff;
+    font-size: 0.7rem; padding: 4px 10px; border-radius: 4px;
+  }
+
+  /* Text content section */
+  .text-content {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .text-content h3 {
+    font-size: 1rem; margin-bottom: 12px; color: var(--text-dark);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .text-content p { font-size: 0.85rem; line-height: 2; color: var(--text); }
+  .text-content ul {
+    margin: 12px 0; padding-left: 20px;
+  }
+  .text-content ul li {
+    font-size: 0.85rem; line-height: 2; color: var(--text);
+  }
+  .text-download {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px; padding: 10px 20px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.8rem; color: var(--primary-dark); cursor: pointer;
+    font-family: inherit; transition: background 0.2s;
+  }
+  .text-download:hover { background: var(--border); }
+
+  /* Work submission in detail */
+  .work-section {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border-left: 4px solid var(--primary);
+  }
+  .work-section h3 {
+    font-size: 1rem; margin-bottom: 12px; color: var(--text-dark);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .work-section p { font-size: 0.82rem; color: var(--text-light); margin-bottom: 16px; }
+  .work-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    transition: border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .work-textarea:focus { outline: none; border-color: var(--primary); }
+  .work-textarea::placeholder { color: var(--text-light); }
+
+  .submit-btn {
+    display: inline-block; margin-top: 8px;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff; border: none; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: transform 0.2s;
+  }
+  .submit-btn:hover { transform: translateY(-1px); }
+
+  .work-submitted-box {
+    background: rgba(125,155,118,0.08);
+    border: 1px solid rgba(125,155,118,0.2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  .work-submitted-box .status { font-size: 0.85rem; font-weight: 700; color: var(--accent-green); margin-bottom: 4px; }
+  .work-submitted-box .date { font-size: 0.72rem; color: var(--text-light); }
+  .work-feedback {
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(125,155,118,0.15);
+  }
+  .work-feedback .fb-label { font-size: 0.72rem; color: var(--accent-green); font-weight: 700; margin-bottom: 4px; }
+  .work-feedback p { font-size: 0.82rem; color: var(--text); }
+
+  /* ===== CHECKBOX ===== */
+  .check-row {
+    display: flex; align-items: center; gap: 10px; padding: 10px 0;
+    font-size: 0.85rem; cursor: pointer; user-select: none;
+  }
+  .check-row input[type="checkbox"] {
+    width: 18px; height: 18px; accent-color: var(--primary);
+    cursor: pointer; flex-shrink: 0;
+  }
+  .check-row.checked .check-label { color: var(--text-light); text-decoration: line-through; }
+
+  /* Detail progress checklist */
+  .detail-progress {
+    background: var(--bg-card); border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); margin-bottom: 24px;
+  }
+  .detail-progress h3 { font-size: 1rem; margin-bottom: 16px; color: var(--text-dark); }
+  .dp-month { margin-bottom: 20px; }
+  .dp-month-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .dp-month-num {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  }
+  .dp-month-num.locked { background: var(--border); color: var(--text-light); }
+  .dp-month-title { font-size: 0.85rem; font-weight: 700; flex: 1; }
+  .dp-month-count { font-size: 0.72rem; color: var(--text-light); }
+  .dp-item {
+    display: flex; align-items: center; gap: 10px; padding: 6px 0 6px 38px;
+    font-size: 0.8rem;
+  }
+  .dp-item .dp-icon { width: 18px; text-align: center; flex-shrink: 0; }
+  .dp-item .dp-icon.done { color: var(--accent-green); }
+  .dp-item .dp-icon.pending { color: var(--border); }
+  .dp-item .dp-name { flex: 1; }
+  .dp-item .dp-name.done { color: var(--text-light); }
+  .dp-badges { display: flex; gap: 4px; }
+  .dp-badge {
+    font-size: 0.55rem; padding: 2px 6px; border-radius: 3px; font-weight: 700;
+  }
+  .dp-badge.video-done { background: rgba(125,155,118,0.1); color: var(--accent-green); }
+  .dp-badge.video-not { background: var(--bg); color: var(--text-light); }
+  .dp-badge.text-done { background: rgba(155,142,196,0.1); color: var(--accent-purple); }
+  .dp-badge.text-not { background: var(--bg); color: var(--text-light); }
+  .dp-badge.work-done { background: rgba(200,149,108,0.1); color: var(--primary-dark); }
+  .dp-badge.work-not { background: var(--bg); color: var(--text-light); }
+
+  /* ===== MEMBERS ===== */
+  .member-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+  .member-card {
+    background: var(--bg-card); border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); cursor: pointer; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .member-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .member-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .member-card-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .member-card-name { font-size: 1rem; font-weight: 700; }
+  .member-card-sub { font-size: 0.7rem; color: var(--text-light); }
+  .member-stats { display: flex; gap: 16px; }
+  .member-stat { flex: 1; text-align: center; padding: 10px 0; background: var(--bg); border-radius: 8px; }
+  .member-stat .ms-value { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); }
+  .member-stat .ms-label { font-size: 0.6rem; color: var(--text-light); }
+
+  /* Member detail page */
+  .member-detail { display: none; }
+  .member-detail.active { display: block; }
+  .member-profile-card {
+    background: var(--bg-card); border-radius: var(--radius); padding: 28px 32px;
+    box-shadow: var(--shadow); display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
+  }
+  .member-profile-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .member-profile-info h2 { font-size: 1.2rem; margin-bottom: 2px; }
+  .member-profile-info p { font-size: 0.78rem; color: var(--text-light); }
+
+  .member-tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--bg-card); border-radius: 10px; padding: 4px; box-shadow: var(--shadow); }
+  .member-tab {
+    flex: 1; padding: 10px; text-align: center; border-radius: 8px; cursor: pointer;
+    font-size: 0.8rem; color: var(--text-light); transition: all 0.2s; font-family: inherit; border: none; background: none;
+  }
+  .member-tab:hover { color: var(--text); }
+  .member-tab.active { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; font-weight: 700; }
+
+  .member-tab-content { display: none; }
+  .member-tab-content.active { display: block; }
+
+  /* Memo / trouble items */
+  .memo-card {
+    background: var(--bg-card); border-radius: var(--radius); padding: 20px 24px;
+    box-shadow: var(--shadow); margin-bottom: 12px;
+  }
+  .memo-card .memo-date { font-size: 0.65rem; color: var(--text-light); margin-bottom: 6px; }
+  .memo-card .memo-label {
+    display: inline-block; font-size: 0.6rem; padding: 2px 8px; border-radius: 4px;
+    font-weight: 700; margin-bottom: 8px;
+  }
+  .memo-card .memo-label.memo { background: rgba(155,142,196,0.1); color: var(--accent-purple); }
+  .memo-card .memo-label.trouble { background: rgba(212,134,140,0.1); color: var(--accent-pink); }
+  .memo-card .memo-label.goal { background: rgba(125,155,118,0.1); color: var(--accent-green); }
+  .memo-card p { font-size: 0.82rem; line-height: 1.8; }
+  .memo-card .reply { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .memo-card .reply-label { font-size: 0.65rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 4px; }
+  .memo-card .reply p { font-size: 0.8rem; color: var(--text); }
+
+  .add-memo-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; background: var(--bg-card); border: 1.5px dashed var(--border);
+    border-radius: 8px; font-size: 0.82rem; color: var(--primary-dark); cursor: pointer;
+    font-family: inherit; transition: border-color 0.2s; margin-bottom: 16px;
+  }
+  .add-memo-btn:hover { border-color: var(--primary); }
+
+  .memo-input-area {
+    background: var(--bg-card); border-radius: var(--radius); padding: 20px 24px;
+    box-shadow: var(--shadow); margin-bottom: 16px; display: none;
+  }
+  .memo-input-area.show { display: block; }
+  .memo-input-area select {
+    padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 0.82rem; margin-bottom: 10px; background: var(--bg); color: var(--text);
+  }
+  .memo-input-area textarea {
+    width: 100%; min-height: 100px; padding: 12px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: inherit; font-size: 0.82rem; line-height: 1.8; color: var(--text); background: var(--bg);
+    resize: vertical; margin-bottom: 10px;
+  }
+  .memo-input-area textarea:focus { outline: none; border-color: var(--primary); }
+
+  /* Work history in member detail */
+  .work-history-item {
+    background: var(--bg-card); border-radius: var(--radius); padding: 20px 24px;
+    box-shadow: var(--shadow); margin-bottom: 12px;
+  }
+  .work-history-item .wh-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .work-history-item .wh-title { font-size: 0.9rem; font-weight: 700; }
+  .work-history-item .wh-content { font-size: 0.82rem; line-height: 1.8; color: var(--text); padding: 12px; background: var(--bg); border-radius: 8px; margin-bottom: 8px; }
+  .work-history-item .wh-feedback { padding: 12px; background: rgba(125,155,118,0.06); border-radius: 8px; border-left: 3px solid var(--accent-green); }
+  .work-history-item .wh-feedback .fb-label { font-size: 0.68rem; color: var(--accent-green); font-weight: 700; margin-bottom: 4px; }
+  .work-history-item .wh-feedback p { font-size: 0.82rem; }
+  .work-history-item .wh-feedback textarea {
+    width: 100%; min-height: 80px; padding: 10px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 0.8rem; line-height: 1.6; color: var(--text); background: #fff;
+    resize: vertical; margin-top: 8px;
+  }
+  .work-history-item .wh-feedback textarea:focus { outline: none; border-color: var(--accent-green); }
+
+  /* ===== MINDUP AUDIO ===== */
+  .audio-month-card { background: var(--bg-card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden; transition: box-shadow 0.2s; }
+  .audio-month-card:hover { box-shadow: var(--shadow-hover); }
+  .audio-month-header { padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+  .audio-month-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--accent-purple), #b8a9d4);
+    color: #fff; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .audio-month-num.locked { background: var(--border); color: var(--text-light); }
+  .audio-month-info { flex: 1; }
+  .audio-month-info h3 { font-size: 0.95rem; margin-bottom: 2px; }
+  .audio-month-info p { font-size: 0.72rem; color: var(--text-light); }
+  .audio-track { display: flex; align-items: center; gap: 12px; padding: 14px 24px; border-top: 1px solid var(--border); font-size: 0.82rem; }
+  .audio-play-btn {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--accent-purple), #b8a9d4);
+    color: #fff; border: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 0.9rem; flex-shrink: 0; transition: transform 0.2s;
+  }
+  .audio-play-btn:hover { transform: scale(1.1); }
+  .audio-track-info { flex: 1; }
+  .audio-track-info .track-title { font-weight: 500; }
+  .audio-track-info .track-duration { font-size: 0.7rem; color: var(--text-light); }
+  .audio-wave { display: flex; align-items: center; gap: 2px; height: 24px; }
+  .audio-wave span { width: 3px; background: var(--accent-purple); border-radius: 2px; animation: wave 1.2s ease-in-out infinite; opacity: 0.4; }
+  .audio-wave span:nth-child(1) { height: 8px; animation-delay: 0s; }
+  .audio-wave span:nth-child(2) { height: 16px; animation-delay: 0.15s; }
+  .audio-wave span:nth-child(3) { height: 12px; animation-delay: 0.3s; }
+  .audio-wave span:nth-child(4) { height: 20px; animation-delay: 0.45s; }
+  .audio-wave span:nth-child(5) { height: 10px; animation-delay: 0.6s; }
+  @keyframes wave { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.5); } }
+
+  /* ===== MYPAGE ===== */
+  .mypage-header {
+    background: var(--bg-card); border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow); display: flex; align-items: center; gap: 24px; margin-bottom: 24px;
+  }
+  .mypage-avatar {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .mypage-name { font-size: 1.2rem; font-weight: 700; }
+  .mypage-meta { font-size: 0.78rem; color: var(--text-light); }
+  .progress-section { background: var(--bg-card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .progress-section h3 { font-size: 0.95rem; margin-bottom: 16px; }
+  .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .progress-label { font-size: 0.8rem; min-width: 120px; }
+  .progress-track { flex: 1; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 5px; transition: width 0.8s ease; }
+  .progress-fill.green { background: linear-gradient(90deg, #7d9b76, #a4c49a); }
+  .progress-fill.orange { background: linear-gradient(90deg, var(--primary), var(--accent)); }
+  .progress-fill.pink { background: linear-gradient(90deg, #d4868c, #e8a8ad); }
+
+  /* ===== MOBILE ===== */
+  .mobile-header {
+    display: none; background: var(--bg-card); padding: 12px 20px;
+    border-bottom: 1px solid var(--border); position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+    align-items: center; justify-content: space-between;
+  }
+  .mobile-header h2 { font-family: 'Playfair Display', serif; font-size: 1rem; }
+  .hamburger { width: 32px; height: 32px; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 20px; height: 2px; background: var(--text); transition: 0.3s; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 99; }
+
+  @media (max-width: 768px) {
+    .mobile-header { display: flex; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .overlay.open { display: block; }
+    .main { margin-left: 0; padding: 72px 20px 32px; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">🎨</div>
+    <h1>Handmade Store Academy</h1>
+    <p class="subtitle">ハンドメイド作家のためのオンラインストア構築講座</p>
+    <div style="display:flex;gap:8px;margin-bottom:16px;">
+      <button id="roleStudent" onclick="setRole('student')" style="flex:1;padding:10px;border:1.5px solid var(--primary);border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;">受講生</button>
+      <button id="roleAdmin" onclick="setRole('admin')" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text-light);font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;">講師・管理者</button>
+    </div>
+    <input type="text" id="loginName" placeholder="お名前">
+    <input type="password" id="loginPass" placeholder="パスワード">
+    <button onclick="doLogin()">ログイン</button>
+    <p class="login-error" id="loginError">パスワードが正しくありません</p>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="app" id="app">
+  <div class="mobile-header">
+    <h2>HS Academy</h2>
+    <button class="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>🎨 HS Academy</h2>
+      <p>6ヶ月オンライン講座</p>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-page="dashboard"><span class="icon">🏠</span> ダッシュボード</div>
+      <div class="nav-item" data-page="content"><span class="icon">📚</span> コンテンツ</div>
+      <div class="nav-item" data-page="mindup"><span class="icon">🎧</span> マインドアップ音声</div>
+      <div class="nav-item admin-only" data-page="members" style="display:none;"><span class="icon">👥</span> 会員管理</div>
+      <div class="nav-item" data-page="mypage"><span class="icon">👤</span> マイページ</div>
+      <div class="nav-item" data-page="announce"><span class="icon">📢</span> お知らせ<span class="badge">3</span></div>
+    </nav>
+    <div style="padding:8px 12px;" id="roleSwitchArea" class="admin-only" style="display:none;">
+      <div onclick="switchRoleView()" style="display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;cursor:pointer;background:rgba(200,149,108,0.08);border:1px solid var(--border);transition:background 0.2s;">
+        <span style="font-size:1rem;">🔄</span>
+        <span style="font-size:0.78rem;color:var(--primary-dark);font-weight:700;" id="switchLabel">受講生ビューに切替</span>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="user-avatar" id="sidebarAvatar">M</div>
+      <div class="user-info">
+        <div class="name" id="sidebarName">会員さん</div>
+        <div class="role" id="sidebarRole">受講生</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ===== DASHBOARD ===== -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h1>おかえりなさい、<span id="welcomeName">会員</span>さん 👋</h1>
+        <p>講座の進捗をチェックしましょう</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">受講期間</div>
+          <div class="value">1ヶ月目</div>
+          <div class="sub">残り 5ヶ月</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">動画・テキスト</div>
+          <div class="value">2 / 12</div>
+          <div class="sub">動画2本 テキスト0本 完了</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">ワーク提出</div>
+          <div class="value">1 / 6</div>
+          <div class="sub">次: Instagramアカウント設計</div>
+        </div>
+      </div>
+
+      <!-- 項目別 進捗 -->
+      <div class="detail-progress" id="dashboardProgress"></div>
+
+      <h2 style="font-size:1.1rem; margin-bottom:12px;">📢 最新のお知らせ</h2>
+      <div class="announce-list">
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Apr</div><div class="day">5</div></div>
+          <div class="announce-content">
+            <span class="announce-tag important">重要</span>
+            <h3>グループコンサル日程のお知らせ</h3>
+            <p>今月のグループコンサルの日程が決まりました。Zoomリンクは前日にお送りします。</p>
+          </div>
+        </div>
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Apr</div><div class="day">1</div></div>
+          <div class="announce-content">
+            <span class="announce-tag">コンテンツ</span>
+            <h3>1ヶ月目のコンテンツを公開しました</h3>
+            <p>「土台づくり」のコンテンツとマインドアップ音声をアップしました。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTENT PAGE (module list) ===== -->
+    <div class="page" id="page-content">
+      <div id="contentList">
+        <div class="page-header">
+          <h1>📚 コンテンツ</h1>
+          <p>6ヶ月間のカリキュラム。各コンテンツをクリックすると動画・テキスト・ワーク提出ができます</p>
+        </div>
+        <div class="module-list">
+
+          <!-- 1ヶ月目 -->
+          <div class="module-card open">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num">1</div>
+              <div class="module-info"><h3>土台づくり（迷わない軸）</h3><p>6コンテンツ・1ヶ月目</p></div>
+              <span class="module-status current">受講中</span>
+            </div>
+            <div class="module-lessons" id="month1Lessons">
+              <!-- JSで動的生成 -->
+            </div>
+          </div>
+
+          <!-- 2ヶ月目 -->
+          <div class="module-card">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num">2</div>
+              <div class="module-info"><h3>構築し発信する</h3><p>6コンテンツ・2ヶ月目</p></div>
+              <span class="module-status locked">🔒 2ヶ月目に公開</span>
+            </div>
+            <div class="module-lessons">
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">Instagram発信 ストーリーズと投稿の役割</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">Threads発信</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">オンラインストア構築</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">LINE構築</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">発信と集客の流れ</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">プロフィール 売れる動線設計</span></div>
+            </div>
+          </div>
+
+          <!-- 3ヶ月目 -->
+          <div class="module-card">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num">3</div>
+              <div class="module-info"><h3>商品作りと運用</h3><p>6コンテンツ・3ヶ月目</p></div>
+              <span class="module-status locked">🔒 3ヶ月目に公開</span>
+            </div>
+            <div class="module-lessons">
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">商品作りのポイント</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">1万円以上の商品を作ろう</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">商品掲載のポイント</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">ファンとの関係構築</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">インサイトの見方</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">セールスについて学ぶ</span></div>
+            </div>
+          </div>
+
+          <!-- 4ヶ月目 -->
+          <div class="module-card">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num locked">4</div>
+              <div class="module-info"><h3>マーケティングフロー</h3><p>5コンテンツ・4ヶ月目</p></div>
+              <span class="module-status locked">🔒 4ヶ月目に公開</span>
+            </div>
+            <div class="module-lessons">
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">売上に繋がる流れを知る</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">LINEからストアに流し方</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">売り込まない販売方法</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">価値を伝える方法</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">発信する意味や方法</span></div>
+            </div>
+          </div>
+
+          <!-- 5ヶ月目 -->
+          <div class="module-card">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num locked">5</div>
+              <div class="module-info"><h3>ストア強化</h3><p>5コンテンツ・5ヶ月目</p></div>
+              <span class="module-status locked">🔒 5ヶ月目に公開</span>
+            </div>
+            <div class="module-lessons">
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">写真や商品説明のブラッシュアップ</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">キャンペーン施策を考える</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">新作販売などの告知のタイミングを知る</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">LINE、メルマガなどの活用方法</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">梱包やショップカードなどのブラッシュアップ</span></div>
+            </div>
+          </div>
+
+          <!-- 6ヶ月目 -->
+          <div class="module-card">
+            <div class="module-header" onclick="toggleModule(this)">
+              <div class="module-num locked">6</div>
+              <div class="module-info"><h3>ファン化と改善</h3><p>5コンテンツ・6ヶ月目</p></div>
+              <span class="module-status locked">🔒 6ヶ月目に公開</span>
+            </div>
+            <div class="module-lessons">
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">売上が落ちた時の立て直し方</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">改善して実行する必要の意味</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">直近6ヶ月の販売スケジュール</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">リピーター作りのコツ</span></div>
+              <div class="lesson-item locked-lesson"><span class="lesson-icon">🔒</span><span class="lesson-title">ストア運営のまとめ</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== LESSON DETAIL (shown when clicking a lesson) ===== -->
+      <div class="lesson-detail" id="lessonDetail">
+        <button class="back-btn" onclick="closeLesson()">← コンテンツ一覧に戻る</button>
+
+        <div class="lesson-detail-title" id="lessonTitle">ビジネスの全体像を学ぶ</div>
+        <div class="lesson-detail-meta" id="lessonMeta">1ヶ月目「土台づくり」 ・ コンテンツ 1/6</div>
+
+        <!-- Video -->
+        <div class="video-container">
+          <div class="video-play-btn" onclick="alert('動画を再生します（デモ）')"></div>
+          <div class="video-duration" id="lessonDuration">15:30</div>
+        </div>
+
+        <!-- Text content -->
+        <div class="text-content" id="lessonText">
+          <h3>📝 テキスト</h3>
+          <div id="lessonTextBody"></div>
+        </div>
+
+        <!-- Completion checkboxes -->
+        <div class="text-content" id="lessonChecks" style="border-left: 4px solid var(--accent-green);">
+          <h3>✅ 完了チェック</h3>
+          <label class="check-row" id="checkVideo">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span class="check-label">動画を視聴しました</span>
+          </label>
+          <label class="check-row" id="checkText">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span class="check-label">テキストを読みました</span>
+          </label>
+        </div>
+
+        <!-- Work submission -->
+        <div class="work-section" id="workSection">
+          <h3>✏️ ワーク提出</h3>
+          <p id="workDesc">このレッスンのワークを提出してください。</p>
+          <div id="workArea">
+            <!-- Dynamic: upload area or submitted status -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MINDUP AUDIO ===== -->
+    <div class="page" id="page-mindup">
+      <div class="page-header">
+        <h1>🎧 マインドアップ音声</h1>
+        <p>毎月のテーマに合わせた音声コンテンツ。シリーズごとに数本ずつ配信されます</p>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num">1</div>
+          <div class="audio-month-info"><h3>行動できる自分になる</h3><p>1ヶ月目 ・ 土台づくり（迷わない軸）</p></div>
+          <span class="module-status current">配信中</span>
+        </div>
+        <div class="audio-track">
+          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
+          <div class="audio-track-info"><div class="track-title">Vol.1 行動できない本当の理由</div><div class="track-duration">12:30</div></div>
+          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="audio-track">
+          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
+          <div class="audio-track-info"><div class="track-title">Vol.2 小さな一歩を踏み出すコツ</div><div class="track-duration">10:45</div></div>
+          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="audio-track">
+          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
+          <div class="audio-track-info"><div class="track-title">Vol.3 迷わない自分軸の作り方</div><div class="track-duration">14:20</div></div>
+          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num">2</div>
+          <div class="audio-month-info"><h3>自分の人生をあゆむための在り方</h3><p>2ヶ月目 ・ 構築し発信する</p></div>
+          <span class="module-status locked">🔒 2ヶ月目に配信</span>
+        </div>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num">3</div>
+          <div class="audio-month-info"><h3>選ばれる人がしていること</h3><p>3ヶ月目 ・ 商品作りと運用</p></div>
+          <span class="module-status locked">🔒 3ヶ月目に配信</span>
+        </div>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num locked">4</div>
+          <div class="audio-month-info"><h3>テーマ未定</h3><p>4ヶ月目 ・ マーケティングフロー</p></div>
+          <span class="module-status locked">🔒 4ヶ月目に配信</span>
+        </div>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num locked">5</div>
+          <div class="audio-month-info"><h3>テーマ未定</h3><p>5ヶ月目 ・ ストア強化</p></div>
+          <span class="module-status locked">🔒 5ヶ月目に配信</span>
+        </div>
+      </div>
+      <div class="audio-month-card">
+        <div class="audio-month-header">
+          <div class="audio-month-num locked">6</div>
+          <div class="audio-month-info"><h3>テーマ未定</h3><p>6ヶ月目 ・ ファン化と改善</p></div>
+          <span class="module-status locked">🔒 6ヶ月目に配信</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MEMBERS ===== -->
+    <div class="page" id="page-members">
+      <div id="membersList">
+        <div class="page-header">
+          <h1>👥 会員管理</h1>
+          <p>受講生の進捗状況を確認できます。URLは1つ — 受講生にはこのページのURLとパスワードを送るだけ！</p>
+        </div>
+
+        <!-- 会員追加フォーム -->
+        <div style="background:var(--bg-card);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow);margin-bottom:24px;">
+          <h3 style="font-size:0.95rem;margin-bottom:12px;">➕ 新しい会員を登録</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;">
+            <div style="flex:1;min-width:120px;">
+              <div style="font-size:0.7rem;color:var(--text-light);margin-bottom:4px;">お名前</div>
+              <input type="text" id="newMemberName" placeholder="例: 田中花子" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.82rem;background:var(--bg);">
+            </div>
+            <div style="flex:1;min-width:120px;">
+              <div style="font-size:0.7rem;color:var(--text-light);margin-bottom:4px;">ジャンル</div>
+              <input type="text" id="newMemberGenre" placeholder="例: アクセサリー作家" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.82rem;background:var(--bg);">
+            </div>
+            <div style="flex:1;min-width:120px;">
+              <div style="font-size:0.7rem;color:var(--text-light);margin-bottom:4px;">パスワード</div>
+              <input type="text" id="newMemberPass" placeholder="例: hanako2026" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.82rem;background:var(--bg);">
+            </div>
+            <button class="submit-btn" onclick="addNewMember()" style="white-space:nowrap;">登録する</button>
+          </div>
+        </div>
+
+        <!-- URL共有ガイド -->
+        <div style="background:rgba(200,149,108,0.06);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;font-size:0.8rem;">
+          <strong style="color:var(--primary-dark);">📲 受講生への共有方法</strong>
+          <p style="margin-top:6px;color:var(--text);">このページのURLと、登録したパスワードをLINEなどで送ってください。<br>受講生は「受講生」を選んで、<strong>登録した名前とパスワード</strong>でログインできます。</p>
+        </div>
+
+        <div class="member-list" id="memberCardList">
+          <!-- JSで動的生成 -->
+        </div>
+      </div>
+
+      <!-- Member detail -->
+      <div class="member-detail" id="memberDetail">
+        <button class="back-btn" onclick="closeMember()">← 会員一覧に戻る</button>
+
+        <div class="member-profile-card">
+          <div class="member-profile-avatar" id="mdAvatar" style="background:linear-gradient(135deg, #e8a8ad, #d4868c);">A</div>
+          <div class="member-profile-info">
+            <h2 id="mdName">Aさん</h2>
+            <p id="mdSub">アクセサリー作家 ・ 受講開始: 2026年4月 ・ 1ヶ月目</p>
+          </div>
+        </div>
+
+        <div class="member-tabs">
+          <button class="member-tab active" onclick="switchMemberTab('progress', this)">📊 進捗</button>
+          <button class="member-tab" onclick="switchMemberTab('works', this)">✏️ ワーク・添削</button>
+          <button class="member-tab" onclick="switchMemberTab('notes', this)">📝 メモ・困りごと</button>
+        </div>
+
+        <!-- Tab: 進捗 -->
+        <div class="member-tab-content active" id="mtab-progress">
+          <div class="detail-progress" id="mdProgressDetail"></div>
+        </div>
+
+        <!-- Tab: ワーク・添削 -->
+        <div class="member-tab-content" id="mtab-works">
+          <div id="mdWorkList"></div>
+        </div>
+
+        <!-- Tab: メモ・困りごと -->
+        <div class="member-tab-content" id="mtab-notes">
+          <button class="add-memo-btn" onclick="toggleMemoInput()">＋ メモ・困りごとを追加</button>
+          <div class="memo-input-area" id="memoInputArea">
+            <select id="memoType">
+              <option value="memo">📝 メモ</option>
+              <option value="trouble">😢 困りごと</option>
+              <option value="goal">🎯 目標</option>
+            </select><br>
+            <textarea placeholder="内容を入力してください..." id="memoText"></textarea>
+            <button class="submit-btn" onclick="addMemo()">保存する</button>
+          </div>
+          <div id="mdMemoList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MYPAGE ===== -->
+    <div class="page" id="page-mypage">
+      <div class="page-header">
+        <h1>👤 マイページ</h1>
+        <p>あなたの学習状況と情報を確認できます</p>
+      </div>
+      <div class="mypage-header">
+        <div class="mypage-avatar" id="mypageAvatar">M</div>
+        <div>
+          <div class="mypage-name" id="mypageName">会員さん</div>
+          <div class="mypage-meta">受講開始: 2026年4月 ・ ハンドメイド作家</div>
+          <div class="mypage-meta">受講期間: 2026年4月〜2026年9月（6ヶ月間）</div>
+        </div>
+      </div>
+      <div class="detail-progress" id="mypageProgress"></div>
+      <div id="mypageWorks" style="margin-top:20px;"></div>
+    </div>
+
+    <!-- ===== ANNOUNCE ===== -->
+    <div class="page" id="page-announce">
+      <div class="page-header">
+        <h1>📢 お知らせ</h1>
+        <p>講座に関する最新情報をお届けします</p>
+      </div>
+      <div class="announce-list">
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Apr</div><div class="day">5</div></div>
+          <div class="announce-content">
+            <span class="announce-tag important">重要</span>
+            <h3>グループコンサル日程のお知らせ</h3>
+            <p>今月のグループコンサルの日程が決まりました。Zoomリンクは前日にお送りします。</p>
+          </div>
+        </div>
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Apr</div><div class="day">1</div></div>
+          <div class="announce-content">
+            <span class="announce-tag">コンテンツ</span>
+            <h3>1ヶ月目「土台づくり」コンテンツ公開しました</h3>
+            <p>ビジネスの全体像、自己理解、Instagram設計、コンセプト設計、ブランドカラー設計、ビジョン設計の6本をアップしました。</p>
+          </div>
+        </div>
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Mar</div><div class="day">28</div></div>
+          <div class="announce-content">
+            <span class="announce-tag">🎧 音声</span>
+            <h3>マインドアップ音声「行動できる自分になる」配信開始</h3>
+            <p>1ヶ月目のマインドアップ音声を公開しました。移動中やスキマ時間にぜひお聴きください。</p>
+          </div>
+        </div>
+        <div class="announce-item">
+          <div class="announce-date"><div class="month">Mar</div><div class="day">20</div></div>
+          <div class="announce-content">
+            <span class="announce-tag important">重要</span>
+            <h3>講座スタート！ようこそ HS Academy へ</h3>
+            <p>6ヶ月間、一緒に頑張りましょう！まずは1ヶ月目のコンテンツからスタートしてくださいね。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// === Lesson data ===
+const lessons = {
+  '1-1': {
+    title: 'ビジネスの全体像を学ぶ',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 1/6',
+    duration: '18:30',
+    text: `<p>ああああああああああああああああああああああああああああ</p>`,
+    hasWork: true,
+    workDesc: '動画とテキストを見て、あなたのビジネスの全体像と6ヶ月後の目標をまとめて提出してください。',
+    workSubmitted: false
+  },
+  '1-2': {
+    title: '自己理解をして強みを知る',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 2/6',
+    duration: '22:15',
+    text: `<p>「自分の強みって何だろう？」と悩む方は多いですが、実はすでにあなたの中にあります。このレッスンでは、強みを見つけて言語化する方法を学びます。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 強みを見つける3つの質問</h4>
+<ol style="padding-left:20px;margin:8px 0;">
+<li><strong>人からよく褒められること</strong>は何ですか？</li>
+<li><strong>時間を忘れて没頭できること</strong>は何ですか？</li>
+<li><strong>人にアドバイスを求められること</strong>は何ですか？</li>
+</ol>
+<p>この3つの答えの重なりに、あなたの強みがあります。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 価値観ワーク</h4>
+<p>以下のリストから、あなたが大切にしている価値観を5つ選んでみてください。</p>
+<p style="color:var(--text-light);font-size:0.82rem;">丁寧さ / 自由 / 創造性 / つながり / 挑戦 / 安心 / 美しさ / 成長 / 家族 / 感謝 / 独自性 / 楽しさ / 誠実さ / 自然体</p>
+<p>選んだ5つが、あなたのストアの「軸」になります。迷ったときはこの価値観に立ち戻りましょう。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 強みをストアに活かす</h4>
+<p>見つけた強みと価値観を、ストアのコンセプト・商品説明・SNS発信に織り込んでいきます。「自分らしさ」が伝わるストアは、自然とファンがつきます。</p>`,
+    hasWork: true,
+    workDesc: '自己分析ワークシートを記入し、あなたの強みと価値観をまとめて提出してください。',
+    workSubmitted: true,
+    workDate: '2026年4月3日',
+    workFeedback: 'とても丁寧に自己分析できていますね！特に「丁寧な手仕事が好き」という強みをストアコンセプトに繋げている点が素晴らしいです。次のステップでは、この強みをInstagramの発信にも活かしていきましょう。'
+  },
+  '1-3': {
+    title: 'Instagramアカウント設計',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 3/6',
+    duration: '16:45',
+    text: `<p>Instagramはハンドメイド作家にとって最強の集客ツールです。ここでは「売れるアカウント」の土台を一緒に作っていきましょう。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 プロフィールの書き方</h4>
+<p>プロフィールはたった150文字であなたのストアの魅力を伝える場所です。以下のテンプレートを参考にしてみてください。</p>
+<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.82rem;">
+1行目：何をしている人か（例：手作りアクセサリー作家）<br>
+2行目：誰に届けたいか（例：大人の女性に似合うシンプルジュエリー）<br>
+3行目：あなたの想い（例：毎日をちょっと特別にする一粒を）<br>
+4行目：ストアへのリンク
+</div>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 世界観の統一</h4>
+<p>投稿の色味・フィルター・背景を統一すると、プロフィール画面に訪れた人が「素敵！」と感じやすくなります。ブランドカラーを意識して撮影しましょう。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 最初の9投稿プラン</h4>
+<ul style="padding-left:20px;margin:8px 0;">
+<li>商品紹介 × 3（メイン商品をしっかり見せる）</li>
+<li>制作過程 × 2（手作りの温かさを伝える）</li>
+<li>あなた自身 × 1（自己紹介・想い）</li>
+<li>お客様の声 × 1（信頼感アップ）</li>
+<li>豆知識・Tips × 2（お役立ち情報で保存されやすく）</li>
+</ul>`,
+    hasWork: true,
+    workDesc: 'Instagramアカウントのプロフィール案と、最初の9投稿の企画案を提出してください。',
+    workSubmitted: false
+  },
+  '1-4': {
+    title: 'コンセプト設計',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 4/6',
+    duration: '20:00',
+    text: `<p>コンセプトとは、あなたのストアの「軸」です。これが明確になると、商品作り・発信・価格設定すべてに一貫性が生まれます。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 コンセプトの3要素</h4>
+<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.85rem;">
+<strong>Who（誰に）</strong>：あなたの商品を届けたいお客様像<br>
+<strong>What（何を）</strong>：どんな価値・体験を届けるのか<br>
+<strong>Why（なぜ）</strong>：あなたがそれを届けたい理由・想い
+</div>
+<p>例：「忙しい毎日を過ごす30代女性に（Who）、身につけるだけでホッとする天然石のアクセサリーを（What）、自分を大切にする時間を思い出してほしいから届ける（Why）」</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 キャッチコピーの作り方</h4>
+<p>コンセプトを一言で伝えるキャッチコピーがあると、プロフィールや名刺、ストアの説明に使えます。</p>
+<ul style="padding-left:20px;margin:8px 0;">
+<li>短く（15文字以内が理想）</li>
+<li>お客様目線で書く（作り手目線ではなく）</li>
+<li>感情に訴える言葉を入れる</li>
+</ul>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 競合との差別化</h4>
+<p>同じジャンルの作家さんを3人リサーチして、自分との違いを書き出してみましょう。違いが見つかれば、それがあなたの強みです。</p>`,
+    hasWork: true,
+    workDesc: 'あなたのストアのコンセプト（誰に・何を・どんな想いで届けるか）とキャッチコピー案を提出してください。',
+    workSubmitted: false
+  },
+  '1-5': {
+    title: 'ブランドカラー設計',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 5/6',
+    duration: '14:20',
+    text: `<p>色はあなたのストアの「第一印象」を決めます。ブランドカラーを設計して、統一感のある世界観を作りましょう。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 色の心理効果</h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;">
+<div style="background:#fff5f5;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#e57373;">ピンク・赤系</strong><br>可愛い・情熱・温かさ</div>
+<div style="background:#f5f0ff;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#9575cd;">紫系</strong><br>上品・特別感・神秘的</div>
+<div style="background:#f0f7ff;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#64b5f6;">青系</strong><br>信頼・清潔感・落ち着き</div>
+<div style="background:#f0fff0;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#81c784;">緑系</strong><br>自然・癒し・安心</div>
+<div style="background:#fff8f0;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#d4a373;">ベージュ・ブラウン系</strong><br>ナチュラル・温もり・大人っぽさ</div>
+<div style="background:#f5f5f5;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#616161;">グレー・黒系</strong><br>モダン・高級感・シック</div>
+</div>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 カラーパレットの作り方</h4>
+<p>3色を選びましょう。</p>
+<ul style="padding-left:20px;margin:8px 0;">
+<li><strong>メインカラー</strong>：ストアの顔になる色（1色）</li>
+<li><strong>サブカラー</strong>：メインを引き立てる色（1色）</li>
+<li><strong>アクセントカラー</strong>：ボタンやポイントに使う色（1色）</li>
+</ul>
+<p>この3色を写真の背景・投稿デザイン・ストアのバナーに統一して使うと、一気にプロっぽく見えます。</p>`,
+    hasWork: true,
+    workDesc: 'あなたのブランドカラーパレット（メイン・サブ・アクセントカラー）を画像またはPDFで提出してください。',
+    workSubmitted: false
+  },
+  '1-6': {
+    title: '働き方のビジョン設計',
+    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 6/6',
+    duration: '17:10',
+    text: `<p>最後のレッスンでは、ハンドメイド作家としての「理想の働き方」を設計します。長く続けるためには、無理のない計画が大切です。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 理想のライフスタイルを描く</h4>
+<p>まずは理想の1日をイメージしてみましょう。</p>
+<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.82rem;">
+例）<br>
+7:00 起床・朝の支度<br>
+9:00 制作タイム（2時間集中）<br>
+11:00 SNS投稿・コメント返信<br>
+12:00 お昼休憩<br>
+13:00 発送作業・事務<br>
+15:00 フリータイム（家族との時間）<br>
+21:00 翌日の投稿準備（30分）
+</div>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 月の売上目標の立て方</h4>
+<p>売上目標は「逆算」で考えます。</p>
+<ul style="padding-left:20px;margin:8px 0;">
+<li>目標月商：5万円</li>
+<li>平均単価：2,500円</li>
+<li>必要販売数：20個/月 → 週5個</li>
+<li>必要なアクセス数：月1,000（購入率2%の場合）</li>
+</ul>
+<p>こうやって分解すると「週に5個売る」という具体的なアクションが見えてきます。</p>
+<h4 style="margin-top:16px;color:var(--primary-dark);">🔹 燃え尽きないコツ</h4>
+<p>ハンドメイド作家は「好き」を仕事にするからこそ、頑張りすぎてしまうことがあります。</p>
+<ul style="padding-left:20px;margin:8px 0;">
+<li>週に1日は「作らない日」を作る</li>
+<li>完璧を目指さず、まず出す</li>
+<li>他の作家さんと比べない</li>
+<li>小さな成果を記録して自分を褒める</li>
+</ul>`,
+    hasWork: true,
+    workDesc: '理想のライフスタイルと月の売上目標、1週間のルーティン案を提出してください。',
+    workSubmitted: false
+  }
+};
+
+// === Role selection ===
+let selectedRole = 'student';
+function setRole(role) {
+  selectedRole = role;
+  const sBtn = document.getElementById('roleStudent');
+  const aBtn = document.getElementById('roleAdmin');
+  if (role === 'student') {
+    sBtn.style.background = 'linear-gradient(135deg,var(--primary),var(--primary-dark))';
+    sBtn.style.color = '#fff';
+    sBtn.style.borderColor = 'var(--primary)';
+    aBtn.style.background = 'var(--bg)';
+    aBtn.style.color = 'var(--text-light)';
+    aBtn.style.borderColor = 'var(--border)';
+  } else {
+    aBtn.style.background = 'linear-gradient(135deg,var(--primary),var(--primary-dark))';
+    aBtn.style.color = '#fff';
+    aBtn.style.borderColor = 'var(--primary)';
+    sBtn.style.background = 'var(--bg)';
+    sBtn.style.color = 'var(--text-light)';
+    sBtn.style.borderColor = 'var(--border)';
+  }
+}
+
+// === Login ===
+function doLogin() {
+  const name = document.getElementById('loginName').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if (!name) {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = 'お名前を入力してください';
+    return;
+  }
+  // Admin: password "admin2026", Student: password "demo2026"
+  if (selectedRole === 'admin' && pass !== 'admin2026') {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = '管理者パスワードが正しくありません';
+    return;
+  }
+  if (selectedRole === 'student' && pass !== 'demo2026') {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = 'パスワードが正しくありません';
+    return;
+  }
+  const initial = name.charAt(0).toUpperCase();
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  document.getElementById('welcomeName').textContent = name;
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('sidebarAvatar').textContent = initial;
+  document.getElementById('mypageName').textContent = name;
+  document.getElementById('mypageAvatar').textContent = initial;
+
+  // Store login info
+  window._loginRole = selectedRole;
+  window._loginName = name;
+  window._currentView = selectedRole; // tracks current view mode
+
+  applyRoleView(selectedRole);
+}
+document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// === Apply role view ===
+function applyRoleView(view) {
+  window._currentView = view;
+  if (view === 'admin') {
+    document.querySelectorAll('.admin-only').forEach(el => el.style.display = '');
+    document.getElementById('sidebarRole').textContent = '講師・管理者';
+    document.getElementById('switchLabel').textContent = '受講生ビューに切替';
+  } else {
+    document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+    document.getElementById('sidebarRole').textContent = '受講生';
+    if (window._loginRole === 'admin') {
+      // Admin viewing as student - keep switch visible
+      document.getElementById('roleSwitchArea').style.display = '';
+      document.getElementById('switchLabel').textContent = '管理者ビューに切替';
+    }
+    // If currently on members page, go to dashboard
+    const membersPage = document.getElementById('page-members');
+    if (membersPage && membersPage.classList.contains('active')) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-dashboard').classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector('[data-page="dashboard"]').classList.add('active');
+    }
+  }
+}
+
+function switchRoleView() {
+  if (window._currentView === 'admin') {
+    applyRoleView('student');
+  } else {
+    applyRoleView('admin');
+  }
+}
+
+// === Navigation ===
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    const page = item.dataset.page;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    // Reset views when switching pages
+    if (page === 'content') { closeLesson(); }
+    if (page === 'members') { closeMember(); }
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  });
+});
+
+// === Module toggle ===
+function toggleModule(header) { header.closest('.module-card').classList.toggle('open'); }
+
+// === Open lesson detail ===
+function openLesson(id) {
+  const lesson = lessons[id];
+  if (!lesson) return;
+  window._currentLessonId = id; // Track current lesson
+
+  document.getElementById('contentList').style.display = 'none';
+  const detail = document.getElementById('lessonDetail');
+  detail.classList.add('active');
+
+  document.getElementById('lessonTitle').textContent = lesson.title;
+  document.getElementById('lessonMeta').textContent = lesson.meta;
+  document.getElementById('lessonDuration').textContent = lesson.duration;
+
+  // Text
+  document.getElementById('lessonTextBody').innerHTML = lesson.text;
+
+  // Restore checkbox state from member data
+  const lessonIdx = parseInt(id.split('-')[1]) - 1;
+  const mid = window._linkedMemberId;
+  const checkVideo = document.querySelector('#checkVideo input[type="checkbox"]');
+  const checkText = document.querySelector('#checkText input[type="checkbox"]');
+  if (mid && members[mid]) {
+    const ml = members[mid].lessons[lessonIdx];
+    checkVideo.checked = ml ? ml.done : false;
+    checkText.checked = ml ? (ml.textDone || false) : false;
+  } else {
+    // Admin or unlinked — use monthData
+    const mItem = monthData[0] && monthData[0].items[lessonIdx];
+    checkVideo.checked = mItem ? mItem.video : false;
+    checkText.checked = mItem ? mItem.text : false;
+  }
+  document.getElementById('checkVideo').classList.toggle('checked', checkVideo.checked);
+  document.getElementById('checkText').classList.toggle('checked', checkText.checked);
+
+  // Work section
+  const workSection = document.getElementById('workSection');
+  const workArea = document.getElementById('workArea');
+
+  // Check member work data if student is logged in
+  let memberWorkSubmitted = lesson.workSubmitted;
+  let memberWorkContent = '';
+  let memberWorkDate = lesson.workDate || '';
+  let memberWorkFeedback = lesson.workFeedback || '';
+  if (mid && members[mid] && members[mid].works[lessonIdx]) {
+    const mw = members[mid].works[lessonIdx];
+    memberWorkSubmitted = mw.submitted;
+    memberWorkContent = mw.content || '';
+    memberWorkDate = mw.date || '';
+    memberWorkFeedback = mw.feedback || '';
+  }
+
+  if (!lesson.hasWork) {
+    workSection.style.display = 'none';
+  } else {
+    workSection.style.display = 'block';
+    document.getElementById('workDesc').textContent = lesson.workDesc;
+
+    if (memberWorkSubmitted) {
+      let fbHTML = '<div class="work-submitted-box"><div class="status">✓ 提出済み</div><div class="date">提出日: ' + memberWorkDate + '</div>';
+      if (memberWorkContent) {
+        fbHTML += '<div style="margin:8px 0;padding:10px;background:var(--bg);border-radius:6px;font-size:0.82rem;">' + memberWorkContent + '</div>';
+      }
+      if (memberWorkFeedback) {
+        fbHTML += '<div class="work-feedback"><div class="fb-label">講師からのフィードバック</div><p>' + memberWorkFeedback + '</p></div>';
+      }
+      fbHTML += '</div>';
+      workArea.innerHTML = fbHTML;
+    } else {
+      workArea.innerHTML = `
+        <textarea class="work-textarea" id="workTextarea" placeholder="ここにワークの内容を入力してください..."></textarea>
+        <button class="submit-btn" onclick="submitWork()">ワークを提出する</button>
+      `;
+    }
+  }
+
+  window.scrollTo(0, 0);
+}
+
+function closeLesson() {
+  document.getElementById('contentList').style.display = 'block';
+  document.getElementById('lessonDetail').classList.remove('active');
+}
+
+// === Members data ===
+const members = {
+  a: {
+    name: 'Aさん', initial: 'A', sub: 'アクセサリー作家 ・ 受講開始: 2026年4月 ・ 1ヶ月目',
+    color: 'linear-gradient(135deg, #e8a8ad, #d4868c)',
+    progress: { content: 33, work: '2/6', audio: '1/6', contentPct: 33, workPct: 33, audioPct: 17 },
+    lessons: [
+      { title: 'ビジネスの全体像を学ぶ', done: true },
+      { title: '自己理解をして強みを知る', done: true },
+      { title: 'Instagramアカウント設計', done: false },
+      { title: 'コンセプト設計', done: false },
+      { title: 'ブランドカラー設計', done: false },
+      { title: '働き方のビジョン設計', done: false }
+    ],
+    works: [
+      { title: 'ビジネスの全体像を学ぶ', submitted: true, date: '2026年4月5日',
+        content: '私のビジネスの全体像：ハンドメイドアクセサリーを通じて、日常に小さな幸せを届けたい。6ヶ月後の目標は月商10万円。まずはInstagramで100人のフォロワーを目指し、minneとCreemaに出品する。',
+        feedback: '具体的な数値目標が入っていて素晴らしいです！「日常に小さな幸せ」というコンセプトも素敵ですね。次はこの想いをプロフィールにも落とし込んでいきましょう。' },
+      { title: '自己理解をして強みを知る', submitted: true, date: '2026年4月8日',
+        content: '強み：細かい作業が得意、色彩感覚がある、人と話すのが好き。価値観：丁寧な暮らし、手作りの温かさ、自分のペースで働く。これをストアに活かすには、一点一点手作りの温かさが伝わる商品写真と説明文を心がける。',
+        feedback: '' },
+      { title: 'Instagramアカウント設計', submitted: false },
+      { title: 'コンセプト設計', submitted: false },
+      { title: 'ブランドカラー設計', submitted: false },
+      { title: '働き方のビジョン設計', submitted: false }
+    ],
+    memos: [
+      { type: 'trouble', date: '2026年4月6日', text: 'Instagramのプロフィールをどう書いたらいいか迷っています。作家名と本名どちらがいいでしょうか？', reply: '作家名がおすすめです！ブランドの世界観を統一しやすくなりますよ。本名は「中の人」感を出したいときにストーリーズで使うと親近感が出ます。' },
+      { type: 'memo', date: '2026年4月3日', text: 'minneに3作品出品完了！まだ売れてないけど、まずは出せたことが嬉しい。写真の撮り方をもっと勉強したい。', reply: '' },
+      { type: 'goal', date: '2026年4月1日', text: '4月の目標：コンテンツを全部見る、Instagramアカウントを開設する、作品を5つ出品する', reply: '' }
+    ]
+  },
+  b: {
+    name: 'Bさん', initial: 'B', sub: '布小物作家 ・ 受講開始: 2026年4月 ・ 1ヶ月目',
+    color: 'linear-gradient(135deg, #a8c4e8, #7d9bc4)',
+    progress: { content: 17, work: '1/6', audio: '1/6', contentPct: 17, workPct: 17, audioPct: 17 },
+    lessons: [
+      { title: 'ビジネスの全体像を学ぶ', done: true },
+      { title: '自己理解をして強みを知る', done: false },
+      { title: 'Instagramアカウント設計', done: false },
+      { title: 'コンセプト設計', done: false },
+      { title: 'ブランドカラー設計', done: false },
+      { title: '働き方のビジョン設計', done: false }
+    ],
+    works: [
+      { title: 'ビジネスの全体像を学ぶ', submitted: true, date: '2026年4月10日',
+        content: 'オンラインストアで布小物（ポーチ、バッグ、布マスク入れ）を販売したい。ターゲットは30〜40代の子育てママ。目標は半年後に月5万円の売上。',
+        feedback: 'ターゲットが明確でいいですね！子育てママ向けなら、実用性＋可愛さがポイントになりそう。ストアの名前やコンセプトも一緒に考えていきましょう。' },
+      { title: '自己理解をして強みを知る', submitted: false },
+      { title: 'Instagramアカウント設計', submitted: false },
+      { title: 'コンセプト設計', submitted: false },
+      { title: 'ブランドカラー設計', submitted: false },
+      { title: '働き方のビジョン設計', submitted: false }
+    ],
+    memos: [
+      { type: 'trouble', date: '2026年4月8日', text: 'ミシンで作る作品と手縫いの作品、どちらをメインにすべきか悩んでいます。手縫いの方が温かみはあるけど、量産が難しい…', reply: '両方の良さを活かすのもアリですよ！メイン商品はミシンで効率よく、特別な限定品は手縫いで「プレミアム感」を出す方法がおすすめです。' },
+      { type: 'trouble', date: '2026年4月4日', text: '価格設定に自信がありません。材料費＋手間を考えると高くなりすぎる気がして、安く設定してしまいそうです。', reply: '' }
+    ]
+  },
+  c: {
+    name: 'Cさん', initial: 'C', sub: 'キャンドル作家 ・ 受講開始: 2026年4月 ・ 1ヶ月目',
+    color: 'linear-gradient(135deg, #b8d4a8, #7d9b76)',
+    progress: { content: 50, work: '3/6', audio: '1/6', contentPct: 50, workPct: 50, audioPct: 17 },
+    lessons: [
+      { title: 'ビジネスの全体像を学ぶ', done: true },
+      { title: '自己理解をして強みを知る', done: true },
+      { title: 'Instagramアカウント設計', done: true },
+      { title: 'コンセプト設計', done: false },
+      { title: 'ブランドカラー設計', done: false },
+      { title: '働き方のビジョン設計', done: false }
+    ],
+    works: [
+      { title: 'ビジネスの全体像を学ぶ', submitted: true, date: '2026年4月2日',
+        content: 'アロマキャンドルのオンラインストアを運営したい。ターゲットは20〜30代の一人暮らし女性。「自分へのご褒美」がコンセプト。目標は月商15万円。',
+        feedback: '素晴らしい！「自分へのご褒美」というコンセプトは購買意欲を高める良いキーワードですね。ギフト需要も取り込めそうです。パッケージデザインにもこだわると差別化できますよ。' },
+      { title: '自己理解をして強みを知る', submitted: true, date: '2026年4月5日',
+        content: '強み：香りのブレンドセンス、SNS発信が好き、写真を撮るのが得意。弱み：数字が苦手、継続力に不安。活かし方：写真とSNSが得意なので、Instagramメインで集客する。',
+        feedback: '写真が得意なのは大きな武器です！キャンドルは「映える」商材なので、最高の組み合わせですね。弱みの数字面は、テンプレートを使えば管理できるので大丈夫ですよ。' },
+      { title: 'Instagramアカウント設計', submitted: true, date: '2026年4月9日',
+        content: 'アカウント名：@aroma_reward（仮）プロフィール案：「毎日がんばるあなたへ。香りでつくる、自分だけのご褒美時間。手作りアロマキャンドル」最初の9投稿：商品紹介3つ、制作過程2つ、香りの豆知識2つ、お客様の声1つ、自己紹介1つ',
+        feedback: '' },
+      { title: 'コンセプト設計', submitted: false },
+      { title: 'ブランドカラー設計', submitted: false },
+      { title: '働き方のビジョン設計', submitted: false }
+    ],
+    memos: [
+      { type: 'memo', date: '2026年4月9日', text: 'Instagramアカウント開設しました！初投稿はキャンドルの制作過程にしてみます。', reply: '' }
+    ]
+  }
+};
+
+// === Open member detail ===
+function openMember(id) {
+  const m = members[id];
+  if (!m) return;
+  window._currentMember = id;
+
+  document.getElementById('membersList').style.display = 'none';
+  document.getElementById('memberDetail').classList.add('active');
+
+  document.getElementById('mdAvatar').textContent = m.initial;
+  document.getElementById('mdAvatar').style.background = m.color;
+  document.getElementById('mdName').textContent = m.name;
+  document.getElementById('mdSub').textContent = m.sub;
+
+  // Progress tab - item-by-item detail
+  renderMemberProgress(id);
+
+  // Works tab
+  document.getElementById('mdWorkList').innerHTML = m.works.map((w, idx) => {
+    if (!w.submitted) {
+      return `<div class="work-history-item">
+        <div class="wh-header"><span class="wh-title">${w.title}</span><span class="work-status-badge not-yet" style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:var(--bg);color:var(--text-light);">未提出</span></div>
+      </div>`;
+    }
+    let html = `<div class="work-history-item">
+      <div class="wh-header"><span class="wh-title">${w.title}</span><span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:rgba(125,155,118,0.1);color:var(--accent-green);">提出済み（${w.date}）</span></div>
+      <div class="wh-content">${w.content}</div>`;
+    if (w.feedback) {
+      html += `<div class="wh-feedback"><div class="fb-label">講師からのフィードバック</div><p>${w.feedback}</p></div>`;
+    } else {
+      html += `<div class="wh-feedback"><div class="fb-label">フィードバックを書く</div>
+        <textarea id="fbText_${idx}" placeholder="フィードバックを入力してください..."></textarea>
+        <button class="submit-btn" style="margin-top:8px;" onclick="submitFeedback('${id}', ${idx})">フィードバックを送信</button>
+      </div>`;
+    }
+    html += '</div>';
+    return html;
+  }).join('');
+
+  // Memos tab
+  renderMemos(id);
+
+  // Reset to first tab
+  switchMemberTab('progress', document.querySelector('.member-tab'));
+  window.scrollTo(0, 0);
+}
+
+function closeMember() {
+  document.getElementById('membersList').style.display = 'block';
+  document.getElementById('memberDetail').classList.remove('active');
+}
+
+function switchMemberTab(tab, btn) {
+  document.querySelectorAll('.member-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.member-tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('mtab-' + tab).classList.add('active');
+}
+
+function toggleMemoInput() {
+  document.getElementById('memoInputArea').classList.toggle('show');
+}
+
+function addMemo() {
+  const id = window._currentMember;
+  const type = document.getElementById('memoType').value;
+  const text = document.getElementById('memoText').value.trim();
+  if (!text) return;
+  const today = new Date();
+  const dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月' + today.getDate() + '日';
+  members[id].memos.unshift({ type, date: dateStr, text, reply: '' });
+  document.getElementById('memoText').value = '';
+  document.getElementById('memoInputArea').classList.remove('show');
+  renderMemos(id);
+}
+
+function renderMemberProgress(id) {
+  const m = members[id];
+  const el = document.getElementById('mdProgressDetail');
+  const lessonNames = ['ビジネスの全体像を学ぶ','自己理解をして強みを知る','Instagramアカウント設計','コンセプト設計','ブランドカラー設計','働き方のビジョン設計'];
+  let html = '<h3>📊 ' + m.name + ' の項目別進捗</h3><div class="dp-month"><div class="dp-month-header"><div class="dp-month-num">1</div><span class="dp-month-title">土台づくり（迷わない軸）</span></div>';
+  m.lessons.forEach((l, i) => {
+    const workDone = m.works[i] && m.works[i].submitted;
+    const allDone = l.done && workDone;
+    html += `<div class="dp-item">
+      <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
+      <span class="dp-name ${allDone ? 'done' : ''}">${l.title}</span>
+      <div class="dp-badges">
+        <span class="dp-badge ${l.done ? 'video-done' : 'video-not'}">${l.done ? '視聴✓' : '未視聴'}</span>
+        <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  // Locked months
+  [['2','構築し発信する'],['3','商品作りと運用'],['4','マーケティングフロー'],['5','ストア強化'],['6','ファン化と改善']].forEach(([n,t]) => {
+    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num locked">${n}</div><span class="dp-month-title">${t}</span><span class="dp-month-count">🔒 未公開</span></div></div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderMemos(id) {
+  const m = members[id];
+  const labels = { memo: '📝 メモ', trouble: '😢 困りごと', goal: '🎯 目標' };
+  const classes = { memo: 'memo', trouble: 'trouble', goal: 'goal' };
+  document.getElementById('mdMemoList').innerHTML = m.memos.map(n => {
+    let html = `<div class="memo-card">
+      <div class="memo-date">${n.date}</div>
+      <span class="memo-label ${classes[n.type]}">${labels[n.type]}</span>
+      <p>${n.text}</p>`;
+    if (n.reply) {
+      html += `<div class="reply"><div class="reply-label">講師からの返信</div><p>${n.reply}</p></div>`;
+    }
+    html += '</div>';
+    return html;
+  }).join('');
+}
+
+// === Checkbox toggle (updates member data) ===
+function toggleCheck(cb) {
+  cb.closest('.check-row').classList.toggle('checked', cb.checked);
+
+  const lessonId = window._currentLessonId;
+  if (!lessonId) return;
+  const lessonIdx = parseInt(lessonId.split('-')[1]) - 1;
+  const isVideo = cb.closest('.check-row').id === 'checkVideo';
+  const isText = cb.closest('.check-row').id === 'checkText';
+
+  // Update member data if student logged in
+  const mid = window._linkedMemberId;
+  if (mid && members[mid]) {
+    if (isVideo) members[mid].lessons[lessonIdx].done = cb.checked;
+    if (isText) {
+      if (!members[mid].lessons[lessonIdx].textDone) members[mid].lessons[lessonIdx].textDone = false;
+      members[mid].lessons[lessonIdx].textDone = cb.checked;
+    }
+    saveMembers();
+    // Update progress displays
+    renderStudentProgress('dashboardProgress', mid);
+    renderStudentProgress('mypageProgress', mid);
+  }
+
+  // Also update monthData for general display
+  if (monthData[0] && monthData[0].items[lessonIdx]) {
+    if (isVideo) monthData[0].items[lessonIdx].video = cb.checked;
+    if (isText) monthData[0].items[lessonIdx].text = cb.checked;
+  }
+  // Update content list badges
+  renderMonth1Lessons();
+}
+
+// === Submit work (updates member data) ===
+function submitWork() {
+  const textarea = document.getElementById('workTextarea');
+  if (!textarea) return;
+  const text = textarea.value.trim();
+  if (!text) { alert('ワークの内容を入力してください'); return; }
+
+  const lessonId = window._currentLessonId;
+  if (!lessonId) return;
+  const lessonIdx = parseInt(lessonId.split('-')[1]) - 1;
+
+  const today = new Date();
+  const dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月' + today.getDate() + '日';
+
+  // Update member data
+  const mid = window._linkedMemberId;
+  if (mid && members[mid] && members[mid].works[lessonIdx]) {
+    members[mid].works[lessonIdx].submitted = true;
+    members[mid].works[lessonIdx].content = text;
+    members[mid].works[lessonIdx].date = dateStr;
+    saveMembers();
+    // Update progress displays
+    renderStudentProgress('dashboardProgress', mid);
+    renderStudentProgress('mypageProgress', mid);
+  }
+
+  // Also update monthData
+  if (monthData[0] && monthData[0].items[lessonIdx]) {
+    monthData[0].items[lessonIdx].work = true;
+  }
+
+  alert('ワークを提出しました！');
+  // Re-open lesson to show submitted state
+  openLesson(lessonId);
+  // Update content list badges
+  renderMonth1Lessons();
+}
+
+// === Submit feedback from admin (saves to member data) ===
+function submitFeedback(memberId, workIdx) {
+  const textarea = document.getElementById('fbText_' + workIdx);
+  if (!textarea) return;
+  const text = textarea.value.trim();
+  if (!text) { alert('フィードバックを入力してください'); return; }
+
+  members[memberId].works[workIdx].feedback = text;
+  saveMembers();
+  alert('フィードバックを送信しました！');
+  // Re-render member detail
+  openMember(memberId);
+}
+
+// === Render month 1 lesson list dynamically ===
+function renderMonth1Lessons() {
+  const container = document.getElementById('month1Lessons');
+  if (!container) return;
+
+  const lessonKeys = ['1-1','1-2','1-3','1-4','1-5','1-6'];
+  const mid = window._linkedMemberId;
+
+  container.innerHTML = lessonKeys.map((key, idx) => {
+    const lesson = lessons[key];
+    if (!lesson) return '';
+
+    // Determine status from member data or default
+    let videoDone = false;
+    let workSubmitted = false;
+
+    if (mid && members[mid]) {
+      videoDone = members[mid].lessons[idx] ? members[mid].lessons[idx].done : false;
+      workSubmitted = members[mid].works[idx] ? members[mid].works[idx].submitted : false;
+    } else {
+      // Admin or unlinked — use monthData
+      const mItem = monthData[0] && monthData[0].items[idx];
+      videoDone = mItem ? mItem.video : false;
+      workSubmitted = mItem ? mItem.work : false;
+    }
+
+    const checkMark = videoDone ? '<span class="lesson-check">✓</span>' : '';
+    const workBadgeClass = workSubmitted ? 'submitted' : 'pending';
+    const workBadgeText = workSubmitted ? 'ワーク提出済' : 'ワーク未提出';
+
+    return `<div class="lesson-item" onclick="openLesson('${key}')">
+      <span class="lesson-icon">▶️</span>
+      <span class="lesson-title">${lesson.title} <span class="work-badge-inline ${workBadgeClass}">${workBadgeText}</span></span>
+      ${checkMark}
+      <span class="lesson-arrow">→</span>
+    </div>`;
+  }).join('');
+}
+
+// === Progress detail renderer ===
+const monthData = [
+  { num: 1, title: '土台づくり（迷わない軸）', locked: false, items: [
+    { name: 'ビジネスの全体像を学ぶ', video: true, text: false, work: false },
+    { name: '自己理解をして強みを知る', video: true, text: false, work: true },
+    { name: 'Instagramアカウント設計', video: false, text: false, work: false },
+    { name: 'コンセプト設計', video: false, text: false, work: false },
+    { name: 'ブランドカラー設計', video: false, text: false, work: false },
+    { name: '働き方のビジョン設計', video: false, text: false, work: false }
+  ]},
+  { num: 2, title: '構築し発信する', locked: true, items: [
+    { name: 'Instagram発信 ストーリーズと投稿の役割' },
+    { name: 'Threads発信' },
+    { name: 'オンラインストア構築' },
+    { name: 'LINE構築' },
+    { name: '発信と集客の流れ' },
+    { name: 'プロフィール 売れる動線設計' }
+  ]},
+  { num: 3, title: '商品作りと運用', locked: true, items: [
+    { name: '商品作りのポイント' }, { name: '1万円以上の商品を作ろう' },
+    { name: '商品掲載のポイント' }, { name: 'ファンとの関係構築' },
+    { name: 'インサイトの見方' }, { name: 'セールスについて学ぶ' }
+  ]},
+  { num: 4, title: 'マーケティングフロー', locked: true, items: [
+    { name: '売上に繋がる流れを知る' }, { name: 'LINEからストアに流し方' },
+    { name: '売り込まない販売方法' }, { name: '価値を伝える方法' }, { name: '発信する意味や方法' }
+  ]},
+  { num: 5, title: 'ストア強化', locked: true, items: [
+    { name: '写真や商品説明のブラッシュアップ' }, { name: 'キャンペーン施策を考える' },
+    { name: '新作販売などの告知のタイミングを知る' }, { name: 'LINE、メルマガなどの活用方法' },
+    { name: '梱包やショップカードなどのブラッシュアップ' }
+  ]},
+  { num: 6, title: 'ファン化と改善', locked: true, items: [
+    { name: '売上が落ちた時の立て直し方' }, { name: '改善して実行する必要の意味' },
+    { name: '直近6ヶ月の販売スケジュール' }, { name: 'リピーター作りのコツ' }, { name: 'ストア運営のまとめ' }
+  ]}
+];
+
+function renderDetailProgress(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  let html = '<h3>📊 項目別の進捗</h3>';
+  monthData.forEach(m => {
+    const doneCount = m.locked ? 0 : m.items.filter(i => i.video && i.text && i.work).length;
+    html += `<div class="dp-month">
+      <div class="dp-month-header">
+        <div class="dp-month-num ${m.locked ? 'locked' : ''}">${m.num}</div>
+        <span class="dp-month-title">${m.title}</span>
+        <span class="dp-month-count">${m.locked ? '🔒 未公開' : doneCount + '/' + m.items.length + ' 完了'}</span>
+      </div>`;
+    if (!m.locked) {
+      m.items.forEach(i => {
+        const allDone = i.video && i.text && i.work;
+        html += `<div class="dp-item">
+          <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
+          <span class="dp-name ${allDone ? 'done' : ''}">${i.name}</span>
+          <div class="dp-badges">
+            <span class="dp-badge ${i.video ? 'video-done' : 'video-not'}">${i.video ? '動画✓' : '動画'}</span>
+            <span class="dp-badge ${i.text ? 'text-done' : 'text-not'}">${i.text ? 'テキスト✓' : 'テキスト'}</span>
+            <span class="dp-badge ${i.work ? 'work-done' : 'work-not'}">${i.work ? 'ワーク✓' : 'ワーク'}</span>
+          </div>
+        </div>`;
+      });
+    }
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+
+// === localStorage persistence ===
+function saveMembers() {
+  localStorage.setItem('hs_members', JSON.stringify(members));
+}
+function loadMembers() {
+  const saved = localStorage.getItem('hs_members');
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    // Merge saved data into members (overwrite existing, add new)
+    Object.keys(parsed).forEach(k => { members[k] = parsed[k]; });
+    // Remove keys that exist in default but not in saved (if member was deleted)
+  }
+}
+loadMembers();
+
+// === Add new member ===
+function addNewMember() {
+  const nameEl = document.getElementById('newMemberName');
+  const genreEl = document.getElementById('newMemberGenre');
+  const passEl = document.getElementById('newMemberPass');
+  const name = nameEl.value.trim();
+  const genre = genreEl.value.trim();
+  const pass = passEl.value.trim();
+  if (!name) { alert('お名前を入力してください'); return; }
+  if (!pass) { alert('パスワードを入力してください'); return; }
+
+  // Generate unique ID
+  const id = 'member_' + Date.now();
+  const initial = name.charAt(0);
+  const colors = [
+    'linear-gradient(135deg, #e8a8ad, #d4868c)',
+    'linear-gradient(135deg, #a8c4e8, #7d9bc4)',
+    'linear-gradient(135deg, #b8d4a8, #7d9b76)',
+    'linear-gradient(135deg, #d4c4e8, #b49bd4)',
+    'linear-gradient(135deg, #e8d4a8, #c4a87d)',
+    'linear-gradient(135deg, #a8e8d4, #7dc4a8)'
+  ];
+  const colorIdx = Object.keys(members).length % colors.length;
+
+  const today = new Date();
+  const dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月';
+
+  // Build empty lessons & works from month 1 data
+  const month1Items = monthData[0].items;
+  const emptyLessons = month1Items.map(i => ({ title: i.name, done: false }));
+  const emptyWorks = month1Items.map(i => ({ title: i.name, submitted: false }));
+
+  members[id] = {
+    name: name,
+    initial: initial,
+    sub: (genre ? genre + ' ・ ' : '') + '受講開始: ' + dateStr,
+    color: colors[colorIdx],
+    password: pass,
+    progress: { content: 0, work: '0/6', audio: '0/6', contentPct: 0, workPct: 0, audioPct: 0 },
+    lessons: emptyLessons,
+    works: emptyWorks,
+    memos: []
+  };
+
+  saveMembers();
+  renderMemberCards();
+
+  // Clear form
+  nameEl.value = '';
+  genreEl.value = '';
+  passEl.value = '';
+
+  alert(name + 'さんを登録しました！\nパスワード: ' + pass);
+}
+
+// === Render member cards ===
+function renderMemberCards() {
+  const container = document.getElementById('memberCardList');
+  if (!container) return;
+  const keys = Object.keys(members);
+  if (keys.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-light);padding:40px 0;">まだ会員が登録されていません</p>';
+    return;
+  }
+  container.innerHTML = keys.map(id => {
+    const m = members[id];
+    const doneCount = m.lessons ? m.lessons.filter(l => l.done).length : 0;
+    const totalCount = m.lessons ? m.lessons.length : 0;
+    return `<div class="member-card" onclick="openMember('${id}')">
+      <div class="member-avatar" style="background:${m.color}">${m.initial}</div>
+      <div class="member-info">
+        <div class="member-name">${m.name}</div>
+        <div class="member-sub">${m.sub}</div>
+        <div style="margin-top:6px;font-size:0.72rem;color:var(--text-light);">進捗: ${doneCount}/${totalCount} コンテンツ完了${m.password ? ' ・ PW: ' + m.password : ''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// === Updated login ===
+const _origDoLogin = doLogin;
+doLogin = function() {
+  const name = document.getElementById('loginName').value.trim();
+  const pass = document.getElementById('loginPass').value;
+
+  if (!name) {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = 'お名前を入力してください';
+    return;
+  }
+
+  if (selectedRole === 'admin') {
+    if (pass !== 'admin2026') {
+      document.getElementById('loginError').style.display = 'block';
+      document.getElementById('loginError').textContent = '管理者パスワードが正しくありません';
+      return;
+    }
+    // Admin login
+    const initial = name.charAt(0).toUpperCase();
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').classList.add('active');
+    document.getElementById('welcomeName').textContent = name;
+    document.getElementById('sidebarName').textContent = name;
+    document.getElementById('sidebarAvatar').textContent = initial;
+    document.getElementById('mypageName').textContent = name;
+    document.getElementById('mypageAvatar').textContent = initial;
+    window._loginRole = 'admin';
+    window._loginName = name;
+    window._currentView = 'admin';
+    window._linkedMemberId = null;
+    applyRoleView('admin');
+    renderMemberCards();
+    renderDetailProgress('dashboardProgress');
+    renderDetailProgress('mypageProgress');
+    renderMonth1Lessons();
+    return;
+  }
+
+  // Student login — match against registered members
+  let matchedId = null;
+  Object.keys(members).forEach(id => {
+    if (members[id].name === name) {
+      matchedId = id;
+    }
+  });
+
+  if (!matchedId) {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = 'この名前は登録されていません。講師に確認してください。';
+    return;
+  }
+
+  const memberPass = members[matchedId].password || 'demo2026';
+  if (pass !== memberPass) {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginError').textContent = 'パスワードが正しくありません';
+    return;
+  }
+
+  // Student login success — link to member data
+  const m = members[matchedId];
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  document.getElementById('welcomeName').textContent = m.name;
+  document.getElementById('sidebarName').textContent = m.name;
+  document.getElementById('sidebarAvatar').textContent = m.initial;
+  document.getElementById('sidebarAvatar').style.background = m.color;
+  document.getElementById('mypageName').textContent = m.name;
+  document.getElementById('mypageAvatar').textContent = m.initial;
+  document.getElementById('mypageAvatar').style.background = m.color;
+  window._loginRole = 'student';
+  window._loginName = name;
+  window._currentView = 'student';
+  window._linkedMemberId = matchedId;
+  applyRoleView('student');
+
+  // Render student's own progress on dashboard and mypage
+  renderStudentProgress('dashboardProgress', matchedId);
+  renderStudentProgress('mypageProgress', matchedId);
+  renderMonth1Lessons();
+  renderMypageWorks(matchedId);
+};
+
+// === Render student's own progress ===
+function renderStudentProgress(containerId, memberId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const m = members[memberId];
+  if (!m) { renderDetailProgress(containerId); return; }
+
+  let html = '<h3>📊 あなたの進捗</h3>';
+  // Month 1 from their actual data
+  html += `<div class="dp-month">
+    <div class="dp-month-header">
+      <div class="dp-month-num">1</div>
+      <span class="dp-month-title">${monthData[0].title}</span>
+    </div>`;
+  m.lessons.forEach((l, i) => {
+    const workDone = m.works[i] && m.works[i].submitted;
+    const allDone = l.done && workDone;
+    html += `<div class="dp-item">
+      <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
+      <span class="dp-name ${allDone ? 'done' : ''}">${l.title}</span>
+      <div class="dp-badges">
+        <span class="dp-badge ${l.done ? 'video-done' : 'video-not'}">${l.done ? '視聴✓' : '未視聴'}</span>
+        <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  // Locked months
+  [['2','構築し発信する'],['3','商品作りと運用'],['4','マーケティングフロー'],['5','ストア強化'],['6','ファン化と改善']].forEach(([n,t]) => {
+    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num locked">${n}</div><span class="dp-month-title">${t}</span><span class="dp-month-count">🔒 未公開</span></div></div>`;
+  });
+  el.innerHTML = html;
+}
+
+// === Render mypage works + feedback for student ===
+function renderMypageWorks(memberId) {
+  const el = document.getElementById('mypageWorks');
+  if (!el) return;
+  const m = members[memberId];
+  if (!m) { el.innerHTML = ''; return; }
+
+  let html = '<h3 style="margin-bottom:12px;">✏️ ワーク提出状況・フィードバック</h3>';
+  m.works.forEach(w => {
+    if (!w.submitted) {
+      html += `<div style="background:var(--bg-card);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;box-shadow:var(--shadow);">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong style="font-size:0.85rem;">${w.title}</strong>
+          <span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:var(--bg);color:var(--text-light);">未提出</span>
+        </div>
+      </div>`;
+    } else {
+      html += `<div style="background:var(--bg-card);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;box-shadow:var(--shadow);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <strong style="font-size:0.85rem;">${w.title}</strong>
+          <span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:rgba(125,155,118,0.1);color:var(--accent-green);">提出済み（${w.date}）</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--bg);border-radius:6px;font-size:0.82rem;margin-bottom:6px;">${w.content}</div>`;
+      if (w.feedback) {
+        html += `<div style="padding:10px 12px;background:rgba(200,149,108,0.08);border-left:3px solid var(--primary);border-radius:0 6px 6px 0;margin-top:8px;">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--primary-dark);margin-bottom:4px;">💬 講師からのフィードバック</div>
+          <p style="font-size:0.82rem;margin:0;">${w.feedback}</p>
+        </div>`;
+      } else {
+        html += `<div style="padding:8px 10px;font-size:0.75rem;color:var(--text-light);margin-top:4px;">フィードバック待ち...</div>`;
+      }
+      html += '</div>';
+    }
+  });
+  el.innerHTML = html;
+}
+
+// === Mobile ===
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+</script>
+</body>
+</html>
