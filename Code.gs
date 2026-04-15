@@ -231,19 +231,23 @@ function addMember(data) {
     now
   ]);
 
-  // 1ヶ月目のレッスン・ワーク初期データ
-  const month1Lessons = data.lessons || [
-    'ビジネスの全体像を学ぶ',
-    '自己理解をして強みを知る',
-    'Instagramアカウント設計',
-    'コンセプト設計',
-    'ブランドカラー設計',
-    '働き方のビジョン設計'
+  // 5Phase全レッスンの初期データ
+  const allLessons = data.lessons || [
+    { month: 1, index: 0, title: 'ブランディング' },
+    { month: 1, index: 1, title: 'ストア設定' },
+    { month: 2, index: 0, title: '商品撮影' },
+    { month: 2, index: 1, title: '商品登録' },
+    { month: 3, index: 0, title: 'SNS運用' },
+    { month: 3, index: 1, title: 'ファン作り' },
+    { month: 4, index: 0, title: 'マーケティング施策' },
+    { month: 4, index: 1, title: '分析・改善' },
+    { month: 5, index: 0, title: 'オペレーション' },
+    { month: 5, index: 1, title: 'リピート・口コミ施策' }
   ];
 
-  month1Lessons.forEach((title, idx) => {
-    lessonSheet.appendRow([id, 1, idx, title, false, false, '']);
-    workSheet.appendRow([id, 1, idx, title, false, '', '', '', '']);
+  allLessons.forEach(function(lesson) {
+    lessonSheet.appendRow([id, lesson.month, lesson.index, lesson.title, false, false, '']);
+    workSheet.appendRow([id, lesson.month, lesson.index, lesson.title, false, '', '', '', '']);
   });
 
   return { success: true, id: id };

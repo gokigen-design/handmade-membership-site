@@ -855,18 +855,18 @@
       <div class="stats-grid">
         <div class="stat-card">
           <div class="label">受講期間</div>
-          <div class="value">1ヶ月目</div>
-          <div class="sub">残り 5ヶ月</div>
+          <div class="value">Phase 1</div>
+          <div class="sub">全5Phase</div>
         </div>
         <div class="stat-card">
           <div class="label">動画・テキスト</div>
-          <div class="value">2 / 12</div>
-          <div class="sub">動画2本 テキスト0本 完了</div>
+          <div class="value">0 / 10</div>
+          <div class="sub">全10コンテンツ</div>
         </div>
         <div class="stat-card">
           <div class="label">ワーク提出</div>
-          <div class="value">1 / 6</div>
-          <div class="sub">次: Instagramアカウント設計</div>
+          <div class="value">0 / 10</div>
+          <div class="sub">次: ブランディング</div>
         </div>
       </div>
 
@@ -899,101 +899,67 @@
       <div id="contentList">
         <div class="page-header">
           <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> コンテンツ</h1>
-          <p>6ヶ月間のカリキュラム。各コンテンツをクリックすると動画・テキスト・ワーク提出ができます</p>
+          <p>5つのPhaseで構成されたカリキュラム。各コンテンツをクリックすると動画・テキスト・ワーク提出ができます</p>
         </div>
         <div class="module-list">
 
-          <!-- 1ヶ月目 -->
+          <!-- Phase 1: 基盤づくり -->
           <div class="module-card open">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">1</div>
-              <div class="module-info"><h3>土台づくり（迷わない軸）</h3><p>6コンテンツ・1ヶ月目</p></div>
+              <div class="module-info"><h3>基盤づくり</h3><p>2コンテンツ -- 1ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
-            <div class="module-lessons" id="month1Lessons">
+            <div class="module-lessons" id="phaseLessons1">
               <!-- JSで動的生成 -->
             </div>
           </div>
 
-          <!-- 2ヶ月目 -->
+          <!-- Phase 2: 商品準備 -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">2</div>
-              <div class="module-info"><h3>構築し発信する</h3><p>6コンテンツ・2ヶ月目</p></div>
-              <span class="module-status locked">2ヶ月目に公開</span>
+              <div class="module-info"><h3>商品準備</h3><p>2コンテンツ -- 1〜2ヶ月目</p></div>
+              <span class="module-status locked">Phase 2で公開</span>
             </div>
-            <div class="module-lessons">
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">Instagram発信 ストーリーズと投稿の役割</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">Threads発信</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">オンラインストア構築</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">LINE構築</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">発信と集客の流れ</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">プロフィール 売れる動線設計</span></div>
+            <div class="module-lessons" id="phaseLessons2">
+              <!-- JSで動的生成 -->
             </div>
           </div>
 
-          <!-- 3ヶ月目 -->
+          <!-- Phase 3: 集客の仕組みづくり -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">3</div>
-              <div class="module-info"><h3>商品作りと運用</h3><p>6コンテンツ・3ヶ月目</p></div>
-              <span class="module-status locked">3ヶ月目に公開</span>
+              <div class="module-info"><h3>集客の仕組みづくり</h3><p>2コンテンツ -- 2〜3ヶ月目</p></div>
+              <span class="module-status locked">Phase 3で公開</span>
             </div>
-            <div class="module-lessons">
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">商品作りのポイント</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">1万円以上の商品を作ろう</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">商品掲載のポイント</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">ファンとの関係構築</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">インサイトの見方</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">セールスについて学ぶ</span></div>
+            <div class="module-lessons" id="phaseLessons3">
+              <!-- JSで動的生成 -->
             </div>
           </div>
 
-          <!-- 4ヶ月目 -->
+          <!-- Phase 4: 販売力強化 -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num locked">4</div>
-              <div class="module-info"><h3>マーケティングフロー</h3><p>5コンテンツ・4ヶ月目</p></div>
-              <span class="module-status locked">4ヶ月目に公開</span>
+              <div class="module-info"><h3>販売力強化</h3><p>2コンテンツ -- 3〜4ヶ月目</p></div>
+              <span class="module-status locked">Phase 4で公開</span>
             </div>
-            <div class="module-lessons">
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">売上に繋がる流れを知る</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">LINEからストアに流し方</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">売り込まない販売方法</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">価値を伝える方法</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">発信する意味や方法</span></div>
+            <div class="module-lessons" id="phaseLessons4">
+              <!-- JSで動的生成 -->
             </div>
           </div>
 
-          <!-- 5ヶ月目 -->
+          <!-- Phase 5: 運営の安定化 -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num locked">5</div>
-              <div class="module-info"><h3>ストア強化</h3><p>5コンテンツ・5ヶ月目</p></div>
-              <span class="module-status locked">5ヶ月目に公開</span>
+              <div class="module-info"><h3>運営の安定化</h3><p>2コンテンツ -- 5〜6ヶ月目</p></div>
+              <span class="module-status locked">Phase 5で公開</span>
             </div>
-            <div class="module-lessons">
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">写真や商品説明のブラッシュアップ</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">キャンペーン施策を考える</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">新作販売などの告知のタイミングを知る</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">LINE、メルマガなどの活用方法</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">梱包やショップカードなどのブラッシュアップ</span></div>
-            </div>
-          </div>
-
-          <!-- 6ヶ月目 -->
-          <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num locked">6</div>
-              <div class="module-info"><h3>ファン化と改善</h3><p>5コンテンツ・6ヶ月目</p></div>
-              <span class="module-status locked">6ヶ月目に公開</span>
-            </div>
-            <div class="module-lessons">
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">売上が落ちた時の立て直し方</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">改善して実行する必要の意味</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">直近6ヶ月の販売スケジュール</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">リピーター作りのコツ</span></div>
-              <div class="lesson-item locked-lesson"><span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span class="lesson-title">ストア運営のまとめ</span></div>
+            <div class="module-lessons" id="phaseLessons5">
+              <!-- JSで動的生成 -->
             </div>
           </div>
 
@@ -1004,8 +970,8 @@
       <div class="lesson-detail" id="lessonDetail">
         <button class="back-btn" onclick="closeLesson()">← コンテンツ一覧に戻る</button>
 
-        <div class="lesson-detail-title" id="lessonTitle">ビジネスの全体像を学ぶ</div>
-        <div class="lesson-detail-meta" id="lessonMeta">1ヶ月目「土台づくり」 ・ コンテンツ 1/6</div>
+        <div class="lesson-detail-title" id="lessonTitle">ブランディング</div>
+        <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基盤づくり」 ・ 1ヶ月目</div>
 
         <!-- Video -->
         <div class="video-container">
@@ -1258,153 +1224,162 @@
 <script>
 // === Lesson data ===
 const lessons = {
+  // === Phase 1: 基盤づくり ===
   '1-1': {
-    title: 'ビジネスの全体像を学ぶ',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 1/6',
-    duration: '18:30',
-    text: `<p>ああああああああああああああああああああああああああああ</p>`,
+    title: 'ブランディング',
+    meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ショップ名・コンセプトを決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ターゲット顧客（ペルソナ）を明確にする</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ブランドカラー・世界観を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ロゴ・ショップカードを作成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ショップの自己紹介文を書く</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料あり（テキスト参照）</span></div>
+</div>`,
     hasWork: true,
-    workDesc: '動画とテキストを見て、あなたのビジネスの全体像と6ヶ月後の目標をまとめて提出してください。',
+    workDesc: 'ショップ名・コンセプト・ターゲット顧客・ブランドカラーをまとめて提出してください。',
     workSubmitted: false
   },
   '1-2': {
-    title: '自己理解をして強みを知る',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 2/6',
-    duration: '22:15',
-    text: `<p>「自分の強みって何だろう？」と悩む方は多いですが、実はすでにあなたの中にあります。このレッスンでは、強みを見つけて言語化する方法を学びます。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">強みを見つける3つの質問</h4>
-<ol style="padding-left:20px;margin:8px 0;">
-<li><strong>人からよく褒められること</strong>は何ですか？</li>
-<li><strong>時間を忘れて没頭できること</strong>は何ですか？</li>
-<li><strong>人にアドバイスを求められること</strong>は何ですか？</li>
-</ol>
-<p>この3つの答えの重なりに、あなたの強みがあります。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">価値観ワーク</h4>
-<p>以下のリストから、あなたが大切にしている価値観を5つ選んでみてください。</p>
-<p style="color:var(--text-light);font-size:0.82rem;">丁寧さ / 自由 / 創造性 / つながり / 挑戦 / 安心 / 美しさ / 成長 / 家族 / 感謝 / 独自性 / 楽しさ / 誠実さ / 自然体</p>
-<p>選んだ5つが、あなたのストアの「軸」になります。迷ったときはこの価値観に立ち戻りましょう。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">強みをストアに活かす</h4>
-<p>見つけた強みと価値観を、ストアのコンセプト・商品説明・SNS発信に織り込んでいきます。「自分らしさ」が伝わるストアは、自然とファンがつきます。</p>`,
+    title: 'ストア設定',
+    meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>プロフィール・ショップ情報を入力する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料あり（テキスト参照）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>特定商取引法に基づく表記を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">PDF資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>配送方法・送料を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">料金表あり（テキスト参照）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>決済方法を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">決済の種類や手数料（テキスト参照）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>返品・交換ポリシーを決定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">PDF資料あり</span></div>
+</div>`,
     hasWork: true,
-    workDesc: '自己分析ワークシートを記入し、あなたの強みと価値観をまとめて提出してください。',
-    workSubmitted: true,
-    workDate: '2026年4月3日',
-    workFeedback: 'とても丁寧に自己分析できていますね！特に「丁寧な手仕事が好き」という強みをストアコンセプトに繋げている点が素晴らしいです。次のステップでは、この強みをInstagramの発信にも活かしていきましょう。'
-  },
-  '1-3': {
-    title: 'Instagramアカウント設計',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 3/6',
-    duration: '16:45',
-    text: `<p>Instagramはハンドメイド作家にとって最強の集客ツールです。ここでは「売れるアカウント」の土台を一緒に作っていきましょう。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">プロフィールの書き方</h4>
-<p>プロフィールはたった150文字であなたのストアの魅力を伝える場所です。以下のテンプレートを参考にしてみてください。</p>
-<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.82rem;">
-1行目：何をしている人か（例：手作りアクセサリー作家）<br>
-2行目：誰に届けたいか（例：大人の女性に似合うシンプルジュエリー）<br>
-3行目：あなたの想い（例：毎日をちょっと特別にする一粒を）<br>
-4行目：ストアへのリンク
-</div>
-<h4 style="margin-top:16px;color:var(--primary-dark);">世界観の統一</h4>
-<p>投稿の色味・フィルター・背景を統一すると、プロフィール画面に訪れた人が「素敵！」と感じやすくなります。ブランドカラーを意識して撮影しましょう。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">最初の9投稿プラン</h4>
-<ul style="padding-left:20px;margin:8px 0;">
-<li>商品紹介 × 3（メイン商品をしっかり見せる）</li>
-<li>制作過程 × 2（手作りの温かさを伝える）</li>
-<li>あなた自身 × 1（自己紹介・想い）</li>
-<li>お客様の声 × 1（信頼感アップ）</li>
-<li>豆知識・Tips × 2（お役立ち情報で保存されやすく）</li>
-</ul>`,
-    hasWork: true,
-    workDesc: 'Instagramアカウントのプロフィール案と、最初の9投稿の企画案を提出してください。',
+    workDesc: 'ストア設定が完了したら、ストアURLとスクリーンショットを提出してください。',
     workSubmitted: false
   },
-  '1-4': {
-    title: 'コンセプト設計',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 4/6',
-    duration: '20:00',
-    text: `<p>コンセプトとは、あなたのストアの「軸」です。これが明確になると、商品作り・発信・価格設定すべてに一貫性が生まれます。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">コンセプトの3要素</h4>
-<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.85rem;">
-<strong>Who（誰に）</strong>：あなたの商品を届けたいお客様像<br>
-<strong>What（何を）</strong>：どんな価値・体験を届けるのか<br>
-<strong>Why（なぜ）</strong>：あなたがそれを届けたい理由・想い
-</div>
-<p>例：「忙しい毎日を過ごす30代女性に（Who）、身につけるだけでホッとする天然石のアクセサリーを（What）、自分を大切にする時間を思い出してほしいから届ける（Why）」</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">キャッチコピーの作り方</h4>
-<p>コンセプトを一言で伝えるキャッチコピーがあると、プロフィールや名刺、ストアの説明に使えます。</p>
-<ul style="padding-left:20px;margin:8px 0;">
-<li>短く（15文字以内が理想）</li>
-<li>お客様目線で書く（作り手目線ではなく）</li>
-<li>感情に訴える言葉を入れる</li>
-</ul>
-<h4 style="margin-top:16px;color:var(--primary-dark);">競合との差別化</h4>
-<p>同じジャンルの作家さんを3人リサーチして、自分との違いを書き出してみましょう。違いが見つかれば、それがあなたの強みです。</p>`,
+  // === Phase 2: 商品準備 ===
+  '2-1': {
+    title: '商品撮影',
+    meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>撮影環境を整える（照明・背景）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メイン写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>使用イメージ・着用写真を撮影する、またはAIで生成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サイズ感がわかる写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真を編集・加工する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+</div>`,
     hasWork: true,
-    workDesc: 'あなたのストアのコンセプト（誰に・何を・どんな想いで届けるか）とキャッチコピー案を提出してください。',
+    workDesc: '撮影した商品写真を3枚以上提出してください。メイン写真・使用イメージ・サイズ感がわかるものを含めてください。',
     workSubmitted: false
   },
-  '1-5': {
-    title: 'ブランドカラー設計',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 5/6',
-    duration: '14:20',
-    text: `<p>色はあなたのストアの「第一印象」を決めます。ブランドカラーを設計して、統一感のある世界観を作りましょう。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">色の心理効果</h4>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0;">
-<div style="background:#fff5f5;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#e57373;">ピンク・赤系</strong><br>可愛い・情熱・温かさ</div>
-<div style="background:#f5f0ff;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#9575cd;">紫系</strong><br>上品・特別感・神秘的</div>
-<div style="background:#f0f7ff;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#64b5f6;">青系</strong><br>信頼・清潔感・落ち着き</div>
-<div style="background:#f0fff0;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#81c784;">緑系</strong><br>自然・癒し・安心</div>
-<div style="background:#fff8f0;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#d4a373;">ベージュ・ブラウン系</strong><br>ナチュラル・温もり・大人っぽさ</div>
-<div style="background:#f5f5f5;padding:10px;border-radius:6px;font-size:0.8rem;"><strong style="color:#616161;">グレー・黒系</strong><br>モダン・高級感・シック</div>
-</div>
-<h4 style="margin-top:16px;color:var(--primary-dark);">カラーパレットの作り方</h4>
-<p>3色を選びましょう。</p>
-<ul style="padding-left:20px;margin:8px 0;">
-<li><strong>メインカラー</strong>：ストアの顔になる色（1色）</li>
-<li><strong>サブカラー</strong>：メインを引き立てる色（1色）</li>
-<li><strong>アクセントカラー</strong>：ボタンやポイントに使う色（1色）</li>
-</ul>
-<p>この3色を写真の背景・投稿デザイン・ストアのバナーに統一して使うと、一気にプロっぽく見えます。</p>`,
+  '2-2': {
+    title: '商品登録',
+    meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>商品タイトルを決める（検索キーワード入り）</strong></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>在庫数を設定する</strong></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>カテゴリ・タグを設定する</strong></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>10商品は掲載する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料あり（テキスト参照）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>商品説明文を書く</strong><br><span style="font-size:0.8rem;color:var(--text-light);">商品説明文の書き方ガイドあり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>価格を設定する（原価計算・利益率を考慮）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">価格設定ガイドあり</span></div>
+</div>`,
     hasWork: true,
-    workDesc: 'あなたのブランドカラーパレット（メイン・サブ・アクセントカラー）を画像またはPDFで提出してください。',
+    workDesc: '登録した商品ページのURLまたはスクリーンショットを提出してください（3商品以上）。',
     workSubmitted: false
   },
-  '1-6': {
-    title: '働き方のビジョン設計',
-    meta: '1ヶ月目「土台づくり」 ・ コンテンツ 6/6',
-    duration: '17:10',
-    text: `<p>最後のレッスンでは、ハンドメイド作家としての「理想の働き方」を設計します。長く続けるためには、無理のない計画が大切です。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">理想のライフスタイルを描く</h4>
-<p>まずは理想の1日をイメージしてみましょう。</p>
-<div style="background:var(--bg);padding:14px;border-radius:8px;margin:8px 0;font-size:0.82rem;">
-例）<br>
-7:00 起床・朝の支度<br>
-9:00 制作タイム（2時間集中）<br>
-11:00 SNS投稿・コメント返信<br>
-12:00 お昼休憩<br>
-13:00 発送作業・事務<br>
-15:00 フリータイム（家族との時間）<br>
-21:00 翌日の投稿準備（30分）
-</div>
-<h4 style="margin-top:16px;color:var(--primary-dark);">月の売上目標の立て方</h4>
-<p>売上目標は「逆算」で考えます。</p>
-<ul style="padding-left:20px;margin:8px 0;">
-<li>目標月商：5万円</li>
-<li>平均単価：2,500円</li>
-<li>必要販売数：20個/月 → 週5個</li>
-<li>必要なアクセス数：月1,000（購入率2%の場合）</li>
-</ul>
-<p>こうやって分解すると「週に5個売る」という具体的なアクションが見えてきます。</p>
-<h4 style="margin-top:16px;color:var(--primary-dark);">燃え尽きないコツ</h4>
-<p>ハンドメイド作家は「好き」を仕事にするからこそ、頑張りすぎてしまうことがあります。</p>
-<ul style="padding-left:20px;margin:8px 0;">
-<li>週に1日は「作らない日」を作る</li>
-<li>完璧を目指さず、まず出す</li>
-<li>他の作家さんと比べない</li>
-<li>小さな成果を記録して自分を褒める</li>
-</ul>`,
+  // === Phase 3: 集客の仕組みづくり ===
+  '3-1': {
+    title: 'SNS運用',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メインSNSを決める（Instagram / TikTokなど）</strong></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>投稿テーマ・頻度を決める</strong></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ハッシュタグ戦略を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">SNS運用のコツ資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>プロフィールを整える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">Instagramプロフィールテンプレートあり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>最初の10投稿を作成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">Instagram投稿ネタ集あり</span></div>
+</div>`,
     hasWork: true,
-    workDesc: '理想のライフスタイルと月の売上目標、1週間のルーティン案を提出してください。',
+    workDesc: 'SNSアカウントのURLとプロフィール、最初の10投稿の計画を提出してください。',
+    workSubmitted: false
+  },
+  '3-2': {
+    title: 'ファン作り',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>制作過程を発信する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様の声・レビューを紹介する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>作家としてのストーリーを伝える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+</div>`,
+    hasWork: true,
+    workDesc: '制作過程の投稿案またはストーリー投稿の計画を提出してください。',
+    workSubmitted: false
+  },
+  // === Phase 4: 販売力強化 ===
+  '4-1': {
+    title: 'マーケティング施策',
+    meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>季節イベント・キャンペーンを企画する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>新作発売のスケジュールを立てる</strong><br><span style="font-size:0.8rem;color:var(--text-light);">ポイント資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター向け特典を考える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メルマガ or LINE公式を始める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+</div>`,
+    hasWork: true,
+    workDesc: 'キャンペーン企画案と新作発売スケジュール（3ヶ月分）を提出してください。',
+    workSubmitted: false
+  },
+  '4-2': {
+    title: '分析・改善',
+    meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>アクセス解析を確認する習慣をつける</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>売れ筋商品を分析する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真・説明文をテスト改善する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+</div>`,
+    hasWork: true,
+    workDesc: '現在のアクセス数・売上データと、改善施策案を提出してください。',
+    workSubmitted: false
+  },
+  // === Phase 5: 運営の安定化 ===
+  '5-1': {
+    title: 'オペレーション',
+    meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>梱包方法・資材を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>発送の流れをルーティン化する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">発送ルーティン＆梱包のコツ資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>在庫管理の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">管理のコツ資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様対応テンプレートを用意する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレート集あり</span></div>
+</div>`,
+    hasWork: true,
+    workDesc: '梱包写真と、発送ルーティンの計画を提出してください。',
+    workSubmitted: false
+  },
+  '5-2': {
+    title: 'リピート・口コミ施策',
+    meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
+    duration: '',
+    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
+<div style="margin:12px 0;">
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サンキューカードを同梱する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレートやコツ資料あり</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>レビュー依頼の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター限定の施策を実施する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+</div>`,
+    hasWork: true,
+    workDesc: 'サンキューカードのデザイン案と、リピーター施策の計画を提出してください。',
     workSubmitted: false
   }
 };
@@ -1524,6 +1499,13 @@ document.querySelectorAll('.nav-item').forEach(item => {
 function toggleModule(header) { header.closest('.module-card').classList.toggle('open'); }
 
 // === Open lesson detail ===
+// 全レッスンキーの順序（会員データ配列のインデックスと対応）
+const ALL_LESSON_KEYS = ['1-1','1-2','2-1','2-2','3-1','3-2','4-1','4-2','5-1','5-2'];
+
+function getLessonIndex(id) {
+  return ALL_LESSON_KEYS.indexOf(id);
+}
+
 function openLesson(id) {
   const lesson = lessons[id];
   if (!lesson) return;
@@ -1541,7 +1523,7 @@ function openLesson(id) {
   document.getElementById('lessonTextBody').innerHTML = lesson.text;
 
   // Restore checkbox state from member data
-  const lessonIdx = parseInt(id.split('-')[1]) - 1;
+  const lessonIdx = getLessonIndex(id);
   const mid = window._linkedMemberId;
   const checkVideo = document.querySelector('#checkVideo input[type="checkbox"]');
   const checkText = document.querySelector('#checkText input[type="checkbox"]');
@@ -1551,7 +1533,9 @@ function openLesson(id) {
     checkText.checked = ml ? (ml.textDone || false) : false;
   } else {
     // Admin or unlinked — use monthData
-    const mItem = monthData[0] && monthData[0].items[lessonIdx];
+    const phase = monthData[parseInt(id.split('-')[0]) - 1];
+    const itemIdx = parseInt(id.split('-')[1]) - 1;
+    const mItem = phase && phase.items[itemIdx];
     checkVideo.checked = mItem ? mItem.video : false;
     checkText.checked = mItem ? mItem.text : false;
   }
@@ -1690,24 +1674,32 @@ function addMemo() {
 function renderMemberProgress(id) {
   const m = members[id];
   const el = document.getElementById('mdProgressDetail');
-  const lessonNames = ['ビジネスの全体像を学ぶ','自己理解をして強みを知る','Instagramアカウント設計','コンセプト設計','ブランドカラー設計','働き方のビジョン設計'];
-  let html = '<h3>' + m.name + ' の項目別進捗</h3><div class="dp-month"><div class="dp-month-header"><div class="dp-month-num">1</div><span class="dp-month-title">土台づくり（迷わない軸）</span></div>';
-  m.lessons.forEach((l, i) => {
-    const workDone = m.works[i] && m.works[i].submitted;
-    const allDone = l.done && workDone;
-    html += `<div class="dp-item">
-      <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
-      <span class="dp-name ${allDone ? 'done' : ''}">${l.title}</span>
-      <div class="dp-badges">
-        <span class="dp-badge ${l.done ? 'video-done' : 'video-not'}">${l.done ? '視聴✓' : '未視聴'}</span>
-        <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
-      </div>
-    </div>`;
-  });
-  html += '</div>';
-  // Locked months
-  [['2','構築し発信する'],['3','商品作りと運用'],['4','マーケティングフロー'],['5','ストア強化'],['6','ファン化と改善']].forEach(([n,t]) => {
-    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num locked">${n}</div><span class="dp-month-title">${t}</span><span class="dp-month-count">未公開</span></div></div>`;
+  let html = '<h3>' + m.name + ' の項目別進捗</h3>';
+
+  monthData.forEach((phase, phaseIdx) => {
+    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num ${phase.locked ? 'locked' : ''}">${phase.num}</div><span class="dp-month-title">${phase.title}</span>`;
+    if (phase.locked) {
+      html += '<span class="dp-month-count">未公開</span>';
+    }
+    html += '</div>';
+    if (!phase.locked) {
+      phase.items.forEach((item, itemIdx) => {
+        const globalIdx = phaseIdx * 2 + itemIdx;
+        const l = m.lessons[globalIdx];
+        const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
+        const videoDone = l ? l.done : false;
+        const allDone = videoDone && workDone;
+        html += `<div class="dp-item">
+          <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
+          <span class="dp-name ${allDone ? 'done' : ''}">${item.name}</span>
+          <div class="dp-badges">
+            <span class="dp-badge ${videoDone ? 'video-done' : 'video-not'}">${videoDone ? '視聴✓' : '未視聴'}</span>
+            <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
+          </div>
+        </div>`;
+      });
+    }
+    html += '</div>';
   });
   el.innerHTML = html;
 }
@@ -1735,7 +1727,7 @@ function toggleCheck(cb) {
 
   const lessonId = window._currentLessonId;
   if (!lessonId) return;
-  const lessonIdx = parseInt(lessonId.split('-')[1]) - 1;
+  const lessonIdx = getLessonIndex(lessonId);
   const isVideo = cb.closest('.check-row').id === 'checkVideo';
   const isText = cb.closest('.check-row').id === 'checkText';
 
@@ -1757,12 +1749,14 @@ function toggleCheck(cb) {
   }
 
   // Also update monthData for general display
-  if (monthData[0] && monthData[0].items[lessonIdx]) {
-    if (isVideo) monthData[0].items[lessonIdx].video = cb.checked;
-    if (isText) monthData[0].items[lessonIdx].text = cb.checked;
+  const phaseIdx = parseInt(lessonId.split('-')[0]) - 1;
+  const itemIdx = parseInt(lessonId.split('-')[1]) - 1;
+  if (monthData[phaseIdx] && monthData[phaseIdx].items[itemIdx]) {
+    if (isVideo) monthData[phaseIdx].items[itemIdx].video = cb.checked;
+    if (isText) monthData[phaseIdx].items[itemIdx].text = cb.checked;
   }
   // Update content list badges
-  renderMonth1Lessons();
+  renderAllPhaseLessons();
 }
 
 // === Submit work (updates member data) ===
@@ -1774,7 +1768,7 @@ function submitWork() {
 
   const lessonId = window._currentLessonId;
   if (!lessonId) return;
-  const lessonIdx = parseInt(lessonId.split('-')[1]) - 1;
+  const lessonIdx = getLessonIndex(lessonId);
 
   const today = new Date();
   const dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月' + today.getDate() + '日';
@@ -1794,15 +1788,17 @@ function submitWork() {
   }
 
   // Also update monthData
-  if (monthData[0] && monthData[0].items[lessonIdx]) {
-    monthData[0].items[lessonIdx].work = true;
+  const phaseIdx = parseInt(lessonId.split('-')[0]) - 1;
+  const itemIdx = parseInt(lessonId.split('-')[1]) - 1;
+  if (monthData[phaseIdx] && monthData[phaseIdx].items[itemIdx]) {
+    monthData[phaseIdx].items[itemIdx].work = true;
   }
 
-  alert('ワークを提出しました！');
+  alert('ワークを提出しました!');
   // Re-open lesson to show submitted state
   openLesson(lessonId);
   // Update content list badges
-  renderMonth1Lessons();
+  renderAllPhaseLessons();
 }
 
 // === Submit feedback from admin (saves to member data) ===
@@ -1822,79 +1818,77 @@ function submitFeedback(memberId, workIdx) {
 }
 
 // === Render month 1 lesson list dynamically ===
-function renderMonth1Lessons() {
-  const container = document.getElementById('month1Lessons');
-  if (!container) return;
-
-  const lessonKeys = ['1-1','1-2','1-3','1-4','1-5','1-6'];
+function renderAllPhaseLessons() {
   const mid = window._linkedMemberId;
+  const lockSvg = '<svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>';
+  const playSvg = '<svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
 
-  container.innerHTML = lessonKeys.map((key, idx) => {
-    const lesson = lessons[key];
-    if (!lesson) return '';
+  monthData.forEach((phase, phaseIdx) => {
+    const container = document.getElementById('phaseLessons' + phase.num);
+    if (!container) return;
 
-    // Determine status from member data or default
-    let videoDone = false;
-    let workSubmitted = false;
+    container.innerHTML = phase.items.map((item, itemIdx) => {
+      const key = phase.num + '-' + (itemIdx + 1);
+      const lesson = lessons[key];
+      const globalIdx = phaseIdx * 2 + itemIdx;
 
-    if (mid && members[mid]) {
-      videoDone = members[mid].lessons[idx] ? members[mid].lessons[idx].done : false;
-      workSubmitted = members[mid].works[idx] ? members[mid].works[idx].submitted : false;
-    } else {
-      // Admin or unlinked — use monthData
-      const mItem = monthData[0] && monthData[0].items[idx];
-      videoDone = mItem ? mItem.video : false;
-      workSubmitted = mItem ? mItem.work : false;
-    }
+      if (phase.locked) {
+        return `<div class="lesson-item locked-lesson">
+          <span class="lesson-icon">${lockSvg}</span>
+          <span class="lesson-title">${item.name}</span>
+        </div>`;
+      }
 
-    const checkMark = videoDone ? '<span class="lesson-check">✓</span>' : '';
-    const workBadgeClass = workSubmitted ? 'submitted' : 'pending';
-    const workBadgeText = workSubmitted ? 'ワーク提出済' : 'ワーク未提出';
+      // Determine status from member data or default
+      let videoDone = false;
+      let workSubmitted = false;
 
-    return `<div class="lesson-item" onclick="openLesson('${key}')">
-      <span class="lesson-icon"><svg class="ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
-      <span class="lesson-title">${lesson.title} <span class="work-badge-inline ${workBadgeClass}">${workBadgeText}</span></span>
-      ${checkMark}
-      <span class="lesson-arrow">→</span>
-    </div>`;
-  }).join('');
+      if (mid && members[mid]) {
+        videoDone = members[mid].lessons[globalIdx] ? members[mid].lessons[globalIdx].done : false;
+        workSubmitted = members[mid].works[globalIdx] ? members[mid].works[globalIdx].submitted : false;
+      } else {
+        videoDone = item.video || false;
+        workSubmitted = item.work || false;
+      }
+
+      const checkMark = videoDone ? '<span class="lesson-check">✓</span>' : '';
+      const workBadgeClass = workSubmitted ? 'submitted' : 'pending';
+      const workBadgeText = workSubmitted ? 'ワーク提出済' : 'ワーク未提出';
+
+      return `<div class="lesson-item" onclick="openLesson('${key}')">
+        <span class="lesson-icon">${playSvg}</span>
+        <span class="lesson-title">${lesson ? lesson.title : item.name} <span class="work-badge-inline ${workBadgeClass}">${workBadgeText}</span></span>
+        ${checkMark}
+        <span class="lesson-arrow">→</span>
+      </div>`;
+    }).join('');
+  });
 }
+
+// 旧関数名の互換性ラッパー
+function renderMonth1Lessons() { renderAllPhaseLessons(); }
 
 // === Progress detail renderer ===
 const monthData = [
-  { num: 1, title: '土台づくり（迷わない軸）', locked: false, items: [
-    { name: 'ビジネスの全体像を学ぶ', video: true, text: false, work: false },
-    { name: '自己理解をして強みを知る', video: true, text: false, work: true },
-    { name: 'Instagramアカウント設計', video: false, text: false, work: false },
-    { name: 'コンセプト設計', video: false, text: false, work: false },
-    { name: 'ブランドカラー設計', video: false, text: false, work: false },
-    { name: '働き方のビジョン設計', video: false, text: false, work: false }
+  { num: 1, title: '基盤づくり', locked: false, items: [
+    { name: 'ブランディング', video: false, text: false, work: false },
+    { name: 'ストア設定', video: false, text: false, work: false }
   ]},
-  { num: 2, title: '構築し発信する', locked: true, items: [
-    { name: 'Instagram発信 ストーリーズと投稿の役割' },
-    { name: 'Threads発信' },
-    { name: 'オンラインストア構築' },
-    { name: 'LINE構築' },
-    { name: '発信と集客の流れ' },
-    { name: 'プロフィール 売れる動線設計' }
+  { num: 2, title: '商品準備', locked: true, items: [
+    { name: '商品撮影', video: false, text: false, work: false },
+    { name: '商品登録', video: false, text: false, work: false }
   ]},
-  { num: 3, title: '商品作りと運用', locked: true, items: [
-    { name: '商品作りのポイント' }, { name: '1万円以上の商品を作ろう' },
-    { name: '商品掲載のポイント' }, { name: 'ファンとの関係構築' },
-    { name: 'インサイトの見方' }, { name: 'セールスについて学ぶ' }
+  { num: 3, title: '集客の仕組みづくり', locked: true, items: [
+    { name: 'SNS運用', video: false, text: false, work: false },
+    { name: 'ファン作り', video: false, text: false, work: false }
   ]},
-  { num: 4, title: 'マーケティングフロー', locked: true, items: [
-    { name: '売上に繋がる流れを知る' }, { name: 'LINEからストアに流し方' },
-    { name: '売り込まない販売方法' }, { name: '価値を伝える方法' }, { name: '発信する意味や方法' }
+  { num: 4, title: '販売力強化', locked: true, items: [
+    { name: 'マーケティング施策', video: false, text: false, work: false },
+    { name: '分析・改善', video: false, text: false, work: false }
   ]},
-  { num: 5, title: 'ストア強化', locked: true, items: [
-    { name: '写真や商品説明のブラッシュアップ' }, { name: 'キャンペーン施策を考える' },
-    { name: '新作販売などの告知のタイミングを知る' }, { name: 'LINE、メルマガなどの活用方法' },
-    { name: '梱包やショップカードなどのブラッシュアップ' }
-  ]},
-  { num: 6, title: 'ファン化と改善', locked: true, items: [
-    { name: '売上が落ちた時の立て直し方' }, { name: '改善して実行する必要の意味' },
-    { name: '直近6ヶ月の販売スケジュール' }, { name: 'リピーター作りのコツ' }, { name: 'ストア運営のまとめ' }
+  { num: 5, title: '運営の安定化', locked: true, items: [
+    { name: 'オペレーション', video: false, text: false, work: false },
+    { name: 'リピート・口コミ施策', video: false, text: false, work: false }
   ]}
 ];
 
@@ -2004,7 +1998,7 @@ async function loadMembersFromGAS() {
       renderDetailProgress('dashboardProgress');
       renderDetailProgress('mypageProgress');
     }
-    renderMonth1Lessons();
+    renderAllPhaseLessons();
     return true;
   }
   return false;
@@ -2245,28 +2239,31 @@ function renderStudentProgress(containerId, memberId) {
   if (!m) { renderDetailProgress(containerId); return; }
 
   let html = '<h3>あなたの進捗</h3>';
-  // Month 1 from their actual data
-  html += `<div class="dp-month">
-    <div class="dp-month-header">
-      <div class="dp-month-num">1</div>
-      <span class="dp-month-title">${monthData[0].title}</span>
-    </div>`;
-  m.lessons.forEach((l, i) => {
-    const workDone = m.works[i] && m.works[i].submitted;
-    const allDone = l.done && workDone;
-    html += `<div class="dp-item">
-      <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
-      <span class="dp-name ${allDone ? 'done' : ''}">${l.title}</span>
-      <div class="dp-badges">
-        <span class="dp-badge ${l.done ? 'video-done' : 'video-not'}">${l.done ? '視聴✓' : '未視聴'}</span>
-        <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
-      </div>
-    </div>`;
-  });
-  html += '</div>';
-  // Locked months
-  [['2','構築し発信する'],['3','商品作りと運用'],['4','マーケティングフロー'],['5','ストア強化'],['6','ファン化と改善']].forEach(([n,t]) => {
-    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num locked">${n}</div><span class="dp-month-title">${t}</span><span class="dp-month-count">未公開</span></div></div>`;
+
+  monthData.forEach((phase, phaseIdx) => {
+    html += `<div class="dp-month"><div class="dp-month-header"><div class="dp-month-num ${phase.locked ? 'locked' : ''}">${phase.num}</div><span class="dp-month-title">${phase.title}</span>`;
+    if (phase.locked) {
+      html += '<span class="dp-month-count">未公開</span>';
+    }
+    html += '</div>';
+    if (!phase.locked) {
+      phase.items.forEach((item, itemIdx) => {
+        const globalIdx = phaseIdx * 2 + itemIdx;
+        const l = m.lessons[globalIdx];
+        const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
+        const videoDone = l ? l.done : false;
+        const allDone = videoDone && workDone;
+        html += `<div class="dp-item">
+          <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
+          <span class="dp-name ${allDone ? 'done' : ''}">${item.name}</span>
+          <div class="dp-badges">
+            <span class="dp-badge ${videoDone ? 'video-done' : 'video-not'}">${videoDone ? '視聴✓' : '未視聴'}</span>
+            <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
+          </div>
+        </div>`;
+      });
+    }
+    html += '</div>';
   });
   el.innerHTML = html;
 }
