@@ -729,8 +729,28 @@
     .sidebar { transform: translateX(-100%); }
     .sidebar.open { transform: translateX(0); }
     .overlay.open { display: block; }
-    .main { margin-left: 0; padding: 72px 20px 32px; }
+    .main { margin-left: 0; padding: 72px 16px 24px; }
     .stats-grid { grid-template-columns: 1fr; }
+    .page-header h1 { font-size: 1.3rem !important; }
+    .module-header { padding: 16px; gap: 12px; }
+    .module-num { width: 36px; height: 36px; font-size: 0.9rem; }
+    .module-info h3 { font-size: 0.95rem; }
+    .module-info p { font-size: 0.75rem; }
+    .lesson-item { padding: 12px 16px; gap: 10px; }
+    .lesson-title { font-size: 0.85rem; }
+    .work-badge-inline { font-size: 0.7rem; padding: 2px 6px; }
+    .login-box { padding: 32px 20px; max-width: 92%; }
+    .member-card { padding: 16px; }
+    .dp-item { flex-wrap: wrap; gap: 6px; padding: 10px 12px; }
+    .dp-badges { width: 100%; justify-content: flex-start; margin-top: 4px; }
+    .announce-item { flex-direction: column; gap: 8px; }
+    .announce-date { flex-direction: row; gap: 6px; padding: 0; }
+  }
+  @media (max-width: 480px) {
+    .main { padding: 64px 12px 20px; }
+    .page-header h1 { font-size: 1.15rem !important; }
+    .lesson-detail-meta { font-size: 0.75rem; }
+    .module-status { font-size: 0.7rem; padding: 3px 8px; }
   }
 </style>
 </head>
@@ -952,7 +972,7 @@
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">2</div>
               <div class="module-info"><h3>商品準備</h3><p>2コンテンツ -- 1〜2ヶ月目</p></div>
-              <span class="module-status locked">Phase 2で公開</span>
+              <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons2">
               <!-- JSで動的生成 -->
@@ -964,7 +984,7 @@
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">3</div>
               <div class="module-info"><h3>集客の仕組みづくり</h3><p>2コンテンツ -- 2〜3ヶ月目</p></div>
-              <span class="module-status locked">Phase 3で公開</span>
+              <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons3">
               <!-- JSで動的生成 -->
@@ -974,9 +994,9 @@
           <!-- Phase 4: 販売力強化 -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num locked">4</div>
+              <div class="module-num">4</div>
               <div class="module-info"><h3>販売力強化</h3><p>2コンテンツ -- 3〜4ヶ月目</p></div>
-              <span class="module-status locked">Phase 4で公開</span>
+              <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons4">
               <!-- JSで動的生成 -->
@@ -986,9 +1006,9 @@
           <!-- Phase 5: 運営の安定化 -->
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num locked">5</div>
+              <div class="module-num">5</div>
               <div class="module-info"><h3>運営の安定化</h3><p>2コンテンツ -- 5〜6ヶ月目</p></div>
-              <span class="module-status locked">Phase 5で公開</span>
+              <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons5">
               <!-- JSで動的生成 -->
@@ -1300,11 +1320,11 @@ const lessons = {
     duration: '',
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>撮影環境を整える（照明・背景）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メイン写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>使用イメージ・着用写真を撮影する、またはAIで生成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サイズ感がわかる写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真を編集・加工する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>撮影環境を整える（照明・背景）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メイン写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>使用イメージ・着用写真を撮影する、またはAIで生成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サイズ感がわかる写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真を編集・加工する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 </div>`,
     hasWork: true,
     workDesc: '撮影した商品写真を3枚以上提出してください。メイン写真・使用イメージ・サイズ感がわかるものを含めてください。',
@@ -1350,9 +1370,9 @@ const lessons = {
     duration: '',
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>制作過程を発信する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様の声・レビューを紹介する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>作家としてのストーリーを伝える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>制作過程を発信する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様の声・レビューを紹介する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>作家としてのストーリーを伝える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 </div>`,
     hasWork: true,
     workDesc: '制作過程の投稿案またはストーリー投稿の計画を提出してください。',
@@ -1365,10 +1385,10 @@ const lessons = {
     duration: '',
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>季節イベント・キャンペーンを企画する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>季節イベント・キャンペーンを企画する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 <div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>新作発売のスケジュールを立てる</strong><br><span style="font-size:0.8rem;color:var(--text-light);">ポイント資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター向け特典を考える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メルマガ or LINE公式を始める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター向け特典を考える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メルマガ or LINE公式を始める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 </div>`,
     hasWork: true,
     workDesc: 'キャンペーン企画案と新作発売スケジュール（3ヶ月分）を提出してください。',
@@ -1380,9 +1400,9 @@ const lessons = {
     duration: '',
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>アクセス解析を確認する習慣をつける</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>売れ筋商品を分析する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真・説明文をテスト改善する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>アクセス解析を確認する習慣をつける</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>売れ筋商品を分析する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真・説明文をテスト改善する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 </div>`,
     hasWork: true,
     workDesc: '現在のアクセス数・売上データと、改善施策案を提出してください。',
@@ -1395,7 +1415,7 @@ const lessons = {
     duration: '',
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>梱包方法・資材を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>梱包方法・資材を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 <div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>発送の流れをルーティン化する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">発送ルーティン＆梱包のコツ資料あり</span></div>
 <div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>在庫管理の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">管理のコツ資料あり</span></div>
 <div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様対応テンプレートを用意する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレート集あり</span></div>
@@ -1411,8 +1431,8 @@ const lessons = {
     text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
 <div style="margin:12px 0;">
 <div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サンキューカードを同梱する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレートやコツ資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>レビュー依頼の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター限定の施策を実施する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：（準備中）</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>レビュー依頼の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
+<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター限定の施策を実施する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
 </div>`,
     hasWork: true,
     workDesc: 'サンキューカードのデザイン案と、リピーター施策の計画を提出してください。',
@@ -1910,19 +1930,19 @@ const monthData = [
     { name: 'ブランディング', video: false, text: false, work: false },
     { name: 'ストア設定', video: false, text: false, work: false }
   ]},
-  { num: 2, title: '商品準備', locked: true, items: [
+  { num: 2, title: '商品準備', locked: false, items: [
     { name: '商品撮影', video: false, text: false, work: false },
     { name: '商品登録', video: false, text: false, work: false }
   ]},
-  { num: 3, title: '集客の仕組みづくり', locked: true, items: [
+  { num: 3, title: '集客の仕組みづくり', locked: false, items: [
     { name: 'SNS運用', video: false, text: false, work: false },
     { name: 'ファン作り', video: false, text: false, work: false }
   ]},
-  { num: 4, title: '販売力強化', locked: true, items: [
+  { num: 4, title: '販売力強化', locked: false, items: [
     { name: 'マーケティング施策', video: false, text: false, work: false },
     { name: '分析・改善', video: false, text: false, work: false }
   ]},
-  { num: 5, title: '運営の安定化', locked: true, items: [
+  { num: 5, title: '運営の安定化', locked: false, items: [
     { name: 'オペレーション', video: false, text: false, work: false },
     { name: 'リピート・口コミ施策', video: false, text: false, work: false }
   ]}
