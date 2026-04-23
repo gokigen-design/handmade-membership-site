@@ -327,13 +327,41 @@
     display: block;
   }
   .back-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.82rem; color: var(--primary-dark); cursor: pointer;
-    margin-bottom: 20px; padding: 8px 16px;
-    background: rgba(255,255,255,0.88); border-radius: var(--radius); border: 1px solid rgba(201,168,76,0.25);
-    font-family: inherit; transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.92rem; font-weight: 700; color: white; cursor: pointer;
+    margin-bottom: 20px; padding: 12px 22px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: var(--radius); border: none;
+    font-family: inherit; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(201,168,76,0.3);
   }
-  .back-btn:hover { background: var(--bg); }
+  .back-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(201,168,76,0.4);
+    filter: brightness(1.05);
+  }
+  .back-btn-bottom {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .back-btn-bottom .back-btn {
+    margin-bottom: 0;
+  }
+  .back-btn-bottom .to-top-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.92rem; font-weight: 700; color: var(--primary-dark); cursor: pointer;
+    padding: 12px 22px;
+    background: white; border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    font-family: inherit; transition: all 0.2s;
+  }
+  .back-btn-bottom .to-top-btn:hover {
+    background: rgba(201,168,76,0.08);
+  }
 
   .lesson-detail-title {
     font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;
@@ -1020,7 +1048,7 @@
 
       <!-- ===== LESSON DETAIL (shown when clicking a lesson) ===== -->
       <div class="lesson-detail" id="lessonDetail">
-        <button class="back-btn" onclick="closeLesson()">← コンテンツ一覧に戻る</button>
+        <button class="back-btn" onclick="closeLesson()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> コンテンツ一覧に戻る</button>
 
         <div class="lesson-detail-title" id="lessonTitle">ブランディング</div>
         <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基盤づくり」 ・ 1ヶ月目</div>
@@ -1045,7 +1073,7 @@
         </div>
 
         <!-- Work submission -->
-        <div class="work-section" id="workSection">
+        <div class="work-section" id="workSection" style="position:relative;">
           <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg> ワーク提出</h3>
           <p id="workDesc">このレッスンのワークを提出してください。</p>
 
@@ -1067,6 +1095,12 @@
           <div id="workArea">
             <!-- Dynamic: upload area or submitted status -->
           </div>
+        </div>
+
+        <!-- 下部にも「コンテンツ一覧に戻る」ボタン -->
+        <div class="back-btn-bottom">
+          <button class="back-btn" onclick="closeLesson()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> コンテンツ一覧に戻る</button>
+          <button class="to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg> ページ上部へ</button>
         </div>
       </div>
     </div>
