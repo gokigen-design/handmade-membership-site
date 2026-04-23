@@ -908,13 +908,13 @@
         </div>
         <div class="stat-card">
           <div class="label">動画・テキスト</div>
-          <div class="value">0 / 10</div>
-          <div class="sub">全10コンテンツ</div>
+          <div class="value">0 / 22</div>
+          <div class="sub">全22ステップ</div>
         </div>
         <div class="stat-card">
           <div class="label">ワーク提出</div>
-          <div class="value">0 / 10</div>
-          <div class="sub">次: ブランディング</div>
+          <div class="value">0 / 22</div>
+          <div class="sub">次: ショップ名・ブランドイメージ</div>
         </div>
       </div>
 
@@ -987,7 +987,7 @@
           <div class="module-card open">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">1</div>
-              <div class="module-info"><h3>基盤づくり</h3><p>2コンテンツ -- 1ヶ月目</p></div>
+              <div class="module-info"><h3>基盤づくり</h3><p>6ステップ ・ 1ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons1">
@@ -999,7 +999,7 @@
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">2</div>
-              <div class="module-info"><h3>商品準備</h3><p>2コンテンツ -- 1〜2ヶ月目</p></div>
+              <div class="module-info"><h3>商品準備</h3><p>4ステップ ・ 1〜2ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons2">
@@ -1011,7 +1011,7 @@
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">3</div>
-              <div class="module-info"><h3>集客の仕組みづくり</h3><p>2コンテンツ -- 2〜3ヶ月目</p></div>
+              <div class="module-info"><h3>集客の仕組みづくり</h3><p>4ステップ ・ 2〜3ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons3">
@@ -1023,7 +1023,7 @@
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">4</div>
-              <div class="module-info"><h3>販売力強化</h3><p>2コンテンツ -- 3〜4ヶ月目</p></div>
+              <div class="module-info"><h3>販売力強化</h3><p>4ステップ ・ 3〜4ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons4">
@@ -1035,7 +1035,7 @@
           <div class="module-card">
             <div class="module-header" onclick="toggleModule(this)">
               <div class="module-num">5</div>
-              <div class="module-info"><h3>運営の安定化</h3><p>2コンテンツ -- 5〜6ヶ月目</p></div>
+              <div class="module-info"><h3>運営の安定化</h3><p>4ステップ ・ 5〜6ヶ月目</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons5">
@@ -1323,156 +1323,289 @@ const notionContent = {"self_intro": {"title": "自己紹介のコツ", "html": 
 
 // === Lesson data ===
 const lessons = {
-  // === Phase 1: 基盤づくり ===
+  // ===== Phase 1: 基盤づくり（6レッスン） =====
   '1-1': {
-    title: 'ブランディング',
-    meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
+    title: 'ショップ名・ブランドイメージ',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 1/6',
     duration: '',
     checklist: [
       { label: 'ショップ名を決める' },
-      { label: 'ブランドイメージを決める' },
-      { label: 'ターゲット顧客（ペルソナ）を明確にする' },
-      { label: 'ブランドカラー・世界観を決める', hint: '参考動画：Canvaでブランドカラーを決める' },
-      { label: 'ロゴを作成する' },
-      { label: 'ショップカードを制作する' },
-      { label: '名刺を制作する' },
-      { label: '商品台紙を制作する', hint: '参考動画：私のロゴや商品台紙ができるまで' },
-      { label: 'ショップの自己紹介文を書く', hint: '資料：自己紹介のコツ' }
+      { label: 'ブランドイメージを決める（3つの形容詞で表現）' },
+      { label: 'ターゲット顧客（ペルソナ）を明確にする' }
+    ],
+    hasWork: true,
+    workDesc: 'ショップ名、ブランドイメージ（3つの形容詞）、ターゲット顧客像を提出してください。',
+    workSubmitted: false
+  },
+  '1-2': {
+    title: 'ブランドカラー・世界観',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 2/6',
+    duration: '',
+    checklist: [
+      { label: 'メインカラーを決める', hint: '下の「ブランドカラー決定ツール」を使って遊んでみよう' },
+      { label: 'サブカラー・アクセントカラーを決める' },
+      { label: 'ブランドの世界観イメージを文章で書き出す' }
     ],
     hasWork: true,
     workDesc: '決めた3色のカラーコード（例：#5fb9d1 / #e8f4f8 / #b87e4c）と、Canvaで制作したブランドカラーのシェアURLを貼って提出してください。',
     workSubmitted: false
   },
-  '1-2': {
-    title: 'ストア設定',
-    meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
+  '1-3': {
+    title: 'ロゴ・ショップカード・商品台紙',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 3/6',
     duration: '',
     checklist: [
-      { label: 'プロフィール・ショップ情報を入力する', hint: '資料：プロフィール入力のコツ' },
-      { label: '特定商取引法に基づく表記を設定する', hint: 'PDF資料あり' },
-      { label: '配送方法・送料を設定する', hint: '資料：料金表' },
-      { label: '決済方法を設定する', hint: '資料：決済の種類や手数料' },
-      { label: '返品・交換ポリシーを決定する', hint: 'PDF資料あり' }
+      { label: 'ロゴを作成する' },
+      { label: 'ショップカードを制作する' },
+      { label: '名刺を制作する' },
+      { label: '商品台紙を制作する' }
     ],
     hasWork: true,
-    workDesc: 'ストア設定が完了したら、ストアURLとスクリーンショットを提出してください。',
+    workDesc: 'Canvaで制作したロゴ・ショップカード・名刺・商品台紙のシェアURLを提出してください。',
     workSubmitted: false
   },
-  // === Phase 2: 商品準備 ===
-  '2-1': {
-    title: '商品撮影',
-    meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
+  '1-4': {
+    title: '自己紹介文',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 4/6',
     duration: '',
     checklist: [
-      { label: '撮影環境を整える（照明・背景）', hint: '動画：近日公開' },
-      { label: 'メイン写真を撮影する', hint: '動画：近日公開' },
-      { label: '使用イメージ・着用写真を撮影する、またはAIで生成する', hint: '動画：近日公開' },
-      { label: 'サイズ感がわかる写真を撮影する', hint: '動画：近日公開' },
-      { label: '写真を編集・加工する', hint: '動画：近日公開' }
+      { label: '「何屋さんか」が一言で分かる自己紹介を書く' },
+      { label: '「なぜやっているか」のストーリーを添える' },
+      { label: 'ショップの自己紹介文として清書する' }
     ],
     hasWork: true,
-    workDesc: '撮影した商品写真を3枚以上提出してください。メイン写真・使用イメージ・サイズ感がわかるものを含めてください。',
+    workDesc: '完成した自己紹介文を提出してください（300字程度）。',
+    workSubmitted: false
+  },
+  '1-5': {
+    title: 'ストア基本設定',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 5/6',
+    duration: '',
+    checklist: [
+      { label: 'プロフィール・ショップ情報を入力する' },
+      { label: '配送方法・送料を設定する' },
+      { label: '決済方法を設定する' }
+    ],
+    hasWork: true,
+    workDesc: '設定完了後、ストアのURLを提出してください。',
+    workSubmitted: false
+  },
+  '1-6': {
+    title: '法律関係（特商法・返品）',
+    meta: 'Phase 1「基盤づくり」 ・ ステップ 6/6',
+    duration: '',
+    checklist: [
+      { label: '特定商取引法に基づく表記を設定する' },
+      { label: '返品・交換ポリシーを決定する' }
+    ],
+    hasWork: true,
+    workDesc: 'ストアに法律関係の表記・ポリシーを公開したら、該当ページのURLを提出してください。',
+    workSubmitted: false
+  },
+
+  // ===== Phase 2: 商品準備（4レッスン） =====
+  '2-1': {
+    title: '撮影環境・5ショット構成',
+    meta: 'Phase 2「商品準備」 ・ ステップ 1/4',
+    duration: '',
+    checklist: [
+      { label: '撮影環境を整える（光・背景・レフ板）' },
+      { label: '5ショット構成を理解する' }
+    ],
+    hasWork: true,
+    workDesc: '整えた撮影環境の写真と、5ショット構成のメモを提出してください。',
     workSubmitted: false
   },
   '2-2': {
+    title: 'メイン写真の撮り方',
+    meta: 'Phase 2「商品準備」 ・ ステップ 2/4',
+    duration: '',
+    checklist: [
+      { label: 'メイン写真を撮影する' },
+      { label: 'ディテール（質感）写真を撮影する' }
+    ],
+    hasWork: true,
+    workDesc: 'メイン写真とディテール写真を提出してください。',
+    workSubmitted: false
+  },
+  '2-3': {
+    title: '使用・サイズ・編集',
+    meta: 'Phase 2「商品準備」 ・ ステップ 3/4',
+    duration: '',
+    checklist: [
+      { label: '使用イメージ・着用写真を撮影する、またはAIで生成する' },
+      { label: 'サイズ感がわかる写真を撮影する' },
+      { label: '写真を編集・加工する' }
+    ],
+    hasWork: true,
+    workDesc: '使用・サイズ・編集後の写真を合わせて3枚以上提出してください。',
+    workSubmitted: false
+  },
+  '2-4': {
     title: '商品登録',
-    meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
+    meta: 'Phase 2「商品準備」 ・ ステップ 4/4',
     duration: '',
     checklist: [
       { label: '商品タイトルを決める（検索キーワード入り）' },
-      { label: '在庫数を設定する' },
-      { label: 'カテゴリ・タグを設定する' },
-      { label: '10商品は掲載する', hint: '資料：商品登録のコツ' },
       { label: '商品説明文を書く' },
-      { label: '価格を設定する（原価計算・利益率を考慮）' }
+      { label: '価格を設定する（原価計算・利益率を考慮）' },
+      { label: '在庫数・カテゴリ・タグを設定する' },
+      { label: '10商品は掲載する', hint: '資料：商品登録のコツ' }
     ],
     hasWork: true,
     workDesc: '登録した商品ページのURLまたはスクリーンショットを提出してください（3商品以上）。',
     workSubmitted: false
   },
-  // === Phase 3: 集客の仕組みづくり ===
+
+  // ===== Phase 3: 集客の仕組みづくり（4レッスン） =====
   '3-1': {
-    title: 'SNS運用',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
+    title: 'SNS選び・投稿設計',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 1/4',
     duration: '',
     checklist: [
       { label: 'メインSNSを決める（Instagram / TikTokなど）' },
-      { label: '投稿テーマ・頻度を決める' },
-      { label: 'ハッシュタグ戦略を決める', hint: '資料：SNS運用のコツ' },
+      { label: '投稿テーマ・頻度を決める' }
+    ],
+    hasWork: true,
+    workDesc: '選んだSNSと、投稿テーマ・頻度の計画を提出してください。',
+    workSubmitted: false
+  },
+  '3-2': {
+    title: 'ハッシュタグ戦略',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 2/4',
+    duration: '',
+    checklist: [
+      { label: 'ハッシュタグの3段構え（大・中・小）を理解する', hint: '資料：SNS運用のコツ' },
+      { label: '自分の作品に合うハッシュタグを10〜15個リストアップ' }
+    ],
+    hasWork: true,
+    workDesc: 'リストアップしたハッシュタグ10〜15個を提出してください。',
+    workSubmitted: false
+  },
+  '3-3': {
+    title: 'プロフィール・最初の10投稿',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 3/4',
+    duration: '',
+    checklist: [
       { label: 'プロフィールを整える', hint: '資料：SNSプロフィールテンプレ' },
       { label: '最初の10投稿を作成する', hint: '資料：Instagram投稿ネタ集' }
     ],
     hasWork: true,
-    workDesc: 'SNSアカウントのURLとプロフィール、最初の10投稿の計画を提出してください。',
+    workDesc: 'SNSアカウントのURLと、最初の10投稿の計画を提出してください。',
     workSubmitted: false
   },
-  '3-2': {
-    title: 'ファン作り',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
+  '3-4': {
+    title: 'ファン作り3本柱',
+    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 4/4',
     duration: '',
     checklist: [
-      { label: '制作過程を発信する', hint: '動画：近日公開' },
-      { label: 'お客様の声・レビューを紹介する', hint: '動画：近日公開' },
-      { label: '作家としてのストーリーを伝える', hint: '動画：近日公開' }
+      { label: '制作過程を発信する' },
+      { label: 'お客様の声・レビューを紹介する' },
+      { label: '作家としてのストーリーを伝える' }
     ],
     hasWork: true,
-    workDesc: '制作過程の投稿案またはストーリー投稿の計画を提出してください。',
+    workDesc: '3本柱を意識した投稿計画を提出してください。',
     workSubmitted: false
   },
-  // === Phase 4: 販売力強化 ===
+
+  // ===== Phase 4: 販売力強化（4レッスン） =====
   '4-1': {
-    title: 'マーケティング施策',
-    meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
+    title: '季節イベント・キャンペーン',
+    meta: 'Phase 4「販売力強化」 ・ ステップ 1/4',
     duration: '',
     checklist: [
-      { label: '季節イベント・キャンペーンを企画する', hint: '動画：近日公開' },
-      { label: '新作発売のスケジュールを立てる', hint: '資料：新作発売のポイント' },
-      { label: 'リピーター向け特典を考える', hint: '動画：近日公開' },
-      { label: 'メルマガ or LINE公式を始める', hint: '動画：近日公開' }
+      { label: '年間イベントカレンダーを作る' },
+      { label: '季節イベント・キャンペーンを1つ企画する' }
     ],
     hasWork: true,
-    workDesc: 'キャンペーン企画案と新作発売スケジュール（3ヶ月分）を提出してください。',
+    workDesc: 'キャンペーン企画案を提出してください。',
     workSubmitted: false
   },
   '4-2': {
-    title: '分析・改善',
-    meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
+    title: '新作スケジュール・リピーター特典',
+    meta: 'Phase 4「販売力強化」 ・ ステップ 2/4',
     duration: '',
     checklist: [
-      { label: 'アクセス解析を確認する習慣をつける', hint: '動画：近日公開' },
-      { label: '売れ筋商品を分析する', hint: '動画：近日公開' },
-      { label: '写真・説明文をテスト改善する', hint: '動画：近日公開' }
+      { label: '新作発売のスケジュールを立てる', hint: '資料：新作発売のポイント' },
+      { label: 'リピーター向け特典を考える' }
+    ],
+    hasWork: true,
+    workDesc: '3ヶ月分の新作スケジュールと、リピーター特典案を提出してください。',
+    workSubmitted: false
+  },
+  '4-3': {
+    title: 'メルマガ・LINE公式',
+    meta: 'Phase 4「販売力強化」 ・ ステップ 3/4',
+    duration: '',
+    checklist: [
+      { label: 'メルマガ or LINE公式を始める' },
+      { label: '配信の頻度・テーマを決める' }
+    ],
+    hasWork: true,
+    workDesc: 'メルマガ/LINE公式のリンクと、配信計画を提出してください。',
+    workSubmitted: false
+  },
+  '4-4': {
+    title: '分析・PDCA',
+    meta: 'Phase 4「販売力強化」 ・ ステップ 4/4',
+    duration: '',
+    checklist: [
+      { label: 'アクセス解析を確認する習慣をつける' },
+      { label: '売れ筋商品を分析する' },
+      { label: '写真・説明文をテスト改善する' }
     ],
     hasWork: true,
     workDesc: '現在のアクセス数・売上データと、改善施策案を提出してください。',
     workSubmitted: false
   },
-  // === Phase 5: 運営の安定化 ===
+
+  // ===== Phase 5: 運営の安定化（4レッスン） =====
   '5-1': {
-    title: 'オペレーション',
-    meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
+    title: '梱包・発送ルーティン',
+    meta: 'Phase 5「運営の安定化」 ・ ステップ 1/4',
     duration: '',
     checklist: [
-      { label: '梱包方法・資材を決める', hint: '動画：近日公開' },
-      { label: '発送の流れをルーティン化する', hint: '資料：発送ルーティン＆梱包のコツ' },
-      { label: '在庫管理の仕組みを作る', hint: '資料：在庫管理のコツ' },
-      { label: 'お客様対応テンプレートを用意する', hint: '資料：顧客対応テンプレート集' }
+      { label: '梱包方法・資材を決める' },
+      { label: '発送の流れをルーティン化する', hint: '資料：発送ルーティン＆梱包のコツ' }
     ],
     hasWork: true,
     workDesc: '梱包写真と、発送ルーティンの計画を提出してください。',
     workSubmitted: false
   },
   '5-2': {
-    title: 'リピート・口コミ施策',
-    meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
+    title: '在庫管理・顧客対応テンプレ',
+    meta: 'Phase 5「運営の安定化」 ・ ステップ 2/4',
     duration: '',
     checklist: [
-      { label: 'サンキューカードを同梱する', hint: '資料：サンキューカードのコツ' },
-      { label: 'レビュー依頼の仕組みを作る', hint: '動画：近日公開' },
-      { label: 'リピーター限定の施策を実施する', hint: '動画：近日公開' }
+      { label: '在庫管理の仕組みを作る', hint: '資料：在庫管理のコツ' },
+      { label: 'お客様対応テンプレートを用意する', hint: '資料：顧客対応テンプレート集' }
     ],
     hasWork: true,
-    workDesc: 'サンキューカードのデザイン案と、リピーター施策の計画を提出してください。',
+    workDesc: '在庫管理シートと、お客様対応テンプレを提出してください。',
+    workSubmitted: false
+  },
+  '5-3': {
+    title: 'サンキューカード',
+    meta: 'Phase 5「運営の安定化」 ・ ステップ 3/4',
+    duration: '',
+    checklist: [
+      { label: 'サンキューカードのデザインを作る', hint: '資料：サンキューカードのコツ' },
+      { label: '同梱ルーティンに組み込む' }
+    ],
+    hasWork: true,
+    workDesc: 'サンキューカードのデザイン案を提出してください。',
+    workSubmitted: false
+  },
+  '5-4': {
+    title: 'レビュー・リピーター施策',
+    meta: 'Phase 5「運営の安定化」 ・ ステップ 4/4',
+    duration: '',
+    checklist: [
+      { label: 'レビュー依頼の仕組みを作る' },
+      { label: 'リピーター限定の施策を実施する' }
+    ],
+    hasWork: true,
+    workDesc: 'レビュー依頼文と、リピーター施策の計画を提出してください。',
     workSubmitted: false
   }
 };
@@ -1614,7 +1747,13 @@ function toggleModule(header) { header.closest('.module-card').classList.toggle(
 
 // === Open lesson detail ===
 // 全レッスンキーの順序（会員データ配列のインデックスと対応）
-const ALL_LESSON_KEYS = ['1-1','1-2','2-1','2-2','3-1','3-2','4-1','4-2','5-1','5-2'];
+const ALL_LESSON_KEYS = [
+  '1-1','1-2','1-3','1-4','1-5','1-6',
+  '2-1','2-2','2-3','2-4',
+  '3-1','3-2','3-3','3-4',
+  '4-1','4-2','4-3','4-4',
+  '5-1','5-2','5-3','5-4'
+];
 
 function getLessonIndex(id) {
   return ALL_LESSON_KEYS.indexOf(id);
@@ -1622,57 +1761,93 @@ function getLessonIndex(id) {
 
 // === レッスン毎のリソース（動画・Notion解説・PDF・Canvaテンプレ） ===
 const lessonResources = {
+  // Phase 1: 基盤づくり
   '1-1': {
+    tools: ['shopName']
+  },
+  '1-2': {
     videos: [
-      { title: 'Canvaでブランドカラーを決める', url: 'https://vimeo.com/1183360962/07ab4f6b88' },
-      { title: '私のロゴや商品台紙ができるまで', url: 'https://vimeo.com/1183363772/d9f692161c' }
+      { title: 'Canvaでブランドカラーを決める', url: 'https://vimeo.com/1183360962/07ab4f6b88' }
     ],
-    notions: ['self_intro'],
     tools: ['brandColor'],
     canvas: [
-      { title: 'ブランドカラー決定テンプレ', url: 'https://canva.link/brandcolor-olalea', note: 'このCanvaテンプレを編集→シェアURLを下のフォームに貼って提出' },
+      { title: 'ブランドカラー決定テンプレ', url: 'https://canva.link/brandcolor-olalea', note: 'このCanvaテンプレを編集→シェアURLを下のフォームに貼って提出' }
+    ]
+  },
+  '1-3': {
+    videos: [
+      { title: '私のロゴや商品台紙ができるまで', url: 'https://vimeo.com/1183363772/d9f692161c' }
+    ],
+    canvas: [
       { title: 'ロゴ・商品台紙テンプレ', url: 'https://canva.link/rogo-olalea' }
     ]
   },
-  '1-2': {
-    tools: ['storeSetup'],
-    notions: ['profile_input', 'shipping_fee', 'payment'],
-    pdfs: [
-      { title: '特定商取引法に基づく表記 - ハンドメイド販売のポイント', url: 'materials/tokutei_shotorihiki.pdf' },
-      { title: '返品・交換ポリシー', url: 'materials/return_policy.pdf' }
-    ]
+  '1-4': {
+    notions: ['self_intro']
   },
+  '1-5': {
+    tools: ['storeSetup'],
+    notions: ['profile_input', 'shipping_fee', 'payment']
+  },
+  '1-6': {
+    tools: ['legalTemplates']
+  },
+
+  // Phase 2: 商品準備
   '2-1': {
-    tools: ['productPhoto'],
-    notions: []
+    tools: ['productPhoto']
   },
   '2-2': {
+    tools: ['productPhotoMain']
+  },
+  '2-3': {
+    tools: ['productPhotoEdit']
+  },
+  '2-4': {
     tools: ['productRegister'],
     notions: ['product_register']
   },
+
+  // Phase 3: 集客
   '3-1': {
-    tools: ['snsRoadmap'],
-    notions: ['sns_ops', 'sns_profile', 'insta_posts']
+    tools: ['snsRoadmap']
   },
   '3-2': {
-    tools: ['fanMaking'],
-    notions: []
+    tools: ['hashtagStrategy'],
+    notions: ['sns_ops']
   },
+  '3-3': {
+    notions: ['sns_profile', 'insta_posts']
+  },
+  '3-4': {
+    tools: ['fanMaking']
+  },
+
+  // Phase 4: 販売力強化
   '4-1': {
-    tools: ['marketing'],
-    notions: ['new_release']
+    tools: ['marketing']
   },
   '4-2': {
-    tools: ['analytics'],
-    notions: []
+    notions: ['new_release']
   },
+  '4-3': {},
+  '4-4': {
+    tools: ['analytics']
+  },
+
+  // Phase 5: 運営の安定化
   '5-1': {
     tools: ['operation'],
-    notions: ['shipping_routine', 'inventory', 'customer_template']
+    notions: ['shipping_routine']
   },
   '5-2': {
-    tools: ['repeat'],
+    notions: ['inventory', 'customer_template']
+  },
+  '5-3': {
     notions: ['thanks_card']
+  },
+  '5-4': {
+    tools: ['repeat']
   }
 };
 
@@ -1771,9 +1946,9 @@ function renderStoreSetupRoadmap() {
 
   let html = `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-    進め方ロードマップ（合計約${total}分）
+    進め方の目安（一例）
   </h3>
-  <p style="font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:14px;">この順番で進めるとスムーズ。<strong>合計約${total}分で基本設定が完了</strong>します。</p>
+  <p style="font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:14px;">こんな順番で進めるとスムーズ、という <strong>一つの例</strong> です。自分のペースで進めて大丈夫！目安の時間は参考程度に。</p>
 
   <div style="position:relative;margin:12px 0 16px;">`;
 
@@ -1810,6 +1985,258 @@ function renderStoreSetupRoadmap() {
   </div>`;
 
   return html;
+}
+
+// ==========================================
+// Phase 1-1: ショップ名・ブランドイメージ
+// ==========================================
+function renderShopNameGuide() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    ショップ名・ブランドイメージの決め方
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">最初の超重要ステップ。ここを決めないと、この先の全てがぶれます。</p>
+
+  <!-- 3ステップ -->
+  <div style="display:grid;gap:10px;margin:14px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #5fb9d1;border-radius:var(--radius);padding:14px 16px;">
+      <div style="font-weight:700;font-size:0.95rem;color:#328697;margin-bottom:4px;">① ショップ名：覚えてもらえる名前</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">
+        ・短くて発音しやすい（3〜6文字が覚えやすい）<br>
+        ・作品の世界観と合う<br>
+        ・既存ショップと被らない（Instagram・MOSH で検索して確認）
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #b87e4c;border-radius:var(--radius);padding:14px 16px;">
+      <div style="font-weight:700;font-size:0.95rem;color:#8a4a2a;margin-bottom:4px;">② ブランドイメージ：3つの形容詞で</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">
+        例：<span style="background:rgba(95,185,209,0.15);padding:1px 6px;border-radius:3px;">涼しげ</span>
+        <span style="background:rgba(95,185,209,0.15);padding:1px 6px;border-radius:3px;">ひんやり</span>
+        <span style="background:rgba(95,185,209,0.15);padding:1px 6px;border-radius:3px;">透明感</span><br>
+        この3語が、カラー・写真・文章の方向性を決めます
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #6b8e5a;border-radius:var(--radius);padding:14px 16px;">
+      <div style="font-weight:700;font-size:0.95rem;color:#5a7a4a;margin-bottom:4px;">③ ペルソナ：買ってくれる人を1人想像</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">
+        年齢・職業・趣味・悩みを具体的に。<br>
+        例：「30代女性、事務職、インテリア好き、SNSで可愛いものを探している」
+      </div>
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 1-6: 法律関係（特商法・返品交換） HTMLコピペ雛形
+// ==========================================
+function renderLegalTemplates() {
+  const tokuteiTemplate = `特定商取引法に基づく表記
+
+販売事業者名：〇〇〇〇（氏名）
+所在地：請求があった場合、遅滞なく開示します
+電話番号：請求があった場合、遅滞なく開示します
+メールアドレス：〇〇〇〇@〇〇〇
+運営責任者：〇〇〇〇（氏名）
+販売価格：各商品ページに表示
+商品代金以外の必要料金：送料（各商品ページに表示）、決済手数料
+支払方法：クレジットカード、銀行振込、コンビニ決済
+支払時期：ご注文時に決済
+商品の引渡し時期：ご入金確認後、7営業日以内に発送
+返品・交換について：商品到着後7日以内にご連絡ください（詳細は返品ポリシーをご確認ください）`;
+
+  const returnPolicyTemplate = `返品・交換ポリシー
+
+【返品・交換について】
+商品到着後7日以内にご連絡いただいた場合、以下の条件で返品・交換を承ります。
+
+【返品・交換が可能な場合】
+・商品に不良・破損があった場合
+・ご注文と異なる商品が届いた場合
+
+【返品・交換ができない場合】
+・お客様都合による返品（サイズ違い・イメージと違うなど）
+・使用済み・装着済みの商品
+・ハンドメイド品の個体差による色・形の違い
+
+【返品の流れ】
+1. まずメール（〇〇〇〇@〇〇〇）までご連絡ください
+2. 商品・お届け状態の写真をお送りください
+3. 返送方法をご案内します
+4. 商品確認後、返金または交換対応いたします
+
+【送料について】
+・不良品・誤配送の場合：当店負担
+・お客様都合の場合：お客様負担`;
+
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    法律関係のコピペ雛形
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">下の雛形を <strong>コピーして自分のストアに貼り付け、〇〇の部分を編集</strong> するだけでOK。</p>
+
+  <!-- 特商法テンプレ -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:12px 0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+      <div style="font-weight:700;font-size:0.95rem;color:var(--primary-dark);">📋 特定商取引法に基づく表記</div>
+      <button onclick="copyLegalTemplate('tokutei')" id="copyTokuteiBtn" style="padding:6px 14px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:700;">コピーする</button>
+    </div>
+    <pre id="tokuteiTemplate" style="background:var(--bg);padding:14px;border-radius:6px;font-size:0.78rem;line-height:1.8;white-space:pre-wrap;font-family:'Zen Maru Gothic',sans-serif;color:var(--text);max-height:280px;overflow-y:auto;margin:0;">${tokuteiTemplate}</pre>
+    <div style="margin-top:8px;font-size:0.75rem;color:var(--text-light);line-height:1.7;">⚠️ 〇〇の部分は必ず自分の情報に置き換えてください</div>
+  </div>
+
+  <!-- 返品ポリシーテンプレ -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:12px 0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+      <div style="font-weight:700;font-size:0.95rem;color:var(--primary-dark);">📦 返品・交換ポリシー</div>
+      <button onclick="copyLegalTemplate('return')" id="copyReturnBtn" style="padding:6px 14px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:700;">コピーする</button>
+    </div>
+    <pre id="returnTemplate" style="background:var(--bg);padding:14px;border-radius:6px;font-size:0.78rem;line-height:1.8;white-space:pre-wrap;font-family:'Zen Maru Gothic',sans-serif;color:var(--text);max-height:280px;overflow-y:auto;margin:0;">${returnPolicyTemplate}</pre>
+    <div style="margin-top:8px;font-size:0.75rem;color:var(--text-light);line-height:1.7;⚠️ 〇〇の部分は必ず自分の情報に置き換えてください</div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 ちょっとした豆知識</div>
+    特商法は <strong>個人でも販売する以上は義務</strong>。ただし「所在地・電話番号」はネットに公開すると危ないので、「請求があった場合、遅滞なく開示」と書けばOKです（正式に認められた書き方）。
+  </div>`;
+}
+
+function copyLegalTemplate(type) {
+  const elId = type === 'tokutei' ? 'tokuteiTemplate' : 'returnTemplate';
+  const btnId = type === 'tokutei' ? 'copyTokuteiBtn' : 'copyReturnBtn';
+  const text = document.getElementById(elId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById(btnId);
+    const original = btn.textContent;
+    btn.textContent = '✓ コピーしました';
+    btn.style.background = 'linear-gradient(135deg, #6b8e5a, #5a7a4a)';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+    }, 2000);
+  });
+}
+
+// ==========================================
+// Phase 2-2: メイン写真の撮り方（寄り・ボケ比較）
+// ==========================================
+function renderProductPhotoMain() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/></svg>
+    メイン写真とディテール写真
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">商品一覧で目を引く <strong>メイン写真</strong>、質感を伝える <strong>ディテール写真</strong>。撮り分けを意識しましょう。</p>
+
+  <!-- メインとディテールの違い -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+      <div style="aspect-ratio:1;background:#f5ebe0;">
+        <img src="images/photos/photo-main.jpg" alt="メイン写真例" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="padding:10px 12px;">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">📷 メイン写真</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.7;">商品全体がきれいに見える、明るくて整った1枚</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+      <div style="aspect-ratio:1;background:#f5ebe0;">
+        <img src="images/photos/photo-detail.jpg" alt="ディテール写真例" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="padding:10px 12px;">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">🔍 ディテール写真</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.7;">素材の質感・波の表情がわかる寄りの1枚</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 プロの小ワザ</div>
+    メイン写真は <strong>「商品の中心が画像の中心」</strong> になるように撮ると、一覧表示で映えます。ディテールは <strong>商品にグッと近づいて（10〜15cm）</strong>、ピント位置を決めて撮りましょう。
+  </div>`;
+}
+
+// ==========================================
+// Phase 2-3: 使用・サイズ・編集
+// ==========================================
+function renderProductPhotoEdit() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    使用・サイズ・編集の仕上げ
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">お客様の不安を消す <strong>「想像させる」写真</strong>が売上を押し上げます。</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+      <div style="aspect-ratio:1;background:#f5ebe0;">
+        <img src="images/photos/photo-usage.jpg" alt="使用シーン" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="padding:10px 12px;">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">🌿 使用シーン</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.7;">実際に使っている場面を写す。「こんな風に使える」</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+      <div style="aspect-ratio:1;background:#f5ebe0;">
+        <img src="images/photos/photo-size.jpg" alt="サイズ感" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="padding:10px 12px;">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">📏 サイズ感</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.7;">手のひらや小物と並べて、大きさをひと目で</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+      <div style="aspect-ratio:1;background:#f5ebe0;">
+        <img src="images/photos/photo-styling.jpg" alt="スタイリング" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="padding:10px 12px;">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">✨ スタイリング</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.7;">世界観を演出。お花や小物と一緒に</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 編集のコツ -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin:14px 0;">
+    <div style="font-weight:700;font-size:0.9rem;margin-bottom:8px;color:var(--primary-dark);">📱 スマホだけで完結する編集3ステップ</div>
+    <div style="font-size:0.82rem;color:var(--text);line-height:1.8;">
+      <div style="margin-bottom:4px;"><strong>① トリミング</strong> - 余計な空間をカット、商品を中心に</div>
+      <div style="margin-bottom:4px;"><strong>② 明るさ・コントラスト</strong> - 少し明るめが売れる色</div>
+      <div><strong>③ 色味</strong> - 寒色作品は「やや青寄り」、暖色は「やや暖色寄り」</div>
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 3-2: ハッシュタグ戦略
+// ==========================================
+function renderHashtagStrategy() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+    ハッシュタグの「3段構え」戦略
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">1投稿で <strong>10〜15個</strong> のハッシュタグを、大・中・小を混ぜて使う。これが届く投稿の基本。</p>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:10px 0;">
+    <div style="display:grid;gap:8px;">
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(224,64,95,0.1),rgba(224,64,95,0.03));border-left:3px solid #e4405f;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#a82a48;margin-bottom:4px;">大タグ（10万投稿以上）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#ハンドメイド #ハンドメイドアクセサリー などの大ジャンル。露出用・1〜3個</div>
+      </div>
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(138,112,201,0.1),rgba(138,112,201,0.03));border-left:3px solid #8a70c9;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#5a4a8c;margin-bottom:4px;">中タグ（1万〜10万投稿）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#レジンアクセサリー #海レジン など中ジャンル。ターゲット到達用・5〜7個</div>
+      </div>
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(95,185,209,0.1),rgba(95,185,209,0.03));border-left:3px solid #5fb9d1;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#328697;margin-bottom:4px;">小タグ（1万投稿以下）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#オリジナル名 #作家名 など独自タグ。ファン獲得用・3〜5個</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 見つけ方のコツ</div>
+    Instagram で自分の作品キーワードを検索 → 出てきた投稿のタグを見る → 投稿数が多すぎず少なすぎないタグを選ぶ。<br>
+    目安：大タグ3+中タグ7+小タグ5＝<strong>15個</strong>
+  </div>`;
 }
 
 // ==========================================
@@ -2929,11 +3356,16 @@ function buildLessonResources(id) {
   // ③ インタラクティブツール・解説ブロック
   if (res.tools && res.tools.length) {
     const toolRenderers = {
+      shopName: () => renderShopNameGuide(),
       brandColor: () => renderWhyBrandColor() + renderHowToChooseBrandColor() + renderBrandColorTool(),
+      legalTemplates: () => renderLegalTemplates(),
       storeSetup: () => renderWhyStoreSetup() + renderStoreSetupRoadmap(),
       productPhoto: () => renderProductPhotoGuide(),
+      productPhotoMain: () => renderProductPhotoMain(),
+      productPhotoEdit: () => renderProductPhotoEdit(),
       productRegister: () => renderProductRegisterGuide(),
       snsRoadmap: () => renderSnsRoadmap(),
+      hashtagStrategy: () => renderHashtagStrategy(),
       fanMaking: () => renderFanMaking(),
       marketing: () => renderMarketingPillars(),
       analytics: () => renderAnalyticsPDCA(),
@@ -3155,7 +3587,7 @@ function renderMemberProgress(id) {
     html += '</div>';
     if (!phase.locked) {
       phase.items.forEach((item, itemIdx) => {
-        const globalIdx = phaseIdx * 2 + itemIdx;
+        const globalIdx = getLessonIndex(phase.num + '-' + (itemIdx + 1));
         const l = m.lessons[globalIdx];
         const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
         const videoDone = l ? l.done : false;
@@ -3322,7 +3754,7 @@ function renderAllPhaseLessons() {
     container.innerHTML = phase.items.map((item, itemIdx) => {
       const key = phase.num + '-' + (itemIdx + 1);
       const lesson = lessons[key];
-      const globalIdx = phaseIdx * 2 + itemIdx;
+      const globalIdx = getLessonIndex(key);
 
       if (phase.locked) {
         return `<div class="lesson-item locked-lesson">
@@ -3363,24 +3795,36 @@ function renderMonth1Lessons() { renderAllPhaseLessons(); }
 // === Progress detail renderer ===
 const monthData = [
   { num: 1, title: '基盤づくり', locked: false, items: [
-    { name: 'ブランディング', video: false, text: false, work: false },
-    { name: 'ストア設定', video: false, text: false, work: false }
+    { name: 'ショップ名・ブランドイメージ', video: false, text: false, work: false },
+    { name: 'ブランドカラー・世界観', video: false, text: false, work: false },
+    { name: 'ロゴ・ショップカード類', video: false, text: false, work: false },
+    { name: '自己紹介文', video: false, text: false, work: false },
+    { name: 'ストア基本設定', video: false, text: false, work: false },
+    { name: '法律関係（特商法・返品）', video: false, text: false, work: false }
   ]},
   { num: 2, title: '商品準備', locked: false, items: [
-    { name: '商品撮影', video: false, text: false, work: false },
+    { name: '撮影環境・5ショット構成', video: false, text: false, work: false },
+    { name: 'メイン写真の撮り方', video: false, text: false, work: false },
+    { name: '使用・サイズ・編集', video: false, text: false, work: false },
     { name: '商品登録', video: false, text: false, work: false }
   ]},
   { num: 3, title: '集客の仕組みづくり', locked: false, items: [
-    { name: 'SNS運用', video: false, text: false, work: false },
-    { name: 'ファン作り', video: false, text: false, work: false }
+    { name: 'SNS選び・投稿設計', video: false, text: false, work: false },
+    { name: 'ハッシュタグ戦略', video: false, text: false, work: false },
+    { name: 'プロフィール・最初の10投稿', video: false, text: false, work: false },
+    { name: 'ファン作り3本柱', video: false, text: false, work: false }
   ]},
   { num: 4, title: '販売力強化', locked: false, items: [
-    { name: 'マーケティング施策', video: false, text: false, work: false },
-    { name: '分析・改善', video: false, text: false, work: false }
+    { name: '季節イベント・キャンペーン', video: false, text: false, work: false },
+    { name: '新作スケジュール・リピーター特典', video: false, text: false, work: false },
+    { name: 'メルマガ・LINE公式', video: false, text: false, work: false },
+    { name: '分析・PDCA', video: false, text: false, work: false }
   ]},
   { num: 5, title: '運営の安定化', locked: false, items: [
-    { name: 'オペレーション', video: false, text: false, work: false },
-    { name: 'リピート・口コミ施策', video: false, text: false, work: false }
+    { name: '梱包・発送ルーティン', video: false, text: false, work: false },
+    { name: '在庫管理・顧客対応テンプレ', video: false, text: false, work: false },
+    { name: 'サンキューカード', video: false, text: false, work: false },
+    { name: 'レビュー・リピーター施策', video: false, text: false, work: false }
   ]}
 ];
 
@@ -3749,7 +4193,7 @@ function renderStudentProgress(containerId, memberId) {
     html += '</div>';
     if (!phase.locked) {
       phase.items.forEach((item, itemIdx) => {
-        const globalIdx = phaseIdx * 2 + itemIdx;
+        const globalIdx = getLessonIndex(phase.num + '-' + (itemIdx + 1));
         const l = m.lessons[globalIdx];
         const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
         const videoDone = l ? l.done : false;
