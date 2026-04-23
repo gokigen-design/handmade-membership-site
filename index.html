@@ -1822,25 +1822,23 @@ function renderProductPhotoGuide() {
   </h3>
   <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">ハンドメイド販売では <strong>「写真が商品の全て」</strong>。手に取って確認できないお客様にとって、写真こそが購入の決め手です。</p>
 
-  <!-- 写真品質の差比較 -->
+  <!-- 写真品質の差比較（Lino lea の実写真で説明） -->
   <div style="margin:16px 0 20px;">
     <div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:8px;">同じ商品でも写真次第でこんなに変わる</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <div>
-        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#c76060;margin-bottom:6px;">✗ 雑な写真</div>
-        <div style="aspect-ratio:1;background:#ddd;border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#999;font-size:0.7rem;border:1px solid #bbb;">
-          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#a8a0a0 0%,#bfb5b5 40%,#8a8080 100%);opacity:0.8;"></div>
-          <div style="position:relative;z-index:1;padding:20px;text-align:center;line-height:1.6;color:#3a3030;">暗い<br>背景ごちゃごちゃ<br>ピンボケ</div>
+        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#c76060;margin-bottom:6px;">✗ 制作中の雑な写真</div>
+        <div style="aspect-ratio:1;background:#eee;border-radius:8px;position:relative;overflow:hidden;border:1px solid #ccc;">
+          <img src="images/photos/photo-bad.jpg" alt="雑な写真例" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.85);">
         </div>
-        <div style="margin-top:6px;font-size:0.72rem;color:#8a3a3a;text-align:center;line-height:1.5;">お客様：「よく見えない...」<br>→ スルー</div>
+        <div style="margin-top:6px;font-size:0.72rem;color:#8a3a3a;text-align:center;line-height:1.5;">制作途中・背景ごちゃごちゃ<br>→ 「買いたい」と思えない</div>
       </div>
       <div>
         <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#3a8a6c;margin-bottom:6px;">✓ ちゃんと撮った写真</div>
-        <div style="aspect-ratio:1;background:linear-gradient(135deg,#f5ebe0,#e8dccf);border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid #d4c4b0;">
-          <div style="width:55%;aspect-ratio:1;background:linear-gradient(135deg,#7ac4c7,#5fb9d1 60%,#e8f4f8);border-radius:50%;box-shadow:0 8px 24px rgba(95,185,209,0.4);"></div>
-          <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:0.65rem;color:#8a7530;font-family:serif;letter-spacing:1px;">Lino lea</div>
+        <div style="aspect-ratio:1;background:#f5ebe0;border-radius:8px;position:relative;overflow:hidden;border:1px solid #d4c4b0;">
+          <img src="images/photos/photo-main.jpg" alt="プロ級の商品写真" style="width:100%;height:100%;object-fit:cover;">
         </div>
-        <div style="margin-top:6px;font-size:0.72rem;color:#2a6a4a;text-align:center;line-height:1.5;">お客様：「素敵！欲しい」<br>→ 購入</div>
+        <div style="margin-top:6px;font-size:0.72rem;color:#2a6a4a;text-align:center;line-height:1.5;">整った背景・美しい光<br>→ 「素敵！欲しい」</div>
       </div>
     </div>
   </div>
@@ -1851,24 +1849,50 @@ function renderProductPhotoGuide() {
   </h3>
   <p style="font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:14px;">1商品につき <strong>最低5枚</strong>。それぞれ役割が違います。</p>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0;">
     ${[
-      { n:1, icon:'📸', t:'メイン', d:'商品全体が分かる', role:'一覧で目を引く' },
-      { n:2, icon:'🔍', t:'ディテール', d:'素材・質感が伝わる', role:'クオリティ証明' },
-      { n:3, icon:'👗', t:'着用・使用', d:'身につけた姿', role:'サイズ感・イメージ' },
-      { n:4, icon:'📏', t:'サイズ感', d:'小物や手と比較', role:'失敗を防ぐ' },
-      { n:5, icon:'🎨', t:'スタイリング', d:'世界観の演出', role:'「こんな暮らしに」と想像させる' }
+      { n:1, img:'photo-main.jpg', t:'メイン', d:'商品全体が分かる', role:'一覧で目を引く', ex:'（例）Ocean clock 30cm 全体' },
+      { n:2, img:'photo-detail.jpg', t:'ディテール', d:'素材・質感・模様のアップ', role:'クオリティ証明', ex:'波の質感がわかる寄りの1枚' },
+      { n:3, img:'photo-usage.jpg', t:'使用シーン', d:'実際に使っているイメージ', role:'「こんな風に使える」', ex:'ティッシュケースを並べた演出' },
+      { n:4, img:'photo-size.jpg', t:'サイズ感', d:'大きさの比較がわかる', role:'失敗を防ぐ', ex:'床置きや手のひらとの比較' },
+      { n:5, img:'photo-styling.jpg', t:'スタイリング', d:'世界観を演出した1枚', role:'「こんな暮らしに」と想像させる', ex:'エアプランツと一緒に' }
     ].map(s => `
-      <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--radius);padding:12px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-          <div style="font-size:1.3rem;">${s.icon}</div>
-          <div style="background:var(--primary);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">${s.n}</div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+        <div style="position:relative;aspect-ratio:4/5;background:#eee;overflow:hidden;">
+          <img src="images/photos/${s.img}" alt="${s.t}" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;top:8px;left:8px;background:var(--primary);color:white;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.2);">${s.n}</div>
         </div>
-        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${s.t}</div>
-        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.6;margin-bottom:6px;">${s.d}</div>
-        <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;">${s.role}</div>
+        <div style="padding:10px 12px;">
+          <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${s.t}</div>
+          <div style="font-size:0.75rem;color:var(--text-light);line-height:1.6;margin-bottom:6px;">${s.d}</div>
+          <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;margin-bottom:4px;">${s.role}</div>
+          <div style="font-size:0.68rem;color:var(--text-light);font-style:italic;margin-top:4px;">${s.ex}</div>
+        </div>
       </div>
     `).join('')}
+  </div>
+
+  <!-- 背景ボケ効果の解説（寄り・ボケの比較） -->
+  <div style="margin:16px 0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+    <div style="font-weight:700;font-size:0.95rem;margin-bottom:10px;color:var(--primary-dark);">📸 背景ボケで雰囲気アップ（寄りのカットの小ワザ）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <div style="aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid #e0e0e0;">
+          <img src="images/photos/photo-main.jpg" alt="全体像" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="font-size:0.75rem;text-align:center;margin-top:6px;color:var(--text-light);"><strong style="color:var(--text);">全体像（パンフォーカス）</strong><br>商品を細部まで見せる</div>
+      </div>
+      <div>
+        <div style="aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid #e0e0e0;">
+          <img src="images/photos/photo-bokeh.jpg" alt="寄り・ボケ" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="font-size:0.75rem;text-align:center;margin-top:6px;color:var(--text-light);"><strong style="color:var(--text);">寄り＋背景ボケ</strong><br>雰囲気と質感を引き立てる</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:0.78rem;color:var(--text-light);line-height:1.7;background:var(--bg);padding:10px 12px;border-radius:6px;">
+      <strong style="color:var(--primary-dark);">スマホでボケを作る方法：</strong><br>
+      ① ポートレートモードを使う　② 商品に近づいて（10〜15cm）ピントを合わせる　③ 背景をできるだけ遠くに（奥行き2m以上）
+    </div>
   </div>
 
   <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
