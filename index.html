@@ -1601,6 +1601,7 @@ const lessonResources = {
     ]
   },
   '1-2': {
+    tools: ['storeSetup'],
     notions: ['profile_input', 'shipping_fee', 'payment'],
     pdfs: [
       { title: '特定商取引法に基づく表記 - ハンドメイド販売のポイント', url: 'materials/tokutei_shotorihiki.pdf' },
@@ -1643,6 +1644,131 @@ const BRAND_PRESETS = [
   { key: 'monochrome', name: 'モノトーン・モダン', main: '#2c2c2c', sub: '#f5f5f5', accent: '#c0a870', icon: '◼️', desc: 'シンプル・都会的' },
   { key: 'sunset', name: '夕焼け・レトロ', main: '#d97b50', sub: '#fce8d4', accent: '#3f5f72', icon: '🌅', desc: '温かみ・ノスタルジック' }
 ];
+
+// Phase 1-2: なぜストア設定が売上を変えるのか
+function renderWhyStoreSetup() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/></svg>
+    ストア設定で売上が変わる理由
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">ストア設定は <strong>事務作業ではなく、「売れる準備」</strong> です。ちゃんと設定すると売上が変わります。</p>
+
+  <!-- Before/After（ストアの印象比較） -->
+  <div style="margin:16px 0 20px;">
+    <div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:8px;">お客様が見るのはこんな差です</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <!-- Before -->
+      <div style="background:#fef7f5;border:1px solid #e8c8c0;border-radius:8px;padding:14px;">
+        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#c76060;margin-bottom:10px;">✗ 設定サボったお店</div>
+        <div style="background:white;border-radius:6px;padding:10px;font-size:0.7rem;line-height:1.9;border:1px solid #eee;">
+          <div style="color:#999;">📸 プロフィール：<span style="color:#c76060;">空欄</span></div>
+          <div style="color:#999;">📋 特商法表記：<span style="color:#c76060;">なし</span></div>
+          <div style="color:#999;">🚚 送料：<span style="color:#c76060;">お問合せください</span></div>
+          <div style="color:#999;">💳 決済：<span style="color:#c76060;">銀行振込のみ</span></div>
+          <div style="color:#999;">📦 返品：<span style="color:#c76060;">記載なし</span></div>
+        </div>
+        <div style="margin-top:10px;font-size:0.75rem;color:#8a3a3a;background:rgba(199,96,96,0.1);padding:8px 10px;border-radius:4px;text-align:center;line-height:1.6;">
+          <strong>お客様：</strong><br>「怪しい...やめとこ」<br>→ <strong>離脱</strong>
+        </div>
+      </div>
+      <!-- After -->
+      <div style="background:#f0faf4;border:1px solid #b8d8c0;border-radius:8px;padding:14px;">
+        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#3a8a6c;margin-bottom:10px;">✓ 設定しっかりお店</div>
+        <div style="background:white;border-radius:6px;padding:10px;font-size:0.7rem;line-height:1.9;border:1px solid #eee;">
+          <div style="color:#333;">📸 プロフィール：<span style="color:#3a8a6c;">自己紹介と想い</span></div>
+          <div style="color:#333;">📋 特商法表記：<span style="color:#3a8a6c;">ばっちり</span></div>
+          <div style="color:#333;">🚚 送料：<span style="color:#3a8a6c;">全国一律500円</span></div>
+          <div style="color:#333;">💳 決済：<span style="color:#3a8a6c;">クレカ・コンビニOK</span></div>
+          <div style="color:#333;">📦 返品：<span style="color:#3a8a6c;">7日以内OK</span></div>
+        </div>
+        <div style="margin-top:10px;font-size:0.75rem;color:#2a6a4a;background:rgba(58,138,108,0.1);padding:8px 10px;border-radius:4px;text-align:center;line-height:1.6;">
+          <strong>お客様：</strong><br>「安心！買おう」<br>→ <strong>購入</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 売上への影響5カード -->
+  <div style="background:var(--bg);border-radius:var(--radius);padding:16px 18px;margin:12px 0;">
+    <div style="font-size:0.9rem;font-weight:700;margin-bottom:10px;color:var(--primary-dark);">それぞれがどう売上に効くの？</div>
+    <div style="display:grid;gap:10px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:white;border-radius:6px;">
+        <div style="flex-shrink:0;font-size:1.3rem;">📸</div>
+        <div style="flex:1;font-size:0.82rem;line-height:1.7;"><strong>プロフィール</strong><br><span style="color:var(--text-light);">購入直前に必ず見られる。「この人から買いたい」の判断材料</span></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:white;border-radius:6px;">
+        <div style="flex-shrink:0;font-size:1.3rem;">📋</div>
+        <div style="flex:1;font-size:0.82rem;line-height:1.7;"><strong>特商法表記</strong><br><span style="color:var(--text-light);">これがないと「詐欺かも」と疑われる。法律でも必須</span></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:white;border-radius:6px;">
+        <div style="flex-shrink:0;font-size:1.3rem;">🚚</div>
+        <div style="flex:1;font-size:0.82rem;line-height:1.7;"><strong>送料設定</strong><br><span style="color:var(--text-light);">カゴ落ち原因 TOP3。「分かりづらい・高い・設定なし」は離脱直結</span></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:white;border-radius:6px;">
+        <div style="flex-shrink:0;font-size:1.3rem;">💳</div>
+        <div style="flex:1;font-size:0.82rem;line-height:1.7;"><strong>決済方法</strong><br><span style="color:var(--text-light);">支払いできなきゃ買えない。クレカ・後払いは必須級</span></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:white;border-radius:6px;">
+        <div style="flex-shrink:0;font-size:1.3rem;">📦</div>
+        <div style="flex:1;font-size:0.82rem;line-height:1.7;"><strong>返品ポリシー</strong><br><span style="color:var(--text-light);">「もし失敗したら...」の不安を消す最後のひと押し</span></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// Phase 1-2: 5ステップロードマップ
+function renderStoreSetupRoadmap() {
+  const steps = [
+    { num: 1, icon: '📸', title: 'プロフィール入力', min: 10, color: '#5fb9d1', why: '顔つくる', notion: 'profile_input' },
+    { num: 2, icon: '📋', title: '特商法に基づく表記', min: 5, color: '#7ac4c7', why: '信頼つくる', pdf: 'tokutei' },
+    { num: 3, icon: '🚚', title: '送料・配送方法', min: 10, color: '#b87e4c', why: 'カゴ落ち防ぐ', notion: 'shipping_fee' },
+    { num: 4, icon: '💳', title: '決済方法', min: 5, color: '#c9a84c', why: '売れる準備', notion: 'payment' },
+    { num: 5, icon: '📦', title: '返品・交換ポリシー', min: 5, color: '#8a6d24', why: '安心感', pdf: 'return' }
+  ];
+  const total = steps.reduce((s, x) => s + x.min, 0);
+
+  let html = `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    進め方ロードマップ（合計約${total}分）
+  </h3>
+  <p style="font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:14px;">この順番で進めるとスムーズ。<strong>合計約${total}分で基本設定が完了</strong>します。</p>
+
+  <div style="position:relative;margin:12px 0 16px;">`;
+
+  steps.forEach((s, i) => {
+    const isLast = i === steps.length - 1;
+    html += `
+      <div style="display:flex;gap:14px;align-items:stretch;margin-bottom:${isLast ? 0 : '8px'};">
+        <!-- 番号＋縦線 -->
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,${s.color},${s.color}cc);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;box-shadow:0 2px 6px ${s.color}40;">${s.num}</div>
+          ${!isLast ? `<div style="width:2px;flex:1;background:linear-gradient(to bottom,${s.color}60,${steps[i+1].color}60);margin:4px 0;min-height:16px;"></div>` : ''}
+        </div>
+        <!-- 本文カード -->
+        <div style="flex:1;background:var(--card);border:1px solid var(--border);border-left:3px solid ${s.color};border-radius:var(--radius);padding:12px 16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div style="font-weight:700;font-size:0.92rem;"><span style="margin-right:6px;">${s.icon}</span>${s.title}</div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <span style="background:${s.color}20;color:${s.color};font-size:0.72rem;padding:2px 8px;border-radius:10px;font-weight:700;">${s.why}</span>
+              <span style="font-size:0.72rem;color:var(--text-light);">所要${s.min}分</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  html += `</div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 最速で終わらせるコツ</div>
+    <div style="color:var(--text);">
+      <strong>特商法</strong>と<strong>返品ポリシー</strong>は <strong>PDF の内容をほぼコピペ</strong>でOK（10分で2つ完了）。<br>
+      プロフィール・送料・決済は下の「詳しい解説」を見ながら書いていくのが一番早いです。
+    </div>
+  </div>`;
+
+  return html;
+}
 
 // Block 1: なぜブランドカラー？
 function renderWhyBrandColor() {
@@ -2148,6 +2274,10 @@ function buildLessonResources(id) {
         html += renderWhyBrandColor();
         html += renderHowToChooseBrandColor();
         html += renderBrandColorTool();
+      }
+      if (toolKey === 'storeSetup') {
+        html += renderWhyStoreSetup();
+        html += renderStoreSetupRoadmap();
       }
     });
   }
