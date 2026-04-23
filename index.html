@@ -1278,18 +1278,17 @@ const lessons = {
     title: 'ブランディング',
     meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ショップ名を決める</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ブランドイメージを決める</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ターゲット顧客（ペルソナ）を明確にする</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ブランドカラー・世界観を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">参考動画：Canvaでブランドカラーを決める（コピーしてお使いください）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ロゴを作成する</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ショップカードを制作する</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>名刺を制作する</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>商品台紙を制作する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">参考動画：私のロゴや商品台紙ができるまで</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ショップの自己紹介文を書く</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料：自己紹介のコツ</span></div>
-</div>`,
+    checklist: [
+      { label: 'ショップ名を決める' },
+      { label: 'ブランドイメージを決める' },
+      { label: 'ターゲット顧客（ペルソナ）を明確にする' },
+      { label: 'ブランドカラー・世界観を決める', hint: '参考動画：Canvaでブランドカラーを決める' },
+      { label: 'ロゴを作成する' },
+      { label: 'ショップカードを制作する' },
+      { label: '名刺を制作する' },
+      { label: '商品台紙を制作する', hint: '参考動画：私のロゴや商品台紙ができるまで' },
+      { label: 'ショップの自己紹介文を書く', hint: '資料：自己紹介のコツ' }
+    ],
     hasWork: true,
     workDesc: 'ショップ名・ブランドイメージ・ターゲット顧客・ブランドカラー・ロゴなどをまとめて提出してください。',
     workSubmitted: false
@@ -1298,14 +1297,13 @@ const lessons = {
     title: 'ストア設定',
     meta: 'Phase 1「基盤づくり」 ・ 1ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>プロフィール・ショップ情報を入力する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料あり（テキスト参照）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>特定商取引法に基づく表記を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">PDF資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>配送方法・送料を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">料金表あり（テキスト参照）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>決済方法を設定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">決済の種類や手数料（テキスト参照）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>返品・交換ポリシーを決定する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">PDF資料あり</span></div>
-</div>`,
+    checklist: [
+      { label: 'プロフィール・ショップ情報を入力する', hint: '資料：プロフィール入力のコツ' },
+      { label: '特定商取引法に基づく表記を設定する', hint: 'PDF資料あり' },
+      { label: '配送方法・送料を設定する', hint: '資料：料金表' },
+      { label: '決済方法を設定する', hint: '資料：決済の種類や手数料' },
+      { label: '返品・交換ポリシーを決定する', hint: 'PDF資料あり' }
+    ],
     hasWork: true,
     workDesc: 'ストア設定が完了したら、ストアURLとスクリーンショットを提出してください。',
     workSubmitted: false
@@ -1315,14 +1313,13 @@ const lessons = {
     title: '商品撮影',
     meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>撮影環境を整える（照明・背景）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メイン写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>使用イメージ・着用写真を撮影する、またはAIで生成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サイズ感がわかる写真を撮影する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真を編集・加工する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-</div>`,
+    checklist: [
+      { label: '撮影環境を整える（照明・背景）', hint: '動画：近日公開' },
+      { label: 'メイン写真を撮影する', hint: '動画：近日公開' },
+      { label: '使用イメージ・着用写真を撮影する、またはAIで生成する', hint: '動画：近日公開' },
+      { label: 'サイズ感がわかる写真を撮影する', hint: '動画：近日公開' },
+      { label: '写真を編集・加工する', hint: '動画：近日公開' }
+    ],
     hasWork: true,
     workDesc: '撮影した商品写真を3枚以上提出してください。メイン写真・使用イメージ・サイズ感がわかるものを含めてください。',
     workSubmitted: false
@@ -1331,15 +1328,14 @@ const lessons = {
     title: '商品登録',
     meta: 'Phase 2「商品準備」 ・ 1〜2ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>商品タイトルを決める（検索キーワード入り）</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>在庫数を設定する</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>カテゴリ・タグを設定する</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>10商品は掲載する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">資料あり（テキスト参照）</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>商品説明文を書く</strong><br><span style="font-size:0.8rem;color:var(--text-light);">商品説明文の書き方ガイドあり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>価格を設定する（原価計算・利益率を考慮）</strong><br><span style="font-size:0.8rem;color:var(--text-light);">価格設定ガイドあり</span></div>
-</div>`,
+    checklist: [
+      { label: '商品タイトルを決める（検索キーワード入り）' },
+      { label: '在庫数を設定する' },
+      { label: 'カテゴリ・タグを設定する' },
+      { label: '10商品は掲載する', hint: '資料：商品登録のコツ' },
+      { label: '商品説明文を書く' },
+      { label: '価格を設定する（原価計算・利益率を考慮）' }
+    ],
     hasWork: true,
     workDesc: '登録した商品ページのURLまたはスクリーンショットを提出してください（3商品以上）。',
     workSubmitted: false
@@ -1349,14 +1345,13 @@ const lessons = {
     title: 'SNS運用',
     meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メインSNSを決める（Instagram / TikTokなど）</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>投稿テーマ・頻度を決める</strong></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>ハッシュタグ戦略を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">SNS運用のコツ資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>プロフィールを整える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">Instagramプロフィールテンプレートあり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>最初の10投稿を作成する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">Instagram投稿ネタ集あり</span></div>
-</div>`,
+    checklist: [
+      { label: 'メインSNSを決める（Instagram / TikTokなど）' },
+      { label: '投稿テーマ・頻度を決める' },
+      { label: 'ハッシュタグ戦略を決める', hint: '資料：SNS運用のコツ' },
+      { label: 'プロフィールを整える', hint: '資料：SNSプロフィールテンプレ' },
+      { label: '最初の10投稿を作成する', hint: '資料：Instagram投稿ネタ集' }
+    ],
     hasWork: true,
     workDesc: 'SNSアカウントのURLとプロフィール、最初の10投稿の計画を提出してください。',
     workSubmitted: false
@@ -1365,12 +1360,11 @@ const lessons = {
     title: 'ファン作り',
     meta: 'Phase 3「集客の仕組みづくり」 ・ 2〜3ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>制作過程を発信する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様の声・レビューを紹介する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>作家としてのストーリーを伝える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-</div>`,
+    checklist: [
+      { label: '制作過程を発信する', hint: '動画：近日公開' },
+      { label: 'お客様の声・レビューを紹介する', hint: '動画：近日公開' },
+      { label: '作家としてのストーリーを伝える', hint: '動画：近日公開' }
+    ],
     hasWork: true,
     workDesc: '制作過程の投稿案またはストーリー投稿の計画を提出してください。',
     workSubmitted: false
@@ -1380,13 +1374,12 @@ const lessons = {
     title: 'マーケティング施策',
     meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>季節イベント・キャンペーンを企画する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>新作発売のスケジュールを立てる</strong><br><span style="font-size:0.8rem;color:var(--text-light);">ポイント資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター向け特典を考える</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>メルマガ or LINE公式を始める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-</div>`,
+    checklist: [
+      { label: '季節イベント・キャンペーンを企画する', hint: '動画：近日公開' },
+      { label: '新作発売のスケジュールを立てる', hint: '資料：新作発売のポイント' },
+      { label: 'リピーター向け特典を考える', hint: '動画：近日公開' },
+      { label: 'メルマガ or LINE公式を始める', hint: '動画：近日公開' }
+    ],
     hasWork: true,
     workDesc: 'キャンペーン企画案と新作発売スケジュール（3ヶ月分）を提出してください。',
     workSubmitted: false
@@ -1395,12 +1388,11 @@ const lessons = {
     title: '分析・改善',
     meta: 'Phase 4「販売力強化」 ・ 3〜4ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>アクセス解析を確認する習慣をつける</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>売れ筋商品を分析する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>写真・説明文をテスト改善する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-</div>`,
+    checklist: [
+      { label: 'アクセス解析を確認する習慣をつける', hint: '動画：近日公開' },
+      { label: '売れ筋商品を分析する', hint: '動画：近日公開' },
+      { label: '写真・説明文をテスト改善する', hint: '動画：近日公開' }
+    ],
     hasWork: true,
     workDesc: '現在のアクセス数・売上データと、改善施策案を提出してください。',
     workSubmitted: false
@@ -1410,13 +1402,12 @@ const lessons = {
     title: 'オペレーション',
     meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>梱包方法・資材を決める</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>発送の流れをルーティン化する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">発送ルーティン＆梱包のコツ資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>在庫管理の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">管理のコツ資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>お客様対応テンプレートを用意する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレート集あり</span></div>
-</div>`,
+    checklist: [
+      { label: '梱包方法・資材を決める', hint: '動画：近日公開' },
+      { label: '発送の流れをルーティン化する', hint: '資料：発送ルーティン＆梱包のコツ' },
+      { label: '在庫管理の仕組みを作る', hint: '資料：在庫管理のコツ' },
+      { label: 'お客様対応テンプレートを用意する', hint: '資料：顧客対応テンプレート集' }
+    ],
     hasWork: true,
     workDesc: '梱包写真と、発送ルーティンの計画を提出してください。',
     workSubmitted: false
@@ -1425,12 +1416,11 @@ const lessons = {
     title: 'リピート・口コミ施策',
     meta: 'Phase 5「運営の安定化」 ・ 5〜6ヶ月目',
     duration: '',
-    text: `<h4 style="margin-top:16px;color:var(--primary-dark);">チェックリスト</h4>
-<div style="margin:12px 0;">
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>サンキューカードを同梱する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">テンプレートやコツ資料あり</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>レビュー依頼の仕組みを作る</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-<div style="padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:var(--bg);border-radius:var(--radius);"><strong>リピーター限定の施策を実施する</strong><br><span style="font-size:0.8rem;color:var(--text-light);">動画：近日公開</span></div>
-</div>`,
+    checklist: [
+      { label: 'サンキューカードを同梱する', hint: '資料：サンキューカードのコツ' },
+      { label: 'レビュー依頼の仕組みを作る', hint: '動画：近日公開' },
+      { label: 'リピーター限定の施策を実施する', hint: '動画：近日公開' }
+    ],
     hasWork: true,
     workDesc: 'サンキューカードのデザイン案と、リピーター施策の計画を提出してください。',
     workSubmitted: false
@@ -1588,6 +1578,7 @@ const lessonResources = {
       { title: '私のロゴや商品台紙ができるまで', url: 'https://vimeo.com/1183363772/d9f692161c' }
     ],
     notions: ['self_intro'],
+    tools: ['brandColor'],
     canvas: [
       { title: 'ブランドカラー決定テンプレ', url: 'https://canva.link/brandcolor-olalea' },
       { title: 'ロゴ・商品台紙テンプレ', url: 'https://canva.link/rogo-olalea' }
@@ -1625,6 +1616,263 @@ const lessonResources = {
     notions: ['thanks_card']
   }
 };
+
+// === ブランドカラー決定ツール ===
+// プリセット「世界観」から始めて、自分好みにアレンジできる対話型ツール
+const BRAND_PRESETS = [
+  { key: 'ocean', name: '海・透明感', main: '#5fb9d1', sub: '#e8f4f8', accent: '#b87e4c', icon: '🌊', desc: 'レジン・海モチーフ向け' },
+  { key: 'natural', name: 'ナチュラル・温かい', main: '#c2a378', sub: '#f4ede0', accent: '#6b8e5a', icon: '🍃', desc: '木・麻・やさしい作風' },
+  { key: 'elegant', name: 'エレガント・上品', main: '#3d2c3e', sub: '#f5ebe8', accent: '#a8856c', icon: '💍', desc: 'ジュエリー・大人向け' },
+  { key: 'cute', name: 'かわいい・ポップ', main: '#f08ca0', sub: '#fff5ee', accent: '#7fbfcf', icon: '🎀', desc: 'ビーズ・レース作品' },
+  { key: 'monochrome', name: 'モノトーン・モダン', main: '#2c2c2c', sub: '#f5f5f5', accent: '#c0a870', icon: '◼️', desc: 'シンプル・都会的' },
+  { key: 'sunset', name: '夕焼け・レトロ', main: '#d97b50', sub: '#fce8d4', accent: '#3f5f72', icon: '🌅', desc: '温かみ・ノスタルジック' }
+];
+
+function renderBrandColorTool() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+    ブランドカラー決定ツール
+    <span style="margin-left:auto;font-size:0.78rem;color:var(--text-light);font-weight:500;background:linear-gradient(90deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));padding:3px 10px;border-radius:12px;">Lino lea オリジナル</span>
+  </h3>
+  <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:14px;line-height:1.6;">作品の世界観に合う3色セットをかんたんに作れます。プリセットを選ぶか、メインカラーをカスタマイズしてみてください。</p>
+
+  <div id="brandColorTool" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:10px 0;">
+    <!-- Step 1: プリセット選択 -->
+    <div style="margin-bottom:20px;">
+      <div style="font-weight:600;margin-bottom:10px;font-size:0.9rem;color:var(--text);">STEP 1. 世界観を選ぶ</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;">
+        ${BRAND_PRESETS.map(p => `
+          <button onclick="applyBrandPreset('${p.key}')" class="bc-preset-btn" data-key="${p.key}" style="padding:10px;border:2px solid var(--border);border-radius:8px;background:var(--bg);cursor:pointer;text-align:left;font-family:inherit;transition:all 0.2s;">
+            <div style="font-size:1.1rem;margin-bottom:4px;">${p.icon} ${p.name}</div>
+            <div style="display:flex;gap:3px;margin:4px 0;">
+              <span style="width:20px;height:20px;border-radius:50%;background:${p.main};border:1px solid rgba(0,0,0,0.08);"></span>
+              <span style="width:20px;height:20px;border-radius:50%;background:${p.sub};border:1px solid rgba(0,0,0,0.08);"></span>
+              <span style="width:20px;height:20px;border-radius:50%;background:${p.accent};border:1px solid rgba(0,0,0,0.08);"></span>
+            </div>
+            <div style="font-size:0.72rem;color:var(--text-light);">${p.desc}</div>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Step 2: カスタマイズ -->
+    <div style="margin-bottom:20px;">
+      <div style="font-weight:600;margin-bottom:10px;font-size:0.9rem;color:var(--text);">STEP 2. お好みでカスタマイズ</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        <div>
+          <label style="display:block;font-size:0.78rem;color:var(--text-light);margin-bottom:4px;">メインカラー</label>
+          <input type="color" id="bcMain" value="#5fb9d1" oninput="updateBrandPreview()" style="width:100%;height:40px;border:1px solid var(--border);border-radius:6px;cursor:pointer;padding:2px;">
+          <input type="text" id="bcMainHex" value="#5fb9d1" oninput="syncColorFromHex('bcMain', this.value)" style="width:100%;margin-top:4px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.78rem;color:var(--text-light);margin-bottom:4px;">サブカラー</label>
+          <input type="color" id="bcSub" value="#e8f4f8" oninput="updateBrandPreview()" style="width:100%;height:40px;border:1px solid var(--border);border-radius:6px;cursor:pointer;padding:2px;">
+          <input type="text" id="bcSubHex" value="#e8f4f8" oninput="syncColorFromHex('bcSub', this.value)" style="width:100%;margin-top:4px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.78rem;color:var(--text-light);margin-bottom:4px;">アクセントカラー</label>
+          <input type="color" id="bcAccent" value="#b87e4c" oninput="updateBrandPreview()" style="width:100%;height:40px;border:1px solid var(--border);border-radius:6px;cursor:pointer;padding:2px;">
+          <input type="text" id="bcAccentHex" value="#b87e4c" oninput="syncColorFromHex('bcAccent', this.value)" style="width:100%;margin-top:4px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-family:monospace;font-size:0.8rem;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: プレビュー -->
+    <div style="margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;font-size:0.9rem;color:var(--text);">STEP 3. プレビュー（商品台紙・ショップカードのイメージ）</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+        <!-- 商品台紙プレビュー -->
+        <div id="bcPreviewTag" style="padding:24px 20px;border-radius:8px;background:#e8f4f8;color:#3a5a63;text-align:center;font-family:'Zen Maru Gothic',serif;border:1px solid rgba(0,0,0,0.05);">
+          <div style="font-size:0.7rem;letter-spacing:3px;margin-bottom:4px;opacity:0.7;">HANDMADE</div>
+          <div id="bcShopName1" style="font-size:1.4rem;font-weight:700;margin-bottom:6px;color:#5fb9d1;">Your Shop</div>
+          <div style="width:40px;height:1px;background:#b87e4c;margin:8px auto;"></div>
+          <div style="font-size:0.72rem;opacity:0.65;">Made with love</div>
+        </div>
+        <!-- ショップカードプレビュー -->
+        <div id="bcPreviewCard" style="padding:20px;border-radius:8px;background:#5fb9d1;color:white;font-family:'Zen Maru Gothic',serif;border:1px solid rgba(0,0,0,0.08);">
+          <div id="bcShopName2" style="font-size:1.2rem;font-weight:700;margin-bottom:8px;">Your Shop</div>
+          <div style="font-size:0.72rem;opacity:0.9;line-height:1.8;">ハンドメイドアクセサリー<br>@yourshop_handmade</div>
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.3);font-size:0.68rem;opacity:0.85;">
+            <span id="bcAccentBadge" style="display:inline-block;padding:2px 8px;border-radius:10px;background:#b87e4c;color:white;">NEW</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <input type="text" id="bcShopNameInput" placeholder="ショップ名を入れてプレビュー" oninput="updateBrandPreview()" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:0.85rem;">
+      </div>
+    </div>
+
+    <!-- コピーボタン -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="copyBrandColors()" style="flex:1;min-width:140px;padding:10px 16px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;">カラーコードをコピー</button>
+      <button onclick="saveBrandColors()" style="flex:1;min-width:140px;padding:10px 16px;background:var(--bg);color:var(--primary-dark);border:1px solid var(--primary);border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;font-size:0.88rem;">このカラーを保存する</button>
+    </div>
+    <div id="bcSavedMsg" style="display:none;margin-top:10px;padding:10px 14px;background:rgba(163,184,153,0.15);border-left:3px solid var(--accent-green);border-radius:4px;font-size:0.82rem;color:var(--text);"></div>
+  </div>`;
+}
+
+function applyBrandPreset(key) {
+  const p = BRAND_PRESETS.find(x => x.key === key);
+  if (!p) return;
+  document.getElementById('bcMain').value = p.main;
+  document.getElementById('bcMainHex').value = p.main;
+  document.getElementById('bcSub').value = p.sub;
+  document.getElementById('bcSubHex').value = p.sub;
+  document.getElementById('bcAccent').value = p.accent;
+  document.getElementById('bcAccentHex').value = p.accent;
+  // Visual feedback on button
+  document.querySelectorAll('.bc-preset-btn').forEach(b => {
+    b.style.borderColor = b.dataset.key === key ? 'var(--primary)' : 'var(--border)';
+    b.style.background = b.dataset.key === key ? 'rgba(201,168,76,0.08)' : 'var(--bg)';
+  });
+  updateBrandPreview();
+}
+
+function syncColorFromHex(baseId, hex) {
+  if (!/^#[0-9a-f]{6}$/i.test(hex)) return;
+  document.getElementById(baseId).value = hex;
+  updateBrandPreview();
+}
+
+function updateBrandPreview() {
+  const main = document.getElementById('bcMain').value;
+  const sub = document.getElementById('bcSub').value;
+  const accent = document.getElementById('bcAccent').value;
+  document.getElementById('bcMainHex').value = main;
+  document.getElementById('bcSubHex').value = sub;
+  document.getElementById('bcAccentHex').value = accent;
+
+  // Preview updates
+  const tag = document.getElementById('bcPreviewTag');
+  const card = document.getElementById('bcPreviewCard');
+  if (tag) { tag.style.background = sub; document.getElementById('bcShopName1').style.color = main; tag.querySelector('div[style*="width:40px"]').style.background = accent; }
+  if (card) { card.style.background = main; document.getElementById('bcAccentBadge').style.background = accent; }
+
+  // Shop name text
+  const nameInput = document.getElementById('bcShopNameInput');
+  if (nameInput && nameInput.value.trim()) {
+    document.getElementById('bcShopName1').textContent = nameInput.value;
+    document.getElementById('bcShopName2').textContent = nameInput.value;
+  }
+}
+
+function copyBrandColors() {
+  const main = document.getElementById('bcMain').value;
+  const sub = document.getElementById('bcSub').value;
+  const accent = document.getElementById('bcAccent').value;
+  const name = document.getElementById('bcShopNameInput').value.trim() || 'Your Shop';
+  const text = `【${name} のブランドカラー】\nメインカラー: ${main}\nサブカラー:  ${sub}\nアクセント:   ${accent}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = document.getElementById('bcSavedMsg');
+    msg.style.display = 'block';
+    msg.textContent = '✓ カラーコードをコピーしました！メモに貼って保管してね。';
+    setTimeout(() => { msg.style.display = 'none'; }, 3000);
+  });
+}
+
+function saveBrandColors() {
+  const main = document.getElementById('bcMain').value;
+  const sub = document.getElementById('bcSub').value;
+  const accent = document.getElementById('bcAccent').value;
+  const name = document.getElementById('bcShopNameInput').value.trim();
+  const mid = window._linkedMemberId || 'demo';
+  const data = { main, sub, accent, name, savedAt: new Date().toISOString() };
+  localStorage.setItem(`brandColors_${mid}`, JSON.stringify(data));
+  const msg = document.getElementById('bcSavedMsg');
+  msg.style.display = 'block';
+  msg.innerHTML = '✓ 保存しました！次回この画面を開いた時に復元されます。';
+  setTimeout(() => { msg.style.display = 'none'; }, 3000);
+}
+
+// 保存済みカラーを自動復元
+setTimeout(() => {
+  if (!document.getElementById('brandColorTool')) return;
+  const mid = window._linkedMemberId || 'demo';
+  const raw = localStorage.getItem(`brandColors_${mid}`);
+  if (!raw) return;
+  try {
+    const d = JSON.parse(raw);
+    if (d.main) { document.getElementById('bcMain').value = d.main; document.getElementById('bcMainHex').value = d.main; }
+    if (d.sub) { document.getElementById('bcSub').value = d.sub; document.getElementById('bcSubHex').value = d.sub; }
+    if (d.accent) { document.getElementById('bcAccent').value = d.accent; document.getElementById('bcAccentHex').value = d.accent; }
+    if (d.name) { document.getElementById('bcShopNameInput').value = d.name; }
+    updateBrandPreview();
+  } catch (e) {}
+}, 500);
+
+// === Sub-checklist (やることリスト) state management ===
+function getSubChecksKey(memberId, lessonId) {
+  return `subChecks_${memberId || 'demo'}_${lessonId}`;
+}
+
+function getSubChecks(lessonId) {
+  const mid = window._linkedMemberId || 'demo';
+  // Prefer member data (synced from server) if available
+  if (window._linkedMemberId && members[mid] && members[mid].subChecks && members[mid].subChecks[lessonId]) {
+    return members[mid].subChecks[lessonId];
+  }
+  // Fall back to localStorage
+  const raw = localStorage.getItem(getSubChecksKey(mid, lessonId));
+  return raw ? JSON.parse(raw) : [];
+}
+
+function setSubCheck(lessonId, itemIdx, checked) {
+  const mid = window._linkedMemberId || 'demo';
+  let arr = getSubChecks(lessonId);
+  arr[itemIdx] = checked;
+  // Save to localStorage
+  localStorage.setItem(getSubChecksKey(mid, lessonId), JSON.stringify(arr));
+  // Save to member data for admin view
+  if (window._linkedMemberId && members[mid]) {
+    if (!members[mid].subChecks) members[mid].subChecks = {};
+    members[mid].subChecks[lessonId] = arr;
+    // Sync to server (non-blocking)
+    if (typeof saveMemberSubChecks === 'function') {
+      saveMemberSubChecks(mid, lessonId, arr);
+    }
+  }
+  // Refresh completion count on screen
+  updateChecklistProgress(lessonId);
+}
+
+function renderInteractiveChecklist(id) {
+  const lesson = lessons[id];
+  if (!lesson || !lesson.checklist || !lesson.checklist.length) return '';
+
+  const saved = getSubChecks(id);
+  const doneCount = lesson.checklist.filter((_, i) => saved[i]).length;
+  const total = lesson.checklist.length;
+
+  let html = `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    やることリスト
+    <span id="checklistProgress_${id}" style="margin-left:auto;font-size:0.85rem;color:var(--text-light);font-weight:500;">${doneCount} / ${total} 完了</span>
+  </h3>
+  <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:12px;">動画・解説を参考に、できたらチェックしてください。</p>
+  <div style="margin:12px 0;">`;
+
+  lesson.checklist.forEach((item, idx) => {
+    const checked = !!saved[idx];
+    const bg = checked ? 'rgba(163, 184, 153, 0.12)' : 'var(--bg)';
+    const textStyle = checked ? 'text-decoration:line-through;color:var(--text-light);' : '';
+    const hintHtml = item.hint ? `<br><span style="font-size:0.8rem;color:var(--text-light);">${item.hint}</span>` : '';
+    html += `<label style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:${bg};border-radius:var(--radius);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.filter='brightness(0.98)'" onmouseout="this.style.filter='brightness(1)'">
+      <input type="checkbox" ${checked ? 'checked' : ''} onchange="setSubCheck('${id}', ${idx}, this.checked); this.closest('label').style.background=this.checked?'rgba(163, 184, 153, 0.12)':'var(--bg)'; const span=this.closest('label').querySelector('.check-item-label'); if(span){span.style.textDecoration=this.checked?'line-through':'none';span.style.color=this.checked?'var(--text-light)':'var(--text)';}" style="margin-top:3px;width:18px;height:18px;flex-shrink:0;accent-color:var(--primary);cursor:pointer;">
+      <span class="check-item-label" style="flex:1;${textStyle}"><strong>${item.label}</strong>${hintHtml}</span>
+    </label>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+function updateChecklistProgress(lessonId) {
+  const lesson = lessons[lessonId];
+  if (!lesson || !lesson.checklist) return;
+  const saved = getSubChecks(lessonId);
+  const done = lesson.checklist.filter((_, i) => saved[i]).length;
+  const el = document.getElementById(`checklistProgress_${lessonId}`);
+  if (el) el.textContent = `${done} / ${lesson.checklist.length} 完了`;
+}
 
 function buildLessonResources(id) {
   const res = lessonResources[id] || {};
@@ -1670,7 +1918,16 @@ function buildLessonResources(id) {
     });
   }
 
-  // ③ テンプレート・資料（Canva + PDF を一つのセクションにまとめる）
+  // ③ インタラクティブツール（ブランドカラー決定ツール等）
+  if (res.tools && res.tools.length) {
+    res.tools.forEach(toolKey => {
+      if (toolKey === 'brandColor') {
+        html += renderBrandColorTool();
+      }
+    });
+  }
+
+  // ④ テンプレート・資料（Canva + PDF を一つのセクションにまとめる）
   if (hasCanvas || hasPdfs) {
     html += '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> テンプレート・資料</h3>';
     if (hasCanvas) {
@@ -1711,11 +1968,7 @@ function openLesson(id) {
 
   // Text + resources: ① 動画 → ② 詳しい解説 → ③ テンプレ・資料 → ④ やることリスト
   const resources = buildLessonResources(id);
-  // lesson.text is the checklist — rename heading and show last
-  const checklistHtml = lesson.text.replace(
-    /^<h4[^>]*>チェックリスト<\/h4>/,
-    '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> やることリスト</h3><p style="font-size:0.85rem;color:var(--text-light);margin-bottom:10px;">動画・解説を参考に、ひとつずつ進めてください。</p>'
-  );
+  const checklistHtml = renderInteractiveChecklist(id);
   document.getElementById('lessonTextBody').innerHTML = resources + checklistHtml;
 
   // Restore checkbox state from member data
@@ -1885,14 +2138,35 @@ function renderMemberProgress(id) {
         const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
         const videoDone = l ? l.done : false;
         const allDone = videoDone && workDone;
-        html += `<div class="dp-item">
+        const lessonId = `${phase.num}-${itemIdx + 1}`;
+        const lessonObj = lessons[lessonId];
+        const checklistItems = lessonObj && lessonObj.checklist ? lessonObj.checklist : [];
+        const subArr = (m.subChecks && m.subChecks[lessonId]) || [];
+        const subDone = checklistItems.filter((_, i) => subArr[i]).length;
+        const subTotal = checklistItems.length;
+        const subPct = subTotal ? Math.round(subDone / subTotal * 100) : 0;
+
+        html += `<div class="dp-item" style="flex-wrap:wrap;">
           <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
           <span class="dp-name ${allDone ? 'done' : ''}">${item.name}</span>
           <div class="dp-badges">
             <span class="dp-badge ${videoDone ? 'video-done' : 'video-not'}">${videoDone ? '視聴✓' : '未視聴'}</span>
             <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
-          </div>
-        </div>`;
+          </div>`;
+        if (subTotal > 0) {
+          html += `<div style="flex-basis:100%;margin-top:8px;padding-left:32px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-light);margin-bottom:4px;">
+              <span>やることリスト：${subDone} / ${subTotal}</span>
+              <div style="flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden;">
+                <div style="width:${subPct}%;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-dark));"></div>
+              </div>
+            </div>
+            <div style="font-size:0.78rem;color:var(--text-light);line-height:1.7;">
+              ${checklistItems.map((ci, i) => `<div style="padding:2px 0;"><span style="color:${subArr[i] ? 'var(--accent-green)' : 'var(--text-light)'};font-weight:700;margin-right:6px;">${subArr[i] ? '✓' : '○'}</span>${ci.label}</div>`).join('')}
+            </div>
+          </div>`;
+        }
+        html += `</div>`;
       });
     }
     html += '</div>';
@@ -2228,6 +2502,15 @@ function syncWorkToGAS(memberId, lessonIdx, content) {
   });
 }
 
+// サブチェック（やることリストの各項目）を保存
+function saveMemberSubChecks(memberId, lessonId, subChecksArr) {
+  gasPost('updateSubChecks', {
+    memberId: memberId,
+    lessonId: lessonId,
+    subChecks: JSON.stringify(subChecksArr)
+  });
+}
+
 function syncFeedbackToGAS(memberId, workIdx, feedback) {
   gasPost('sendFeedback', {
     memberId: memberId,
@@ -2449,9 +2732,17 @@ function renderStudentProgress(containerId, memberId) {
         const workDone = m.works[globalIdx] && m.works[globalIdx].submitted;
         const videoDone = l ? l.done : false;
         const allDone = videoDone && workDone;
+        const lessonId = `${phase.num}-${itemIdx + 1}`;
+        const lessonObj = lessons[lessonId];
+        const checklistItems = lessonObj && lessonObj.checklist ? lessonObj.checklist : [];
+        // Use both server data and localStorage for self view
+        const saved = (m.subChecks && m.subChecks[lessonId]) || (JSON.parse(localStorage.getItem(`subChecks_${memberId}_${lessonId}`) || '[]'));
+        const subDone = checklistItems.filter((_, i) => saved[i]).length;
+        const subTotal = checklistItems.length;
+        const subLabel = subTotal ? ` <span style="font-size:0.75rem;color:var(--text-light);">（やること ${subDone}/${subTotal}）</span>` : '';
         html += `<div class="dp-item">
           <span class="dp-icon ${allDone ? 'done' : 'pending'}">${allDone ? '✓' : '○'}</span>
-          <span class="dp-name ${allDone ? 'done' : ''}">${item.name}</span>
+          <span class="dp-name ${allDone ? 'done' : ''}">${item.name}${subLabel}</span>
           <div class="dp-badges">
             <span class="dp-badge ${videoDone ? 'video-done' : 'video-not'}">${videoDone ? '視聴✓' : '未視聴'}</span>
             <span class="dp-badge ${workDone ? 'work-done' : 'work-not'}">${workDone ? 'ワーク✓' : 'ワーク未'}</span>
