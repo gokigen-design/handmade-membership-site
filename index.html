@@ -1024,16 +1024,10 @@
 
         <div class="lesson-detail-title" id="lessonTitle">ブランディング</div>
         <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基盤づくり」 ・ 1ヶ月目</div>
+        <div class="lesson-detail-meta" id="lessonDuration" style="display:none;"></div>
 
-        <!-- Video -->
-        <div class="video-container">
-          <div class="video-play-btn" onclick="alert('動画を再生します（デモ）')"></div>
-          <div class="video-duration" id="lessonDuration">15:30</div>
-        </div>
-
-        <!-- Text content -->
+        <!-- Lesson body (dynamically built: 動画 → 解説 → Canva/PDF → チェックリスト) -->
         <div class="text-content" id="lessonText">
-          <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> テキスト</h3>
           <div id="lessonTextBody"></div>
         </div>
 
@@ -1633,21 +1627,24 @@ const lessonResources = {
 };
 
 function buildLessonResources(id) {
-  const res = lessonResources[id];
-  if (!res) return '';
+  const res = lessonResources[id] || {};
+  const hasVideos = res.videos && res.videos.length;
+  const hasNotions = res.notions && res.notions.length;
+  const hasCanvas = res.canvas && res.canvas.length;
+  const hasPdfs = res.pdfs && res.pdfs.length;
+
   let html = '';
 
-  // 動画セクション
-  if (res.videos && res.videos.length) {
-    html += '<h4 style="margin-top:28px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> 動画で学ぶ</h4>';
+  // ① 動画セクション（最上段）
+  if (hasVideos) {
+    html += '<h3 style="margin-top:0;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> 動画で学ぶ</h3>';
     res.videos.forEach(v => {
-      // Vimeo動画：IDを抽出してiframe埋め込み
       const vimeoMatch = v.url.match(/vimeo\.com\/(\d+)(?:\/([a-f0-9]+))?/);
       if (vimeoMatch) {
         const vid = vimeoMatch[1];
         const hash = vimeoMatch[2] ? '?h=' + vimeoMatch[2] : '';
-        html += `<div style="margin:12px 0;">
-          <p style="font-weight:600;margin-bottom:8px;">${v.title}</p>
+        html += `<div style="margin:12px 0 20px;">
+          <p style="font-weight:600;margin-bottom:8px;color:var(--text);">${v.title}</p>
           <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);background:#000;">
             <iframe src="https://player.vimeo.com/video/${vid}${hash}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
           </div>
@@ -1656,47 +1653,44 @@ function buildLessonResources(id) {
         html += `<div style="margin:12px 0;padding:12px 16px;background:var(--bg);border-radius:var(--radius);"><a href="${v.url}" target="_blank" style="color:var(--primary);font-weight:600;">▶ ${v.title}</a></div>`;
       }
     });
+  } else {
+    html += '<div style="margin:0 0 24px;padding:20px 24px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.9rem;"><strong>📺 動画は近日公開予定です。</strong><br><span style="font-size:0.85rem;">下の解説とチェックリストで先に進めてOK！</span></div>';
   }
 
-  // Canvaテンプレート
-  if (res.canvas && res.canvas.length) {
-    html += '<h4 style="margin-top:28px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Canvaテンプレート</h4>';
-    res.canvas.forEach(c => {
-      html += `<div style="margin:10px 0;padding:14px 18px;background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03));border-left:3px solid var(--primary);border-radius:var(--radius);">
-        <a href="${c.url}" target="_blank" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">
-          🎨 ${c.title} <span style="font-size:0.85rem;color:var(--text-light);font-weight:400;">（Canvaで開く）</span>
-        </a>
-      </div>`;
-    });
-  }
-
-  // PDF資料
-  if (res.pdfs && res.pdfs.length) {
-    html += '<h4 style="margin-top:28px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 資料ダウンロード</h4>';
-    res.pdfs.forEach(p => {
-      html += `<div style="margin:10px 0;padding:14px 18px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);">
-        <a href="${p.url}" target="_blank" download style="color:var(--primary-dark);font-weight:600;text-decoration:none;display:flex;align-items:center;gap:8px;">
-          📄 ${p.title}.pdf <span style="font-size:0.85rem;color:var(--text-light);font-weight:400;margin-left:auto;">ダウンロード</span>
-        </a>
-      </div>`;
-    });
-  }
-
-  // Notion解説
-  if (res.notions && res.notions.length) {
-    html += '<h4 style="margin-top:28px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 詳しい解説</h4>';
+  // ② 詳しい解説（動画のすぐ下、折りたたみ）
+  if (hasNotions) {
+    html += '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> 詳しい解説（あとで読み返し用）</h3>';
     res.notions.forEach(key => {
       const n = notionContent[key];
       if (!n) return;
       html += `<details style="margin:10px 0;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);">
-        <summary style="cursor:pointer;font-weight:600;color:var(--primary-dark);font-size:1rem;">${n.title} を開く</summary>
+        <summary style="cursor:pointer;font-weight:600;color:var(--primary-dark);font-size:0.95rem;">${n.title} を開く</summary>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">${n.html}</div>
       </details>`;
     });
   }
 
-  if (!html) {
-    html = '<div style="margin-top:24px;padding:16px 20px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.9rem;">動画・解説資料は近日公開予定です。</div>';
+  // ③ テンプレート・資料（Canva + PDF を一つのセクションにまとめる）
+  if (hasCanvas || hasPdfs) {
+    html += '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> テンプレート・資料</h3>';
+    if (hasCanvas) {
+      res.canvas.forEach(c => {
+        html += `<div style="margin:10px 0;padding:14px 18px;background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03));border-left:3px solid var(--primary);border-radius:var(--radius);">
+          <a href="${c.url}" target="_blank" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">
+            🎨 ${c.title} <span style="font-size:0.85rem;color:var(--text-light);font-weight:400;">（Canvaで開く）</span>
+          </a>
+        </div>`;
+      });
+    }
+    if (hasPdfs) {
+      res.pdfs.forEach(p => {
+        html += `<div style="margin:10px 0;padding:14px 18px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);">
+          <a href="${p.url}" target="_blank" download style="color:var(--primary-dark);font-weight:600;text-decoration:none;display:flex;align-items:center;gap:8px;">
+            📄 ${p.title}.pdf <span style="font-size:0.85rem;color:var(--text-light);font-weight:400;margin-left:auto;">ダウンロード</span>
+          </a>
+        </div>`;
+      });
+    }
   }
 
   return html;
@@ -1715,9 +1709,14 @@ function openLesson(id) {
   document.getElementById('lessonMeta').textContent = lesson.meta;
   document.getElementById('lessonDuration').textContent = lesson.duration;
 
-  // Text + resources
+  // Text + resources: ① 動画 → ② 詳しい解説 → ③ テンプレ・資料 → ④ やることリスト
   const resources = buildLessonResources(id);
-  document.getElementById('lessonTextBody').innerHTML = lesson.text + resources;
+  // lesson.text is the checklist — rename heading and show last
+  const checklistHtml = lesson.text.replace(
+    /^<h4[^>]*>チェックリスト<\/h4>/,
+    '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> やることリスト</h3><p style="font-size:0.85rem;color:var(--text-light);margin-bottom:10px;">動画・解説を参考に、ひとつずつ進めてください。</p>'
+  );
+  document.getElementById('lessonTextBody').innerHTML = resources + checklistHtml;
 
   // Restore checkbox state from member data
   const lessonIdx = getLessonIndex(id);
