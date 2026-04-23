@@ -1609,27 +1609,35 @@ const lessonResources = {
     ]
   },
   '2-1': {
+    tools: ['productPhoto'],
     notions: []
   },
   '2-2': {
+    tools: ['productRegister'],
     notions: ['product_register']
   },
   '3-1': {
+    tools: ['snsRoadmap'],
     notions: ['sns_ops', 'sns_profile', 'insta_posts']
   },
   '3-2': {
+    tools: ['fanMaking'],
     notions: []
   },
   '4-1': {
+    tools: ['marketing'],
     notions: ['new_release']
   },
   '4-2': {
+    tools: ['analytics'],
     notions: []
   },
   '5-1': {
+    tools: ['operation'],
     notions: ['shipping_routine', 'inventory', 'customer_template']
   },
   '5-2': {
+    tools: ['repeat'],
     notions: ['thanks_card']
   }
 };
@@ -1768,6 +1776,599 @@ function renderStoreSetupRoadmap() {
   </div>`;
 
   return html;
+}
+
+// ==========================================
+// Phase 2-1: 商品撮影ガイド
+// ==========================================
+function renderProductPhotoGuide() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    写真で売上が変わる理由
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">ハンドメイド販売では <strong>「写真が商品の全て」</strong>。手に取って確認できないお客様にとって、写真こそが購入の決め手です。</p>
+
+  <!-- 写真品質の差比較 -->
+  <div style="margin:16px 0 20px;">
+    <div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:8px;">同じ商品でも写真次第でこんなに変わる</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#c76060;margin-bottom:6px;">✗ 雑な写真</div>
+        <div style="aspect-ratio:1;background:#ddd;border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#999;font-size:0.7rem;border:1px solid #bbb;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#a8a0a0 0%,#bfb5b5 40%,#8a8080 100%);opacity:0.8;"></div>
+          <div style="position:relative;z-index:1;padding:20px;text-align:center;line-height:1.6;color:#3a3030;">暗い<br>背景ごちゃごちゃ<br>ピンボケ</div>
+        </div>
+        <div style="margin-top:6px;font-size:0.72rem;color:#8a3a3a;text-align:center;line-height:1.5;">お客様：「よく見えない...」<br>→ スルー</div>
+      </div>
+      <div>
+        <div style="text-align:center;font-size:0.75rem;font-weight:700;color:#3a8a6c;margin-bottom:6px;">✓ ちゃんと撮った写真</div>
+        <div style="aspect-ratio:1;background:linear-gradient(135deg,#f5ebe0,#e8dccf);border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid #d4c4b0;">
+          <div style="width:55%;aspect-ratio:1;background:linear-gradient(135deg,#7ac4c7,#5fb9d1 60%,#e8f4f8);border-radius:50%;box-shadow:0 8px 24px rgba(95,185,209,0.4);"></div>
+          <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:0.65rem;color:#8a7530;font-family:serif;letter-spacing:1px;">Lino lea</div>
+        </div>
+        <div style="margin-top:6px;font-size:0.72rem;color:#2a6a4a;text-align:center;line-height:1.5;">お客様：「素敵！欲しい」<br>→ 購入</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+    必ず撮る「5ショット構成」
+  </h3>
+  <p style="font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:14px;">1商品につき <strong>最低5枚</strong>。それぞれ役割が違います。</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0;">
+    ${[
+      { n:1, icon:'📸', t:'メイン', d:'商品全体が分かる', role:'一覧で目を引く' },
+      { n:2, icon:'🔍', t:'ディテール', d:'素材・質感が伝わる', role:'クオリティ証明' },
+      { n:3, icon:'👗', t:'着用・使用', d:'身につけた姿', role:'サイズ感・イメージ' },
+      { n:4, icon:'📏', t:'サイズ感', d:'小物や手と比較', role:'失敗を防ぐ' },
+      { n:5, icon:'🎨', t:'スタイリング', d:'世界観の演出', role:'「こんな暮らしに」と想像させる' }
+    ].map(s => `
+      <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--radius);padding:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div style="font-size:1.3rem;">${s.icon}</div>
+          <div style="background:var(--primary);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">${s.n}</div>
+        </div>
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${s.t}</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.6;margin-bottom:6px;">${s.d}</div>
+        <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;">${s.role}</div>
+      </div>
+    `).join('')}
+  </div>
+
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    撮影セットの基本図解
+  </h3>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin:12px 0;">
+    <svg viewBox="0 0 400 260" style="width:100%;height:auto;">
+      <!-- 背景 -->
+      <rect x="0" y="220" width="400" height="40" fill="#eadfd4" />
+      <rect x="0" y="0" width="400" height="220" fill="#f8f0e5" />
+      <!-- 窓 -->
+      <rect x="10" y="30" width="80" height="120" fill="#d4e8ef" stroke="#8ab5c4" stroke-width="2"/>
+      <line x1="50" y1="30" x2="50" y2="150" stroke="#8ab5c4" stroke-width="1"/>
+      <line x1="10" y1="90" x2="90" y2="90" stroke="#8ab5c4" stroke-width="1"/>
+      <text x="50" y="170" text-anchor="middle" font-size="9" fill="#5a7a84" font-weight="700">窓（自然光）</text>
+      <!-- 光の矢印 -->
+      <path d="M 95 70 L 150 110" stroke="#f5c441" stroke-width="2.5" fill="none" marker-end="url(#arrow-yellow)" opacity="0.85"/>
+      <path d="M 95 95 L 150 130" stroke="#f5c441" stroke-width="2.5" fill="none" marker-end="url(#arrow-yellow)" opacity="0.7"/>
+      <defs>
+        <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="#f5c441"/>
+        </marker>
+      </defs>
+      <!-- テーブル -->
+      <rect x="140" y="140" width="200" height="80" fill="#fff" stroke="#c0b5a5" stroke-width="1.5" rx="3"/>
+      <!-- 商品 -->
+      <ellipse cx="240" cy="175" rx="30" ry="10" fill="#c4c0b5" opacity="0.4"/>
+      <circle cx="240" cy="160" r="22" fill="#7ac4c7" stroke="#5fb9d1" stroke-width="1"/>
+      <text x="240" y="164" text-anchor="middle" font-size="9" fill="white" font-weight="700">商品</text>
+      <!-- レフ板 -->
+      <rect x="300" y="90" width="15" height="80" fill="#fff" stroke="#aaa" stroke-width="1.5"/>
+      <text x="307" y="185" text-anchor="middle" font-size="8" fill="#5a5a5a" font-weight="700">レフ板</text>
+      <text x="307" y="196" text-anchor="middle" font-size="8" fill="#5a5a5a">（白い紙</text>
+      <text x="307" y="206" text-anchor="middle" font-size="8" fill="#5a5a5a">でOK）</text>
+      <!-- 反射光 -->
+      <path d="M 295 130 L 265 155" stroke="#ffe08a" stroke-width="2" stroke-dasharray="3,2" fill="none" marker-end="url(#arrow-light)"/>
+      <defs>
+        <marker id="arrow-light" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto">
+          <polygon points="0 0, 8 2.5, 0 5" fill="#ffe08a"/>
+        </marker>
+      </defs>
+      <!-- カメラ -->
+      <rect x="355" y="140" width="35" height="25" rx="3" fill="#3a3a3a"/>
+      <circle cx="372" cy="152" r="7" fill="#666" stroke="#999" stroke-width="1"/>
+      <circle cx="372" cy="152" r="4" fill="#1a1a1a"/>
+      <text x="372" y="180" text-anchor="middle" font-size="9" fill="#3a3a3a" font-weight="700">📱 or 📷</text>
+    </svg>
+    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.78rem;">
+      <div style="padding:8px 12px;background:var(--bg);border-radius:6px;"><strong style="color:#b88a30;">💡 光</strong><br>窓からの <strong>自然光</strong>。直射日光は避ける</div>
+      <div style="padding:8px 12px;background:var(--bg);border-radius:6px;"><strong style="color:#8a7a5a;">🗒 背景</strong><br>白い布・紙・壁でOK</div>
+      <div style="padding:8px 12px;background:var(--bg);border-radius:6px;"><strong style="color:#6a7a6a;">📃 レフ板</strong><br>A4白紙を商品の反対側に立てる</div>
+      <div style="padding:8px 12px;background:var(--bg);border-radius:6px;"><strong style="color:#4a6a8a;">📱 カメラ</strong><br>スマホで十分。縦構図を意識</div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 プロの小ワザ</div>
+    <strong>朝10時〜午後2時の窓際</strong>が最高の光。曇りの日はむしろラッキー（影が柔らかい）。晴れ・直射日光の時は薄いレースカーテン1枚で柔らかくする。
+  </div>`;
+}
+
+// ==========================================
+// Phase 2-2: 商品登録ガイド
+// ==========================================
+function renderProductRegisterGuide() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    売れる商品ページの「型」
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">商品ページは <strong>24時間働く営業マン</strong>。型に沿って作ると、見るだけで買いたくなります。</p>
+
+  <!-- 商品ページの解剖図 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin:12px 0;">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:12px;">
+      <!-- 左：商品ページ再現 -->
+      <div style="background:white;border:1px solid #e0e0e0;border-radius:8px;padding:12px;font-size:0.75rem;">
+        <div style="aspect-ratio:1;background:linear-gradient(135deg,#e8f4f8,#b8dce4);border-radius:6px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:#5fb9d1;font-weight:700;position:relative;">
+          <div style="width:60%;aspect-ratio:1;background:linear-gradient(135deg,#7ac4c7,#5fb9d1 60%,#e8f4f8);border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+          <div id="tag-photo" style="position:absolute;top:4px;left:4px;background:#b87e4c;color:white;padding:1px 6px;border-radius:8px;font-size:0.6rem;font-weight:700;">①</div>
+        </div>
+        <div style="position:relative;margin-bottom:6px;">
+          <div style="font-weight:700;line-height:1.5;color:#333;font-size:0.78rem;">海を閉じ込めたレジンコースター｜夏の贈り物</div>
+          <div style="position:absolute;top:-2px;right:-6px;background:#b87e4c;color:white;padding:1px 6px;border-radius:8px;font-size:0.6rem;font-weight:700;">②</div>
+        </div>
+        <div style="position:relative;margin-bottom:8px;">
+          <div style="color:#c03a3a;font-weight:700;font-size:1rem;">¥2,980</div>
+          <div style="position:absolute;top:-2px;right:-6px;background:#b87e4c;color:white;padding:1px 6px;border-radius:8px;font-size:0.6rem;font-weight:700;">③</div>
+        </div>
+        <div style="position:relative;color:#666;line-height:1.6;font-size:0.7rem;padding:8px;background:#f8f5f0;border-radius:4px;">
+          沖縄の海を閉じ込めたレジンコースター。キラキラ揺れる波紋で、夏の贈り物やご褒美に。<br>サイズ：直径10cm / 素材：エポキシレジン
+          <div style="position:absolute;top:2px;right:2px;background:#b87e4c;color:white;padding:1px 6px;border-radius:8px;font-size:0.6rem;font-weight:700;">④</div>
+        </div>
+      </div>
+      <!-- 右：凡例 -->
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:rgba(184,126,76,0.08);border-left:2px solid #b87e4c;border-radius:4px;">
+          <div style="background:#b87e4c;color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">①</div>
+          <div style="font-size:0.78rem;line-height:1.6;"><strong>写真</strong><br><span style="color:var(--text-light);">Phase 2-1で撮った5枚セットを使う</span></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:rgba(184,126,76,0.08);border-left:2px solid #b87e4c;border-radius:4px;">
+          <div style="background:#b87e4c;color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">②</div>
+          <div style="font-size:0.78rem;line-height:1.6;"><strong>タイトル</strong><br><span style="color:var(--text-light);">検索キーワード + 商品名 + 特徴</span></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:rgba(184,126,76,0.08);border-left:2px solid #b87e4c;border-radius:4px;">
+          <div style="background:#b87e4c;color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">③</div>
+          <div style="font-size:0.78rem;line-height:1.6;"><strong>価格</strong><br><span style="color:var(--text-light);">原価計算に基づいて決める（下参照）</span></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:rgba(184,126,76,0.08);border-left:2px solid #b87e4c;border-radius:4px;">
+          <div style="background:#b87e4c;color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">④</div>
+          <div style="font-size:0.78rem;line-height:1.6;"><strong>説明文</strong><br><span style="color:var(--text-light);">世界観 + 仕様（サイズ・素材）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- タイトルの型 -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    売れるタイトルの型
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:10px 0;">
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:0.85rem;">
+      <div style="padding:6px 12px;background:#d4e8ef;color:#3a6a73;border-radius:4px;font-weight:700;">検索キーワード</div>
+      <div style="color:var(--text-light);">＋</div>
+      <div style="padding:6px 12px;background:#f0e4d4;color:#8a6d24;border-radius:4px;font-weight:700;">商品名</div>
+      <div style="color:var(--text-light);">＋</div>
+      <div style="padding:6px 12px;background:#e4d4e0;color:#7a4a6c;border-radius:4px;font-weight:700;">特徴・用途</div>
+    </div>
+    <div style="font-size:0.78rem;color:var(--text-light);line-height:1.8;margin-top:10px;">
+      <div>✗ NG: <span style="text-decoration:line-through;">レジンコースター</span>（短すぎ・キーワードなし）</div>
+      <div>✓ OK: <span style="padding:2px 6px;background:#d4e8ef;border-radius:3px;">海</span> <span style="padding:2px 6px;background:#f0e4d4;border-radius:3px;">レジンコースター</span> <span style="padding:2px 6px;background:#e4d4e0;border-radius:3px;">夏の贈り物</span></div>
+    </div>
+  </div>
+
+  <!-- 価格の計算式 -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+    価格の決め方（原価計算）
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:10px 0;">
+    <div style="display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;font-family:sans-serif;font-weight:700;font-size:0.88rem;margin-bottom:12px;">
+      <div style="padding:8px 12px;background:rgba(95,185,209,0.15);color:#328697;border-radius:6px;text-align:center;">材料費</div>
+      <span style="color:var(--text-light);">＋</span>
+      <div style="padding:8px 12px;background:rgba(163,184,153,0.15);color:#5a7a4a;border-radius:6px;text-align:center;">製作時間<br><span style="font-size:0.68rem;font-weight:400;">×時給</span></div>
+      <span style="color:var(--text-light);">＋</span>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.15);color:#8a6d24;border-radius:6px;text-align:center;">手数料<br><span style="font-size:0.68rem;font-weight:400;">（MOSH等）</span></div>
+      <span style="color:var(--text-light);">＋</span>
+      <div style="padding:8px 12px;background:rgba(184,126,76,0.15);color:#8a4a2a;border-radius:6px;text-align:center;">利益</div>
+      <span style="color:var(--text-light);">＝</span>
+      <div style="padding:8px 14px;background:linear-gradient(135deg,#c9a84c,#8a6d24);color:white;border-radius:6px;font-size:1rem;">販売価格</div>
+    </div>
+    <div style="font-size:0.8rem;color:var(--text);line-height:1.8;border-top:1px solid var(--border);padding-top:10px;margin-top:8px;">
+      <strong>目安：</strong>材料費の<strong>3〜5倍</strong>が基本。安すぎると「安物」「疲弊」、高すぎると「売れない」。<br>
+      <strong>時給：</strong>最低でも<strong>時給1000円</strong>から計算する（自分の時間にも価値がある）
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 3-1: SNS運用ロードマップ
+// ==========================================
+function renderSnsRoadmap() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    なぜSNS運用が必要？
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">ハンドメイド作家が <strong>無料でファンを集められる唯一の方法</strong> がSNS。広告に頼らず、自分のペースで続けられます。</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0;">
+    <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">💸</div>
+      <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">無料</div>
+      <div style="font-size:0.75rem;color:var(--text-light);">広告費ゼロで集客可能</div>
+    </div>
+    <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">🎯</div>
+      <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">ファンができる</div>
+      <div style="font-size:0.75rem;color:var(--text-light);">お客様と繋がれる</div>
+    </div>
+    <div style="background:var(--bg);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">📈</div>
+      <div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">積み重なる</div>
+      <div style="font-size:0.75rem;color:var(--text-light);">過去投稿も売上に効く</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    SNS始める 5ステップ
+  </h3>
+  <div style="margin:14px 0;">
+    ${[
+      { n:1, t:'メインSNSを1つに絞る', d:'Instagram が主流。全部やろうとしない', color:'#e4405f', icon:'📱' },
+      { n:2, t:'投稿テーマと頻度を決める', d:'作品 / 制作過程 / ストーリー。週2〜3回が続けやすい', color:'#8a70c9', icon:'🎨' },
+      { n:3, t:'ハッシュタグ戦略', d:'大・中・小タグを混ぜる。10〜15個でOK', color:'#5fb9d1', icon:'#️⃣' },
+      { n:4, t:'プロフィールを整える', d:'「何屋さん」か一言で分かる自己紹介', color:'#6b8e5a', icon:'👤' },
+      { n:5, t:'最初の10投稿を用意', d:'空っぽのアカウントは信頼されない', color:'#b87e4c', icon:'📝' }
+    ].map((s,i,arr) => `
+      <div style="display:flex;gap:14px;align-items:stretch;margin-bottom:${i===arr.length-1?0:'8px'};">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,${s.color},${s.color}cc);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;box-shadow:0 2px 6px ${s.color}40;">${s.n}</div>
+          ${i < arr.length-1 ? `<div style="width:2px;flex:1;background:linear-gradient(to bottom,${s.color}60,${arr[i+1].color}60);margin:4px 0;min-height:12px;"></div>` : ''}
+        </div>
+        <div style="flex:1;background:var(--card);border:1px solid var(--border);border-left:3px solid ${s.color};border-radius:var(--radius);padding:12px 16px;">
+          <div style="font-weight:700;font-size:0.92rem;margin-bottom:4px;"><span style="margin-right:6px;">${s.icon}</span>${s.t}</div>
+          <div style="font-size:0.8rem;color:var(--text-light);line-height:1.6;">${s.d}</div>
+        </div>
+      </div>
+    `).join('')}
+  </div>
+
+  <!-- ハッシュタグ戦略 -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+    ハッシュタグの「3段構え」
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:10px 0;">
+    <div style="display:grid;gap:8px;">
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(224,64,95,0.1),rgba(224,64,95,0.03));border-left:3px solid #e4405f;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#a82a48;margin-bottom:4px;">大タグ（10万投稿以上）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#ハンドメイド #ハンドメイドアクセサリー などの大ジャンル。露出用・1〜3個</div>
+      </div>
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(138,112,201,0.1),rgba(138,112,201,0.03));border-left:3px solid #8a70c9;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#5a4a8c;margin-bottom:4px;">中タグ（1万〜10万投稿）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#レジンアクセサリー #海レジン など中ジャンル。ターゲット到達用・5〜7個</div>
+      </div>
+      <div style="padding:10px 12px;background:linear-gradient(135deg,rgba(95,185,209,0.1),rgba(95,185,209,0.03));border-left:3px solid #5fb9d1;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.85rem;color:#328697;margin-bottom:4px;">小タグ（1万投稿以下）</div>
+        <div style="font-size:0.76rem;color:var(--text-light);line-height:1.7;">#オリジナル名 #作家名 など独自タグ。ファン獲得用・3〜5個</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 3-2: ファン作り
+// ==========================================
+function renderFanMaking() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    ファン作りの「3本柱」
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">ただの「商品投稿」だけではファンはつきません。<strong>人柄・物語が見えると、応援したくなる</strong>のが人間の心理です。</p>
+
+  <div style="display:grid;gap:12px;margin:14px 0;">
+    <div style="background:linear-gradient(135deg,rgba(95,185,209,0.08),rgba(95,185,209,0.02));border:1px solid rgba(95,185,209,0.2);border-radius:var(--radius);padding:16px;">
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px;">
+        <div style="font-size:2rem;flex-shrink:0;">🎨</div>
+        <div>
+          <div style="font-weight:700;color:#328697;font-size:0.95rem;">1. 制作過程を発信する</div>
+          <div style="font-size:0.75rem;color:var(--text-light);">「手仕事」が見えると価値が伝わる</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(95,185,209,0.4);">
+        <strong>投稿例：</strong>リール／ストーリー／タイムラプス<br>
+        ・材料を並べた写真<br>
+        ・作っている途中の手元動画<br>
+        ・完成直前のチラ見せ
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(184,126,76,0.08),rgba(184,126,76,0.02));border:1px solid rgba(184,126,76,0.2);border-radius:var(--radius);padding:16px;">
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px;">
+        <div style="font-size:2rem;flex-shrink:0;">💌</div>
+        <div>
+          <div style="font-weight:700;color:#8a4a2a;font-size:0.95rem;">2. お客様の声・レビューを紹介</div>
+          <div style="font-size:0.75rem;color:var(--text-light);">「第三者の声」で信頼が急上昇</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(184,126,76,0.4);">
+        <strong>投稿例：</strong><br>
+        ・お客様からの感想DMをスクショ（名前は伏せる）<br>
+        ・購入後の使用シーン（お客様撮影）<br>
+        ・ありがとうの手書きメッセージ
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(163,184,153,0.08),rgba(163,184,153,0.02));border:1px solid rgba(163,184,153,0.2);border-radius:var(--radius);padding:16px;">
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px;">
+        <div style="font-size:2rem;flex-shrink:0;">📖</div>
+        <div>
+          <div style="font-weight:700;color:#5a7a4a;font-size:0.95rem;">3. 作家としてのストーリー</div>
+          <div style="font-size:0.75rem;color:var(--text-light);">「なぜこれを作るか」が共感を生む</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(163,184,153,0.4);">
+        <strong>投稿例：</strong><br>
+        ・作家になったきっかけ<br>
+        ・大切にしていること・こだわり<br>
+        ・失敗談・苦労話（人間味）
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 黄金比率</div>
+    <strong>商品5：制作過程3：ストーリー2</strong> くらいのバランスが理想。商品ばかりだと「売り込み感」が出るけど、人柄が見えると「この人から買いたい」が生まれます。
+  </div>`;
+}
+
+// ==========================================
+// Phase 4-1: マーケティング4本柱
+// ==========================================
+function renderMarketingPillars() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    販売力強化の「4本柱」
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">月10万を超えてくるには、ただ作って売るだけじゃ届きません。<strong>仕掛け（マーケティング）</strong>で売上を伸ばします。</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0;">
+    ${[
+      { icon:'🎄', title:'季節イベント', desc:'母の日・クリスマス等', color:'#c03a3a' },
+      { icon:'🆕', title:'新作発売', desc:'月1回のリリース', color:'#5fb9d1' },
+      { icon:'🎁', title:'リピーター特典', desc:'再購入で割引・おまけ', color:'#b87e4c' },
+      { icon:'📧', title:'メルマガ / LINE', desc:'直接届く告知チャネル', color:'#6b8e5a' }
+    ].map(p => `
+      <div style="background:var(--card);border:1px solid var(--border);border-top:4px solid ${p.color};border-radius:var(--radius);padding:14px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">${p.icon}</div>
+        <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px;color:${p.color};">${p.title}</div>
+        <div style="font-size:0.75rem;color:var(--text-light);line-height:1.6;">${p.desc}</div>
+      </div>
+    `).join('')}
+  </div>
+
+  <!-- 年間カレンダーのイメージ -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    年間イベントカレンダー
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:10px 0;overflow-x:auto;">
+    <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;min-width:600px;">
+      ${[
+        { m:1, e:'お年賀' }, { m:2, e:'バレンタイン' }, { m:3, e:'ひな祭り・卒業' }, { m:4, e:'入学・母の日準備' },
+        { m:5, e:'母の日' }, { m:6, e:'父の日' }, { m:7, e:'夏ギフト' }, { m:8, e:'お盆' },
+        { m:9, e:'敬老の日' }, { m:10, e:'ハロウィン' }, { m:11, e:'クリスマス準備' }, { m:12, e:'クリスマス・お歳暮' }
+      ].map(x => `
+        <div style="padding:6px 4px;background:var(--bg);border-radius:4px;text-align:center;font-size:0.7rem;line-height:1.4;">
+          <div style="font-weight:700;color:var(--primary-dark);">${x.m}月</div>
+          <div style="color:var(--text-light);font-size:0.65rem;margin-top:2px;">${x.e}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="font-size:0.78rem;color:var(--text-light);margin-top:10px;line-height:1.6;">各イベントの <strong>1ヶ月前から告知・制作</strong> を始めると間に合います。</div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 4-2: 分析・改善 PDCA
+// ==========================================
+function renderAnalyticsPDCA() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+    データを見ながら育てる
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">「感覚」ではなく「数字」で判断すると、確実に伸びます。<strong>週1回15分</strong>で数字を確認する習慣を。</p>
+
+  <!-- 見るべき3つの指標 -->
+  <h3 style="margin-top:24px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+    見るべき3つの指標
+  </h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">👀</div>
+      <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);">アクセス数</div>
+      <div style="font-size:0.72rem;color:var(--text-light);line-height:1.6;margin-top:4px;">どれくらい見られてる？</div>
+      <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;margin-top:6px;">少ない→集客強化</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">💰</div>
+      <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);">購入率</div>
+      <div style="font-size:0.72rem;color:var(--text-light);line-height:1.6;margin-top:4px;">見た人の何%が買う？</div>
+      <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;margin-top:6px;">低い→商品ページ改善</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:6px;">🔁</div>
+      <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark);">リピート率</div>
+      <div style="font-size:0.72rem;color:var(--text-light);line-height:1.6;margin-top:4px;">何回買ってくれる？</div>
+      <div style="font-size:0.7rem;color:var(--primary-dark);background:rgba(201,168,76,0.1);padding:3px 8px;border-radius:8px;display:inline-block;margin-top:6px;">低い→満足度UP</div>
+    </div>
+  </div>
+
+  <!-- PDCAサイクル -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+    改善サイクル（PDCA）
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:10px 0;">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+      <div style="padding:12px;background:rgba(95,185,209,0.08);border-left:3px solid #5fb9d1;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.88rem;color:#328697;">P  Plan（仮説）</div>
+        <div style="font-size:0.75rem;color:var(--text);margin-top:4px;line-height:1.6;">「写真を明るくしたら購入率UP？」</div>
+      </div>
+      <div style="padding:12px;background:rgba(163,184,153,0.08);border-left:3px solid #6b8e5a;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.88rem;color:#5a7a4a;">D  Do（実行）</div>
+        <div style="font-size:0.75rem;color:var(--text);margin-top:4px;line-height:1.6;">実際に写真を差し替えて1週間観察</div>
+      </div>
+      <div style="padding:12px;background:rgba(201,168,76,0.08);border-left:3px solid #c9a84c;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.88rem;color:#8a6d24;">C  Check（確認）</div>
+        <div style="font-size:0.75rem;color:var(--text);margin-top:4px;line-height:1.6;">アクセス・購入率の変化を数字で見る</div>
+      </div>
+      <div style="padding:12px;background:rgba(184,126,76,0.08);border-left:3px solid #b87e4c;border-radius:4px;">
+        <div style="font-weight:700;font-size:0.88rem;color:#8a4a2a;">A  Act（改善）</div>
+        <div style="font-size:0.75rem;color:var(--text);margin-top:4px;line-height:1.6;">良ければ他商品も変更／ダメなら別の仮説</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 5-1: オペレーション
+// ==========================================
+function renderOperationFlow() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+    運営をラクに回す仕組み
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">売上が伸びてきたら、<strong>「毎回考えない」仕組みづくり</strong>が必須。忙しさで潰れないために。</p>
+
+  <!-- 受注から発送までのフロー -->
+  <h3 style="margin-top:24px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+    受注→発送の5ステップ
+  </h3>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin:10px 0;overflow-x:auto;">
+    <div style="display:flex;gap:6px;align-items:stretch;min-width:560px;">
+      ${[
+        { n:1, icon:'🔔', t:'注文確認', d:'メールチェック' },
+        { n:2, icon:'💬', t:'お礼メッセ', d:'当日中に' },
+        { n:3, icon:'📦', t:'梱包', d:'ルーティン化' },
+        { n:4, icon:'🚚', t:'発送', d:'毎週〇曜日' },
+        { n:5, icon:'✉️', t:'発送連絡', d:'追跡番号付き' }
+      ].map((s,i,a) => `
+        <div style="flex:1;display:flex;align-items:center;gap:4px;">
+          <div style="flex:1;background:var(--bg);border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-size:1.3rem;margin-bottom:4px;">${s.icon}</div>
+            <div style="font-weight:700;font-size:0.75rem;color:var(--primary-dark);">${s.n}. ${s.t}</div>
+            <div style="font-size:0.68rem;color:var(--text-light);line-height:1.4;margin-top:2px;">${s.d}</div>
+          </div>
+          ${i < a.length-1 ? `<div style="color:var(--text-light);font-size:0.9rem;">→</div>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+  <!-- 3つの仕組み -->
+  <h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    整える3つの仕組み
+  </h3>
+  <div style="display:grid;gap:10px;margin:10px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #5fb9d1;border-radius:var(--radius);padding:12px 16px;">
+      <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px;">📦 梱包</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">資材を統一・一箇所にまとめる → 考えずに梱包できる</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #b87e4c;border-radius:var(--radius);padding:12px 16px;">
+      <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px;">📋 在庫管理</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">スプシに商品・個数・入荷予定。スマホで確認できる形に</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #6b8e5a;border-radius:var(--radius);padding:12px 16px;">
+      <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px;">💬 顧客対応テンプレ</div>
+      <div style="font-size:0.8rem;color:var(--text-light);line-height:1.7;">お礼・発送連絡・問い合わせ返答は文面を用意 → コピペで返信</div>
+    </div>
+  </div>`;
+}
+
+// ==========================================
+// Phase 5-2: リピート・口コミ施策
+// ==========================================
+function renderRepeatStrategy() {
+  return `<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+    リピーターを育てる3手
+  </h3>
+  <p style="font-size:0.88rem;color:var(--text);line-height:1.9;margin-bottom:14px;">新規のお客様を取るコストは、リピーターの<strong>5倍</strong>と言われています。<strong>2回目を買ってもらう工夫</strong>が売上の安定に直結します。</p>
+
+  <!-- 新規 vs リピート コスト比較 -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:10px 0;">
+    <div style="display:flex;height:44px;border-radius:6px;overflow:hidden;margin-bottom:10px;">
+      <div style="flex:5;background:#c03a3a;color:white;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;">新規獲得コスト ×5</div>
+      <div style="flex:1;background:#3a8a6c;color:white;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;">リピート ×1</div>
+    </div>
+    <div style="font-size:0.78rem;color:var(--text-light);text-align:center;line-height:1.6;">リピーターを1人作る = 新規5人に広告を出すのと同じ価値</div>
+  </div>
+
+  <!-- 3つの施策 -->
+  <div style="display:grid;gap:10px;margin:14px 0;">
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #b87e4c;border-radius:var(--radius);padding:14px;">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+        <div style="font-size:1.6rem;flex-shrink:0;">💌</div>
+        <div>
+          <div style="font-weight:700;font-size:0.95rem;color:#8a4a2a;">1. サンキューカードを同梱</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">一番シンプルで一番効く</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(184,126,76,0.4);">
+        手書き一言＋次回使える10%OFFクーポンコード、など。<br>「また買いたい」と思ってもらうきっかけ作り。
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #5fb9d1;border-radius:var(--radius);padding:14px;">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+        <div style="font-size:1.6rem;flex-shrink:0;">⭐</div>
+        <div>
+          <div style="font-weight:700;font-size:0.95rem;color:#328697;">2. レビュー依頼の仕組み</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">第三者の声は最強の広告</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(95,185,209,0.4);">
+        到着後3〜5日にお礼メッセージで「もしお気に召したらレビュー頂けると励みです」と一声。<br>押し付けずに、自然に。
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid #6b8e5a;border-radius:var(--radius);padding:14px;">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+        <div style="font-size:1.6rem;flex-shrink:0;">🎁</div>
+        <div>
+          <div style="font-weight:700;font-size:0.95rem;color:#5a7a4a;">3. リピーター限定施策</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">「特別感」で再来店を促す</div>
+        </div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text);line-height:1.8;padding-left:8px;border-left:2px solid rgba(107,142,90,0.4);">
+        ・リピーター限定の先行販売<br>
+        ・誕生月に特別クーポン<br>
+        ・3回目購入で小さなプレゼント
+      </div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-radius:var(--radius);padding:14px 16px;margin:14px 0;font-size:0.82rem;line-height:1.8;border:1px solid rgba(201,168,76,0.25);">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--primary-dark);">💎 リピート率の目安</div>
+    目安は <strong>20〜30%</strong>。つまり5人に1人は2回目を買ってくれれば上々。ここを超えると売上が安定期に入ります。
+  </div>`;
 }
 
 // Block 1: なぜブランドカラー？
@@ -2267,17 +2868,23 @@ function buildLessonResources(id) {
     });
   }
 
-  // ③ インタラクティブツール（ブランドカラー決定ツール等）
+  // ③ インタラクティブツール・解説ブロック
   if (res.tools && res.tools.length) {
+    const toolRenderers = {
+      brandColor: () => renderWhyBrandColor() + renderHowToChooseBrandColor() + renderBrandColorTool(),
+      storeSetup: () => renderWhyStoreSetup() + renderStoreSetupRoadmap(),
+      productPhoto: () => renderProductPhotoGuide(),
+      productRegister: () => renderProductRegisterGuide(),
+      snsRoadmap: () => renderSnsRoadmap(),
+      fanMaking: () => renderFanMaking(),
+      marketing: () => renderMarketingPillars(),
+      analytics: () => renderAnalyticsPDCA(),
+      operation: () => renderOperationFlow(),
+      repeat: () => renderRepeatStrategy()
+    };
     res.tools.forEach(toolKey => {
-      if (toolKey === 'brandColor') {
-        html += renderWhyBrandColor();
-        html += renderHowToChooseBrandColor();
-        html += renderBrandColorTool();
-      }
-      if (toolKey === 'storeSetup') {
-        html += renderWhyStoreSetup();
-        html += renderStoreSetupRoadmap();
+      if (toolRenderers[toolKey]) {
+        html += toolRenderers[toolKey]();
       }
     });
   }
