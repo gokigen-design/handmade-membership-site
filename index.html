@@ -16,7 +16,7 @@
     --bg: #f7fbfd;
     --bg-card: rgba(255,255,255,0.82);
     --text: #1e3a3a;
-    --text-light: #6a9898;
+    --text-light: #4a7373;
     --text-dark: #0d2020;
     --accent: #c9a84c;
     --accent-green: #3aaa8a;
@@ -216,22 +216,17 @@
   .page-header p { font-size: 0.85rem; color: var(--text-light); }
 
   /* ===== DASHBOARD ===== */
-  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
   .stat-card {
-    background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-top: 2px solid rgba(201,168,76,0.5);
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+    border-radius: var(--radius); padding: 22px 18px;
+    border: 1px dashed rgba(201,168,76,0.4);
     position: relative;
+    text-align: center;
   }
-  .stat-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 20%; right: 20%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
-  }
-  .stat-card .label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px; }
-  .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--text-dark); }
-  .stat-card .sub { font-size: 0.7rem; color: var(--accent-green); margin-top: 4px; }
+  .stat-card .label { font-size: 0.9rem; color: var(--text); margin-bottom: 8px; font-weight: 600; letter-spacing: 0.02em; }
+  .stat-card .value { font-size: 2rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+  .stat-card .sub { font-size: 0.82rem; color: var(--accent-green); margin-top: 8px; line-height: 1.6; font-weight: 600; }
   .progress-bar-bg { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-top: 12px; overflow: hidden; }
   .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; transition: width 0.8s ease; }
 
@@ -286,9 +281,9 @@
   }
   .module-num.locked { background: var(--border); color: var(--text-light); }
   .module-info { flex: 1; }
-  .module-info h3 { font-size: 0.95rem; margin-bottom: 2px; }
-  .module-info p { font-size: 0.72rem; color: var(--text-light); }
-  .module-status { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; font-weight: 700; white-space: nowrap; }
+  .module-info h3 { font-size: 1.1rem; margin-bottom: 4px; color: var(--text-dark); }
+  .module-info p { font-size: 0.85rem; color: var(--text); }
+  .module-status { font-size: 0.82rem; padding: 5px 14px; border-radius: 20px; font-weight: 700; white-space: nowrap; }
   .module-status.completed { background: rgba(125,155,118,0.1); color: var(--accent-green); }
   .module-status.current { background: rgba(200,149,108,0.1); color: var(--primary-dark); }
   .module-status.locked { background: var(--bg); color: var(--text-light); }
@@ -299,21 +294,22 @@
   /* Lesson row - clickable */
   .lesson-item {
     display: flex; align-items: center; gap: 12px;
-    padding: 14px 0; border-bottom: 1px solid var(--border);
-    font-size: 0.82rem; cursor: pointer; transition: background 0.15s;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.98rem; cursor: pointer; transition: background 0.15s;
     margin: 0 -24px; padding-left: 24px; padding-right: 24px;
+    color: var(--text-dark);
   }
   .lesson-item:last-child { border-bottom: none; }
   .lesson-item:hover { background: rgba(200,149,108,0.04); }
   .lesson-item.locked-lesson { cursor: default; opacity: 0.5; }
   .lesson-item.locked-lesson:hover { background: none; }
-  .lesson-icon { font-size: 1rem; width: 24px; text-align: center; }
-  .lesson-title { flex: 1; }
-  .lesson-meta { font-size: 0.65rem; color: var(--text-light); }
+  .lesson-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+  .lesson-title { flex: 1; font-weight: 500; }
+  .lesson-meta { font-size: 0.78rem; color: var(--text); }
   .lesson-check { color: var(--accent-green); font-weight: 700; }
-  .lesson-arrow { color: var(--text-light); font-size: 0.8rem; }
+  .lesson-arrow { color: var(--text); font-size: 0.9rem; }
   .work-badge-inline {
-    font-size: 0.6rem; padding: 2px 8px; border-radius: 10px;
+    font-size: 0.72rem; padding: 3px 10px; border-radius: 10px;
     font-weight: 700; margin-left: 4px;
   }
   .work-badge-inline.submitted { background: rgba(125,155,118,0.1); color: var(--accent-green); }
@@ -758,15 +754,19 @@
     .sidebar.open { transform: translateX(0); }
     .overlay.open { display: block; }
     .main { margin-left: 0; padding: 72px 16px 24px; }
-    .stats-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .stat-card { padding: 14px 8px; text-align: center; }
+    .stat-card .label { font-size: 0.78rem; margin-bottom: 6px; line-height: 1.3; }
+    .stat-card .value { font-size: 1.25rem; white-space: nowrap; }
+    .stat-card .sub { font-size: 0.7rem; margin-top: 6px; line-height: 1.45; }
     .page-header h1 { font-size: 1.3rem !important; }
     .module-header { padding: 16px; gap: 12px; }
     .module-num { width: 36px; height: 36px; font-size: 0.9rem; }
-    .module-info h3 { font-size: 0.95rem; }
-    .module-info p { font-size: 0.75rem; }
-    .lesson-item { padding: 12px 16px; gap: 10px; }
-    .lesson-title { font-size: 0.85rem; }
-    .work-badge-inline { font-size: 0.7rem; padding: 2px 6px; }
+    .module-info h3 { font-size: 1.05rem; }
+    .module-info p { font-size: 0.85rem; }
+    .lesson-item { padding: 14px 16px; gap: 10px; font-size: 0.95rem; }
+    .lesson-title { font-size: 0.98rem; }
+    .work-badge-inline { font-size: 0.78rem; padding: 3px 8px; }
     .login-box { padding: 32px 20px; max-width: 92%; }
     .member-card { padding: 16px; }
     .dp-item { flex-wrap: wrap; gap: 6px; padding: 10px 12px; }
@@ -778,7 +778,7 @@
     .main { padding: 64px 12px 20px; }
     .page-header h1 { font-size: 1.15rem !important; }
     .lesson-detail-meta { font-size: 0.75rem; }
-    .module-status { font-size: 0.7rem; padding: 3px 8px; }
+    .module-status { font-size: 0.8rem; padding: 4px 10px; }
   }
 </style>
 </head>
@@ -873,6 +873,7 @@
       <div class="nav-item active" data-page="dashboard"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 10v9a1 1 0 001 1h3v-5h6v5h3a1 1 0 001-1v-9"/></svg></span> ダッシュボード</div>
       <div class="nav-item" data-page="content"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg></span> コンテンツ</div>
       <div class="nav-item" data-page="mindup"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5z"/><path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z"/></svg></span> マインドアップ音声</div>
+      <div class="nav-item" data-page="bonus"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></span> 入会特典</div>
       <div class="nav-item admin-only" data-page="members" style="display:none;"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> 会員管理</div>
       <div class="nav-item" data-page="mypage"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> マイページ</div>
       <div class="nav-item" data-page="announce"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span> お知らせ<span class="badge">3</span></div>
@@ -1109,63 +1110,221 @@
     <div class="page" id="page-mindup">
       <div class="page-header">
         <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5z"/><path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z"/></svg> マインドアップ音声</h1>
-        <p>毎月のテーマに合わせた音声コンテンツ。シリーズごとに数本ずつ配信されます</p>
+        <p>毎週配信されるOla lea mind UPシリーズ。スキマ時間にお聴きください（stand.fmで再生）</p>
       </div>
       <div class="audio-month-card">
         <div class="audio-month-header">
-          <div class="audio-month-num">1</div>
-          <div class="audio-month-info"><h3>行動できる自分になる</h3><p>1ヶ月目 ・ 土台づくり（迷わない軸）</p></div>
+          <div class="audio-month-num">UP</div>
+          <div class="audio-month-info"><h3>Ola lea mind UP シリーズ</h3><p>全15本配信中 ・ stand.fmで再生</p></div>
           <span class="module-status current">配信中</span>
         </div>
-        <div class="audio-track">
-          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
-          <div class="audio-track-info"><div class="track-title">Vol.1 行動できない本当の理由</div><div class="track-duration">12:30</div></div>
-          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
-        <div class="audio-track">
-          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
-          <div class="audio-track-info"><div class="track-title">Vol.2 小さな一歩を踏み出すコツ</div><div class="track-duration">10:45</div></div>
-          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
-        <div class="audio-track">
-          <button class="audio-play-btn" onclick="alert('音声を再生します（デモ）')">▶</button>
-          <div class="audio-track-info"><div class="track-title">Vol.3 迷わない自分軸の作り方</div><div class="track-duration">14:20</div></div>
-          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
+        <a class="audio-track" href="https://stand.fm/episodes/695dbed75240a4a9a563c998" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">001 決めた未来しか現実にならない</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69701da923a36404e357b676" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">002 なぜ心が結果をつくるのか</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/6976bc15ef7f646e33658446" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">003 言葉が現実を変える理由 −仕組み−</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/6991ce0f6820f484cad2d024" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">004 言葉が現実を変える理由 −実践−</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69969f933443a47fa551665f" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">005 感情特性を整えるリセット方法</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/6997ed2b49e2f63c1afe09a9" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">006 コンフォートゾーンから抜ける勇気</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/6999ac28b2b4e258e2094cc0" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">007 挑戦を楽しむマインド</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/699e9d3f6c0842f035badf88" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">008 継続と自信を育てるマインド</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69a43aa28b445a24baec2e86" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">009 マインドが現実を作る循環 〜生きる喜びを自分で選ぶ〜</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69a57f575b07cfdea76fbca7" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">010 あなたには、あなたの人生がある</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69a63a3552a48ad7ce1281db" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">011 怖さは、本音に近付いているサイン</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69b663e4e0bc6459cb4f7a30" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">012 待つ時間が人生を育てる</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69bcc53ec3924e77952148ea" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">013 進めない時はどう休むか</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69c23a0a8e3d1082d37380d4" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">014 与える事で自分が満たされる理由</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
+        <a class="audio-track" href="https://stand.fm/episodes/69dc58126b524ebbc182c9eb" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+          <button class="audio-play-btn" type="button">▶</button>
+          <div class="audio-track-info"><div class="track-title">015 あなたは、もう十分に価値がある</div><div class="track-duration">stand.fmで聴く →</div></div>
+        </a>
       </div>
-      <div class="audio-month-card">
-        <div class="audio-month-header">
-          <div class="audio-month-num">2</div>
-          <div class="audio-month-info"><h3>自分の人生をあゆむための在り方</h3><p>2ヶ月目 ・ 構築し発信する</p></div>
-          <span class="module-status locked">2ヶ月目に配信</span>
-        </div>
+    </div>
+
+    <!-- ===== 入会特典 PAGE ===== -->
+    <div class="page" id="page-bonus">
+      <div class="page-header">
+        <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> 入会特典</h1>
+        <p>Ola leaへのご入会ありがとうございます。すぐに使える4つの特典をご用意しました</p>
       </div>
-      <div class="audio-month-card">
-        <div class="audio-month-header">
-          <div class="audio-month-num">3</div>
-          <div class="audio-month-info"><h3>選ばれる人がしていること</h3><p>3ヶ月目 ・ 商品作りと運用</p></div>
-          <span class="module-status locked">3ヶ月目に配信</span>
-        </div>
+
+      <div style="background:linear-gradient(135deg,rgba(200,149,108,0.08),rgba(212,163,115,0.04));border:1px solid rgba(200,149,108,0.25);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px;line-height:1.9;color:var(--text);">
+        <p style="margin:0;font-size:0.95rem;">この度はご入会いただきましてありがとうございます。<br>みなさまのお悩みや知りたい！に沿った内容をお届けしていきますので、ご意見ご感想いつでも大歓迎です。</p>
+        <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-light);">Ola lea（オラレア）は、"楽しく仕事を続けられる自分"をつくることを大切にしているコミュニティです。<br>とにかく楽しく行動したら、結果として収入もついてきた。その循環を育てましょう。</p>
       </div>
-      <div class="audio-month-card">
-        <div class="audio-month-header">
-          <div class="audio-month-num locked">4</div>
-          <div class="audio-month-info"><h3>テーマ未定</h3><p>4ヶ月目 ・ マーケティングフロー</p></div>
-          <span class="module-status locked">4ヶ月目に配信</span>
-        </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px;">
+
+        <a href="https://maki-linolea.github.io/ECsite/" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#5fb9d1,#7ac4c7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 002 1.6h9.7a2 2 0 002-1.6L23 6H6"/></svg>
+            </div>
+            <strong style="font-size:1rem;">特典1：ECサイト比較ページ</strong>
+          </div>
+          <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">どのECサイトを使うか迷ったら、まずはこちらの比較ページから</p>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1y8QWtvR6P6WmjXytNxUkzBr0AJbVdSDe" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#b87e4c,#c9a84c);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <strong style="font-size:1rem;">特典2：年間計画シート</strong>
+          </div>
+          <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">印刷して使えるシート。時間管理マトリックスを読んだ上で「やめること・優先すること」を書き込んでみてください</p>
+        </a>
+
+        <a href="https://docs.google.com/spreadsheets/d/1QgeIZIG9fU_vaf8GBXYX0cpqbXx00fhUX3Kuxz0m-ZY/edit?usp=drivesdk" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#6b8e5a,#7ac4c7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <strong style="font-size:1rem;">特典3：収支表（スプレッドシート）</strong>
+          </div>
+          <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">マキも実際に使っている収支表。開いたら<strong>右上の「ファイル」→「コピーを作成」</strong>してからお使いください</p>
+        </a>
+
+        <a href="https://chatgpt.com/g/g-6944bf796b2c8191ad57e2293efa1e9c-maki-ai" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#9b8ec4,#c8956c);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <strong style="font-size:1rem;">特典4：マキAI（ChatGPT）</strong>
+          </div>
+          <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">喝を入れて欲しい・相談に乗って欲しい・弱音を吐きたい時に。ChatGPTアプリをDL後、リンクをタップで使えます<br><span style="font-size:0.78rem;color:var(--text-light);">※本物のマキではありません。変な回答が出たら教えてください</span></p>
+        </a>
+
       </div>
-      <div class="audio-month-card">
-        <div class="audio-month-header">
-          <div class="audio-month-num locked">5</div>
-          <div class="audio-month-info"><h3>テーマ未定</h3><p>5ヶ月目 ・ ストア強化</p></div>
-          <span class="module-status locked">5ヶ月目に配信</span>
-        </div>
+
+      <div style="background:linear-gradient(135deg,rgba(155,142,196,0.10),rgba(200,149,108,0.06));border:1px dashed rgba(155,142,196,0.4);border-radius:var(--radius);padding:22px;">
+        <h2 style="font-size:1.05rem;margin:0 0 12px;display:flex;align-items:center;gap:8px;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          スタートアップセミナー 2026.4
+        </h2>
+        <p style="margin:0 0 12px;font-size:0.92rem;color:var(--text-light);line-height:1.7;">入会されたみなさま向けの最初のセミナー動画。これからの6ヶ月間の歩み方をお伝えしています</p>
+        <a href="https://vimeo.com/1181814571/b1fa2798d2?share=copy&fl=sv&fe=ci" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#9b8ec4;color:#fff;text-decoration:none;border-radius:8px;font-size:0.92rem;font-weight:600;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Vimeoで再生
+        </a>
       </div>
-      <div class="audio-month-card">
-        <div class="audio-month-header">
-          <div class="audio-month-num locked">6</div>
-          <div class="audio-month-info"><h3>テーマ未定</h3><p>6ヶ月目 ・ ファン化と改善</p></div>
-          <span class="module-status locked">6ヶ月目に配信</span>
+
+      <!-- マーケティングコンテンツ -->
+      <div style="margin-top:28px;">
+        <h2 style="font-size:1.15rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          マーケティングコンテンツ
+        </h2>
+        <p style="font-size:0.9rem;color:var(--text-light);line-height:1.7;margin-bottom:16px;">「売り込まなくても売れる」仕組みを作るためのマーケティング基礎講座（全3本）</p>
+
+        <div class="audio-month-card" style="border-left:3px solid rgba(95,185,209,0.5);">
+          <div class="audio-month-header">
+            <div class="audio-month-num" style="background:linear-gradient(135deg,#5fb9d1,#7ac4c7);">1-1</div>
+            <div class="audio-month-info">
+              <h3>マーケティング思考</h3>
+              <p>「売り込まないで売れる状態」を作る考え方</p>
+            </div>
+            <a href="https://vimeo.com/1178407770/7104542e1d?share=copy&fl=sv&fe=ci" target="_blank" rel="noopener" class="module-status current" style="text-decoration:none;cursor:pointer;">▶ 動画を見る</a>
+          </div>
+          <details style="border-top:1px solid var(--border);padding:14px 24px;">
+            <summary style="cursor:pointer;font-size:0.88rem;font-weight:600;color:var(--primary-dark);">概要・チャプターを見る</summary>
+            <p style="font-size:0.88rem;line-height:1.9;margin:12px 0;color:var(--text);">「マーケティング＝難しい集客」というイメージを覆し、その核心が「売り込まないで売れる状態を作ること」にあることを解説。雨の日のコンビニのビニール傘を例に、「欲しい人に、欲しいタイミングで差し出す」仕組みの重要性を学びます。「好きなこと×得意×ニーズ×収益性」のフレームワークも紹介。</p>
+            <ul style="font-size:0.82rem;color:var(--text-light);line-height:1.9;padding-left:1.2em;margin:0;">
+              <li>00:00 マーケティング思考の重要性</li>
+              <li>00:55 売り込まないで売れる状態とは</li>
+              <li>02:02 自分本位から相手目線へ</li>
+              <li>04:41 コンビニの傘に学ぶマーケティングの本質</li>
+              <li>10:01 好きなこと・得意・ニーズ・収益の四要素</li>
+              <li>16:33 まとめとアウトプット</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="audio-month-card" style="border-left:3px solid rgba(184,126,76,0.5);">
+          <div class="audio-month-header">
+            <div class="audio-month-num" style="background:linear-gradient(135deg,#b87e4c,#c9a84c);">1-2</div>
+            <div class="audio-month-info">
+              <h3>売れる仕組み 7ステップ</h3>
+              <p>オンライン販売をゼロから軌道に乗せる完全ロードマップ</p>
+            </div>
+            <a href="https://vimeo.com/1186127561/388de11f92?share=copy&fl=sv&fe=ci" target="_blank" rel="noopener" class="module-status current" style="text-decoration:none;cursor:pointer;">▶ 動画を見る</a>
+          </div>
+          <details style="border-top:1px solid var(--border);padding:14px 24px;">
+            <summary style="cursor:pointer;font-size:0.88rem;font-weight:600;color:var(--primary-dark);">概要・チャプターを見る</summary>
+            <p style="font-size:0.88rem;line-height:1.9;margin:12px 0;color:var(--text);">「高い技術はあるが、売り方がわからない」を解決する全8段階。SNS発信→ストーリー構築→市場リサーチ→商品テスト→ブランド確立→プロモーション→自動化まで、各フェーズで取り組む具体策を公開。</p>
+            <ul style="font-size:0.82rem;color:var(--text-light);line-height:1.9;padding-left:1.2em;margin:0;">
+              <li>00:00 完全ロードマップ導入</li>
+              <li>01:48 ステップ0：発信の役割</li>
+              <li>10:06 ステップ1：過去をブランド価値に</li>
+              <li>13:41 ステップ2：市場リサーチとモデリング</li>
+              <li>23:44 ステップ4：本命商品をテスト販売</li>
+              <li>26:26 ステップ6：プロモーションとイベント</li>
+              <li>28:24 ステップ7：自動化と広告運用</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="audio-month-card" style="border-left:3px solid rgba(107,142,90,0.5);">
+          <div class="audio-month-header">
+            <div class="audio-month-num" style="background:linear-gradient(135deg,#6b8e5a,#7ac4c7);">1-3</div>
+            <div class="audio-month-info">
+              <h3>マーケティングフローとセールスファネル</h3>
+              <p>欲しい人だけに作品を届ける仕組みづくり</p>
+            </div>
+            <a href="https://vimeo.com/1186128256/05fa8c79f8?share=copy&fl=sv&fe=ci" target="_blank" rel="noopener" class="module-status current" style="text-decoration:none;cursor:pointer;">▶ 動画を見る</a>
+          </div>
+          <details style="border-top:1px solid var(--border);padding:14px 24px;">
+            <summary style="cursor:pointer;font-size:0.88rem;font-weight:600;color:var(--primary-dark);">概要・チャプターを見る</summary>
+            <p style="font-size:0.88rem;line-height:1.9;margin:12px 0;color:var(--text);">マーケティングを「お客様への優しい案内表示」と定義し、4ステップ（出会い→ファン化→提案→提供）でファンを増やす方法を解説。SNSでのDM販売のリスク、24時間稼働のオンラインストアの重要性、セールスファネルの仕組みも学べます。</p>
+            <ul style="font-size:0.82rem;color:var(--text-light);line-height:1.9;padding-left:1.2em;margin:0;">
+              <li>00:00 マーケティングの定義とお客様目線</li>
+              <li>01:04 マーケティングフロー4ステップ</li>
+              <li>03:38 SNSでのDM販売をおすすめしない理由</li>
+              <li>05:52 オンラインストアを導入すべきメリット</li>
+              <li>09:05 セールスファネルと商品単価の相関</li>
+              <li>15:19 信頼を損なわずに「欲しい人へ届ける」総括</li>
+            </ul>
+          </details>
         </div>
       </div>
     </div>
