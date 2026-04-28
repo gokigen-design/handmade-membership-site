@@ -3728,7 +3728,9 @@ function openMember(id) {
           }
           <span style="font-size:0.72rem;color:var(--text-light);margin-left:6px;">提出：${formatDate(w.date)}</span>
         </div>
-        <div class="wh-content">${w.content}</div>`;
+        <div class="wh-content">${w.content || ''}</div>
+        ${w.url ? `<div style="padding:8px 12px;background:rgba(31,168,184,0.07);border-radius:6px;font-size:0.8rem;margin-top:6px;"><span style="font-weight:700;color:var(--accent);">Canva URL：</span><a href="${w.url}" target="_blank" rel="noopener" style="color:var(--accent);word-break:break-all;">${w.url}</a></div>` : ''}
+        ${w.image ? `<div style="margin-top:8px;"><div style="font-size:0.75rem;font-weight:700;color:var(--text-light);margin-bottom:4px;">添付画像</div><img src="${w.image}" style="max-width:100%;border-radius:8px;border:1px solid var(--border);" /></div>` : ''}`;
       if (w.feedback) {
         html += `<div class="wh-feedback"><div class="fb-label">講師からのフィードバック</div><p>${w.feedback}</p><div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">${w.feedbackDate || ''}</div></div>`;
       } else {
@@ -3912,15 +3914,24 @@ function previewWorkImage(input) {
   const file = input.files[0];
   const reader = new FileReader();
   reader.onload = function(e) {
-    const preview = document.getElementById('workImgPreview');
-    const thumb = document.getElementById('workImgThumb');
-    const label = document.getElementById('imgUploadText');
-    if (preview && thumb) {
-      thumb.src = e.target.result;
-      preview.style.display = 'block';
-    }
-    if (label) label.textContent = file.name;
-    window._workImgData = e.target.result; // base64保持
+    // 圧縮（最大250px幅、JPEG quality 0.45）してGAS送信可能サイズに
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      const maxW = 250;
+      let w = img.width, h = img.height;
+      if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const compressed = canvas.toDataURL('image/jpeg', 0.45);
+      window._workImgData = compressed;
+      const preview = document.getElementById('workImgPreview');
+      const thumb = document.getElementById('workImgThumb');
+      const label = document.getElementById('imgUploadText');
+      if (preview && thumb) { thumb.src = compressed; preview.style.display = 'block'; }
+      if (label) label.textContent = file.name;
+    };
+    img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
@@ -3963,14 +3974,10 @@ function submitWork() {
     members[mid].works[lessonIdx].content = text;
     members[mid].works[lessonIdx].url = url;
     members[mid].works[lessonIdx].date = dateStr;
+    if (imgData) members[mid].works[lessonIdx].image = imgData;
     saveMembers();
-    // 画像はlocalStorageに別保存（GASへは送らない）
-    if (imgData) {
-      localStorage.setItem(`workImg_${mid}_${lessonIdx}`, imgData);
-    }
-    // GAS同期（テキスト＋URL）
-    const syncContent = [text, url ? 'URL: ' + url : ''].filter(Boolean).join('\n');
-    syncWorkToGAS(mid, lessonIdx, syncContent);
+    // GAS同期（テキスト・URL・画像を送信）
+    syncWorkToGAS(mid, lessonIdx, text, url, imgData || '');
     // Update progress displays
     renderStudentProgress('dashboardProgress', mid);
     renderStudentProgress('mypageProgress', mid);
@@ -4355,7 +4362,7 @@ function syncLessonToGAS(memberId, lessonIdx, field, value) {
   });
 }
 
-function syncWorkToGAS(memberId, lessonIdx, content) {
+function syncWorkToGAS(memberId, lessonIdx, content, url, image) {
   const key = ALL_LESSON_KEYS[lessonIdx];
   const parts = key ? key.split('-') : ['1', String(lessonIdx + 1)];
   const month = parseInt(parts[0]);
@@ -4364,7 +4371,9 @@ function syncWorkToGAS(memberId, lessonIdx, content) {
     memberId: memberId,
     month: month,
     index: idx,
-    content: content
+    content: content || '',
+    url: url || '',
+    image: image || ''
   });
 }
 

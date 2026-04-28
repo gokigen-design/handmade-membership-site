@@ -198,7 +198,9 @@ function getAllMembers() {
       date: row[5],
       content: row[6],
       feedback: row[7],
-      feedbackDate: row[8]
+      feedbackDate: row[8],
+      url: row[9] ? String(row[9]) : '',
+      image: row[10] ? String(row[10]) : ''
     });
   }
 
@@ -326,7 +328,7 @@ function updateLesson(data) {
 
 // === ワーク提出 ===
 function submitWork(data) {
-  // data: { memberId, month, index, content }
+  // data: { memberId, month, index, content, url, image }
   const sheet = getSheet('ワーク');
   const rows = sheet.getDataRange().getValues();
   const now = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm');
@@ -337,9 +339,11 @@ function submitWork(data) {
         Number(rows[i][1]) === Number(data.month) &&
         Number(rows[i][2]) === Number(data.index)) {
 
-      sheet.getRange(i + 1, 5).setValue(true);          // 提出済み
-      sheet.getRange(i + 1, 6).setValue(dateStr);        // 提出日
-      sheet.getRange(i + 1, 7).setValue(data.content);   // 内容
+      sheet.getRange(i + 1, 5).setValue(true);                    // 提出済み
+      sheet.getRange(i + 1, 6).setValue(dateStr);                  // 提出日
+      sheet.getRange(i + 1, 7).setValue(data.content || '');       // 内容
+      if (data.url)   sheet.getRange(i + 1, 10).setValue(data.url);   // URL (col J)
+      if (data.image) sheet.getRange(i + 1, 11).setValue(data.image); // 画像 base64 (col K)
 
       return { success: true, date: dateStr };
     }
