@@ -780,6 +780,581 @@
     .lesson-detail-meta { font-size: 0.75rem; }
     .module-status { font-size: 0.8rem; padding: 4px 10px; }
   }
+
+  /* ===== 管理者専用サイドバー ===== */
+  .admin-sidebar {
+    width: 220px;
+    background: #0e3347;
+    border-right: 1.5px solid rgba(31,168,184,0.25);
+    padding: 24px 0;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.25);
+  }
+  .admin-sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(31,168,184,0.2);
+    margin-bottom: 8px;
+  }
+  .admin-sidebar-header h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+  .admin-sidebar-header p {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+  }
+  .admin-mode-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    background: rgba(31,168,184,0.25);
+    border: 1px solid rgba(31,168,184,0.5);
+    border-radius: 20px;
+    font-size: 0.68rem;
+    color: #1fa8b8;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .admin-sidebar-nav {
+    flex: 1;
+    padding: 8px 10px;
+  }
+  .admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    transition: all 0.2s;
+    margin-bottom: 2px;
+    line-height: 1.8;
+    position: relative;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .admin-nav-item:hover {
+    background: rgba(31,168,184,0.12);
+    color: rgba(255,255,255,0.9);
+  }
+  .admin-nav-item.active {
+    background: rgba(31,168,184,0.2);
+    color: #fff;
+    font-weight: 700;
+    border-left: 3px solid #1fa8b8;
+  }
+  .admin-nav-item .a-icon {
+    width: 18px;
+    flex-shrink: 0;
+    opacity: 0.75;
+  }
+  .admin-nav-item.active .a-icon {
+    opacity: 1;
+  }
+  .admin-nav-badge {
+    margin-left: auto;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+  }
+  .admin-sidebar-footer {
+    padding: 12px 10px 0;
+    border-top: 1px solid rgba(31,168,184,0.15);
+  }
+  .admin-logout-btn {
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+    line-height: 1.8;
+  }
+  .admin-logout-btn:hover {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ===== 管理者ページ共通 ===== */
+  .admin-page { display: none; }
+  .admin-page.active { display: block; }
+
+  /* 管理者用main調整 */
+  .main.admin-mode {
+    margin-left: 220px;
+  }
+
+  /* 管理者トップバー */
+  .admin-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .admin-topbar h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .admin-topbar p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+  .admin-topbar .topbar-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* 管理者stats-card */
+  .admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .admin-stat-card {
+    background: rgba(255,255,255,0.88);
+    border-radius: 4px;
+    padding: 20px 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-top: 3px solid var(--primary);
+    text-align: center;
+    transition: box-shadow 0.2s;
+  }
+  .admin-stat-card:hover { box-shadow: var(--shadow-hover); }
+  .admin-stat-card .asc-label {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .admin-stat-card .asc-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+  .admin-stat-card .asc-sub {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .admin-stat-card.alert-card {
+    border-top-color: #e74c3c;
+  }
+  .admin-stat-card.alert-card .asc-value { color: #e74c3c; }
+
+  /* 管理者section-card */
+  .admin-section-card {
+    background: rgba(255,255,255,0.88);
+    border-radius: 4px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(201,168,76,0.18);
+    margin-bottom: 20px;
+  }
+  .admin-section-card h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* 管理者テーブル */
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .admin-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: rgba(14,51,71,0.05);
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.82rem;
+    border-bottom: 2px solid rgba(201,168,76,0.2);
+  }
+  .admin-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    line-height: 1.8;
+    font-size: 0.88rem;
+    vertical-align: middle;
+  }
+  .admin-table tr:hover td {
+    background: rgba(31,168,184,0.04);
+  }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr { cursor: pointer; }
+
+  /* アラートチップ */
+  .alert-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin: 0 2px;
+    white-space: nowrap;
+  }
+  .alert-chip.fb { background: rgba(231,76,60,0.12); color: #e74c3c; border: 1px solid rgba(231,76,60,0.3); }
+  .alert-chip.stagnant { background: rgba(230,126,34,0.12); color: #e67e22; border: 1px solid rgba(230,126,34,0.3); }
+  .alert-chip.skip { background: rgba(155,89,182,0.12); color: #9b59b6; border: 1px solid rgba(155,89,182,0.3); }
+  .alert-chip.ok { background: rgba(125,155,118,0.12); color: var(--accent-green); border: 1px solid rgba(125,155,118,0.3); }
+
+  /* 管理者ボタン */
+  .admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+  .admin-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .admin-btn.secondary {
+    background: none;
+    color: var(--primary-dark);
+    border: 1.5px solid var(--primary);
+  }
+  .admin-btn.secondary:hover { background: rgba(31,168,184,0.08); }
+  .admin-btn.danger {
+    background: #e74c3c;
+  }
+
+  /* 管理者インサイトカード */
+  .insight-cards {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .insight-card {
+    flex: 1;
+    min-width: 160px;
+    padding: 14px 18px;
+    border-radius: 4px;
+    border: 1px solid;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.8;
+  }
+  .insight-card.stagnant {
+    background: rgba(230,126,34,0.06);
+    border-color: rgba(230,126,34,0.3);
+    color: #e67e22;
+  }
+  .insight-card.skip {
+    background: rgba(155,89,182,0.06);
+    border-color: rgba(155,89,182,0.3);
+    color: #9b59b6;
+  }
+  .insight-card.fb-wait {
+    background: rgba(231,76,60,0.06);
+    border-color: rgba(231,76,60,0.3);
+    color: #e74c3c;
+  }
+  .insight-card.good {
+    background: rgba(125,155,118,0.06);
+    border-color: rgba(125,155,118,0.3);
+    color: var(--accent-green);
+  }
+  .insight-card .ic-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.75;
+    margin-bottom: 2px;
+  }
+  .insight-card .ic-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  /* 管理者詳細タブ */
+  .admin-detail-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .admin-detail-tab {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(201,168,76,0.3);
+    background: rgba(255,255,255,0.88);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    line-height: 1.8;
+  }
+  .admin-detail-tab:hover {
+    background: rgba(31,168,184,0.06);
+    color: var(--text);
+  }
+  .admin-detail-tab.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .admin-detail-tab-content { display: none; }
+  .admin-detail-tab-content.active { display: block; }
+
+  /* タイムラインアイテム */
+  .timeline-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    font-size: 0.88rem;
+    line-height: 1.8;
+    align-items: flex-start;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .timeline-dot.done { background: var(--accent-green); }
+  .timeline-dot.fb { background: #e74c3c; }
+  .timeline-dot.pending { background: var(--border); }
+
+  /* 管理者フォーム */
+  .admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .admin-form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.8;
+  }
+  .admin-form-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s;
+    margin-bottom: 14px;
+  }
+  .admin-form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .admin-form-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    transition: border-color 0.2s;
+    margin-bottom: 14px;
+  }
+  .admin-form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .admin-form-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+    background: var(--bg);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+
+  /* QAリスト */
+  .admin-qa-item {
+    background: var(--bg);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+  .admin-qa-item .qa-phase {
+    font-size: 0.7rem;
+    background: rgba(31,168,184,0.1);
+    color: var(--primary-dark);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+  .admin-qa-item .qa-q {
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .admin-qa-item .qa-a {
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+  .admin-qa-item .qa-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  /* グルコン・お知らせ一覧 */
+  .admin-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+  .admin-list-item:last-child { border-bottom: none; }
+  .admin-list-item .ali-title { font-weight: 700; color: var(--text-dark); }
+  .admin-list-item .ali-meta { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+  .admin-list-item .ali-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .admin-list-delete {
+    background: none;
+    border: 1px solid rgba(231,76,60,0.3);
+    color: #e74c3c;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .admin-list-delete:hover { background: rgba(231,76,60,0.08); }
+
+  /* 管理者詳細ヘッダー */
+  .admin-detail-header {
+    background: linear-gradient(135deg, #0e3347, #1a4a62);
+    color: #fff;
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(14,51,71,0.2);
+  }
+  .admin-detail-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    border: 2px solid rgba(31,168,184,0.5);
+  }
+  .admin-detail-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #fff;
+  }
+  .admin-detail-header p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+  }
+  .admin-detail-stats {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .admin-detail-stat {
+    text-align: center;
+  }
+  .admin-detail-stat .ads-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .admin-detail-stat .ads-label {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
@@ -876,6 +1451,7 @@
       <div class="nav-item" data-page="bonus"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></span> 入会特典</div>
       <div class="nav-item" data-page="glcon"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> グルコン</div>
       <div class="nav-item admin-only" data-page="members" style="display:none;"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> 会員管理</div>
+      <div class="nav-item" data-page="qa"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> みんなの質問</div>
       <div class="nav-item" data-page="mypage"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> マイページ</div>
       <div class="nav-item" data-page="announce"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span> お知らせ<span class="badge">3</span></div>
     </nav>
@@ -894,6 +1470,44 @@
     </div>
     <div style="padding:0 12px 16px;">
       <button onclick="doLogout()" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-light);font-size:0.78rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.04)';" onmouseout="this.style.background='none';"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ログアウト</button>
+    </div>
+  </aside>
+
+  <!-- ===== 管理者専用サイドバー ===== -->
+  <aside class="admin-sidebar" id="adminSidebar" style="display:none;">
+    <div class="admin-sidebar-header">
+      <h2>Ola lea</h2>
+      <p>海レジンアート養成講座</p>
+      <span class="admin-mode-badge">管理者モード</span>
+    </div>
+    <nav class="admin-sidebar-nav">
+      <button class="admin-nav-item active" data-admin-page="admin-dash" onclick="showAdminPage('dash')">
+        <svg class="a-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        ダッシュボード
+        <span class="admin-nav-badge" id="adminNavFbBadge" style="display:none;">0</span>
+      </button>
+      <button class="admin-nav-item" data-admin-page="admin-members" onclick="showAdminPage('members')">
+        <svg class="a-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        受講生管理
+      </button>
+      <button class="admin-nav-item" data-admin-page="admin-qa" onclick="showAdminPage('qa')">
+        <svg class="a-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        みんなの質問
+      </button>
+      <button class="admin-nav-item" data-admin-page="admin-glcon-post" onclick="showAdminPage('glcon-post')">
+        <svg class="a-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        グルコン投稿
+      </button>
+      <button class="admin-nav-item" data-admin-page="admin-announce-post" onclick="showAdminPage('announce-post')">
+        <svg class="a-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        お知らせ投稿
+      </button>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <button class="admin-logout-btn" onclick="doLogout()">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        ログアウト
+      </button>
     </div>
   </aside>
 
@@ -1440,6 +2054,288 @@
       </div>
       <div class="announce-list" id="announceListFull">
         <p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p>
+      </div>
+    </div>
+
+    <!-- ===== みんなの質問（受講生ページ） ===== -->
+    <div class="page" id="page-qa">
+      <div class="page-header">
+        <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> みんなの質問</h1>
+        <p>受講生のよくある質問をまとめています。困ったときの参考にしてください</p>
+      </div>
+      <div id="studentQAList">
+        <p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:40px 0;">まだ質問が登録されていません</p>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: ダッシュボード ===== -->
+    <div class="admin-page" id="page-admin-dash">
+      <div class="admin-topbar">
+        <div>
+          <h1>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            管理者ダッシュボード
+          </h1>
+          <p>受講生の状況を一目で確認できます</p>
+        </div>
+      </div>
+      <div class="admin-stats-grid" id="adminDashStats">
+        <div class="admin-stat-card">
+          <div class="asc-label">受講生数</div>
+          <div class="asc-value" id="adminStatMembers">0</div>
+          <div class="asc-sub">名が在籍中</div>
+        </div>
+        <div class="admin-stat-card alert-card">
+          <div class="asc-label">FB待ち</div>
+          <div class="asc-value" id="adminStatFb">0</div>
+          <div class="asc-sub">件のワーク</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="asc-label">メモ返信待ち</div>
+          <div class="asc-value" id="adminStatMemo">0</div>
+          <div class="asc-sub">件のメモ</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="asc-label">平均進捗</div>
+          <div class="asc-value" id="adminStatProgress">0%</div>
+          <div class="asc-sub">全受講生平均</div>
+        </div>
+      </div>
+      <div class="admin-section-card">
+        <h2>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          対応待ち受講生
+        </h2>
+        <div id="adminPendingList">
+          <p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">対応待ちはありません</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: 受講生管理 ===== -->
+    <div class="admin-page" id="page-admin-members">
+      <div class="admin-topbar">
+        <div>
+          <h1>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            受講生管理
+          </h1>
+          <p>受講生の進捗・ワーク・アラートを一覧で確認できます</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="admin-btn" onclick="showAddMemberForm()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            受講生を追加
+          </button>
+        </div>
+      </div>
+      <div class="admin-section-card">
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="adminMemberTable">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>コース</th>
+                <th>進捗</th>
+                <th>ワーク</th>
+                <th>アラート</th>
+                <th>PW</th>
+              </tr>
+            </thead>
+            <tbody id="adminMemberTableBody">
+              <tr><td colspan="6" style="text-align:center;color:var(--text-light);padding:32px;">読み込み中...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: 受講生詳細 ===== -->
+    <div class="admin-page" id="page-admin-member-detail">
+      <div style="margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <button class="admin-btn" onclick="showAdminPage('members')" style="background:#0e3347;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          受講生一覧に戻る
+        </button>
+        <div id="adminDetailAlertChips"></div>
+      </div>
+      <div class="admin-detail-header" id="adminDetailHeader">
+        <div class="admin-detail-avatar" id="adminDetailAvatar">M</div>
+        <div>
+          <h2 id="adminDetailName">受講生名</h2>
+          <p id="adminDetailSub">コース情報</p>
+          <p id="adminDetailPw" style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;"></p>
+        </div>
+        <div class="admin-detail-stats">
+          <div class="admin-detail-stat">
+            <div class="ads-value" id="adminDetailDone">0</div>
+            <div class="ads-label">完了数</div>
+          </div>
+          <div class="admin-detail-stat">
+            <div class="ads-value" id="adminDetailFb" style="color:#f1c40f;">0</div>
+            <div class="ads-label">FB待ち</div>
+          </div>
+          <div class="admin-detail-stat">
+            <div class="ads-value" id="adminDetailLastAction">-</div>
+            <div class="ads-label">最終アクション</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-cards" id="adminInsightCards"></div>
+      <div class="admin-detail-tabs">
+        <button class="admin-detail-tab active" onclick="switchAdminDetailTab('timeline', this)">進捗タイムライン</button>
+        <button class="admin-detail-tab" onclick="switchAdminDetailTab('work', this)">ワーク・添削</button>
+        <button class="admin-detail-tab" onclick="switchAdminDetailTab('memo', this)">メモ・質問</button>
+      </div>
+      <div class="admin-detail-tab-content active" id="adminTabTimeline">
+        <div class="admin-section-card">
+          <h2>進捗タイムライン</h2>
+          <div id="adminProgressTimeline"></div>
+        </div>
+      </div>
+      <div class="admin-detail-tab-content" id="adminTabWork">
+        <div class="admin-section-card">
+          <h2>ワーク・添削</h2>
+          <div id="adminWorkList"></div>
+        </div>
+      </div>
+      <div class="admin-detail-tab-content" id="adminTabMemo">
+        <div class="admin-section-card">
+          <h2>メモ・質問</h2>
+          <div id="adminMemoList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: みんなの質問 ===== -->
+    <div class="admin-page" id="page-admin-qa">
+      <div class="admin-topbar">
+        <div>
+          <h1>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            みんなの質問
+          </h1>
+          <p>受講生向けに公開するQ&amp;Aを管理できます（localStorageに保存）</p>
+        </div>
+      </div>
+      <div class="admin-form-grid">
+        <div>
+          <div class="admin-section-card">
+            <h2>新規Q&amp;A追加</h2>
+            <label class="admin-form-label">Phase</label>
+            <select class="admin-form-select" id="qaPhaseInput">
+              <option value="Phase 1">Phase 1: 基盤づくり</option>
+              <option value="Phase 2">Phase 2: 商品準備</option>
+              <option value="Phase 3">Phase 3: 集客の仕組みづくり</option>
+              <option value="Phase 4">Phase 4: 販売力強化</option>
+              <option value="Phase 5">Phase 5: 運営の安定化</option>
+              <option value="全般">全般</option>
+            </select>
+            <label class="admin-form-label">質問</label>
+            <input type="text" class="admin-form-input" id="qaQuestionInput" placeholder="受講生からの質問を入力">
+            <label class="admin-form-label">回答</label>
+            <textarea class="admin-form-textarea" id="qaAnswerInput" placeholder="回答を入力してください" style="min-height:140px;"></textarea>
+            <button class="admin-btn" onclick="addQAItem()" style="width:100%;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              受講生ページに公開
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="admin-section-card">
+            <h2>公開中のQ&amp;A</h2>
+            <div id="adminQAList">
+              <p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだQ&amp;Aが登録されていません</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: グルコン投稿 ===== -->
+    <div class="admin-page" id="page-admin-glcon-post">
+      <div class="admin-topbar">
+        <div>
+          <h1>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            グルコン投稿
+          </h1>
+          <p>グループコンサルの録画を受講生に公開できます</p>
+        </div>
+      </div>
+      <div class="admin-form-grid">
+        <div>
+          <div class="admin-section-card">
+            <h2>グルコンを追加</h2>
+            <label class="admin-form-label">タイトル</label>
+            <input type="text" class="admin-form-input" id="glconTitleInput" placeholder="第1回グループコンサル">
+            <label class="admin-form-label">開催日</label>
+            <input type="date" class="admin-form-input" id="glconDateInput">
+            <label class="admin-form-label">公開設定</label>
+            <select class="admin-form-select" id="glconPublicInput">
+              <option value="public">全員に公開</option>
+              <option value="draft">下書き（非公開）</option>
+            </select>
+            <label class="admin-form-label">動画URL（YouTube / Vimeo）</label>
+            <input type="text" class="admin-form-input" id="glconUrlInput" placeholder="https://...">
+            <label class="admin-form-label">説明・メモ</label>
+            <textarea class="admin-form-textarea" id="glconDescInput" placeholder="この回のテーマや内容のメモ"></textarea>
+            <button class="admin-btn" onclick="submitAdminGlcon()" style="width:100%;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              グルコンを追加
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="admin-section-card">
+            <h2>公開中のグルコン</h2>
+            <div id="adminGlconList">
+              <p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだグルコンが登録されていません</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 管理者: お知らせ投稿 ===== -->
+    <div class="admin-page" id="page-admin-announce-post">
+      <div class="admin-topbar">
+        <div>
+          <h1>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            お知らせ投稿
+          </h1>
+          <p>受講生向けのお知らせを投稿・管理できます</p>
+        </div>
+      </div>
+      <div class="admin-form-grid">
+        <div>
+          <div class="admin-section-card">
+            <h2>お知らせを追加</h2>
+            <label class="admin-form-label">種別</label>
+            <select class="admin-form-select" id="announceCategoryInput">
+              <option value="info">インフォメーション</option>
+              <option value="important">重要</option>
+              <option value="update">アップデート</option>
+            </select>
+            <label class="admin-form-label">タイトル</label>
+            <input type="text" class="admin-form-input" id="announceTitleInput" placeholder="お知らせタイトル">
+            <label class="admin-form-label">本文</label>
+            <textarea class="admin-form-textarea" id="announceBodyInput" placeholder="お知らせ本文を入力してください" style="min-height:140px;"></textarea>
+            <button class="admin-btn" onclick="submitAdminAnnounce()" style="width:100%;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              お知らせを投稿
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="admin-section-card">
+            <h2>投稿済みお知らせ</h2>
+            <div id="adminAnnounceList">
+              <p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだお知らせが登録されていません</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -4767,6 +5663,738 @@ function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('open');
 }
+
+// ============================================================
+// ===== 管理者専用UI関数 =====
+// ============================================================
+
+// ===== showAdminPage: 管理者ページ切り替え =====
+function showAdminPage(name) {
+  document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+  const targetPage = document.getElementById('page-admin-' + name);
+  if (targetPage) targetPage.classList.add('active');
+  document.querySelectorAll('.admin-nav-item').forEach(el => el.classList.remove('active'));
+  const navEl = document.querySelector('[data-admin-page="admin-' + name + '"]');
+  if (navEl) navEl.classList.add('active');
+  // 各ページ描画
+  if (name === 'dash') renderAdminDash();
+  if (name === 'members') renderAdminMemberTable();
+  if (name === 'qa') renderAdminQAList();
+  if (name === 'glcon-post') renderAdminGlconList();
+  if (name === 'announce-post') renderAdminAnnounceList();
+}
+
+// ===== applyRoleView: 管理者/受講生ビュー切り替え（上書き版） =====
+// 既存の applyRoleView を置き換え
+const _origApplyRoleView = applyRoleView;
+applyRoleView = function(view) {
+  window._currentView = view;
+  if (view === 'admin') {
+    // 受講生サイドバーを隠す
+    document.getElementById('sidebar').style.display = 'none';
+    // 管理者サイドバーを表示
+    const adminSidebar = document.getElementById('adminSidebar');
+    if (adminSidebar) adminSidebar.style.display = 'flex';
+    // mainのmargin-leftを調整
+    const mainEl = document.querySelector('.main');
+    if (mainEl) {
+      mainEl.style.marginLeft = '220px';
+    }
+    // 受講生ページを隠して管理者ダッシュを表示
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    showAdminPage('dash');
+  } else {
+    // 管理者サイドバーを隠す
+    const adminSidebar = document.getElementById('adminSidebar');
+    if (adminSidebar) adminSidebar.style.display = 'none';
+    // 受講生サイドバーを表示
+    document.getElementById('sidebar').style.display = '';
+    // mainのmargin-leftを元に戻す
+    const mainEl = document.querySelector('.main');
+    if (mainEl) {
+      mainEl.style.marginLeft = '';
+    }
+    // 管理者ページを隠す
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    // 受講生ダッシュボードを表示
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const dashPage = document.getElementById('page-dashboard');
+    if (dashPage) dashPage.classList.add('active');
+    // ナビをリセット
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const dashNav = document.querySelector('[data-page="dashboard"]');
+    if (dashNav) dashNav.classList.add('active');
+    // 管理者onlyの要素の表示
+    if (window._loginRole === 'admin') {
+      document.querySelectorAll('.admin-only').forEach(el => el.style.display = '');
+      document.getElementById('sidebarRole').textContent = '講師（受講生ビュー）';
+      const switchLabel = document.getElementById('switchLabel');
+      if (switchLabel) switchLabel.textContent = '管理者ビューに切替';
+    } else {
+      document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+      document.getElementById('sidebarRole').textContent = '受講生';
+    }
+  }
+};
+
+// ===== renderAdminDash: 管理者ダッシュボード描画 =====
+function renderAdminDash() {
+  const keys = Object.keys(members);
+  const totalMembers = keys.length;
+  let totalFb = 0;
+  let totalMemo = 0;
+  let totalProgress = 0;
+  const pendingList = [];
+
+  keys.forEach(id => {
+    const m = members[id];
+    const fb = countPendingFeedback(m);
+    const memo = countPendingMemos(m);
+    totalFb += fb;
+    totalMemo += memo;
+    // 進捗率計算
+    const doneCount = m.lessons ? m.lessons.filter(l => l.done).length : 0;
+    const totalCount = m.lessons ? m.lessons.length : 1;
+    totalProgress += (doneCount / totalCount) * 100;
+    if (fb > 0 || memo > 0) {
+      pendingList.push({ id, m, fb, memo });
+    }
+  });
+
+  const avgProgress = totalMembers > 0 ? Math.round(totalProgress / totalMembers) : 0;
+
+  // statsカード更新
+  const statEl = (id) => document.getElementById(id);
+  if (statEl('adminStatMembers')) statEl('adminStatMembers').textContent = totalMembers;
+  if (statEl('adminStatFb')) statEl('adminStatFb').textContent = totalFb;
+  if (statEl('adminStatMemo')) statEl('adminStatMemo').textContent = totalMemo;
+  if (statEl('adminStatProgress')) statEl('adminStatProgress').textContent = avgProgress + '%';
+
+  // ナビバッジ更新
+  const badge = document.getElementById('adminNavFbBadge');
+  if (badge) {
+    if (totalFb > 0) {
+      badge.textContent = totalFb;
+      badge.style.display = '';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  // 対応待ちリスト描画
+  const el = document.getElementById('adminPendingList');
+  if (!el) return;
+
+  if (pendingList.length === 0) {
+    el.innerHTML = `<div style="display:flex;align-items:center;gap:10px;padding:16px;background:rgba(125,155,118,0.06);border:1px solid rgba(125,155,118,0.2);border-radius:4px;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--accent-green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:0.9rem;color:var(--accent-green);font-weight:700;">対応待ちはありません。全員フィードバック済みです！</span></div>`;
+    return;
+  }
+
+  el.innerHTML = pendingList.map(p => `
+    <div onclick="openAdminMemberDetail('${p.id}')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid ${p.fb > 0 ? 'rgba(231,76,60,0.3)' : 'rgba(230,126,34,0.3)'};border-radius:4px;margin-bottom:8px;cursor:pointer;background:rgba(255,255,255,0.88);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+      <div style="width:40px;height:40px;border-radius:50%;background:${p.m.color};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;flex-shrink:0;">${p.m.initial}</div>
+      <div style="flex:1;">
+        <div style="font-weight:700;font-size:0.95rem;color:var(--text-dark);">${p.m.name}</div>
+        <div style="font-size:0.78rem;color:var(--text-light);margin-top:2px;">
+          ${p.fb > 0 ? `<span style="color:#e74c3c;font-weight:700;">ワークFB待ち ${p.fb}件</span>` : ''}
+          ${p.fb > 0 && p.memo > 0 ? ' ・ ' : ''}
+          ${p.memo > 0 ? `<span style="color:#e67e22;font-weight:700;">メモ返信 ${p.memo}件</span>` : ''}
+        </div>
+      </div>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--text-light)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  `).join('');
+}
+
+// ===== renderAdminMemberTable: 受講生管理テーブル描画 =====
+function renderAdminMemberTable() {
+  const tbody = document.getElementById('adminMemberTableBody');
+  if (!tbody) return;
+  const keys = Object.keys(members);
+
+  if (keys.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-light);padding:32px;">まだ受講生が登録されていません</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = keys.map(id => {
+    const m = members[id];
+    const doneCount = m.lessons ? m.lessons.filter(l => l.done).length : 0;
+    const totalCount = m.lessons ? m.lessons.length : 0;
+    const progressPct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
+    const submittedCount = m.works ? m.works.filter(w => w.submitted).length : 0;
+    const totalWorks = m.works ? m.works.length : 0;
+    const fb = countPendingFeedback(m);
+    const memo = countPendingMemos(m);
+    const insights = detectInsights(m);
+
+    const alertChips = [
+      fb > 0 ? `<span class="alert-chip fb">FB待ち ${fb}</span>` : '',
+      memo > 0 ? `<span class="alert-chip stagnant">メモ ${memo}</span>` : '',
+      insights.some(i => i.type === 'stagnant') ? '<span class="alert-chip stagnant">停滞中</span>' : '',
+      insights.some(i => i.type === 'skip') ? '<span class="alert-chip skip">飛び級</span>' : '',
+    ].filter(Boolean).join('');
+
+    return `<tr onclick="openAdminMemberDetail('${id}')">
+      <td>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:${m.color};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.88rem;flex-shrink:0;">${m.initial}</div>
+          <span style="font-weight:700;">${m.name}</span>
+        </div>
+      </td>
+      <td style="font-size:0.82rem;color:var(--text-light);">${m.sub || 'ハンドメイド作家'}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="flex:1;height:6px;background:rgba(201,168,76,0.15);border-radius:3px;overflow:hidden;min-width:60px;">
+            <div style="height:100%;width:${progressPct}%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:3px;"></div>
+          </div>
+          <span style="font-size:0.78rem;color:var(--text-light);min-width:36px;">${progressPct}%</span>
+        </div>
+      </td>
+      <td style="font-size:0.85rem;">${submittedCount} / ${totalWorks}</td>
+      <td>${alertChips || '<span class="alert-chip ok">問題なし</span>'}</td>
+      <td style="font-size:0.82rem;color:var(--text-light);font-family:monospace;">${m.password || '-'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ===== openAdminMemberDetail: 受講生詳細ページを開く =====
+function openAdminMemberDetail(memberId) {
+  window._adminCurrentMember = memberId;
+  showAdminPage('member-detail');
+  const m = members[memberId];
+  if (!m) return;
+
+  // ヘッダー設定
+  const avatarEl = document.getElementById('adminDetailAvatar');
+  if (avatarEl) {
+    avatarEl.textContent = m.initial;
+    avatarEl.style.background = m.color;
+  }
+  const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setEl('adminDetailName', m.name);
+  setEl('adminDetailSub', m.sub || 'ハンドメイド作家');
+  setEl('adminDetailPw', m.password ? 'PW: ' + m.password : '');
+
+  const doneCount = m.lessons ? m.lessons.filter(l => l.done).length : 0;
+  const fb = countPendingFeedback(m);
+  setEl('adminDetailDone', doneCount);
+  setEl('adminDetailFb', fb);
+
+  // 最終アクション日（works/lessons の最新日付）
+  let lastDate = '-';
+  const dates = [];
+  if (m.lessons) m.lessons.forEach(l => { if (l.date) dates.push(l.date); });
+  if (m.works) m.works.forEach(w => { if (w.date) dates.push(w.date); });
+  if (m.memos) m.memos.forEach(n => { if (n.date) dates.push(n.date); });
+  if (dates.length > 0) {
+    dates.sort();
+    const d = new Date(dates[dates.length - 1]);
+    lastDate = (d.getMonth() + 1) + '/' + d.getDate();
+  }
+  setEl('adminDetailLastAction', lastDate);
+
+  // アラートチップ
+  const chipsEl = document.getElementById('adminDetailAlertChips');
+  if (chipsEl) {
+    const insights = detectInsights(m);
+    const fbPending = countPendingFeedback(m);
+    const chips = [
+      fbPending > 0 ? `<span class="alert-chip fb">FB待ち ${fbPending}件</span>` : '',
+      insights.some(i => i.type === 'stagnant') ? '<span class="alert-chip stagnant">停滞中</span>' : '',
+      insights.some(i => i.type === 'skip') ? '<span class="alert-chip skip">飛び級あり</span>' : '',
+    ].filter(Boolean).join('');
+    chipsEl.innerHTML = chips;
+  }
+
+  // インサイトカード
+  renderAdminInsightCards(memberId);
+
+  // タイムライン（デフォルトタブ）
+  switchAdminDetailTab('timeline', document.querySelector('.admin-detail-tab'));
+
+  // タイムライン描画
+  renderAdminProgressTimeline(memberId);
+  renderAdminWorkList(memberId);
+  renderAdminMemoList(memberId);
+}
+
+// ===== detectInsights: インサイト判定 =====
+function detectInsights(m) {
+  const insights = [];
+  if (!m) return insights;
+
+  // 停滞チェック：最後のアクション日から14日以上経過
+  const dates = [];
+  if (m.lessons) m.lessons.forEach(l => { if (l.date) dates.push(new Date(l.date)); });
+  if (m.works) m.works.forEach(w => { if (w.date) dates.push(new Date(w.date)); });
+  if (m.memos) m.memos.forEach(n => { if (n.date) dates.push(new Date(n.date)); });
+  if (dates.length > 0) {
+    dates.sort((a, b) => b - a);
+    const daysSince = Math.floor((Date.now() - dates[0].getTime()) / (1000 * 60 * 60 * 24));
+    if (daysSince >= 14) {
+      insights.push({ type: 'stagnant', days: daysSince });
+    }
+  }
+
+  // 飛び級チェック：前のPhaseが未完了なのに後ろが完了
+  if (m.lessons) {
+    let prevPhaseDone = true;
+    let prevPhase = null;
+    const sorted = [...m.lessons].sort((a, b) => (a.month || 0) - (b.month || 0));
+    sorted.forEach(l => {
+      if (prevPhase !== null && l.phase !== prevPhase && !prevPhaseDone) {
+        if (l.done) {
+          insights.push({ type: 'skip', phase: l.phase });
+        }
+      }
+      if (l.phase !== prevPhase) {
+        prevPhase = l.phase;
+        prevPhaseDone = true;
+      }
+      if (!l.done) prevPhaseDone = false;
+    });
+  }
+
+  // FB待ち
+  const fbCount = countPendingFeedback(m);
+  if (fbCount > 0) {
+    insights.push({ type: 'fb', count: fbCount });
+  }
+
+  return insights;
+}
+
+// ===== renderAdminInsightCards: インサイトカード描画 =====
+function renderAdminInsightCards(memberId) {
+  const el = document.getElementById('adminInsightCards');
+  if (!el) return;
+  const m = members[memberId];
+  if (!m) return;
+  const insights = detectInsights(m);
+  const fbCount = countPendingFeedback(m);
+
+  const cards = [];
+
+  const stagnant = insights.find(i => i.type === 'stagnant');
+  if (stagnant) {
+    cards.push(`<div class="insight-card stagnant"><div class="ic-label">最終アクションから</div><div class="ic-value">${stagnant.days}日</div>停滞中 — 声かけを検討しましょう</div>`);
+  }
+
+  const skip = insights.find(i => i.type === 'skip');
+  if (skip) {
+    cards.push(`<div class="insight-card skip"><div class="ic-label">飛び級あり</div><div class="ic-value">Phase ${skip.phase}</div>前のPhaseが未完了です</div>`);
+  }
+
+  if (fbCount > 0) {
+    cards.push(`<div class="insight-card fb-wait"><div class="ic-label">ワークFB待ち</div><div class="ic-value">${fbCount}件</div>添削を返してあげましょう</div>`);
+  }
+
+  if (cards.length === 0) {
+    cards.push(`<div class="insight-card good"><div class="ic-label">問題なし</div><div class="ic-value">OK</div>順調に進んでいます</div>`);
+  }
+
+  el.innerHTML = cards.join('');
+}
+
+// ===== switchAdminDetailTab: 詳細タブ切り替え =====
+function switchAdminDetailTab(tabName, btn) {
+  document.querySelectorAll('.admin-detail-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.admin-detail-tab-content').forEach(c => c.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const tabEl = document.getElementById('adminTab' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+  if (tabEl) tabEl.classList.add('active');
+}
+
+// ===== renderAdminProgressTimeline: 進捗タイムライン描画 =====
+function renderAdminProgressTimeline(memberId) {
+  const el = document.getElementById('adminProgressTimeline');
+  if (!el) return;
+  const m = members[memberId];
+  if (!m || !m.lessons || m.lessons.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">進捗データがありません</p>';
+    return;
+  }
+
+  const phaseNames = { 1: '基盤づくり', 2: '商品準備', 3: '集客の仕組みづくり', 4: '販売力強化', 5: '運営の安定化' };
+  let html = '';
+  let currentPhase = null;
+
+  m.lessons.forEach(l => {
+    if (l.phase !== currentPhase) {
+      currentPhase = l.phase;
+      html += `<div style="font-size:0.82rem;font-weight:700;color:var(--text-light);padding:10px 0 4px;letter-spacing:0.05em;">Phase ${l.phase}: ${phaseNames[l.phase] || ''}</div>`;
+    }
+    const dotClass = l.done ? 'done' : 'pending';
+    html += `<div class="timeline-item">
+      <div class="timeline-dot ${dotClass}"></div>
+      <div style="flex:1;">
+        <div style="font-weight:${l.done ? '700' : '400'};color:${l.done ? 'var(--text-dark)' : 'var(--text-light)'};">${l.title || l.name || 'レッスン'}</div>
+        ${l.date ? `<div style="font-size:0.75rem;color:var(--text-light);">${l.date} 完了</div>` : ''}
+      </div>
+      <div style="font-size:0.75rem;">${l.done ? '<span class="alert-chip ok">完了</span>' : '<span style="color:var(--text-light);">未完了</span>'}</div>
+    </div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+// ===== renderAdminWorkList: ワーク・添削リスト描画 =====
+function renderAdminWorkList(memberId) {
+  const el = document.getElementById('adminWorkList');
+  if (!el) return;
+  const m = members[memberId];
+  if (!m || !m.works || m.works.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">ワーク提出データがありません</p>';
+    return;
+  }
+
+  const submitted = m.works.map((w, idx) => ({ ...w, idx })).filter(w => w.submitted);
+  const notSubmitted = m.works.map((w, idx) => ({ ...w, idx })).filter(w => !w.submitted);
+
+  if (submitted.length === 0 && notSubmitted.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">ワークデータがありません</p>';
+    return;
+  }
+
+  // 提出済み（FB未を先頭に）
+  const sorted = [...submitted.filter(w => !w.feedback), ...submitted.filter(w => w.feedback)];
+
+  let html = '';
+  sorted.forEach(w => {
+    const hasFb = !!w.feedback;
+    html += `<div style="background:rgba(255,255,255,0.88);border:1px solid rgba(201,168,76,0.18);border-left:3px solid ${hasFb ? 'var(--accent-green)' : '#e74c3c'};border-radius:4px;padding:16px 20px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-weight:700;font-size:0.95rem;">${w.title || 'ワーク'}</div>
+        <span class="alert-chip ${hasFb ? 'ok' : 'fb'}">${hasFb ? 'FB済み' : 'FB待ち'}</span>
+      </div>
+      <div style="font-size:0.85rem;line-height:1.8;background:var(--bg);padding:10px 14px;border-radius:4px;margin-bottom:10px;">${w.content || w.text || '（内容なし）'}</div>
+      ${hasFb ? `<div style="background:rgba(125,155,118,0.06);border-left:3px solid var(--accent-green);padding:10px 14px;border-radius:4px;font-size:0.85rem;"><div style="font-size:0.72rem;color:var(--accent-green);font-weight:700;margin-bottom:4px;">フィードバック</div>${w.feedback}</div>` : `
+      <div>
+        <textarea id="fbInput_${memberId}_${w.idx}" placeholder="フィードバックを入力..." style="width:100%;min-height:80px;padding:10px;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:0.85rem;line-height:1.8;resize:vertical;margin-bottom:8px;"></textarea>
+        <button class="admin-btn" onclick="sendAdminFeedback('${memberId}', ${w.idx})">フィードバックを送信</button>
+      </div>`}
+      <div style="font-size:0.72rem;color:var(--text-light);margin-top:8px;">${w.date || ''}</div>
+    </div>`;
+  });
+
+  if (notSubmitted.length > 0) {
+    html += `<div style="font-size:0.82rem;font-weight:700;color:var(--text-light);padding:12px 0 4px;border-top:1px solid rgba(201,168,76,0.1);margin-top:12px;">未提出ワーク（${notSubmitted.length}件）</div>`;
+    notSubmitted.forEach(w => {
+      html += `<div style="padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.08);font-size:0.88rem;color:var(--text-light);">${w.title || 'ワーク'}</div>`;
+    });
+  }
+
+  el.innerHTML = html;
+}
+
+// ===== sendAdminFeedback: 管理者からFBを送信 =====
+function sendAdminFeedback(memberId, workIdx) {
+  const m = members[memberId];
+  if (!m || !m.works || !m.works[workIdx]) return;
+  const fbEl = document.getElementById('fbInput_' + memberId + '_' + workIdx);
+  if (!fbEl) return;
+  const fbText = fbEl.value.trim();
+  if (!fbText) { alert('フィードバック内容を入力してください'); return; }
+  m.works[workIdx].feedback = fbText;
+  // GAS送信
+  gasPost('sendFeedback', { memberId, workIdx, feedback: fbText });
+  // 再描画
+  renderAdminWorkList(memberId);
+  renderAdminInsightCards(memberId);
+  renderAdminDash();
+}
+
+// ===== renderAdminMemoList: メモ・質問リスト描画 =====
+function renderAdminMemoList(memberId) {
+  const el = document.getElementById('adminMemoList');
+  if (!el) return;
+  const m = members[memberId];
+  if (!m || !m.memos || m.memos.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">メモ・質問はありません</p>';
+    return;
+  }
+
+  el.innerHTML = m.memos.map((memo, idx) => `
+    <div class="memo-card">
+      <div class="memo-date">${memo.date || ''}</div>
+      <span class="memo-label ${memo.type || 'memo'}">${memo.type === 'trouble' ? '困りごと' : memo.type === 'goal' ? '目標' : 'メモ'}</span>
+      <p>${memo.text}</p>
+      ${memo.reply ? `<div class="reply"><div class="reply-label">返信</div><p>${memo.reply}</p></div>` : `
+      <div style="margin-top:12px;">
+        <textarea id="replyInput_${memberId}_${idx}" placeholder="返信を入力..." style="width:100%;min-height:60px;padding:8px 12px;border:1.5px solid var(--border);border-radius:4px;font-family:inherit;font-size:0.85rem;line-height:1.8;resize:vertical;margin-bottom:8px;"></textarea>
+        <button class="admin-btn" style="padding:8px 16px;font-size:0.82rem;" onclick="sendAdminMemoReply('${memberId}', ${idx})">返信を送信</button>
+      </div>`}
+    </div>
+  `).join('');
+}
+
+// ===== sendAdminMemoReply: メモへの返信を送信 =====
+function sendAdminMemoReply(memberId, memoIdx) {
+  const m = members[memberId];
+  if (!m || !m.memos || !m.memos[memoIdx]) return;
+  const replyEl = document.getElementById('replyInput_' + memberId + '_' + memoIdx);
+  if (!replyEl) return;
+  const replyText = replyEl.value.trim();
+  if (!replyText) { alert('返信内容を入力してください'); return; }
+  m.memos[memoIdx].reply = replyText;
+  gasPost('addMemo', { memberId, type: 'reply', idx: memoIdx, reply: replyText });
+  renderAdminMemoList(memberId);
+  renderAdminDash();
+}
+
+// ===== みんなの質問 (localStorage管理) =====
+function getQAList() {
+  try {
+    return JSON.parse(localStorage.getItem('ola_qa_list') || '[]');
+  } catch(e) { return []; }
+}
+function saveQAList(list) {
+  localStorage.setItem('ola_qa_list', JSON.stringify(list));
+}
+
+function addQAItem() {
+  const phase = document.getElementById('qaPhaseInput').value;
+  const question = document.getElementById('qaQuestionInput').value.trim();
+  const answer = document.getElementById('qaAnswerInput').value.trim();
+  if (!question || !answer) { alert('質問と回答を入力してください'); return; }
+  const list = getQAList();
+  list.push({
+    phase,
+    question,
+    answer,
+    date: new Date().toLocaleDateString('ja-JP')
+  });
+  saveQAList(list);
+  document.getElementById('qaQuestionInput').value = '';
+  document.getElementById('qaAnswerInput').value = '';
+  renderAdminQAList();
+  renderStudentQAList();
+  alert('Q&Aを公開しました');
+}
+
+function renderAdminQAList() {
+  const el = document.getElementById('adminQAList');
+  if (!el) return;
+  const list = getQAList();
+  if (list.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだQ&Aが登録されていません</p>';
+    return;
+  }
+  el.innerHTML = list.map((item, idx) => `
+    <div class="admin-qa-item">
+      <div class="qa-phase">${item.phase}</div>
+      <div class="qa-q">${item.question}</div>
+      <div class="qa-a">${item.answer}</div>
+      <div class="qa-actions">
+        <button class="admin-list-delete" onclick="deleteQAItem(${idx})">削除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteQAItem(idx) {
+  if (!confirm('このQ&Aを削除しますか？')) return;
+  const list = getQAList();
+  list.splice(idx, 1);
+  saveQAList(list);
+  renderAdminQAList();
+  renderStudentQAList();
+}
+
+function renderStudentQAList() {
+  const el = document.getElementById('studentQAList');
+  if (!el) return;
+  const list = getQAList();
+  if (list.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:40px 0;">まだ質問が登録されていません</p>';
+    return;
+  }
+  // Phase別にグループ化
+  const byPhase = {};
+  list.forEach(item => {
+    if (!byPhase[item.phase]) byPhase[item.phase] = [];
+    byPhase[item.phase].push(item);
+  });
+  el.innerHTML = Object.entries(byPhase).map(([phase, items]) => `
+    <div style="margin-bottom:24px;">
+      <div style="font-size:0.82rem;font-weight:700;color:var(--primary-dark);letter-spacing:0.06em;padding:8px 12px;background:rgba(31,168,184,0.06);border-radius:4px;margin-bottom:10px;">${phase}</div>
+      ${items.map(item => `
+        <div style="background:rgba(255,255,255,0.88);border:1px solid rgba(201,168,76,0.18);border-left:3px solid var(--primary);border-radius:4px;padding:16px 20px;margin-bottom:8px;box-shadow:var(--shadow);">
+          <div style="font-weight:700;font-size:0.95rem;color:var(--text-dark);margin-bottom:8px;line-height:1.8;">Q. ${item.question}</div>
+          <div style="font-size:0.88rem;color:var(--text);line-height:1.8;padding:10px 14px;background:rgba(31,168,184,0.04);border-radius:4px;">A. ${item.answer}</div>
+          ${item.date ? `<div style="font-size:0.72rem;color:var(--text-light);margin-top:8px;">${item.date}</div>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ===== グルコン投稿 =====
+function getAdminGlconList() {
+  try {
+    return JSON.parse(localStorage.getItem('ola_admin_glcon') || '[]');
+  } catch(e) { return []; }
+}
+
+function submitAdminGlcon() {
+  const title = document.getElementById('glconTitleInput').value.trim();
+  const date = document.getElementById('glconDateInput').value;
+  const isPublic = document.getElementById('glconPublicInput').value === 'public';
+  const url = document.getElementById('glconUrlInput').value.trim();
+  const desc = document.getElementById('glconDescInput').value.trim();
+
+  if (!title) { alert('タイトルを入力してください'); return; }
+
+  const list = getAdminGlconList();
+  const newItem = {
+    id: Date.now(),
+    title, date, isPublic, url, desc,
+    createdAt: new Date().toLocaleDateString('ja-JP')
+  };
+  list.unshift(newItem);
+  localStorage.setItem('ola_admin_glcon', JSON.stringify(list));
+
+  // GAS送信（GAS側に addGlcon アクションが実装されたら有効化）
+  // gasPost('addGlcon', newItem);
+
+  // フォームリセット
+  document.getElementById('glconTitleInput').value = '';
+  document.getElementById('glconDateInput').value = '';
+  document.getElementById('glconUrlInput').value = '';
+  document.getElementById('glconDescInput').value = '';
+
+  renderAdminGlconList();
+  alert('グルコンを追加しました');
+}
+
+function renderAdminGlconList() {
+  const el = document.getElementById('adminGlconList');
+  if (!el) return;
+  const list = getAdminGlconList();
+  if (list.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだグルコンが登録されていません</p>';
+    return;
+  }
+  el.innerHTML = list.map((item, idx) => `
+    <div class="admin-list-item">
+      <div>
+        <div class="ali-title">${item.title}</div>
+        <div class="ali-meta">${item.date || '日程未定'} ・ ${item.isPublic ? '公開中' : '下書き'}</div>
+      </div>
+      <div class="ali-actions">
+        <button class="admin-list-delete" onclick="deleteAdminGlcon(${idx})">削除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteAdminGlcon(idx) {
+  if (!confirm('このグルコンを削除しますか？')) return;
+  const list = getAdminGlconList();
+  list.splice(idx, 1);
+  localStorage.setItem('ola_admin_glcon', JSON.stringify(list));
+  renderAdminGlconList();
+}
+
+// ===== お知らせ投稿 =====
+function getAdminAnnounceList() {
+  try {
+    return JSON.parse(localStorage.getItem('ola_admin_announces') || '[]');
+  } catch(e) { return []; }
+}
+
+function submitAdminAnnounce() {
+  const category = document.getElementById('announceCategoryInput').value;
+  const title = document.getElementById('announceTitleInput').value.trim();
+  const body = document.getElementById('announceBodyInput').value.trim();
+
+  if (!title || !body) { alert('タイトルと本文を入力してください'); return; }
+
+  const list = getAdminAnnounceList();
+  const newItem = {
+    id: Date.now(),
+    category, title, body,
+    date: new Date().toLocaleDateString('ja-JP'),
+    createdAt: Date.now()
+  };
+  list.unshift(newItem);
+  localStorage.setItem('ola_admin_announces', JSON.stringify(list));
+
+  // GAS送信（GAS側に addAnnouncement アクションが実装されたら有効化）
+  // gasPost('addAnnouncement', newItem);
+
+  // フォームリセット
+  document.getElementById('announceTitleInput').value = '';
+  document.getElementById('announceBodyInput').value = '';
+
+  renderAdminAnnounceList();
+  alert('お知らせを投稿しました');
+}
+
+function renderAdminAnnounceList() {
+  const el = document.getElementById('adminAnnounceList');
+  if (!el) return;
+  const list = getAdminAnnounceList();
+  if (list.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-light);font-size:0.88rem;text-align:center;padding:24px 0;">まだお知らせが登録されていません</p>';
+    return;
+  }
+  const catLabel = { info: 'インフォ', important: '重要', update: 'アップデート' };
+  const catColor = { info: 'var(--primary)', important: '#e74c3c', update: 'var(--accent-green)' };
+  el.innerHTML = list.map((item, idx) => `
+    <div class="admin-list-item">
+      <div>
+        <div class="ali-title" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:0.7rem;padding:2px 8px;border-radius:10px;background:rgba(31,168,184,0.1);color:${catColor[item.category] || 'var(--primary)'};font-weight:700;">${catLabel[item.category] || item.category}</span>
+          ${item.title}
+        </div>
+        <div class="ali-meta">${item.date}</div>
+      </div>
+      <div class="ali-actions">
+        <button class="admin-list-delete" onclick="deleteAdminAnnounce(${idx})">削除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteAdminAnnounce(idx) {
+  if (!confirm('このお知らせを削除しますか？')) return;
+  const list = getAdminAnnounceList();
+  list.splice(idx, 1);
+  localStorage.setItem('ola_admin_announces', JSON.stringify(list));
+  renderAdminAnnounceList();
+}
+
+// ===== showAddMemberForm: 既存の受講生追加フォームへジャンプ =====
+function showAddMemberForm() {
+  // 既存の受講生管理ページのフォームへ遷移
+  if (window._loginRole === 'admin') {
+    // 一時的に受講生ビューに切替して会員管理ページへ（既存機能活用）
+    document.getElementById('adminSidebar').style.display = 'none';
+    document.getElementById('sidebar').style.display = '';
+    document.querySelector('.main').style.marginLeft = '';
+    document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-only').forEach(el => el.style.display = '');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-members').classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const membersNav = document.querySelector('[data-page="members"]');
+    if (membersNav) membersNav.classList.add('active');
+    // 管理者に戻るボタンを案内
+    const notice = document.createElement('div');
+    notice.id = 'adminReturnNotice';
+    notice.style.cssText = 'position:fixed;top:16px;right:16px;z-index:999;background:#0e3347;color:#fff;padding:12px 18px;border-radius:4px;font-size:0.88rem;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,0.2);';
+    notice.innerHTML = `受講生管理ページを表示中 <button onclick="applyRoleView('admin');this.parentElement.remove();" style="background:var(--primary);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:0.82rem;font-family:inherit;margin-left:8px;">管理者に戻る</button>`;
+    if (!document.getElementById('adminReturnNotice')) document.body.appendChild(notice);
+  }
+}
+
+// ===== ページ読み込み時に受講生QAを描画 =====
+document.addEventListener('DOMContentLoaded', () => {
+  renderStudentQAList();
+});
 </script>
 </body>
 </html>
