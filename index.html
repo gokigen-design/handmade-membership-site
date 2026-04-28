@@ -874,6 +874,7 @@
       <div class="nav-item" data-page="content"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg></span> コンテンツ</div>
       <div class="nav-item" data-page="mindup"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5z"/><path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z"/></svg></span> マインドアップ音声</div>
       <div class="nav-item" data-page="bonus"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></span> 入会特典</div>
+      <div class="nav-item" data-page="glcon"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> グルコン</div>
       <div class="nav-item admin-only" data-page="members" style="display:none;"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> 会員管理</div>
       <div class="nav-item" data-page="mypage"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> マイページ</div>
       <div class="nav-item" data-page="announce"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span> お知らせ<span class="badge">3</span></div>
@@ -937,15 +938,15 @@
           </div>
           <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">動画コンテンツや資料はこちら</p>
         </a>
-        <a href="https://occipital-sassafras-c49.notion.site/bc3b772c1eef83e9962e817872ce480c?v=281b772c1eef834bb356085369bf7d63" target="_blank" rel="noopener" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
+        <div onclick="showPage('glcon')" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
             <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); display:flex; align-items:center; justify-content:center;">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <strong style="font-size:0.95rem;">セミナー・グループコンサル</strong>
           </div>
-          <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">スケジュール・過去のアーカイブ（Notion）</p>
-        </a>
+          <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">過去のアーカイブ動画を見る</p>
+        </div>
         <a href="#" onclick="alert('LINEにて「コンサル希望」とメッセージをお送りください。\n\n【料金】\n・6ヶ月の間、3回まで無料\n・4回目以降は有料\n　30分：10,000円\n　60分：18,000円'); return false;" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
             <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); display:flex; align-items:center; justify-content:center;">
@@ -958,23 +959,8 @@
       </div>
 
       <h2 style="font-size:1.1rem; margin-bottom:12px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> 最新のお知らせ</h2>
-      <div class="announce-list">
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Apr</div><div class="day">5</div></div>
-          <div class="announce-content">
-            <span class="announce-tag important">重要</span>
-            <h3>グループコンサル日程のお知らせ</h3>
-            <p>今月のグループコンサルの日程が決まりました。Zoomリンクは前日にお送りします。</p>
-          </div>
-        </div>
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Apr</div><div class="day">1</div></div>
-          <div class="announce-content">
-            <span class="announce-tag">コンテンツ</span>
-            <h3>1ヶ月目のコンテンツを公開しました</h3>
-            <p>「土台づくり」のコンテンツとマインドアップ音声をアップしました。</p>
-          </div>
-        </div>
+      <div class="announce-list" id="dashboardAnnounceList">
+        <p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p>
       </div>
     </div>
 
@@ -1434,45 +1420,23 @@
       <div id="mypageWorks" style="margin-top:20px;"></div>
     </div>
 
+    <!-- ===== GLCON ===== -->
+    <div class="page" id="page-glcon">
+      <div class="page-header">
+        <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> グルコンアーカイブ</h1>
+        <p>グループコンサルの過去回を動画で振り返れます</p>
+      </div>
+      <div id="glconList"><p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p></div>
+    </div>
+
     <!-- ===== ANNOUNCE ===== -->
     <div class="page" id="page-announce">
       <div class="page-header">
         <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> お知らせ</h1>
         <p>講座に関する最新情報をお届けします</p>
       </div>
-      <div class="announce-list">
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Apr</div><div class="day">5</div></div>
-          <div class="announce-content">
-            <span class="announce-tag important">重要</span>
-            <h3>グループコンサル日程のお知らせ</h3>
-            <p>今月のグループコンサルの日程が決まりました。Zoomリンクは前日にお送りします。</p>
-          </div>
-        </div>
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Apr</div><div class="day">1</div></div>
-          <div class="announce-content">
-            <span class="announce-tag">コンテンツ</span>
-            <h3>1ヶ月目「土台づくり」コンテンツ公開しました</h3>
-            <p>ビジネスの全体像、自己理解、Instagram設計、コンセプト設計、ブランドカラー設計、ビジョン設計の6本をアップしました。</p>
-          </div>
-        </div>
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Mar</div><div class="day">28</div></div>
-          <div class="announce-content">
-            <span class="announce-tag">音声</span>
-            <h3>マインドアップ音声「行動できる自分になる」配信開始</h3>
-            <p>1ヶ月目のマインドアップ音声を公開しました。移動中やスキマ時間にぜひお聴きください。</p>
-          </div>
-        </div>
-        <div class="announce-item">
-          <div class="announce-date"><div class="month">Mar</div><div class="day">20</div></div>
-          <div class="announce-content">
-            <span class="announce-tag important">重要</span>
-            <h3>講座スタート！ようこそ Lino lea へ</h3>
-            <p>6ヶ月間、一緒に頑張りましょう！まずは1ヶ月目のコンテンツからスタートしてくださいね。</p>
-          </div>
-        </div>
+      <div class="announce-list" id="announceListFull">
+        <p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p>
       </div>
     </div>
 
@@ -1906,18 +1870,23 @@ function switchRoleView() {
 }
 
 // === Navigation ===
+function showPage(page) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector('[data-page="' + page + '"]');
+  if (navItem) navItem.classList.add('active');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  if (page === 'content') { closeLesson(); }
+  if (page === 'members') { closeMember(); }
+  if (page === 'glcon') { loadGlconPage(); }
+  if (page === 'announce') { loadAnnouncePage(); }
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
 document.querySelectorAll('.nav-item').forEach(item => {
   item.addEventListener('click', () => {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    item.classList.add('active');
-    const page = item.dataset.page;
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + page).classList.add('active');
-    // Reset views when switching pages
-    if (page === 'content') { closeLesson(); }
-    if (page === 'members') { closeMember(); }
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('overlay').classList.remove('open');
+    showPage(item.dataset.page);
   });
 });
 
@@ -4127,6 +4096,129 @@ if (GAS_URL) {
   });
 }
 
+// === グルコン・お知らせ GAS連携 ===
+
+// 日付文字列 "2026-04-26" → "4月26日" 形式
+function formatAnnounceDateStr(dateStr) {
+  if (!dateStr) return '';
+  const parts = dateStr.split('-');
+  if (parts.length === 3) return parseInt(parts[1]) + '月' + parseInt(parts[2]) + '日';
+  return dateStr;
+}
+
+// 月英字変換
+const MONTH_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dateToMonthDay(dateStr) {
+  if (!dateStr) return { month: '', day: '' };
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    return { month: MONTH_EN[parseInt(parts[1]) - 1] || '', day: parseInt(parts[2]) };
+  }
+  return { month: '', day: '' };
+}
+
+// タグの色クラス
+function announceTagClass(tag) {
+  if (tag === '重要') return 'important';
+  if (tag === 'コンテンツ') return 'content';
+  return '';
+}
+
+// ダッシュボードのお知らせ（最新3件）を描画
+async function loadDashboardAnnouncements() {
+  const el = document.getElementById('dashboardAnnounceList');
+  if (!el) return;
+  try {
+    const res = await gasGet('getAnnouncements');
+    if (!res || !res.success || !res.data) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">お知らせを読み込めませんでした</p>';
+      return;
+    }
+    if (res.data.length === 0) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">まだお知らせはありません</p>';
+      return;
+    }
+    const top3 = res.data.slice(0, 3);
+    el.innerHTML = top3.map(item => {
+      const md = dateToMonthDay(item.date);
+      return `<div class="announce-item">
+        <div class="announce-date"><div class="month">${md.month}</div><div class="day">${md.day}</div></div>
+        <div class="announce-content">
+          <span class="announce-tag ${announceTagClass(item.tag)}">${item.tag}</span>
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    console.warn('お知らせ読み込みエラー:', e);
+    if (el) el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">読み込めませんでした</p>';
+  }
+}
+
+// お知らせページ（全件）を描画
+async function loadAnnouncePage() {
+  const el = document.getElementById('announceListFull');
+  if (!el) return;
+  try {
+    const res = await gasGet('getAnnouncements');
+    if (!res || !res.success || !res.data) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">お知らせを読み込めませんでした</p>';
+      return;
+    }
+    if (res.data.length === 0) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">まだお知らせはありません</p>';
+      return;
+    }
+    el.innerHTML = res.data.map(item => {
+      const md = dateToMonthDay(item.date);
+      return `<div class="announce-item">
+        <div class="announce-date"><div class="month">${md.month}</div><div class="day">${md.day}</div></div>
+        <div class="announce-content">
+          <span class="announce-tag ${announceTagClass(item.tag)}">${item.tag}</span>
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    console.warn('お知らせ読み込みエラー:', e);
+    if (el) el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">読み込めませんでした</p>';
+  }
+}
+
+// グルコン一覧を描画
+async function loadGlconPage() {
+  const el = document.getElementById('glconList');
+  if (!el) return;
+  try {
+    const res = await gasGet('getGlcon');
+    if (!res || !res.success || !res.data) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">グルコン情報を読み込めませんでした</p>';
+      return;
+    }
+    if (res.data.length === 0) {
+      el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;text-align:center;padding:40px 0;">まだ投稿がありません</p>';
+      return;
+    }
+    el.innerHTML = res.data.map(item => {
+      const hasUrl = item.url && item.url.trim() && !item.url.includes('xxxxxxx');
+      return `<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:var(--shadow);">
+        <div style="font-size:0.78rem;color:var(--text-light);margin-bottom:6px;">${formatAnnounceDateStr(item.date)}</div>
+        <div style="font-weight:700;font-size:0.98rem;margin-bottom:8px;color:var(--text);">${item.title}</div>
+        ${item.description ? `<p style="font-size:0.85rem;color:var(--text-light);margin:0 0 12px;line-height:1.7;">${item.description}</p>` : ''}
+        ${hasUrl
+          ? `<a href="${item.url}" target="_blank" rel="noopener" style="display:inline-block;padding:8px 18px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:6px;font-size:0.82rem;font-weight:700;text-decoration:none;">動画を見る</a>`
+          : `<span style="display:inline-block;padding:8px 18px;background:var(--bg);border:1px solid var(--border);color:var(--text-light);border-radius:6px;font-size:0.82rem;">動画準備中</span>`
+        }
+      </div>`;
+    }).join('');
+  } catch(e) {
+    console.warn('グルコン読み込みエラー:', e);
+    if (el) el.innerHTML = '<p style="color:var(--text-light);font-size:0.85rem;">読み込めませんでした</p>';
+  }
+}
+
 // === GAS同期ヘルパー（各操作で呼ぶ） ===
 function syncLessonToGAS(memberId, lessonIdx, field, value) {
   const key = ALL_LESSON_KEYS[lessonIdx]; // e.g. '2-3'
@@ -4326,6 +4418,7 @@ doLogin = function() {
     renderDetailProgress('dashboardProgress');
     renderDetailProgress('mypageProgress');
     renderMonth1Lessons();
+    loadDashboardAnnouncements();
     return;
   }
 
@@ -4372,6 +4465,7 @@ doLogin = function() {
   renderStudentProgress('mypageProgress', matchedId);
   renderMonth1Lessons();
   renderMypageWorks(matchedId);
+  loadDashboardAnnouncements();
 };
 
 // === Render student's own progress ===

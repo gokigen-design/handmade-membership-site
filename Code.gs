@@ -52,6 +52,27 @@ function initSheets() {
     s.getRange('1:1').setFontWeight('bold').setBackground('#e8f4f8');
     s.setFrozenRows(1);
   }
+
+  // グルコンシート
+  if (!ss.getSheetByName('グルコン')) {
+    const s = ss.insertSheet('グルコン');
+    s.appendRow(['開催日', 'タイトル', '動画URL', '説明', '公開']);
+    s.getRange('1:1').setFontWeight('bold').setBackground('#e8f4f8');
+    s.setFrozenRows(1);
+    // サンプルデータ
+    s.appendRow(['2026/4/26', '4月グルコン：商品設計を深掘り', 'https://vimeo.com/xxxxxxx/yyyy', '商品設計のリアルなQ&Aが盛り上がりました', '公開']);
+  }
+
+  // お知らせシート
+  if (!ss.getSheetByName('お知らせ')) {
+    const s = ss.insertSheet('お知らせ');
+    s.appendRow(['投稿日', '種別', 'タイトル', '本文']);
+    s.getRange('1:1').setFontWeight('bold').setBackground('#e8f4f8');
+    s.setFrozenRows(1);
+    // サンプルデータ
+    s.appendRow(['2026/4/26', '重要', 'グループコンサル日程のお知らせ', '今月のグループコンサルの日程が決まりました。Zoomリンクは前日にお送りします。']);
+    s.appendRow(['2026/4/1', 'コンテンツ', '1ヶ月目のコンテンツを公開しました', '「土台づくり」のコンテンツとマインドアップ音声をアップしました。']);
+  }
 }
 
 // === Web API エントリポイント ===
@@ -72,6 +93,12 @@ function handleRequest(e) {
     switch (action) {
       case 'getAll':
         result = getAllMembers();
+        break;
+      case 'getGlcon':
+        result = getGlcon();
+        break;
+      case 'getAnnouncements':
+        result = getAnnouncements();
         break;
       case 'addMember':
         result = addMember(JSON.parse(e.postData.contents));
@@ -403,4 +430,76 @@ function deleteMember(data) {
   });
 
   return { success: true };
+}
+
+// === グルコンアーカイブ取得 ===
+function getGlcon() {
+  const sheet = getSheet('グルコン');
+  if (!sheet) return { success: false, error: 'シートが見つかりません' };
+
+  const rows = sheet.getDataRange().getValues();
+  if (rows.length <= 1) return { success: true, data: [] };
+
+  const data = [];
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    const dateVal = row[0];
+    const title   = row[1];
+    const url     = row[2];
+    const desc    = row[3];
+    const status  = row[4];
+
+    // 「公開」のみ表示
+    if (String(status).trim() !== '公開') continue;
+    if (!title) continue;
+
+    // 日付を YYYY-MM-DD 形式に変換
+    let dateStr = '';
+    if (dateVal instanceof Date) {
+      dateStr = Utilities.formatDate(dateVal, 'Asia/Tokyo', 'yyyy-MM-dd');
+    } else {
+      dateStr = String(dateVal).replace(/\//g, '-');
+    }
+
+    data.push({ date: dateStr, title: String(title), url: String(url || ''), description: String(desc || '') });
+  }
+
+  // 新しい順にソート
+  data.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+  return { success: true, data: data };
+}
+
+// === お知らせ取得 ===
+function getAnnouncements() {
+  const sheet = getSheet('お知らせ');
+  if (!sheet) return { success: false, error: 'シートが見つかりません' };
+
+  const rows = sheet.getDataRange().getValues();
+  if (rows.length <= 1) return { success: true, data: [] };
+
+  const data = [];
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    const dateVal = row[0];
+    const tag     = row[1];
+    const title   = row[2];
+    const body    = row[3];
+
+    if (!title) continue;
+
+    let dateStr = '';
+    if (dateVal instanceof Date) {
+      dateStr = Utilities.formatDate(dateVal, 'Asia/Tokyo', 'yyyy-MM-dd');
+    } else {
+      dateStr = String(dateVal).replace(/\//g, '-');
+    }
+
+    data.push({ date: dateStr, tag: String(tag || 'お知らせ'), title: String(title), body: String(body || '') });
+  }
+
+  // 新しい順にソート
+  data.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+  return { success: true, data: data };
 }
