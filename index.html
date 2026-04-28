@@ -4563,7 +4563,7 @@ doLogin = function() {
     return;
   }
 
-  const memberPass = members[matchedId].password || 'demo2026';
+  const memberPass = String(members[matchedId].password || 'demo2026');
   if (pass !== memberPass) {
     document.getElementById('loginError').style.display = 'block';
     document.getElementById('loginError').textContent = 'パスワードが正しくありません';

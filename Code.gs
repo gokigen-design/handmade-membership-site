@@ -160,7 +160,7 @@ function getAllMembers() {
       initial: row[2],
       sub: row[3],
       color: row[4],
-      password: row[5],
+      password: String(row[5] || ''),
       registeredDate: row[6],
       progress: { content: 0, work: '0/6', audio: '0/6', contentPct: 0, workPct: 0, audioPct: 0 },
       lessons: [],
