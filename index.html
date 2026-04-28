@@ -891,6 +891,9 @@
         <div class="role" id="sidebarRole">受講生</div>
       </div>
     </div>
+    <div style="padding:0 12px 16px;">
+      <button onclick="doLogout()" style="width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-light);font-size:0.78rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.04)';" onmouseout="this.style.background='none';"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>ログアウト</button>
+    </div>
   </aside>
 
   <main class="main">
@@ -1793,6 +1796,23 @@ function setRole(role) {
 }
 
 // === Login ===
+function doLogout() {
+  // Reset state
+  window._loginRole = null;
+  window._loginName = null;
+  window._linkedMemberId = null;
+  window._currentView = null;
+  // Reset form
+  document.getElementById('loginName').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginError').style.display = 'none';
+  // Show login screen, hide app
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').classList.remove('active');
+  // Reset role selection to student
+  setRole('student');
+}
+
 function doLogin() {
   const name = document.getElementById('loginName').value.trim();
   const pass = document.getElementById('loginPass').value;
@@ -4109,20 +4129,28 @@ if (GAS_URL) {
 
 // === GAS同期ヘルパー（各操作で呼ぶ） ===
 function syncLessonToGAS(memberId, lessonIdx, field, value) {
+  const key = ALL_LESSON_KEYS[lessonIdx]; // e.g. '2-3'
+  const parts = key ? key.split('-') : ['1', String(lessonIdx + 1)];
+  const month = parseInt(parts[0]);
+  const idx = parseInt(parts[1]) - 1;
   gasPost('updateLesson', {
     memberId: memberId,
-    month: 1,
-    index: lessonIdx,
+    month: month,
+    index: idx,
     field: field,
     value: value
   });
 }
 
 function syncWorkToGAS(memberId, lessonIdx, content) {
+  const key = ALL_LESSON_KEYS[lessonIdx];
+  const parts = key ? key.split('-') : ['1', String(lessonIdx + 1)];
+  const month = parseInt(parts[0]);
+  const idx = parseInt(parts[1]) - 1;
   gasPost('submitWork', {
     memberId: memberId,
-    month: 1,
-    index: lessonIdx,
+    month: month,
+    index: idx,
     content: content
   });
 }
@@ -4137,10 +4165,14 @@ function saveMemberSubChecks(memberId, lessonId, subChecksArr) {
 }
 
 function syncFeedbackToGAS(memberId, workIdx, feedback) {
+  const key = ALL_LESSON_KEYS[workIdx];
+  const parts = key ? key.split('-') : ['1', String(workIdx + 1)];
+  const month = parseInt(parts[0]);
+  const idx = parseInt(parts[1]) - 1;
   gasPost('sendFeedback', {
     memberId: memberId,
-    month: 1,
-    index: workIdx,
+    month: month,
+    index: idx,
     feedback: feedback
   });
 }
@@ -4152,7 +4184,7 @@ function syncNewMemberToGAS(id, data) {
     sub: data.sub,
     color: data.color,
     password: data.password,
-    lessons: data.lessonTitles
+    lessons: data.lessons
   });
 }
 
@@ -4191,10 +4223,17 @@ function addNewMember() {
   const today = new Date();
   const dateStr = today.getFullYear() + '年' + (today.getMonth()+1) + '月';
 
-  // Build empty lessons & works from month 1 data
-  const month1Items = monthData[0].items;
-  const emptyLessons = month1Items.map(i => ({ title: i.name, done: false }));
-  const emptyWorks = month1Items.map(i => ({ title: i.name, submitted: false }));
+  // Build empty lessons & works from ALL phases (22 items total)
+  const emptyLessons = [];
+  const emptyWorks = [];
+  const gasLessonObjects = [];
+  monthData.forEach(phase => {
+    phase.items.forEach((item, idx) => {
+      emptyLessons.push({ title: item.name, done: false, textDone: false });
+      emptyWorks.push({ title: item.name, submitted: false });
+      gasLessonObjects.push({ month: phase.num, index: idx, title: item.name });
+    });
+  });
 
   members[id] = {
     name: name,
@@ -4202,7 +4241,7 @@ function addNewMember() {
     sub: (genre ? genre + ' ・ ' : '') + '受講開始: ' + dateStr,
     color: colors[colorIdx],
     password: pass,
-    progress: { content: 0, work: '0/6', audio: '0/6', contentPct: 0, workPct: 0, audioPct: 0 },
+    progress: { content: 0, work: '0/22', audio: '0/15', contentPct: 0, workPct: 0, audioPct: 0 },
     lessons: emptyLessons,
     works: emptyWorks,
     memos: []
@@ -4215,7 +4254,7 @@ function addNewMember() {
     sub: members[id].sub,
     color: members[id].color,
     password: pass,
-    lessonTitles: month1Items.map(i => i.name)
+    lessons: gasLessonObjects
   });
   renderMemberCards();
 
