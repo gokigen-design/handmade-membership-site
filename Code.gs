@@ -100,6 +100,12 @@ function handleRequest(e) {
       case 'getAnnouncements':
         result = getAnnouncements();
         break;
+      case 'addGlcon':
+        result = addGlcon(JSON.parse(e.postData.contents));
+        break;
+      case 'addAnnouncement':
+        result = addAnnouncement(JSON.parse(e.postData.contents));
+        break;
       case 'addMember':
         result = addMember(JSON.parse(e.postData.contents));
         break;
@@ -433,6 +439,30 @@ function deleteMember(data) {
     }
   });
 
+  return { success: true };
+}
+
+// === グルコン追加 ===
+function addGlcon(data) {
+  // data: { date, title, url, desc, isPublic }
+  const sheet = getSheet('グルコン');
+  if (!sheet) return { success: false, error: 'シートが見つかりません' };
+
+  const dateStr = data.date ? data.date.replace(/-/g, '/') : Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/M/d');
+  const status = data.isPublic ? '公開' : '非公開';
+
+  sheet.appendRow([dateStr, data.title || '', data.url || '', data.desc || '', status]);
+  return { success: true };
+}
+
+// === お知らせ追加 ===
+function addAnnouncement(data) {
+  // data: { category, title, body }
+  const sheet = getSheet('お知らせ');
+  if (!sheet) return { success: false, error: 'シートが見つかりません' };
+
+  const dateStr = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/M/d');
+  sheet.appendRow([dateStr, data.category || 'お知らせ', data.title || '', data.body || '']);
   return { success: true };
 }
 

@@ -6256,8 +6256,14 @@ function submitAdminGlcon() {
   list.unshift(newItem);
   localStorage.setItem('ola_admin_glcon', JSON.stringify(list));
 
-  // GAS送信（GAS側に addGlcon アクションが実装されたら有効化）
-  // gasPost('addGlcon', newItem);
+  // GASスプレッドシートに保存（受講生ページに反映される）
+  gasPost('addGlcon', {
+    date: date,
+    title: title,
+    url: url,
+    desc: desc,
+    isPublic: isPublic
+  });
 
   // フォームリセット
   document.getElementById('glconTitleInput').value = '';
@@ -6322,8 +6328,12 @@ function submitAdminAnnounce() {
   list.unshift(newItem);
   localStorage.setItem('ola_admin_announces', JSON.stringify(list));
 
-  // GAS送信（GAS側に addAnnouncement アクションが実装されたら有効化）
-  // gasPost('addAnnouncement', newItem);
+  // GASスプレッドシートに保存（受講生ページに反映される）
+  gasPost('addAnnouncement', {
+    category: category,
+    title: title,
+    body: body
+  });
 
   // フォームリセット
   document.getElementById('announceTitleInput').value = '';
