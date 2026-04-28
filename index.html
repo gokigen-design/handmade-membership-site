@@ -1476,7 +1476,8 @@ const lessons = {
       { label: 'ブランドの世界観イメージを文章で書き出す' }
     ],
     hasWork: true,
-    workDesc: '決めた3色のカラーコード（例：#5fb9d1 / #e8f4f8 / #b87e4c）と、Canvaで制作したブランドカラーのシェアURLを貼って提出してください。',
+    workHasUrl: true,
+    workDesc: '決めた3色のカラーコード（例：#5fb9d1 / #e8f4f8 / #b87e4c）を入力し、CanvaのシェアURLまたは画像を添付して提出してください。',
     workSubmitted: false
   },
   '1-3': {
@@ -3619,10 +3620,22 @@ function openLesson(id) {
     workSection.style.display = 'block';
     document.getElementById('workDesc').textContent = lesson.workDesc;
 
+    const workHasUrl = lesson.workHasUrl || false;
+    // 提出済み表示
     if (memberWorkSubmitted) {
       let fbHTML = '<div class="work-submitted-box"><div class="status">✓ 提出済み</div><div class="date">提出日: ' + formatDate(memberWorkDate) + '</div>';
       if (memberWorkContent) {
-        fbHTML += '<div style="margin:8px 0;padding:10px;background:var(--bg);border-radius:6px;font-size:0.82rem;">' + memberWorkContent + '</div>';
+        fbHTML += '<div style="margin:8px 0;padding:10px;background:var(--bg);border-radius:6px;font-size:0.82rem;white-space:pre-wrap;">' + memberWorkContent + '</div>';
+      }
+      // URL表示
+      const memberWorkUrl = (mid && members[mid] && members[mid].works[lessonIdx]) ? (members[mid].works[lessonIdx].url || '') : '';
+      if (memberWorkUrl) {
+        fbHTML += `<div style="margin:8px 0;padding:10px 14px;background:rgba(31,168,184,0.07);border-radius:6px;font-size:0.82rem;"><span style="font-weight:700;color:var(--accent);">Canva URL：</span><a href="${memberWorkUrl}" target="_blank" rel="noopener" style="color:var(--accent);word-break:break-all;">${memberWorkUrl}</a></div>`;
+      }
+      // 画像表示
+      const savedImg = localStorage.getItem(`workImg_${mid}_${lessonIdx}`);
+      if (savedImg) {
+        fbHTML += `<div style="margin:8px 0;"><div style="font-size:0.78rem;font-weight:700;color:var(--text-light);margin-bottom:6px;">添付画像</div><img src="${savedImg}" style="max-width:100%;border-radius:8px;border:1px solid var(--border);" /></div>`;
       }
       if (memberWorkFeedback) {
         fbHTML += '<div class="work-feedback"><div class="fb-label">講師からのフィードバック</div><p>' + memberWorkFeedback + '</p></div>';
@@ -3630,10 +3643,29 @@ function openLesson(id) {
       fbHTML += '</div>';
       workArea.innerHTML = fbHTML;
     } else {
-      workArea.innerHTML = `
-        <textarea class="work-textarea" id="workTextarea" placeholder="ここにワークの内容を入力してください..."></textarea>
-        <button class="submit-btn" onclick="submitWork()">ワークを提出する</button>
-      `;
+      // 提出フォーム
+      let formHTML = `<textarea class="work-textarea" id="workTextarea" placeholder="カラーコードやコメントを入力（例：#5fb9d1 / #e8f4f8 / #b87e4c）"></textarea>`;
+      if (workHasUrl) {
+        formHTML += `
+        <div style="margin:12px 0;">
+          <label style="font-size:0.82rem;font-weight:700;color:var(--text);display:block;margin-bottom:6px;">Canva シェアURL（任意）</label>
+          <input type="url" id="workUrlInput" placeholder="https://www.canva.com/design/..." style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.85rem;font-family:inherit;box-sizing:border-box;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'" />
+        </div>
+        <div style="margin:12px 0;">
+          <label style="font-size:0.82rem;font-weight:700;color:var(--text);display:block;margin-bottom:6px;">画像を添付（任意）</label>
+          <label id="imgUploadLabel" style="display:flex;align-items:center;gap:10px;padding:14px 16px;border:2px dashed var(--border);border-radius:10px;cursor:pointer;background:var(--bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span id="imgUploadText" style="font-size:0.82rem;color:var(--text-light);">タップして画像を選択（JPG・PNG）</span>
+            <input type="file" id="workImgInput" accept="image/*" style="display:none;" onchange="previewWorkImage(this)" />
+          </label>
+          <div id="workImgPreview" style="margin-top:10px;display:none;">
+            <img id="workImgThumb" style="max-width:100%;max-height:200px;border-radius:8px;border:1px solid var(--border);" />
+            <button onclick="clearWorkImage()" style="display:block;margin-top:6px;padding:4px 12px;font-size:0.75rem;background:none;border:1px solid var(--border);border-radius:6px;cursor:pointer;color:var(--text-light);">画像を削除</button>
+          </div>
+        </div>`;
+      }
+      formHTML += `<button class="submit-btn" onclick="submitWork()">ワークを提出する</button>`;
+      workArea.innerHTML = formHTML;
     }
   }
 
@@ -3874,11 +3906,48 @@ function toggleCheck(cb) {
 }
 
 // === Submit work (updates member data) ===
+// 画像プレビュー
+function previewWorkImage(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const preview = document.getElementById('workImgPreview');
+    const thumb = document.getElementById('workImgThumb');
+    const label = document.getElementById('imgUploadText');
+    if (preview && thumb) {
+      thumb.src = e.target.result;
+      preview.style.display = 'block';
+    }
+    if (label) label.textContent = file.name;
+    window._workImgData = e.target.result; // base64保持
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearWorkImage() {
+  const preview = document.getElementById('workImgPreview');
+  const input = document.getElementById('workImgInput');
+  const label = document.getElementById('imgUploadText');
+  if (preview) preview.style.display = 'none';
+  if (input) input.value = '';
+  if (label) label.textContent = 'タップして画像を選択（JPG・PNG）';
+  window._workImgData = null;
+}
+
 function submitWork() {
   const textarea = document.getElementById('workTextarea');
   if (!textarea) return;
   const text = textarea.value.trim();
-  if (!text) { alert('ワークの内容を入力してください'); return; }
+  const urlInput = document.getElementById('workUrlInput');
+  const url = urlInput ? urlInput.value.trim() : '';
+  const imgData = window._workImgData || null;
+
+  // テキスト・URL・画像のいずれかが必要
+  if (!text && !url && !imgData) {
+    alert('カラーコード・URLのいずれかを入力してください');
+    return;
+  }
 
   const lessonId = window._currentLessonId;
   if (!lessonId) return;
@@ -3892,14 +3961,21 @@ function submitWork() {
   if (mid && members[mid] && members[mid].works[lessonIdx]) {
     members[mid].works[lessonIdx].submitted = true;
     members[mid].works[lessonIdx].content = text;
+    members[mid].works[lessonIdx].url = url;
     members[mid].works[lessonIdx].date = dateStr;
     saveMembers();
-    // GAS同期
-    syncWorkToGAS(mid, lessonIdx, text);
+    // 画像はlocalStorageに別保存（GASへは送らない）
+    if (imgData) {
+      localStorage.setItem(`workImg_${mid}_${lessonIdx}`, imgData);
+    }
+    // GAS同期（テキスト＋URL）
+    const syncContent = [text, url ? 'URL: ' + url : ''].filter(Boolean).join('\n');
+    syncWorkToGAS(mid, lessonIdx, syncContent);
     // Update progress displays
     renderStudentProgress('dashboardProgress', mid);
     renderStudentProgress('mypageProgress', mid);
   }
+  window._workImgData = null;
 
   // Also update monthData
   const phaseIdx = parseInt(lessonId.split('-')[0]) - 1;
