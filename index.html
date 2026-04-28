@@ -958,6 +958,9 @@
         </a>
       </div>
 
+      <!-- 管理者のみ表示：対応待ちセクション -->
+      <div id="adminPendingSection" class="admin-only" style="display:none; margin-bottom:28px;"></div>
+
       <h2 style="font-size:1.1rem; margin-bottom:12px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> 最新のお知らせ</h2>
       <div class="announce-list" id="dashboardAnnounceList">
         <p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p>
@@ -3663,27 +3666,66 @@ function openMember(id) {
   // Progress tab - item-by-item detail
   renderMemberProgress(id);
 
-  // Works tab
-  document.getElementById('mdWorkList').innerHTML = m.works.map((w, idx) => {
-    if (!w.submitted) {
-      return `<div class="work-history-item">
-        <div class="wh-header"><span class="wh-title">${w.title}</span><span class="work-status-badge not-yet" style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:var(--bg);color:var(--text-light);">未提出</span></div>
+  // 改善A：提出済みを上に、未提出は折りたたむ
+  const submittedWorks = m.works.map((w, idx) => ({ ...w, idx })).filter(w => w.submitted);
+  const notSubmittedWorks = m.works.map((w, idx) => ({ ...w, idx })).filter(w => !w.submitted);
+  const pendingFbCount = submittedWorks.filter(w => !w.feedback).length;
+
+  let worksHtml = '';
+
+  // 提出済みワーク（フィードバック未を先頭に）
+  if (submittedWorks.length === 0) {
+    worksHtml += `<p style="color:var(--text-light);font-size:0.85rem;text-align:center;padding:24px 0;">まだワーク提出はありません</p>`;
+  } else {
+    if (pendingFbCount > 0) {
+      worksHtml += `<div style="background:rgba(231,76,60,0.06);border:1.5px solid rgba(231,76,60,0.25);border-radius:var(--radius);padding:10px 16px;margin-bottom:16px;font-size:0.82rem;color:#e74c3c;font-weight:700;display:flex;align-items:center;gap:8px;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#e74c3c" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        フィードバック待ち ${pendingFbCount}件 — 返信を書いてあげましょう
       </div>`;
     }
-    let html = `<div class="work-history-item">
-      <div class="wh-header"><span class="wh-title">${w.title}</span><span style="display:inline-block;padding:4px 12px;border-radius:var(--radius);font-size:0.7rem;font-weight:700;background:rgba(125,155,118,0.1);color:var(--accent-green);">提出済み（${formatDate(w.date)}）</span></div>
-      <div class="wh-content">${w.content}</div>`;
-    if (w.feedback) {
-      html += `<div class="wh-feedback"><div class="fb-label">講師からのフィードバック</div><p>${w.feedback}</p></div>`;
-    } else {
-      html += `<div class="wh-feedback"><div class="fb-label">フィードバックを書く</div>
-        <textarea id="fbText_${idx}" placeholder="フィードバックを入力してください..."></textarea>
-        <button class="submit-btn" style="margin-top:8px;" onclick="submitFeedback('${id}', ${idx})">フィードバックを送信</button>
-      </div>`;
-    }
-    html += '</div>';
-    return html;
-  }).join('');
+    // フィードバック未を先、済みを後に並べる
+    const sorted = [...submittedWorks.filter(w => !w.feedback), ...submittedWorks.filter(w => w.feedback)];
+    worksHtml += sorted.map(w => {
+      const needsFb = !w.feedback;
+      let html = `<div class="work-history-item" style="${needsFb ? 'border-left:3px solid #e74c3c;' : ''}">
+        <div class="wh-header">
+          <span class="wh-title">${w.title}</span>
+          ${needsFb
+            ? `<span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:rgba(231,76,60,0.1);color:#e74c3c;">FB待ち</span>`
+            : `<span style="display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:700;background:rgba(125,155,118,0.1);color:var(--accent-green);">FB済み</span>`
+          }
+          <span style="font-size:0.72rem;color:var(--text-light);margin-left:6px;">提出：${formatDate(w.date)}</span>
+        </div>
+        <div class="wh-content">${w.content}</div>`;
+      if (w.feedback) {
+        html += `<div class="wh-feedback"><div class="fb-label">講師からのフィードバック</div><p>${w.feedback}</p><div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">${w.feedbackDate || ''}</div></div>`;
+      } else {
+        html += `<div class="wh-feedback"><div class="fb-label" style="color:#e74c3c;">フィードバックを書く</div>
+          <textarea id="fbText_${w.idx}" placeholder="フィードバックを入力してください..."></textarea>
+          <button class="submit-btn" style="margin-top:8px;" onclick="submitFeedback('${id}', ${w.idx})">フィードバックを送信</button>
+        </div>`;
+      }
+      html += '</div>';
+      return html;
+    }).join('');
+  }
+
+  // 未提出ワーク（折りたたみ）
+  if (notSubmittedWorks.length > 0) {
+    worksHtml += `<details style="margin-top:16px;">
+      <summary style="cursor:pointer;font-size:0.82rem;color:var(--text-light);padding:8px 0;list-style:none;display:flex;align-items:center;gap:6px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        未提出のワーク（${notSubmittedWorks.length}件）
+      </summary>
+      <div style="margin-top:8px;">
+        ${notSubmittedWorks.map(w => `<div class="work-history-item" style="opacity:0.6;">
+          <div class="wh-header"><span class="wh-title">${w.title}</span><span style="font-size:0.7rem;color:var(--text-light);">未提出</span></div>
+        </div>`).join('')}
+      </div>
+    </details>`;
+  }
+
+  document.getElementById('mdWorkList').innerHTML = worksHtml;
 
   // Memos tab
   renderMemos(id);
@@ -3885,8 +3927,10 @@ function submitFeedback(memberId, workIdx) {
   // GAS同期
   syncFeedbackToGAS(memberId, workIdx, text);
   alert('フィードバックを送信しました！');
-  // Re-render member detail
+  // Re-render member detail and update pending section
   openMember(memberId);
+  renderMemberCards();
+  renderPendingSection();
 }
 
 // === Render month 1 lesson list dynamically ===
@@ -4083,6 +4127,7 @@ async function loadMembersFromGAS() {
       renderDetailProgress('mypageProgress');
     }
     renderAllPhaseLessons();
+    if (window._loginRole === 'admin') renderPendingSection();
     return true;
   }
   return false;
@@ -4359,6 +4404,18 @@ function addNewMember() {
 }
 
 // === Render member cards ===
+// フィードバック待ち件数を返す
+function countPendingFeedback(m) {
+  if (!m.works) return 0;
+  return m.works.filter(w => w.submitted && !w.feedback).length;
+}
+// メモ返信待ち件数を返す
+function countPendingMemos(m) {
+  if (!m.memos) return 0;
+  return m.memos.filter(n => !n.reply).length;
+}
+
+// 改善B：会員カードにバッジ追加
 function renderMemberCards() {
   const container = document.getElementById('memberCardList');
   if (!container) return;
@@ -4371,15 +4428,84 @@ function renderMemberCards() {
     const m = members[id];
     const doneCount = m.lessons ? m.lessons.filter(l => l.done).length : 0;
     const totalCount = m.lessons ? m.lessons.length : 0;
+    const fbPending = countPendingFeedback(m);
+    const memoPending = countPendingMemos(m);
+    const badges = [
+      fbPending > 0 ? `<span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#e74c3c;color:#fff;margin-right:4px;">FB待ち ${fbPending}件</span>` : '',
+      memoPending > 0 ? `<span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#e67e22;color:#fff;margin-right:4px;">メモ返信待ち</span>` : ''
+    ].join('');
     return `<div class="member-card" onclick="openMember('${id}')">
       <div class="member-avatar" style="background:${m.color}">${m.initial}</div>
       <div class="member-info">
-        <div class="member-name">${m.name}</div>
+        <div class="member-name">${m.name}${badges ? '<span style="margin-left:8px;">' + badges + '</span>' : ''}</div>
         <div class="member-sub">${m.sub}</div>
         <div style="margin-top:6px;font-size:0.72rem;color:var(--text-light);">進捗: ${doneCount}/${totalCount} コンテンツ完了${m.password ? ' ・ PW: ' + m.password : ''}</div>
       </div>
     </div>`;
   }).join('');
+}
+
+// 改善C：管理者ダッシュボードの「対応待ち」セクション描画
+function renderPendingSection() {
+  const el = document.getElementById('adminPendingSection');
+  if (!el) return;
+
+  const allPending = [];
+  Object.keys(members).forEach(id => {
+    const m = members[id];
+    const fb = countPendingFeedback(m);
+    const memo = countPendingMemos(m);
+    if (fb > 0 || memo > 0) {
+      allPending.push({ id, name: m.name, initial: m.initial, color: m.color, fb, memo });
+    }
+  });
+
+  if (allPending.length === 0) {
+    el.innerHTML = `<div style="background:rgba(125,155,118,0.08);border:1px solid rgba(125,155,118,0.3);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:10px;margin-bottom:0;">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      <span style="font-size:0.88rem;color:var(--accent-green);font-weight:700;">対応待ちはありません。全員フィードバック済みです！</span>
+    </div>`;
+    return;
+  }
+
+  const totalFb = allPending.reduce((s, p) => s + p.fb, 0);
+  const totalMemo = allPending.reduce((s, p) => s + p.memo, 0);
+
+  el.innerHTML = `
+    <h2 style="font-size:1.1rem;margin-bottom:12px;color:#e74c3c;display:flex;align-items:center;gap:8px;">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      対応待ち
+      ${totalFb > 0 ? `<span style="background:#e74c3c;color:#fff;font-size:0.72rem;padding:2px 8px;border-radius:20px;">FB ${totalFb}件</span>` : ''}
+      ${totalMemo > 0 ? `<span style="background:#e67e22;color:#fff;font-size:0.72rem;padding:2px 8px;border-radius:20px;">メモ ${totalMemo}件</span>` : ''}
+    </h2>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${allPending.map(p => `
+        <div onclick="openMemberAndTab('${p.id}', '${p.fb > 0 ? 'works' : 'notes'}')" style="background:var(--card);border:1.5px solid ${p.fb > 0 ? 'rgba(231,76,60,0.3)' : 'rgba(230,126,34,0.3)'};border-radius:var(--radius);padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+          <div style="width:36px;height:36px;border-radius:50%;background:${p.color};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;">${p.initial}</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:0.9rem;">${p.name}</div>
+            <div style="font-size:0.75rem;color:var(--text-light);margin-top:2px;">
+              ${p.fb > 0 ? `ワーク ${p.fb}件のフィードバック待ち` : ''}
+              ${p.fb > 0 && p.memo > 0 ? '・' : ''}
+              ${p.memo > 0 ? `メモ返信 ${p.memo}件` : ''}
+            </div>
+          </div>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--text-light)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+// 会員詳細を特定のタブで開く（対応待ちセクションからのリンク用）
+function openMemberAndTab(id, tab) {
+  showPage('members');
+  openMember(id);
+  const tabBtn = Array.from(document.querySelectorAll('.member-tab')).find(b => {
+    if (tab === 'works') return b.textContent.includes('ワーク');
+    if (tab === 'notes') return b.textContent.includes('メモ');
+    return b.textContent.includes('進捗');
+  });
+  if (tabBtn) switchMemberTab(tab, tabBtn);
 }
 
 // === Updated login ===
@@ -4419,6 +4545,7 @@ doLogin = function() {
     renderDetailProgress('mypageProgress');
     renderMonth1Lessons();
     loadDashboardAnnouncements();
+    renderPendingSection();
     return;
   }
 
