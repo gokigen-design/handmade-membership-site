@@ -88,16 +88,7 @@
   .login-screen {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(
-      170deg,
-      #b87cbf 0%,
-      #e8789a 14%,
-      #e87848 30%,
-      #f5a23c 46%,
-      #f5c842 58%,
-      #4a9ab8 74%,
-      #1e3258 100%
-    );
+    background: linear-gradient(180deg, rgba(20,40,70,0.45) 0%, rgba(15,30,55,0.6) 100%), url('images/ocean-bg.jpg') center/cover no-repeat, #1e3258;
     position: relative;
     overflow: hidden;
     padding: 20px;
@@ -299,7 +290,7 @@
   .module-status.current { background: rgba(200,149,108,0.1); color: var(--primary-dark); }
   .module-status.locked { background: var(--bg); color: var(--text-light); }
 
-  .module-lessons { display: none; padding: 0 24px 20px; border-top: 1px solid var(--border); }
+  .module-lessons { display: none; padding: 14px 24px 20px; }
   .module-card.open .module-lessons { display: block; }
 
   /* Lesson row - clickable */
@@ -1659,10 +1650,6 @@
             <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">1ヶ月目</span>
           </div>
           <div class="module-card open">
-            <div class="module-header" onclick="toggleModule(this)" style="padding:8px 24px;">
-              <div class="module-info"></div>
-              <span class="module-status current">受講中</span>
-            </div>
             <div class="module-lessons" id="phaseLessons1">
               <!-- JSで動的生成 -->
             </div>
@@ -1674,11 +1661,7 @@
             <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">商品準備</span>
             <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">1〜2ヶ月目</span>
           </div>
-          <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)" style="padding:8px 24px;">
-              <div class="module-info"></div>
-              <span class="module-status current">受講中</span>
-            </div>
+          <div class="module-card open">
             <div class="module-lessons" id="phaseLessons2">
               <!-- JSで動的生成 -->
             </div>
@@ -1690,11 +1673,7 @@
             <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">集客の仕組み</span>
             <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">2〜3ヶ月目</span>
           </div>
-          <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)" style="padding:8px 24px;">
-              <div class="module-info"></div>
-              <span class="module-status current">受講中</span>
-            </div>
+          <div class="module-card open">
             <div class="module-lessons" id="phaseLessons3">
               <!-- JSで動的生成 -->
             </div>
@@ -1706,11 +1685,7 @@
             <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">販売力強化</span>
             <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">3〜4ヶ月目</span>
           </div>
-          <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)" style="padding:8px 24px;">
-              <div class="module-info"></div>
-              <span class="module-status current">受講中</span>
-            </div>
+          <div class="module-card open">
             <div class="module-lessons" id="phaseLessons4">
               <!-- JSで動的生成 -->
             </div>
@@ -1722,11 +1697,7 @@
             <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">運営の安定化</span>
             <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">5〜6ヶ月目</span>
           </div>
-          <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)" style="padding:8px 24px;">
-              <div class="module-info"></div>
-              <span class="module-status current">受講中</span>
-            </div>
+          <div class="module-card open">
             <div class="module-lessons" id="phaseLessons5">
               <!-- JSで動的生成 -->
             </div>
@@ -1742,6 +1713,9 @@
         <div class="lesson-detail-title" id="lessonTitle">ブランディング</div>
         <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基礎作り」 ・ 1ヶ月目</div>
         <div class="lesson-detail-meta" id="lessonDuration" style="display:none;"></div>
+
+        <!-- セクションナビゲーション（白枠の外） -->
+        <div id="lessonSectionNav"></div>
 
         <!-- Lesson body (dynamically built: 動画 → 解説 → Canva/PDF → チェックリスト) -->
         <div class="text-content" id="lessonText">
@@ -2598,17 +2572,20 @@ function setRole(role) {
   selectedRole = role;
   const sBtn = document.getElementById('roleStudent');
   const aBtn = document.getElementById('roleAdmin');
+  // 深いオーシャンブルー（ログイン背景画像と統一感）
+  const activeBg = 'linear-gradient(135deg, #1a4a72 0%, #0f2d4a 100%)';
+  const activeBorder = '#1a4a72';
   if (role === 'student') {
-    sBtn.style.background = 'linear-gradient(135deg,var(--primary),var(--primary-dark))';
+    sBtn.style.background = activeBg;
     sBtn.style.color = '#fff';
-    sBtn.style.borderColor = 'var(--primary)';
+    sBtn.style.borderColor = activeBorder;
     aBtn.style.background = 'var(--bg)';
     aBtn.style.color = 'var(--text-light)';
     aBtn.style.borderColor = 'var(--border)';
   } else {
-    aBtn.style.background = 'linear-gradient(135deg,var(--primary),var(--primary-dark))';
+    aBtn.style.background = activeBg;
     aBtn.style.color = '#fff';
-    aBtn.style.borderColor = 'var(--primary)';
+    aBtn.style.borderColor = activeBorder;
     sBtn.style.background = 'var(--bg)';
     sBtn.style.color = 'var(--text-light)';
     sBtn.style.borderColor = 'var(--border)';
@@ -4455,6 +4432,26 @@ function toggleNotionCard(grpId, idx) {
   }
 }
 
+// === セクション ナビゲーションカード（白枠の外に表示する用）===
+function buildSectionNav(id) {
+  const res = lessonResources[id] || {};
+  if (!res.sections || !res.sections.length) return '';
+  let html = `<div style="margin:0 0 24px;background:linear-gradient(135deg,rgba(106,159,216,0.10),rgba(232,120,74,0.06));border:1.5px solid rgba(106,159,216,0.28);border-radius:var(--radius);padding:18px 20px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d6aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      <h3 style="margin:0;font-size:1.1rem;font-weight:700;color:#1a4a72;">このレッスンの${res.sections.length}つのパート</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(${res.sections.length},1fr);gap:8px;">`;
+  res.sections.forEach((sec, si) => {
+    html += `<a href="#sec_${id}_${si}" onclick="event.preventDefault();document.getElementById('sec_${id}_${si}')?.scrollIntoView({behavior:'smooth',block:'start'});" style="display:block;text-decoration:none;background:#fff;border:1.5px solid rgba(106,159,216,0.35);border-radius:8px;padding:10px;text-align:center;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(106,159,216,0.10)';this.style.borderColor='#2d6aad';" onmouseout="this.style.background='#fff';this.style.borderColor='rgba(106,159,216,0.35)';">
+      <div style="width:26px;height:26px;background:var(--brand-grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;margin:0 auto 6px;">${si + 1}</div>
+      <div style="font-size:0.78rem;font-weight:700;color:#1a4a72;line-height:1.4;">${sec.label}</div>
+    </a>`;
+  });
+  html += `</div></div>`;
+  return html;
+}
+
 // === セクション構成レッスン（sections配列を持つレッスン用）===
 function buildSectionedLesson(id) {
   const res = lessonResources[id] || {};
@@ -4492,18 +4489,6 @@ function buildSectionedLesson(id) {
     res.introTools.forEach(k => { if (toolRenderers[k]) html += toolRenderers[k](); });
     html += '<hr style="margin:30px 0 24px;border:none;border-top:1px solid var(--border);">';
   }
-
-  // 上部：3つのコンテンツが分かるナビゲーションカード
-  html += `<div style="margin:0 0 28px;">
-    <p style="font-size:0.82rem;color:var(--text-light);margin:0 0 10px;">このレッスンは<strong style="color:var(--primary);">${res.sections.length}つのパート</strong>で構成されています</p>
-    <div style="display:grid;grid-template-columns:repeat(${res.sections.length},1fr);gap:8px;">`;
-  res.sections.forEach((sec, si) => {
-    html += `<a href="#sec_${id}_${si}" onclick="event.preventDefault();document.getElementById('sec_${id}_${si}')?.scrollIntoView({behavior:'smooth',block:'start'});" style="display:block;text-decoration:none;background:rgba(106,159,216,0.08);border:1.5px solid rgba(106,159,216,0.3);border-radius:8px;padding:10px 10px 10px 10px;text-align:center;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(106,159,216,0.16)'" onmouseout="this.style.background='rgba(106,159,216,0.08)'">
-      <div style="width:26px;height:26px;background:var(--brand-grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;margin:0 auto 6px;">${si + 1}</div>
-      <div style="font-size:0.78rem;font-weight:700;color:#2d6aad;line-height:1.4;">${sec.label}</div>
-    </a>`;
-  });
-  html += `</div></div>`;
 
   // 全体進捗バー（updateChecklistProgress が参照するIDを含める）
   html += `<div style="margin:0 0 24px;padding:14px 18px;background:var(--bg);border-radius:var(--radius);display:flex;align-items:center;gap:10px;">
@@ -4742,13 +4727,17 @@ function openLesson(id) {
 
   // Text + resources: セクション構成か通常レイアウトかを自動判定
   let lessonBodyHtml;
+  let sectionNavHtml = '';
   if (lessonResources[id] && lessonResources[id].sections) {
-    // セクション構成レッスン（動画・ツール・チェックリストを各セクション内に配置）
+    // セクション構成レッスン
+    sectionNavHtml = buildSectionNav(id); // 白枠の外に表示
     lessonBodyHtml = buildSectionedLesson(id);
   } else {
     // 通常レイアウト: ① 動画 → ② 詳しい解説 → ③ テンプレ・資料 → ④ やることリスト
     lessonBodyHtml = buildLessonResources(id) + renderInteractiveChecklist(id);
   }
+  const navContainer = document.getElementById('lessonSectionNav');
+  if (navContainer) navContainer.innerHTML = sectionNavHtml;
   document.getElementById('lessonTextBody').innerHTML = lessonBodyHtml;
 
   // Restore checkbox state from member data
