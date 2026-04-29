@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理者画面 モックアップ v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Zen Maru Gothic', sans-serif; background: #f0f4f3; color: #1a2e2b; min-height: 100vh; display: flex; font-size: 14px; line-height: 1.8; }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: 220px; min-height: 100vh; background: #1a3530;
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+  }
+  .sidebar-logo { padding: 24px 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .sidebar-logo .brand { font-size: 1.05rem; font-weight: 700; color: #5ecfb0; letter-spacing: 0.05em; }
+  .sidebar-logo .brand-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .sidebar-badge { display: inline-block; padding: 2px 8px; background: rgba(94,207,176,0.2); border: 1px solid rgba(94,207,176,0.4); border-radius: 20px; font-size: 0.65rem; color: #5ecfb0; margin-top: 6px; font-weight: 700; }
+  .nav-section { padding: 16px 0 0; flex: 1; }
+  .nav-label { font-size: 0.62rem; color: rgba(255,255,255,0.3); letter-spacing: 0.12em; padding: 8px 20px 4px; font-weight: 700; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 11px 20px; color: rgba(255,255,255,0.6); font-size: 0.82rem; cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; }
+  .nav-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
+  .nav-item.active { background: rgba(94,207,176,0.12); color: #5ecfb0; border-left-color: #5ecfb0; font-weight: 700; }
+  .nav-badge { margin-left: auto; background: #e74c3c; color: #fff; font-size: 0.62rem; font-weight: 700; padding: 1px 7px; border-radius: 20px; min-width: 20px; text-align: center; }
+  .sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .sidebar-footer .user-name { color: rgba(255,255,255,0.7); font-weight: 700; font-size: 0.78rem; margin-bottom: 8px; }
+  .logout-btn { display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: rgba(255,255,255,0.4); font-size: 0.72rem; cursor: pointer; width: 100%; font-family: inherit; transition: all 0.15s; }
+  .logout-btn:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+  /* ===== MAIN ===== */
+  .main { margin-left: 220px; flex: 1; min-height: 100vh; }
+  .topbar { background: #fff; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0ebe8; position: sticky; top: 0; z-index: 50; }
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn { display: flex; align-items: center; gap: 8px; padding: 9px 18px; background: #1a3530; border: none; border-radius: 8px; color: #fff; font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.18s; box-shadow: 0 2px 6px rgba(26,53,48,0.18); }
+  .back-btn:hover { background: #2a4d47; transform: translateX(-2px); }
+  .topbar-title { font-size: 1.05rem; font-weight: 700; color: #1a3530; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .topbar-date { font-size: 0.75rem; color: #7a9a96; }
+  .alert-chip { display: flex; align-items: center; gap: 6px; padding: 5px 12px; background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.2); border-radius: 20px; font-size: 0.75rem; color: #e74c3c; font-weight: 700; }
+  .content { padding: 28px 32px; }
+
+  /* ===== STAT CARDS ===== */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: #fff; border-radius: 12px; padding: 18px 20px; border: 1px solid #e0ebe8; }
+  .stat-label { font-size: 0.7rem; color: #7a9a96; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .stat-value { font-size: 1.8rem; font-weight: 700; color: #1a3530; line-height: 1; }
+  .stat-value.alert { color: #e74c3c; }
+  .stat-value.ok { color: #2a9d7c; }
+  .stat-sub { font-size: 0.68rem; color: #7a9a96; margin-top: 3px; }
+
+  /* ===== SECTION ===== */
+  .section { background: #fff; border-radius: 12px; border: 1px solid #e0ebe8; margin-bottom: 20px; overflow: hidden; }
+  .section-header { padding: 14px 22px; border-bottom: 1px solid #f0f4f3; display: flex; align-items: center; justify-content: space-between; }
+  .section-title { font-size: 0.88rem; font-weight: 700; color: #1a3530; display: flex; align-items: center; gap: 8px; }
+  .section-title .dot { width: 8px; height: 8px; border-radius: 50%; background: #2a9d7c; }
+  .section-title .dot.red { background: #e74c3c; }
+  .section-action { font-size: 0.75rem; color: #2a9d7c; cursor: pointer; font-weight: 700; }
+
+  /* ===== PENDING ===== */
+  .pending-row { display: flex; align-items: center; gap: 14px; padding: 13px 22px; border-bottom: 1px solid #f5f8f7; cursor: pointer; transition: background 0.15s; }
+  .pending-row:last-child { border-bottom: none; }
+  .pending-row:hover { background: #f5f8f7; }
+  .pending-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .pending-name { font-size: 0.85rem; font-weight: 700; color: #1a3530; }
+  .pending-detail { font-size: 0.75rem; color: #7a9a96; }
+  .pending-tags { display: flex; gap: 6px; margin-left: auto; flex-shrink: 0; }
+  .tag { padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; }
+  .tag.fb { background: rgba(231,76,60,0.1); color: #e74c3c; }
+  .tag.memo { background: rgba(230,126,34,0.1); color: #e67e22; }
+  .tag.done { background: rgba(42,157,124,0.1); color: #2a9d7c; }
+  .tag.warn { background: rgba(243,156,18,0.12); color: #d4a017; }
+  .tag.skip { background: rgba(155,89,182,0.1); color: #8e44ad; }
+
+  /* ===== MEMBER TABLE ===== */
+  .member-table { width: 100%; border-collapse: collapse; }
+  .member-table th { padding: 10px 22px; text-align: left; font-size: 0.7rem; color: #7a9a96; font-weight: 700; letter-spacing: 0.06em; background: #f8fbfa; border-bottom: 1px solid #e0ebe8; }
+  .member-table td { padding: 14px 22px; font-size: 0.82rem; border-bottom: 1px solid #f5f8f7; color: #1a3530; }
+  .member-table tr:last-child td { border-bottom: none; }
+  .member-table tr.clickable:hover td { background: #f2faf7; cursor: pointer; }
+  .progress-bar-wrap { width: 80px; background: #e0ebe8; border-radius: 20px; height: 6px; display: inline-block; vertical-align: middle; margin-right: 6px; }
+  .progress-bar-fill { height: 6px; border-radius: 20px; background: linear-gradient(90deg, #2a9d7c, #5ecfb0); }
+  .member-pw { font-size: 0.7rem; color: #bbb; font-family: monospace; }
+
+  /* ===== MEMBER DETAIL ===== */
+  .member-detail-header { background: #fff; border-radius: 12px; border: 1px solid #e0ebe8; padding: 24px 28px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+  .md-avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .md-name { font-size: 1.15rem; font-weight: 700; color: #1a3530; }
+  .md-sub { font-size: 0.78rem; color: #7a9a96; margin-top: 2px; }
+  .md-stats { display: flex; gap: 24px; margin-left: auto; }
+  .md-stat { text-align: center; }
+  .md-stat-val { font-size: 1.2rem; font-weight: 700; color: #1a3530; }
+  .md-stat-lab { font-size: 0.65rem; color: #7a9a96; }
+
+  /* ===== INSIGHT CARDS ===== */
+  .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .insight-card { border-radius: 10px; padding: 14px 16px; border: 1.5px solid; }
+  .insight-card.warn { background: rgba(243,156,18,0.06); border-color: rgba(243,156,18,0.3); }
+  .insight-card.danger { background: rgba(231,76,60,0.05); border-color: rgba(231,76,60,0.25); }
+  .insight-card.ok { background: rgba(42,157,124,0.05); border-color: rgba(42,157,124,0.2); }
+  .insight-card.purple { background: rgba(155,89,182,0.06); border-color: rgba(155,89,182,0.25); }
+  .insight-icon { font-size: 1.1rem; margin-bottom: 4px; }
+  .insight-title { font-size: 0.78rem; font-weight: 700; margin-bottom: 2px; }
+  .insight-card.warn .insight-title { color: #c9920a; }
+  .insight-card.danger .insight-title { color: #c0392b; }
+  .insight-card.ok .insight-title { color: #1a7a5a; }
+  .insight-card.purple .insight-title { color: #7d3c98; }
+  .insight-body { font-size: 0.74rem; color: #5a7a76; line-height: 1.6; }
+
+  /* ===== PHASE TIMELINE ===== */
+  .phase-block { margin-bottom: 16px; }
+  .phase-label { font-size: 0.72rem; font-weight: 700; color: #7a9a96; letter-spacing: 0.06em; padding: 8px 22px 4px; background: #f8fbfa; border-top: 1px solid #f0f4f3; border-bottom: 1px solid #f0f4f3; }
+  .lesson-row { display: flex; align-items: center; gap: 14px; padding: 10px 22px; border-bottom: 1px solid #f8fbfa; transition: background 0.1s; }
+  .lesson-row:hover { background: #f8fbfa; }
+  .lesson-status { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; font-weight: 700; }
+  .lesson-status.done { background: #2a9d7c; color: #fff; }
+  .lesson-status.current { background: rgba(42,157,124,0.15); border: 2px solid #2a9d7c; color: #2a9d7c; }
+  .lesson-status.skip { background: rgba(155,89,182,0.12); border: 2px dashed #8e44ad; color: #8e44ad; }
+  .lesson-status.stuck { background: rgba(243,156,18,0.12); border: 2px solid #d4a017; color: #d4a017; }
+  .lesson-status.empty { background: #f0f4f3; border: 2px solid #d0e4e0; color: #bbb; }
+  .lesson-title { font-size: 0.82rem; color: #1a3530; flex: 1; }
+  .lesson-title.done { text-decoration: line-through; color: #a0b8b4; }
+  .lesson-badges { display: flex; gap: 6px; }
+  .lesson-date { font-size: 0.7rem; color: #b0c8c4; }
+
+  /* ===== TABS ===== */
+  .tab-row { display: flex; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #e0ebe8; background: #f8fbfa; }
+  .tab-btn { padding: 11px 22px; font-size: 0.92rem; font-weight: 700; color: #7a9a96; background: #fff; border: 2px solid #e0ebe8; border-radius: 10px; cursor: pointer; font-family: inherit; transition: all 0.18s; }
+  .tab-btn:hover { border-color: #2a9d7c; color: #2a9d7c; }
+  .tab-btn.active { color: #1a3530; background: #fff; border-color: #2a9d7c; box-shadow: 0 2px 8px rgba(42,157,124,0.15); }
+
+  /* ===== FORM ===== */
+  .post-form { padding: 22px; }
+  .form-row { margin-bottom: 16px; }
+  .form-label { font-size: 0.78rem; font-weight: 700; color: #1a3530; margin-bottom: 6px; display: block; }
+  .form-input { width: 100%; padding: 10px 14px; border: 1.5px solid #d0e4e0; border-radius: 8px; font-size: 0.85rem; font-family: inherit; color: #1a3530; outline: none; transition: border 0.2s; background: #fff; }
+  .form-input:focus { border-color: #2a9d7c; }
+  .form-textarea { min-height: 80px; resize: vertical; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn-admin { padding: 10px 24px; background: #1a3530; color: #5ecfb0; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+  .submit-btn-admin:hover { background: #2a4d47; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ===== QA PAGE ===== */
+  .qa-item { padding: 18px 22px; border-bottom: 1px solid #f0f4f3; }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-q { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .qa-q-badge { background: #1a3530; color: #5ecfb0; font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; flex-shrink: 0; margin-top: 3px; }
+  .qa-q-text { font-size: 0.85rem; font-weight: 700; color: #1a3530; }
+  .qa-a { display: flex; align-items: flex-start; gap: 10px; padding-left: 4px; }
+  .qa-a-badge { background: rgba(42,157,124,0.15); color: #2a9d7c; font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; flex-shrink: 0; margin-top: 3px; }
+  .qa-a-text { font-size: 0.82rem; color: #3a5a56; line-height: 1.8; }
+  .qa-meta { font-size: 0.68rem; color: #aaa; margin-top: 4px; }
+  .qa-phase-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; background: rgba(42,157,124,0.08); color: #2a9d7c; border: 1px solid rgba(42,157,124,0.2); margin-right: 6px; }
+
+  .demo-label { position: fixed; top: 12px; right: 16px; background: #1a3530; color: #5ecfb0; padding: 5px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; z-index: 999; }
+</style>
+</head>
+<body>
+<div class="demo-label">モックアップ v2（デザイン確認用）</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Ola lea</div>
+    <div class="brand-sub">海レジンアート養成講座</div>
+    <div class="sidebar-badge">管理者モード</div>
+  </div>
+  <nav class="nav-section">
+    <div class="nav-label">メイン</div>
+    <div class="nav-item" id="nav-dashboard" onclick="showSection('dashboard')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      ダッシュボード <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" id="nav-members" onclick="showSection('members')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      受講生管理
+    </div>
+    <div class="nav-item" id="nav-qa" onclick="showSection('qa')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      みんなの質問
+    </div>
+    <div class="nav-label" style="margin-top:8px;">コンテンツ投稿</div>
+    <div class="nav-item" id="nav-glcon" onclick="showSection('glcon')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      グルコン投稿
+    </div>
+    <div class="nav-item" id="nav-announce" onclick="showSection('announce')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      お知らせ投稿
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-name">マキ（講師）</div>
+    <button class="logout-btn">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      ログアウト
+    </button>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- ===== DASHBOARD ===== -->
+  <div id="section-dashboard" style="display:none;">
+    <div class="topbar">
+      <div class="topbar-title">ダッシュボード</div>
+      <div class="topbar-right">
+        <div class="topbar-date">2026年4月28日（火）</div>
+        <div class="alert-chip">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          対応待ち 3件
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">受講生</div><div class="stat-value">4</div><div class="stat-sub">名が受講中</div></div>
+        <div class="stat-card"><div class="stat-label">FB待ち</div><div class="stat-value alert">3</div><div class="stat-sub">件のワーク未返信</div></div>
+        <div class="stat-card"><div class="stat-label">メモ返信待ち</div><div class="stat-value alert">1</div><div class="stat-sub">件の質問あり</div></div>
+        <div class="stat-card"><div class="stat-label">平均進捗</div><div class="stat-value ok">18%</div><div class="stat-sub">コンテンツ完了率</div></div>
+      </div>
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title"><span class="dot red"></span>対応が必要な受講生</div>
+          <div class="section-action" onclick="showSection('members')">全員を見る</div>
+        </div>
+        <div class="pending-row" onclick="showMemberDetail()">
+          <div class="pending-avatar" style="background:linear-gradient(135deg,#e8a8ad,#d4868c);">し</div>
+          <div><div class="pending-name">しんどう</div><div class="pending-detail">ブランドカラー・世界観 ほか1件 ・ 3週間動きなし</div></div>
+          <div class="pending-tags"><span class="tag fb">FB待ち 2件</span><span class="tag warn">停滞中</span></div>
+        </div>
+        <div class="pending-row" onclick="showMemberDetail()">
+          <div class="pending-avatar" style="background:linear-gradient(135deg,#a8c4e8,#7d9bc4);">た</div>
+          <div><div class="pending-name">たなか</div><div class="pending-detail">Phase 3に飛んでいます（Phase 2が未完了）</div></div>
+          <div class="pending-tags"><span class="tag fb">FB待ち 1件</span><span class="tag skip">飛び級あり</span></div>
+        </div>
+        <div class="pending-row">
+          <div class="pending-avatar" style="background:linear-gradient(135deg,#b8d4a8,#7d9b76);">さ</div>
+          <div><div class="pending-name">さとう</div><div class="pending-detail">順調に進んでいます</div></div>
+          <div class="pending-tags"><span class="tag done">対応済み</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MEMBERS LIST ===== -->
+  <div id="section-members" style="display:none;">
+    <div class="topbar">
+      <div class="topbar-title">受講生管理</div>
+      <div class="topbar-right">
+        <button class="submit-btn-admin" style="font-size:0.78rem;padding:8px 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          受講生を追加
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title"><span class="dot"></span>受講生一覧（4名）<span style="font-size:0.72rem;font-weight:400;color:#7a9a96;margin-left:6px;">— 名前をタップすると詳細を確認できます</span></div>
+        </div>
+        <table class="member-table">
+          <thead>
+            <tr><th>名前</th><th>コース</th><th>進捗</th><th>ワーク状況</th><th>アラート</th><th>PW</th></tr>
+          </thead>
+          <tbody>
+            <tr class="clickable" onclick="showMemberDetail()">
+              <td><strong>しんどう</strong><br><span style="font-size:0.7rem;color:#aaa;">デザイン ・ 2026年4月〜</span></td>
+              <td>海レジンアート</td>
+              <td><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:9%;"></div></div>9%</td>
+              <td><span class="tag fb">FB待ち 2件</span></td>
+              <td><span class="tag warn">3週間停滞</span></td>
+              <td><span class="member-pw">9164</span></td>
+            </tr>
+            <tr class="clickable" onclick="showMemberDetail()">
+              <td><strong>たなか</strong><br><span style="font-size:0.7rem;color:#aaa;">ハンドメイド ・ 2026年4月〜</span></td>
+              <td>海レジンアート</td>
+              <td><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:27%;"></div></div>27%</td>
+              <td><span class="tag fb">FB待ち 1件</span></td>
+              <td><span class="tag skip">飛び級あり</span></td>
+              <td><span class="member-pw">8823</span></td>
+            </tr>
+            <tr class="clickable" onclick="showMemberDetail()">
+              <td><strong>さとう</strong><br><span style="font-size:0.7rem;color:#aaa;">2026年4月〜</span></td>
+              <td>海レジンアート</td>
+              <td><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:18%;"></div></div>18%</td>
+              <td><span class="tag done">対応済み</span></td>
+              <td><span style="font-size:0.72rem;color:#aaa;">—</span></td>
+              <td><span class="member-pw">5541</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MEMBER DETAIL ===== -->
+  <div id="section-member-detail" style="display:none;">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="back-btn" onclick="showSection('members')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          受講生一覧に戻る
+        </button>
+        <div class="topbar-title">しんどう さんの詳細</div>
+      </div>
+      <div class="topbar-right">
+        <span class="tag warn" style="padding:5px 12px;">3週間停滞中</span>
+        <span class="tag skip" style="padding:5px 12px;">飛び級あり</span>
+      </div>
+    </div>
+    <div class="content">
+
+      <!-- ヘッダーカード -->
+      <div class="member-detail-header">
+        <div class="md-avatar" style="background:linear-gradient(135deg,#e8a8ad,#d4868c);">し</div>
+        <div>
+          <div class="md-name">しんどう</div>
+          <div class="md-sub">デザイン ・ 受講開始：2026年4月 ・ PW: 9164</div>
+        </div>
+        <div class="md-stats">
+          <div class="md-stat"><div class="md-stat-val">2/22</div><div class="md-stat-lab">コンテンツ完了</div></div>
+          <div class="md-stat"><div class="md-stat-val" style="color:#e74c3c;">2</div><div class="md-stat-lab">FB待ち</div></div>
+          <div class="md-stat"><div class="md-stat-val" style="color:#d4a017;">21日</div><div class="md-stat-lab">最終アクション</div></div>
+        </div>
+      </div>
+
+      <!-- インサイト -->
+      <div class="insight-grid">
+        <div class="insight-card warn">
+          <div class="insight-title">3週間動きがありません</div>
+          <div class="insight-body">最後のアクション：4月7日<br>声かけを検討してみましょう</div>
+        </div>
+        <div class="insight-card purple">
+          <div class="insight-title">Phase 2に飛んでいます</div>
+          <div class="insight-body">Phase 1の「ロゴ・ショップカード」「自己紹介文」が未完了のまま先に進んでいます</div>
+        </div>
+        <div class="insight-card danger">
+          <div class="insight-title">ワークが2件未フィードバック</div>
+          <div class="insight-body">ショップ名・ブランドイメージ<br>ブランドカラー・世界観</div>
+        </div>
+      </div>
+
+      <!-- タブ -->
+      <div class="section">
+        <div class="tab-row">
+          <button class="tab-btn active" onclick="switchDetailTab(this,'tab-progress')">進捗タイムライン</button>
+          <button class="tab-btn" onclick="switchDetailTab(this,'tab-works')">ワーク・添削</button>
+          <button class="tab-btn" onclick="switchDetailTab(this,'tab-memos')">メモ・質問</button>
+        </div>
+
+        <!-- 進捗タイムライン -->
+        <div id="tab-progress">
+          <div class="phase-label">Phase 1：基盤づくり（1〜2ヶ月目）</div>
+          <div class="lesson-row">
+            <div class="lesson-status done">✓</div>
+            <div class="lesson-title done">ショップ名・ブランドイメージ</div>
+            <div class="lesson-badges"><span class="tag fb" style="font-size:0.65rem;">FB待ち</span></div>
+            <div class="lesson-date">4月7日完了</div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status done">✓</div>
+            <div class="lesson-title done">ブランドカラー・世界観</div>
+            <div class="lesson-badges"><span class="tag fb" style="font-size:0.65rem;">FB待ち</span></div>
+            <div class="lesson-date">4月7日完了</div>
+          </div>
+          <div class="lesson-row" style="background:rgba(155,89,182,0.04);">
+            <div class="lesson-status skip">?</div>
+            <div class="lesson-title" style="color:#8e44ad;">ロゴ・ショップカード・商品台紙</div>
+            <div class="lesson-badges"><span class="tag skip" style="font-size:0.65rem;">スキップ</span></div>
+            <div class="lesson-date"></div>
+          </div>
+          <div class="lesson-row" style="background:rgba(155,89,182,0.04);">
+            <div class="lesson-status skip">?</div>
+            <div class="lesson-title" style="color:#8e44ad;">自己紹介文</div>
+            <div class="lesson-badges"><span class="tag skip" style="font-size:0.65rem;">スキップ</span></div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status empty">5</div>
+            <div class="lesson-title" style="color:#aaa;">ストア基本設定</div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status empty">6</div>
+            <div class="lesson-title" style="color:#aaa;">法律関係（特商法・返品）</div>
+          </div>
+
+          <div class="phase-label">Phase 2：商品準備（2〜3ヶ月目）</div>
+          <div class="lesson-row" style="background:rgba(243,156,18,0.04);">
+            <div class="lesson-status stuck">!</div>
+            <div class="lesson-title">撮影環境・5ショット構成</div>
+            <div class="lesson-badges"><span class="tag warn" style="font-size:0.65rem;">3週間停滞</span></div>
+            <div class="lesson-date">4月7日から変化なし</div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status empty">2</div>
+            <div class="lesson-title" style="color:#aaa;">メイン写真の撮り方</div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status empty">3</div>
+            <div class="lesson-title" style="color:#aaa;">使用・サイズ・編集</div>
+          </div>
+          <div class="lesson-row">
+            <div class="lesson-status empty">4</div>
+            <div class="lesson-title" style="color:#aaa;">商品登録</div>
+          </div>
+
+          <div class="phase-label" style="color:#bbb;">Phase 3〜5（未着手）</div>
+          <div style="padding:16px 22px;font-size:0.78rem;color:#aaa;">Phase 3〜5（14レッスン）は未着手です</div>
+        </div>
+
+        <!-- ワーク・添削 -->
+        <div id="tab-works" style="display:none;">
+          <!-- 説明バナー -->
+          <div style="padding:10px 22px;background:#f8fbfa;border-bottom:1px solid #f0f4f3;font-size:0.76rem;color:#7a9a96;display:flex;align-items:center;gap:8px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2a9d7c" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            提出されたワークが全件表示されます（22ステップ中、現在2件提出済み）。未提出のものは自動で非表示。
+          </div>
+          <!-- FB待ちアラート -->
+          <div style="padding:12px 22px;background:rgba(231,76,60,0.04);border-bottom:1px solid #f0f4f3;font-size:0.82rem;color:#e74c3c;font-weight:700;display:flex;align-items:center;gap:8px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#e74c3c" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            フィードバック待ち 2件 — 返信を書いてあげましょう
+          </div>
+          <!-- FB待ち 1件目 -->
+          <div style="padding:18px 22px;border-bottom:1px solid #f0f4f3;border-left:3px solid #e74c3c;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <div>
+                <span style="font-size:0.68rem;color:#aaa;font-weight:700;letter-spacing:0.06em;">Phase 1 · Step 1</span>
+                <div style="font-size:0.88rem;font-weight:700;color:#1a3530;">ショップ名・ブランドイメージ</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.72rem;color:#aaa;">提出：4月7日</span>
+                <span class="tag fb">FB待ち</span>
+              </div>
+            </div>
+            <div style="padding:10px 14px;background:#f8fbfa;border-radius:8px;font-size:0.8rem;color:#3a5a56;margin-bottom:12px;">「海のかけら」というショップ名にしました。ターゲットは30代の自然が好きな女性です。</div>
+            <textarea class="form-input form-textarea" placeholder="フィードバックを入力してください..." style="min-height:70px;"></textarea>
+            <button class="submit-btn-admin" style="margin-top:8px;font-size:0.8rem;padding:8px 18px;">フィードバックを送信</button>
+          </div>
+          <!-- FB待ち 2件目 -->
+          <div style="padding:18px 22px;border-bottom:1px solid #f0f4f3;border-left:3px solid #e74c3c;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <div>
+                <span style="font-size:0.68rem;color:#aaa;font-weight:700;letter-spacing:0.06em;">Phase 1 · Step 2</span>
+                <div style="font-size:0.88rem;font-weight:700;color:#1a3530;">ブランドカラー・世界観</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.72rem;color:#aaa;">提出：4月7日</span>
+                <span class="tag fb">FB待ち</span>
+              </div>
+            </div>
+            <div style="padding:10px 14px;background:#f8fbfa;border-radius:8px;font-size:0.8rem;color:#3a5a56;margin-bottom:4px;">カラーコード：#a8dce5 / #1fa8b8 / #c9a84c</div>
+            <div style="padding:8px 14px;background:rgba(31,168,184,0.07);border-radius:8px;font-size:0.8rem;margin-bottom:12px;"><span style="font-weight:700;color:#1fa8b8;">Canva URL：</span><a href="#" style="color:#1fa8b8;">https://canva.com/design/xxxx</a></div>
+            <textarea class="form-input form-textarea" placeholder="フィードバックを入力してください..." style="min-height:70px;"></textarea>
+            <button class="submit-btn-admin" style="margin-top:8px;font-size:0.8rem;padding:8px 18px;">フィードバックを送信</button>
+          </div>
+          <!-- 未提出の折りたたみ -->
+          <details style="padding:0;">
+            <summary style="padding:12px 22px;font-size:0.78rem;color:#aaa;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;border-top:1px solid #f0f4f3;">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              未提出のワーク（20件）— 受講生が提出したら自動でここに表示されます
+            </summary>
+            <div style="padding:8px 22px 16px;font-size:0.78rem;color:#bbb;line-height:2.2;">
+              Phase 1: ロゴ・ショップカード・商品台紙 / 自己紹介文 / ストア基本設定 / 法律関係<br>
+              Phase 2: 撮影環境・5ショット構成 / メイン写真の撮り方 / 使用・サイズ・編集 / 商品登録<br>
+              Phase 3〜5: 14ステップ（未着手）
+            </div>
+          </details>
+        </div>
+
+        <!-- メモ・質問 -->
+        <div id="tab-memos" style="display:none;">
+          <div style="padding:18px 22px;border-bottom:1px solid #f0f4f3;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="font-size:0.7rem;color:#aaa;">4月5日</span>
+              <span class="tag warn" style="font-size:0.65rem;">困りごと</span>
+            </div>
+            <div style="font-size:0.85rem;color:#1a3530;margin-bottom:10px;">撮影の背景に何を使えばいいかわかりません。白い紙でも大丈夫ですか？</div>
+            <textarea class="form-input form-textarea" placeholder="返信を入力してください..." style="min-height:60px;"></textarea>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+              <button class="submit-btn-admin" style="font-size:0.78rem;padding:7px 16px;">返信する</button>
+              <button style="padding:7px 14px;background:none;border:1px solid #2a9d7c;color:#2a9d7c;border-radius:8px;font-size:0.75rem;font-family:inherit;cursor:pointer;font-weight:700;">「みんなの質問」に追加</button>
+            </div>
+          </div>
+          <div style="padding:12px 22px;font-size:0.78rem;color:#aaa;">他の質問はありません</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== みんなの質問 ===== -->
+  <div id="section-qa" style="display:none;">
+    <div class="topbar">
+      <div class="topbar-title">みんなの質問</div>
+      <div class="topbar-right">
+        <button class="submit-btn-admin" style="font-size:0.78rem;padding:8px 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Q&Aを追加
+        </button>
+      </div>
+    </div>
+    <div class="content">
+
+      <div class="two-col" style="align-items:start;">
+        <div>
+          <!-- 既存Q&A一覧 -->
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title"><span class="dot"></span>公開中のQ&A（受講生も見られます）</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-q">
+                <span class="qa-q-badge">Q</span>
+                <div>
+                  <span class="qa-phase-tag">Phase 2</span>
+                  <span class="qa-q-text">撮影の背景は白い紙でも大丈夫ですか？</span>
+                </div>
+              </div>
+              <div class="qa-a">
+                <span class="qa-a-badge">A</span>
+                <div>
+                  <div class="qa-a-text">はい、白い画用紙や白い布で十分です。大切なのは「光」なので、窓際の自然光を使うのがおすすめです。影が出やすい場合はレースカーテン越しの柔らかい光を試してみてください。</div>
+                  <div class="qa-meta">Phase 2 撮影環境 ・ 4月20日追加</div>
+                </div>
+              </div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-q">
+                <span class="qa-q-badge">Q</span>
+                <div>
+                  <span class="qa-phase-tag">Phase 1</span>
+                  <span class="qa-q-text">ショップ名は英語と日本語、どちらがいいですか？</span>
+                </div>
+              </div>
+              <div class="qa-a">
+                <span class="qa-a-badge">A</span>
+                <div>
+                  <div class="qa-a-text">どちらでも大丈夫ですが、覚えてもらいやすさを重視するなら「読み方がすぐわかる名前」がおすすめです。英語の場合は読み方がぱっと伝わるものを選びましょう。</div>
+                  <div class="qa-meta">Phase 1 ショップ名 ・ 4月15日追加</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- 新規Q&A追加フォーム -->
+          <div class="section">
+            <div class="section-header">
+              <div class="section-title"><span class="dot"></span>新しいQ&Aを追加</div>
+            </div>
+            <div class="post-form">
+              <div style="padding:10px 14px;background:rgba(42,157,124,0.06);border-radius:8px;border:1px solid rgba(42,157,124,0.2);font-size:0.78rem;color:#2a7a5a;margin-bottom:16px;line-height:1.7;">
+                受講生からの質問に返信する際、「みんなの質問に追加」ボタンからそのままここに登録できます。受講生の画面にも表示されます。
+              </div>
+              <div class="form-row">
+                <label class="form-label">Phase（任意）</label>
+                <select class="form-input">
+                  <option>全体</option><option>Phase 1：基盤づくり</option><option>Phase 2：商品準備</option>
+                  <option>Phase 3：集客</option><option>Phase 4：販売強化</option><option>Phase 5：運営安定</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label class="form-label">質問</label>
+                <textarea class="form-input form-textarea" placeholder="受講生からよくある質問を入力してください" style="min-height:60px;"></textarea>
+              </div>
+              <div class="form-row">
+                <label class="form-label">回答</label>
+                <textarea class="form-input form-textarea" placeholder="まきさんからの回答を入力してください"></textarea>
+              </div>
+              <button class="submit-btn-admin">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                受講生ページに公開する
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GLCON ===== -->
+  <div id="section-glcon" style="display:none;">
+    <div class="topbar"><div class="topbar-title">グルコン投稿</div></div>
+    <div class="content">
+      <div class="two-col">
+        <div class="section">
+          <div class="section-header"><div class="section-title"><span class="dot"></span>新しいグルコンを追加</div></div>
+          <div class="post-form">
+            <div class="form-row"><label class="form-label">タイトル</label><input class="form-input" placeholder="例：5月グルコン：商品写真を深掘り" /></div>
+            <div class="form-row-2">
+              <div class="form-row" style="margin-bottom:0;"><label class="form-label">開催日</label><input class="form-input" type="date" /></div>
+              <div class="form-row" style="margin-bottom:0;"><label class="form-label">公開設定</label><select class="form-input"><option>公開</option><option>非公開</option></select></div>
+            </div>
+            <div class="form-row" style="margin-top:16px;"><label class="form-label">動画URL</label><input class="form-input" placeholder="https://vimeo.com/..." /></div>
+            <div class="form-row"><label class="form-label">説明（任意）</label><textarea class="form-input form-textarea" placeholder="今月のグルコンの概要を1〜2文で"></textarea></div>
+            <button class="submit-btn-admin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>追加してサイトに公開</button>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-header"><div class="section-title"><span class="dot"></span>公開中のグルコン</div></div>
+          <div style="padding:14px 22px;">
+            <div style="padding:12px 0;border-bottom:1px solid #f0f4f3;"><div style="font-size:0.82rem;font-weight:700;">4月グルコン：商品設計を深掘り</div><div style="font-size:0.72rem;color:#7a9a96;margin-top:2px;">2026年4月26日</div></div>
+            <div style="padding:12px 0;color:#aaa;font-size:0.78rem;">まだ他の投稿はありません</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ANNOUNCE ===== -->
+  <div id="section-announce" style="display:none;">
+    <div class="topbar"><div class="topbar-title">お知らせ投稿</div></div>
+    <div class="content">
+      <div class="two-col">
+        <div class="section">
+          <div class="section-header"><div class="section-title"><span class="dot"></span>新しいお知らせを追加</div></div>
+          <div class="post-form">
+            <div class="form-row"><label class="form-label">種別</label><select class="form-input"><option>お知らせ</option><option>重要</option><option>コンテンツ</option></select></div>
+            <div class="form-row"><label class="form-label">タイトル</label><input class="form-input" placeholder="例：5月のグルコン日程が決まりました" /></div>
+            <div class="form-row"><label class="form-label">本文</label><textarea class="form-input form-textarea" placeholder="お知らせの内容を入力してください"></textarea></div>
+            <button class="submit-btn-admin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>投稿する</button>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-header"><div class="section-title"><span class="dot"></span>投稿済みのお知らせ</div></div>
+          <div style="padding:14px 22px;">
+            <div style="padding:12px 0;border-bottom:1px solid #f0f4f3;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag fb" style="font-size:0.68rem;">重要</span><span style="font-size:0.82rem;font-weight:700;">グループコンサル日程のお知らせ</span></div><div style="font-size:0.72rem;color:#7a9a96;">2026年4月26日</div></div>
+            <div style="padding:12px 0;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag done" style="font-size:0.68rem;">コンテンツ</span><span style="font-size:0.82rem;font-weight:700;">1ヶ月目のコンテンツを公開しました</span></div><div style="font-size:0.72rem;color:#7a9a96;">2026年4月1日</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const sections = ['dashboard','members','member-detail','qa','glcon','announce'];
+
+function showSection(name) {
+  sections.forEach(s => {
+    const el = document.getElementById('section-' + s);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById('section-' + name);
+  if (target) target.style.display = 'block';
+
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const navMap = { dashboard: 'nav-dashboard', members: 'nav-members', 'member-detail': 'nav-members', qa: 'nav-qa', glcon: 'nav-glcon', announce: 'nav-announce' };
+  const navEl = document.getElementById(navMap[name]);
+  if (navEl) navEl.classList.add('active');
+}
+
+function showMemberDetail() {
+  showSection('member-detail');
+}
+
+function switchDetailTab(btn, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['tab-progress','tab-works','tab-memos'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById(tabId);
+  if (target) target.style.display = 'block';
+}
+
+showSection('dashboard');
+</script>
+</body>
+</html>

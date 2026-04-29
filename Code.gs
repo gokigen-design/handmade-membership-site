@@ -266,35 +266,23 @@ function addMember(data) {
     now
   ]);
 
-  // 5Phase 全22ステップの初期データ
+  // 5Phase 全10ステップの初期データ（各Phaseに2レッスン）
   const allLessons = data.lessons || [
-    // Phase 1: 基盤づくり
-    { month: 1, index: 0, title: 'ショップ名・ブランドイメージ' },
-    { month: 1, index: 1, title: 'ブランドカラー・世界観' },
-    { month: 1, index: 2, title: 'ロゴ・ショップカード・商品台紙' },
-    { month: 1, index: 3, title: '自己紹介文' },
-    { month: 1, index: 4, title: 'ストア基本設定' },
-    { month: 1, index: 5, title: '法律関係（特商法・返品）' },
+    // Phase 1: 基礎作り
+    { month: 1, index: 0, title: 'ブランディング' },
+    { month: 1, index: 1, title: 'ストア設定' },
     // Phase 2: 商品準備
-    { month: 2, index: 0, title: '撮影環境・5ショット構成' },
-    { month: 2, index: 1, title: 'メイン写真の撮り方' },
-    { month: 2, index: 2, title: '使用・サイズ・編集' },
-    { month: 2, index: 3, title: '商品登録' },
-    // Phase 3: 集客の仕組みづくり
-    { month: 3, index: 0, title: 'SNS選び・投稿設計' },
-    { month: 3, index: 1, title: 'ハッシュタグ戦略' },
-    { month: 3, index: 2, title: 'プロフィール・最初の10投稿' },
-    { month: 3, index: 3, title: 'ファン作り3本柱' },
+    { month: 2, index: 0, title: '商品撮影' },
+    { month: 2, index: 1, title: '商品登録' },
+    // Phase 3: 集客の仕組み
+    { month: 3, index: 0, title: 'SNS運用' },
+    { month: 3, index: 1, title: 'ファン作り' },
     // Phase 4: 販売力強化
-    { month: 4, index: 0, title: '季節イベント・キャンペーン' },
-    { month: 4, index: 1, title: '新作スケジュール・リピーター特典' },
-    { month: 4, index: 2, title: 'メルマガ・LINE公式' },
-    { month: 4, index: 3, title: '分析・PDCA' },
+    { month: 4, index: 0, title: 'マーケティング施策' },
+    { month: 4, index: 1, title: '分析・改善' },
     // Phase 5: 運営の安定化
-    { month: 5, index: 0, title: '梱包・発送ルーティン' },
-    { month: 5, index: 1, title: '在庫管理・顧客対応テンプレ' },
-    { month: 5, index: 2, title: 'サンキューカード' },
-    { month: 5, index: 3, title: 'レビュー・リピーター施策' }
+    { month: 5, index: 0, title: 'オペレーション' },
+    { month: 5, index: 1, title: 'リピート・口コミ施策' }
   ];
 
   allLessons.forEach(function(lesson) {
