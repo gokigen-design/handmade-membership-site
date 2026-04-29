@@ -4535,8 +4535,9 @@ function buildSectionedLesson(id) {
           html += `<div style="margin:0 0 12px;padding:12px 16px;background:var(--bg);border-radius:var(--radius);"><a href="${v.url}" target="_blank" style="color:var(--primary);font-weight:600;">▶ ${v.title}</a></div>`;
         }
       });
-    } else if (!section.notions || !section.notions.length) {
-      html += '<div style="margin:0 0 16px;padding:16px 20px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.88rem;"><strong>動画は近日公開予定です</strong><br><span style="font-size:0.82rem;">下のチェックリストで先に進めてOK！</span></div>';
+    } else if ((!section.notions || !section.notions.length) && (!section.tools || !section.tools.length)) {
+      // 動画・notion・ツールがすべて無い場合のみ表示
+      html += '<div style="margin:0 0 16px;padding:16px 20px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.88rem;"><strong>コンテンツは近日公開予定です</strong><br><span style="font-size:0.82rem;">下のチェックリストで先に進めてOK！</span></div>';
     }
 
     // ツール
