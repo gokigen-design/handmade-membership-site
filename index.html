@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海レジンアート養成講座 | 会員サイト</title>
+<title>Ola lea Refine Program | 会員サイト</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --primary: #1fa8b8;
-    --primary-light: #a8dce5;
-    --primary-dark: #137a88;
-    --bg: #f7fbfd;
-    --bg-card: rgba(255,255,255,0.82);
-    --text: #1e3a3a;
-    --text-light: #4a7373;
-    --text-dark: #0d2020;
-    --accent: #c9a84c;
+    --primary: #e8789a;
+    --primary-light: #f5c6d0;
+    --primary-dark: #1e2f5c;
+    --bg: #ffffff;
+    --bg-card: rgba(255,255,255,0.97);
+    --text: #333333;
+    --text-light: #666666;
+    --text-dark: #1a1a1a;
+    --accent: #f5a23c;
     --accent-green: #3aaa8a;
-    --accent-pink: #e07850;
-    --accent-purple: #6ab8c8;
-    --border: rgba(201,168,76,0.28);
-    --border-soft: rgba(31,168,184,0.18);
-    --shadow: 0 2px 16px rgba(20,100,120,0.07);
-    --shadow-hover: 0 6px 32px rgba(20,100,120,0.14);
+    --accent-pink: #c9386b;
+    --accent-magenta: #c9386b;
+    --accent-purple: #9b59b6;
+    --brand-grad: linear-gradient(135deg, #e8789a, #f5a23c, #f5d06e);
+    --border: rgba(232,120,154,0.25);
+    --border-soft: rgba(232,120,154,0.15);
+    --shadow: 0 2px 16px rgba(30,47,92,0.07);
+    --shadow-hover: 0 6px 32px rgba(30,47,92,0.14);
     --radius: 2px;
   }
 
@@ -48,10 +50,10 @@
 
   body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: #f7fbfd;
+    background: #ffffff;
     color: var(--text);
     line-height: 1.8;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* SVGアイコン共通 */
@@ -86,7 +88,16 @@
   .login-screen {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    background: url('images/wave-resin-blue.png') center/cover no-repeat;
+    background: linear-gradient(
+      170deg,
+      #b87cbf 0%,
+      #e8789a 14%,
+      #e87848 30%,
+      #f5a23c 46%,
+      #f5c842 58%,
+      #4a9ab8 74%,
+      #1e3258 100%
+    );
     position: relative;
     overflow: hidden;
     padding: 20px;
@@ -144,11 +155,11 @@
   .login-border-v.right { right: 18px; }
   .login-logo {
     width: 72px; height: 72px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     margin: 12px auto 20px;
-    box-shadow: 0 4px 20px rgba(31,168,184,0.4), 0 0 0 3px rgba(201,168,76,0.3);
+    box-shadow: 0 4px 20px rgba(232,120,154,0.4), 0 0 0 3px rgba(245,162,60,0.3);
   }
   .login-box h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--text-dark); margin-bottom: 2px; letter-spacing: 0.06em; }
   .login-script { font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: var(--accent); margin-bottom: 6px; display: block; letter-spacing: 0.04em; }
@@ -160,13 +171,13 @@
   .login-box input:focus { outline: none; border-color: var(--primary); }
   .login-box button {
     width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     color: #fff; border: none; border-radius: var(--radius); font-size: 0.95rem; font-weight: 700;
     cursor: pointer; font-family: inherit; margin-top: 8px;
     transition: transform 0.2s, box-shadow 0.2s;
     letter-spacing: 0.08em;
   }
-  .login-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,149,108,0.4); }
+  .login-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(232,120,154,0.5); }
   .login-error { color: var(--accent-pink); font-size: 0.8rem; margin-top: 8px; display: none; }
 
   /* ===== APP ===== */
@@ -228,7 +239,7 @@
   .stat-card .value { font-size: 2rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
   .stat-card .sub { font-size: 0.82rem; color: var(--accent-green); margin-top: 8px; line-height: 1.6; font-weight: 600; }
   .progress-bar-bg { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-top: 12px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; transition: width 0.8s ease; }
+  .progress-bar-fill { height: 100%; background: var(--brand-grad); border-radius: 4px; transition: width 0.8s ease; }
 
   /* Announce */
   .announce-list { margin-top: 16px; }
@@ -273,11 +284,11 @@
   }
   .module-num {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--brand-grad);
     color: #fff; border-radius: 2px;
     display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(201,168,76,0.2);
+    box-shadow: 0 2px 8px rgba(232,120,154,0.3);
   }
   .module-num.locked { background: var(--border); color: var(--text-light); }
   .module-info { flex: 1; }
@@ -326,14 +337,14 @@
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.92rem; font-weight: 700; color: white; cursor: pointer;
     margin-bottom: 20px; padding: 12px 22px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     border-radius: var(--radius); border: none;
     font-family: inherit; transition: all 0.2s;
-    box-shadow: 0 2px 8px rgba(201,168,76,0.3);
+    box-shadow: 0 2px 8px rgba(232,120,154,0.3);
   }
   .back-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(201,168,76,0.4);
+    box-shadow: 0 4px 12px rgba(232,120,154,0.5);
     filter: brightness(1.05);
   }
   .back-btn-bottom {
@@ -419,12 +430,12 @@
     font-size: 1rem; margin-bottom: 12px; color: var(--text-dark);
     display: flex; align-items: center; gap: 8px;
   }
-  .text-content p { font-size: 0.85rem; line-height: 2; color: var(--text); }
+  .text-content p { font-size: 0.92rem; line-height: 1.95; color: var(--text); }
   .text-content ul {
     margin: 12px 0; padding-left: 20px;
   }
   .text-content ul li {
-    font-size: 0.85rem; line-height: 2; color: var(--text);
+    font-size: 0.92rem; line-height: 1.95; color: var(--text);
   }
   .text-download {
     display: inline-flex; align-items: center; gap: 8px;
@@ -477,12 +488,12 @@
   .submit-btn {
     display: inline-block; margin-top: 8px;
     padding: 12px 32px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     color: #fff; border: none; border-radius: var(--radius);
     font-size: 0.85rem; font-weight: 700; cursor: pointer;
     font-family: inherit; transition: transform 0.2s;
     letter-spacing: 0.06em;
-    box-shadow: 0 2px 8px rgba(31,168,184,0.25);
+    box-shadow: 0 2px 8px rgba(232,120,154,0.3);
   }
   .submit-btn:hover { transform: translateY(-1px); }
 
@@ -494,11 +505,8 @@
   }
   .work-submitted-box .status { font-size: 0.85rem; font-weight: 700; color: var(--accent-green); margin-bottom: 4px; }
   .work-submitted-box .date { font-size: 0.72rem; color: var(--text-light); }
-  .work-feedback {
-    margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(125,155,118,0.15);
-  }
-  .work-feedback .fb-label { font-size: 0.72rem; color: var(--accent-green); font-weight: 700; margin-bottom: 4px; }
-  .work-feedback p { font-size: 0.82rem; color: var(--text); }
+  /* フィードバック欄は非表示（アウトプット専用ワークのため） */
+  .work-feedback { display: none; }
 
   /* ===== CHECKBOX ===== */
   .check-row {
@@ -526,7 +534,7 @@
   }
   .dp-month-num {
     width: 28px; height: 28px; border-radius: 6px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--brand-grad);
     color: #fff; display: flex; align-items: center; justify-content: center;
     font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
   }
@@ -607,7 +615,7 @@
   }
   .member-tab:last-child { border-right: none; }
   .member-tab:hover { color: var(--text); background: rgba(201,168,76,0.05); }
-  .member-tab.active { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; font-weight: 700; }
+  .member-tab.active { background: var(--brand-grad); color: #fff; font-weight: 700; }
 
   .member-tab-content { display: none; }
   .member-tab-content.active { display: block; }
@@ -779,6 +787,25 @@
     .page-header h1 { font-size: 1.15rem !important; }
     .lesson-detail-meta { font-size: 0.75rem; }
     .module-status { font-size: 0.8rem; padding: 4px 10px; }
+    /* レッスン詳細ページ */
+    .lesson-detail-title { font-size: 1.1rem; }
+    .back-btn { font-size: 0.88rem; padding: 11px 18px; }
+    .text-content { padding: 18px 16px; }
+    .text-content p, .text-content li { font-size: 0.88rem; line-height: 1.85; }
+    .work-section { padding: 18px 16px; }
+    .submit-btn { width: 100%; padding: 14px; font-size: 0.9rem; }
+    /* 詳細解説ブロック */
+    details summary { font-size: 0.92rem !important; padding: 12px 14px !important; }
+    /* 動画エリア */
+    .video-container { border-radius: 8px; }
+    /* 統計カード */
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    /* ワーク提出テキスト */
+    textarea { font-size: 0.9rem; }
+    /* モジュール */
+    .module-lessons { padding: 0 16px 16px; }
+    /* notion カードグリッド：スマホは1列 */
+    .notion-grid-cards { grid-template-columns: 1fr !important; }
   }
 
   /* ===== 管理者専用サイドバー ===== */
@@ -1048,7 +1075,7 @@
     align-items: center;
     gap: 6px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -1144,7 +1171,7 @@
     color: var(--text);
   }
   .admin-detail-tab.active {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--brand-grad);
     color: #fff;
     border-color: var(--primary);
   }
@@ -1361,6 +1388,37 @@
 
 <!-- ===== LOGIN ===== -->
 <div class="login-screen" id="loginScreen">
+  <!-- Palm tree silhouettes -->
+  <svg style="position:absolute;bottom:0;left:0;width:220px;height:320px;pointer-events:none;opacity:0.85;" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#1a1a2e">
+      <!-- trunk -->
+      <path d="M80 320 C82 280 78 240 84 200 C88 170 86 140 90 110 C91 105 89 105 88 110 C84 140 82 170 78 200 C72 240 76 280 74 320 Z"/>
+      <!-- fronds -->
+      <path d="M90 110 C70 90 40 75 15 80 C35 82 60 88 80 100 Z"/>
+      <path d="M90 110 C75 85 55 65 30 60 C50 68 70 78 85 95 Z"/>
+      <path d="M90 110 C80 82 72 55 75 30 C72 50 75 75 85 95 Z"/>
+      <path d="M90 110 C100 82 108 55 105 30 C102 50 100 75 92 95 Z"/>
+      <path d="M90 110 C105 85 125 70 150 68 C130 75 110 82 95 98 Z"/>
+      <path d="M90 110 C110 92 140 85 165 88 C145 88 118 90 98 104 Z"/>
+    </g>
+  </svg>
+  <svg style="position:absolute;bottom:0;right:0;width:180px;height:280px;pointer-events:none;opacity:0.80;" viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#1a1a2e">
+      <!-- trunk leaning left -->
+      <path d="M120 280 C115 245 118 210 112 175 C108 148 110 120 106 95 C105 90 103 90 104 95 C108 120 106 148 110 175 C116 210 113 245 118 280 Z"/>
+      <!-- fronds -->
+      <path d="M106 95 C120 75 145 62 168 65 C148 68 125 75 110 88 Z"/>
+      <path d="M106 95 C118 70 128 45 125 20 C122 40 118 65 108 88 Z"/>
+      <path d="M106 95 C95 72 88 48 92 22 C93 42 98 68 103 88 Z"/>
+      <path d="M106 95 C90 75 65 65 42 68 C62 70 88 78 102 92 Z"/>
+      <path d="M106 95 C88 80 60 75 35 80 C55 80 85 82 100 95 Z"/>
+    </g>
+  </svg>
+  <!-- Wave overlay at bottom -->
+  <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;pointer-events:none;" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 40 C240 10 480 70 720 40 C960 10 1200 70 1440 40 L1440 80 L0 80 Z" fill="rgba(30,50,88,0.5)"/>
+    <path d="M0 55 C360 25 720 75 1080 50 C1260 38 1380 62 1440 55 L1440 80 L0 80 Z" fill="rgba(30,50,88,0.35)"/>
+  </svg>
   <!-- 海画像オーバーレイ -->
   <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
     <div style="position:absolute;inset:0;background:rgba(10,30,40,0.45);"></div>
@@ -1417,11 +1475,11 @@
         <path d="M17 12 L19 14 L23 10" stroke="#1a7a8a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <span class="login-script">Lino lea</span>
-    <h1>海レジンアート養成講座</h1>
-    <p class="subtitle">6ヶ月間のオンライン養成講座</p>
+    <span class="login-script">Ola lea</span>
+    <h1>Ola lea Refine Program</h1>
+    <p class="subtitle">6ヶ月間のオンライン養成プログラム</p>
     <div style="display:flex;gap:8px;margin-bottom:16px;">
-      <button id="roleStudent" onclick="setRole('student')" style="flex:1;padding:10px;border:1.5px solid var(--primary);border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;">受講生</button>
+      <button id="roleStudent" onclick="setRole('student')" style="flex:1;padding:10px;border:1.5px solid var(--primary);border-radius:8px;background:var(--brand-grad);color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;">受講生</button>
       <button id="roleAdmin" onclick="setRole('admin')" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text-light);font-weight:700;font-size:0.82rem;cursor:pointer;font-family:inherit;">講師・管理者</button>
     </div>
     <input type="text" id="loginName" placeholder="お名前">
@@ -1434,15 +1492,15 @@
 <!-- ===== APP ===== -->
 <div class="app" id="app">
   <div class="mobile-header">
-    <h2>Lino lea</h2>
+    <h2>Ola lea</h2>
     <button class="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
   </div>
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Lino lea</h2>
-      <p>海レジンアート養成講座</p>
+      <h2>Ola lea</h2>
+      <p>Ola lea Refine Program</p>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-item active" data-page="dashboard"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 10v9a1 1 0 001 1h3v-5h6v5h3a1 1 0 001-1v-9"/></svg></span> ダッシュボード</div>
@@ -1452,7 +1510,6 @@
       <div class="nav-item" data-page="glcon"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> グルコン</div>
       <div class="nav-item admin-only" data-page="members" style="display:none;"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> 会員管理</div>
       <div class="nav-item" data-page="qa"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> みんなの質問</div>
-      <div class="nav-item" data-page="mypage"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> マイページ</div>
       <div class="nav-item" data-page="announce"><span class="icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span> お知らせ<span class="badge">3</span></div>
     </nav>
     <div style="padding:8px 12px;" id="roleSwitchArea" class="admin-only" style="display:none;">
@@ -1477,7 +1534,7 @@
   <aside class="admin-sidebar" id="adminSidebar" style="display:none;">
     <div class="admin-sidebar-header">
       <h2>Ola lea</h2>
-      <p>海レジンアート養成講座</p>
+      <p>Ola lea Refine Program</p>
       <span class="admin-mode-badge">管理者モード</span>
     </div>
     <nav class="admin-sidebar-nav">
@@ -1515,9 +1572,12 @@
 
     <!-- ===== DASHBOARD ===== -->
     <div class="page active" id="page-dashboard">
-      <div class="page-header">
-        <h1>おかえりなさい、<span id="welcomeName">会員</span>さん</h1>
-        <p>講座の進捗をチェックしましょう</p>
+      <div id="dashWelcome" style="margin-bottom:24px;padding:24px 28px;background:linear-gradient(135deg,#b87cbf 0%,#e8789a 25%,#e87848 50%,#f5a23c 75%,#f5c842 100%);border-radius:8px;color:#fff;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(232,120,74,0.3);">
+        <div style="position:relative;z-index:1;">
+          <div style="font-size:0.75rem;letter-spacing:0.1em;opacity:0.85;margin-bottom:4px;">Ola lea Refine Program</div>
+          <div style="font-size:1.3rem;font-weight:700;margin-bottom:2px;">おかえりなさい、<span id="dashUserName">さん</span></div>
+          <div style="font-size:0.82rem;opacity:0.88;">今日も一歩ずつ進んでいきましょう</div>
+        </div>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -1527,13 +1587,13 @@
         </div>
         <div class="stat-card">
           <div class="label">動画・テキスト</div>
-          <div class="value">0 / 22</div>
-          <div class="sub">全22ステップ</div>
+          <div class="value">0 / 18</div>
+          <div class="sub">全18ステップ</div>
         </div>
         <div class="stat-card">
           <div class="label">ワーク提出</div>
-          <div class="value">0 / 22</div>
-          <div class="sub">次: ショップ名・ブランドイメージ</div>
+          <div class="value">0 / 18</div>
+          <div class="sub">次: ブランディング</div>
         </div>
       </div>
 
@@ -1545,7 +1605,7 @@
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin-bottom:28px;">
         <a href="https://mosh.jp/user/memberships/341756/posts" target="_blank" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); display:flex; align-items:center; justify-content:center;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
             </div>
             <strong style="font-size:0.95rem;">Olalea会員ページ</strong>
@@ -1554,7 +1614,7 @@
         </a>
         <div onclick="showPage('glcon')" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); display:flex; align-items:center; justify-content:center;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <strong style="font-size:0.95rem;">セミナー・グループコンサル</strong>
@@ -1563,7 +1623,7 @@
         </div>
         <a href="#" onclick="alert('LINEにて「コンサル希望」とメッセージをお送りください。\n\n【料金】\n・6ヶ月の間、3回まで無料\n・4回目以降は有料\n　30分：10,000円\n　60分：18,000円'); return false;" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); display:flex; align-items:center; justify-content:center;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             </div>
             <strong style="font-size:0.95rem;">個別コンサル予約</strong>
@@ -1586,15 +1646,21 @@
       <div id="contentList">
         <div class="page-header">
           <h1><svg class="ico-lg" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> コンテンツ</h1>
-          <p>5つのPhaseで構成されたカリキュラム。各コンテンツをクリックすると動画・テキスト・ワーク提出ができます</p>
+          <p style="line-height:1.9;">6ヶ月で月10万円を目指す！ステップバイステップで進めていきましょう<br>
+            <span style="font-size:0.85rem;color:var(--text-light);">1か月目などは目安なので、どんどん進める人は進んでも大丈夫です！<br>完了した項目については&#x2705;を入れて、自身で分かりやすく管理しましょう。</span>
+          </p>
         </div>
         <div class="module-list">
 
-          <!-- Phase 1: 基盤づくり -->
+          <!-- Phase 1: 基礎作り -->
+          <div style="margin:8px 0 6px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.75rem;font-weight:700;color:#fff;background:var(--brand-grad);border-radius:20px;padding:3px 12px;letter-spacing:0.04em;white-space:nowrap;">Phase 1</span>
+            <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">基礎作り</span>
+            <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">1ヶ月目</span>
+          </div>
           <div class="module-card open">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num">1</div>
-              <div class="module-info"><h3>基盤づくり</h3><p>6ステップ ・ 1ヶ月目</p></div>
+            <div class="module-header" onclick="toggleModule(this)" style="padding:12px 24px;">
+              <div class="module-info"><p style="margin:0;font-size:0.85rem;">2ステップ</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons1">
@@ -1603,10 +1669,14 @@
           </div>
 
           <!-- Phase 2: 商品準備 -->
+          <div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.75rem;font-weight:700;color:#fff;background:var(--brand-grad);border-radius:20px;padding:3px 12px;letter-spacing:0.04em;white-space:nowrap;">Phase 2</span>
+            <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">商品準備</span>
+            <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">1〜2ヶ月目</span>
+          </div>
           <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num">2</div>
-              <div class="module-info"><h3>商品準備</h3><p>4ステップ ・ 1〜2ヶ月目</p></div>
+            <div class="module-header" onclick="toggleModule(this)" style="padding:12px 24px;">
+              <div class="module-info"><p style="margin:0;font-size:0.85rem;">4ステップ</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons2">
@@ -1614,11 +1684,15 @@
             </div>
           </div>
 
-          <!-- Phase 3: 集客の仕組みづくり -->
+          <!-- Phase 3: 集客の仕組み -->
+          <div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.75rem;font-weight:700;color:#fff;background:var(--brand-grad);border-radius:20px;padding:3px 12px;letter-spacing:0.04em;white-space:nowrap;">Phase 3</span>
+            <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">集客の仕組み</span>
+            <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">2〜3ヶ月目</span>
+          </div>
           <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num">3</div>
-              <div class="module-info"><h3>集客の仕組みづくり</h3><p>4ステップ ・ 2〜3ヶ月目</p></div>
+            <div class="module-header" onclick="toggleModule(this)" style="padding:12px 24px;">
+              <div class="module-info"><p style="margin:0;font-size:0.85rem;">4ステップ</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons3">
@@ -1627,10 +1701,14 @@
           </div>
 
           <!-- Phase 4: 販売力強化 -->
+          <div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.75rem;font-weight:700;color:#fff;background:var(--brand-grad);border-radius:20px;padding:3px 12px;letter-spacing:0.04em;white-space:nowrap;">Phase 4</span>
+            <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">販売力強化</span>
+            <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">3〜4ヶ月目</span>
+          </div>
           <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num">4</div>
-              <div class="module-info"><h3>販売力強化</h3><p>4ステップ ・ 3〜4ヶ月目</p></div>
+            <div class="module-header" onclick="toggleModule(this)" style="padding:12px 24px;">
+              <div class="module-info"><p style="margin:0;font-size:0.85rem;">4ステップ</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons4">
@@ -1639,10 +1717,14 @@
           </div>
 
           <!-- Phase 5: 運営の安定化 -->
+          <div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.75rem;font-weight:700;color:#fff;background:var(--brand-grad);border-radius:20px;padding:3px 12px;letter-spacing:0.04em;white-space:nowrap;">Phase 5</span>
+            <span style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">運営の安定化</span>
+            <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;white-space:nowrap;">5〜6ヶ月目</span>
+          </div>
           <div class="module-card">
-            <div class="module-header" onclick="toggleModule(this)">
-              <div class="module-num">5</div>
-              <div class="module-info"><h3>運営の安定化</h3><p>4ステップ ・ 5〜6ヶ月目</p></div>
+            <div class="module-header" onclick="toggleModule(this)" style="padding:12px 24px;">
+              <div class="module-info"><p style="margin:0;font-size:0.85rem;">4ステップ</p></div>
               <span class="module-status current">受講中</span>
             </div>
             <div class="module-lessons" id="phaseLessons5">
@@ -1658,7 +1740,7 @@
         <button class="back-btn" onclick="closeLesson()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> コンテンツ一覧に戻る</button>
 
         <div class="lesson-detail-title" id="lessonTitle">ブランディング</div>
-        <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基盤づくり」 ・ 1ヶ月目</div>
+        <div class="lesson-detail-meta" id="lessonMeta">Phase 1「基礎作り」 ・ 1ヶ月目</div>
         <div class="lesson-detail-meta" id="lessonDuration" style="display:none;"></div>
 
         <!-- Lesson body (dynamically built: 動画 → 解説 → Canva/PDF → チェックリスト) -->
@@ -2224,9 +2306,9 @@
             <h2>新規Q&amp;A追加</h2>
             <label class="admin-form-label">Phase</label>
             <select class="admin-form-select" id="qaPhaseInput">
-              <option value="Phase 1">Phase 1: 基盤づくり</option>
+              <option value="Phase 1">Phase 1: 基礎作り</option>
               <option value="Phase 2">Phase 2: 商品準備</option>
-              <option value="Phase 3">Phase 3: 集客の仕組みづくり</option>
+              <option value="Phase 3">Phase 3: 集客の仕組み</option>
               <option value="Phase 4">Phase 4: 販売力強化</option>
               <option value="Phase 5">Phase 5: 運営の安定化</option>
               <option value="全般">全般</option>
@@ -2348,86 +2430,45 @@ const notionContent = {"self_intro": {"title": "自己紹介のコツ", "html": 
 
 // === Lesson data ===
 const lessons = {
-  // ===== Phase 1: 基盤づくり（6レッスン） =====
-  '1-1': {
-    title: 'ショップ名・ブランドイメージ',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 1/6',
-    duration: '',
-    checklist: [
-      { label: 'ショップ名を決める' },
-      { label: 'ブランドイメージを決める（3つの形容詞で表現）' },
-      { label: 'ターゲット顧客（ペルソナ）を明確にする' }
-    ],
-    hasWork: true,
-    workDesc: 'ショップ名、ブランドイメージ（3つの形容詞）、ターゲット顧客像を提出してください。',
-    workSubmitted: false
-  },
-  '1-2': {
-    title: 'ブランドカラー・世界観',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 2/6',
-    duration: '',
-    checklist: [
-      { label: 'メインカラーを決める', hint: '下の「ブランドカラー決定ツール」を使って遊んでみよう' },
-      { label: 'サブカラー・アクセントカラーを決める' },
-      { label: 'ブランドの世界観イメージを文章で書き出す' }
-    ],
-    hasWork: true,
-    workHasUrl: true,
-    workDesc: '決めた3色のカラーコード（例：#5fb9d1 / #e8f4f8 / #b87e4c）を入力し、CanvaのシェアURLまたは画像を添付して提出してください。',
-    workSubmitted: false
-  },
-  '1-3': {
-    title: 'ロゴ・ショップカード・商品台紙',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 3/6',
-    duration: '',
-    checklist: [
-      { label: 'ロゴを作成する' },
-      { label: 'ショップカードを制作する' },
-      { label: '名刺を制作する' },
-      { label: '商品台紙を制作する' }
-    ],
-    hasWork: true,
-    workDesc: 'Canvaで制作したロゴ・ショップカード・名刺・商品台紙のシェアURLを提出してください。',
-    workSubmitted: false
-  },
-  '1-4': {
-    title: '自己紹介文',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 4/6',
-    duration: '',
-    checklist: [
-      { label: '「何屋さんか」が一言で分かる自己紹介を書く' },
-      { label: '「なぜやっているか」のストーリーを添える' },
-      { label: 'ショップの自己紹介文として清書する' }
-    ],
-    hasWork: true,
-    workDesc: '完成した自己紹介文を提出してください（300字程度）。',
-    workSubmitted: false
-  },
-  '1-5': {
-    title: 'ストア基本設定',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 5/6',
-    duration: '',
-    checklist: [
-      { label: 'プロフィール・ショップ情報を入力する' },
-      { label: '配送方法・送料を設定する' },
-      { label: '決済方法を設定する' }
-    ],
-    hasWork: true,
-    workDesc: '設定完了後、ストアのURLを提出してください。',
-    workSubmitted: false
-  },
-  '1-6': {
-    title: '法律関係（特商法・返品）',
-    meta: 'Phase 1「基盤づくり」 ・ ステップ 6/6',
-    duration: '',
-    checklist: [
-      { label: '特定商取引法に基づく表記を設定する' },
-      { label: '返品・交換ポリシーを決定する' }
-    ],
-    hasWork: true,
-    workDesc: 'ストアに法律関係の表記・ポリシーを公開したら、該当ページのURLを提出してください。',
-    workSubmitted: false
-  },
+   // ===== Phase 1: 基礎作り（3レッスン） =====
+   '1-1': {
+     title: 'ブランディング',
+     meta: 'Phase 1「基礎作り」 ・ ステップ 1/2',
+     duration: '',
+     checklist: [
+       // (a) ショップ名・ブランドイメージ
+       { label: 'ショップ名を決める' },
+       { label: 'ブランドイメージを決める' },
+       { label: 'ターゲット顧客（ペルソナ）を明確にする' },
+       { label: 'ブランドカラー・世界観を決める', hint: '下の「ブランドカラー決定ツール」を使ってみよう' },
+       // (b) クリエイティブ制作
+       { label: 'ロゴを作成する' },
+       { label: 'ショップカードを制作する' },
+       { label: '名刺を制作する' },
+       { label: '商品台紙を制作する' },
+       // (c) 自己紹介文
+       { label: 'ショップの自己紹介文を書く', hint: '下の「自己紹介のコツ」を参考に書いてみよう' }
+     ],
+     hasWork: true,
+     workHasUrl: false,
+     workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
+     workSubmitted: false
+   },
+   '1-2': {
+     title: 'ストア設定',
+     meta: 'Phase 1「基礎作り」 ・ ステップ 2/2',
+     duration: '',
+     checklist: [
+       { label: 'プロフィール・ショップ情報を入力する', hint: '書いた自己紹介文をここに入れよう' },
+       { label: '特定商取引法に基づく表記を設定する', hint: '下のテンプレをコピペして設定しよう' },
+       { label: '配送方法・送料を設定する', hint: '料金表を参考に設定しよう' },
+       { label: '決済方法を設定する', hint: 'クレジットカード決済は必ず設定しよう' },
+       { label: '返品・交換ポリシーを決定する', hint: '下のテンプレをコピペして設定しよう' }
+     ],
+     hasWork: true,
+     workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
+     workSubmitted: false
+   },
 
   // ===== Phase 2: 商品準備（4レッスン） =====
   '2-1': {
@@ -2439,7 +2480,7 @@ const lessons = {
       { label: '5ショット構成を理解する' }
     ],
     hasWork: true,
-    workDesc: '整えた撮影環境の写真と、5ショット構成のメモを提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '2-2': {
@@ -2451,7 +2492,7 @@ const lessons = {
       { label: 'ディテール（質感）写真を撮影する' }
     ],
     hasWork: true,
-    workDesc: 'メイン写真とディテール写真を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '2-3': {
@@ -2464,7 +2505,7 @@ const lessons = {
       { label: '写真を編集・加工する' }
     ],
     hasWork: true,
-    workDesc: '使用・サイズ・編集後の写真を合わせて3枚以上提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '2-4': {
@@ -2479,50 +2520,50 @@ const lessons = {
       { label: '10商品は掲載する', hint: '資料：商品登録のコツ' }
     ],
     hasWork: true,
-    workDesc: '登録した商品ページのURLまたはスクリーンショットを提出してください（3商品以上）。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
 
-  // ===== Phase 3: 集客の仕組みづくり（4レッスン） =====
+  // ===== Phase 3: 集客の仕組み（4レッスン） =====
   '3-1': {
     title: 'SNS選び・投稿設計',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 1/4',
+    meta: 'Phase 3「集客の仕組み」 ・ ステップ 1/4',
     duration: '',
     checklist: [
       { label: 'メインSNSを決める（Instagram / TikTokなど）' },
       { label: '投稿テーマ・頻度を決める' }
     ],
     hasWork: true,
-    workDesc: '選んだSNSと、投稿テーマ・頻度の計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '3-2': {
     title: 'ハッシュタグ戦略',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 2/4',
+    meta: 'Phase 3「集客の仕組み」 ・ ステップ 2/4',
     duration: '',
     checklist: [
       { label: 'ハッシュタグの3段構え（大・中・小）を理解する', hint: '資料：SNS運用のコツ' },
       { label: '自分の作品に合うハッシュタグを10〜15個リストアップ' }
     ],
     hasWork: true,
-    workDesc: 'リストアップしたハッシュタグ10〜15個を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '3-3': {
     title: 'プロフィール・最初の10投稿',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 3/4',
+    meta: 'Phase 3「集客の仕組み」 ・ ステップ 3/4',
     duration: '',
     checklist: [
       { label: 'プロフィールを整える', hint: '資料：SNSプロフィールテンプレ' },
       { label: '最初の10投稿を作成する', hint: '資料：Instagram投稿ネタ集' }
     ],
     hasWork: true,
-    workDesc: 'SNSアカウントのURLと、最初の10投稿の計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '3-4': {
     title: 'ファン作り3本柱',
-    meta: 'Phase 3「集客の仕組みづくり」 ・ ステップ 4/4',
+    meta: 'Phase 3「集客の仕組み」 ・ ステップ 4/4',
     duration: '',
     checklist: [
       { label: '制作過程を発信する' },
@@ -2530,7 +2571,7 @@ const lessons = {
       { label: '作家としてのストーリーを伝える' }
     ],
     hasWork: true,
-    workDesc: '3本柱を意識した投稿計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
 
@@ -2544,7 +2585,7 @@ const lessons = {
       { label: '季節イベント・キャンペーンを1つ企画する' }
     ],
     hasWork: true,
-    workDesc: 'キャンペーン企画案を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '4-2': {
@@ -2556,7 +2597,7 @@ const lessons = {
       { label: 'リピーター向け特典を考える' }
     ],
     hasWork: true,
-    workDesc: '3ヶ月分の新作スケジュールと、リピーター特典案を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '4-3': {
@@ -2568,7 +2609,7 @@ const lessons = {
       { label: '配信の頻度・テーマを決める' }
     ],
     hasWork: true,
-    workDesc: 'メルマガ/LINE公式のリンクと、配信計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '4-4': {
@@ -2581,7 +2622,7 @@ const lessons = {
       { label: '写真・説明文をテスト改善する' }
     ],
     hasWork: true,
-    workDesc: '現在のアクセス数・売上データと、改善施策案を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
 
@@ -2595,7 +2636,7 @@ const lessons = {
       { label: '発送の流れをルーティン化する', hint: '資料：発送ルーティン＆梱包のコツ' }
     ],
     hasWork: true,
-    workDesc: '梱包写真と、発送ルーティンの計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '5-2': {
@@ -2607,7 +2648,7 @@ const lessons = {
       { label: 'お客様対応テンプレートを用意する', hint: '資料：顧客対応テンプレート集' }
     ],
     hasWork: true,
-    workDesc: '在庫管理シートと、お客様対応テンプレを提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '5-3': {
@@ -2619,7 +2660,7 @@ const lessons = {
       { label: '同梱ルーティンに組み込む' }
     ],
     hasWork: true,
-    workDesc: 'サンキューカードのデザイン案を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   },
   '5-4': {
@@ -2631,7 +2672,7 @@ const lessons = {
       { label: 'リピーター限定の施策を実施する' }
     ],
     hasWork: true,
-    workDesc: 'レビュー依頼文と、リピーター施策の計画を提出してください。',
+    workDesc: 'このステップで感じたこと・気づいたこと・やることを自由にアウトプットしよう！',
     workSubmitted: false
   }
 };
@@ -2699,7 +2740,7 @@ function doLogin() {
   const initial = name.charAt(0).toUpperCase();
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('app').classList.add('active');
-  document.getElementById('welcomeName').textContent = name;
+  const wnEl = document.getElementById('dashUserName'); if(wnEl) wnEl.textContent = name + 'さん';
   document.getElementById('sidebarName').textContent = name;
   document.getElementById('sidebarAvatar').textContent = initial;
   document.getElementById('mypageName').textContent = name;
@@ -2796,7 +2837,7 @@ function toggleModule(header) { header.closest('.module-card').classList.toggle(
 // === Open lesson detail ===
 // 全レッスンキーの順序（会員データ配列のインデックスと対応）
 const ALL_LESSON_KEYS = [
-  '1-1','1-2','1-3','1-4','1-5','1-6',
+  '1-1','1-2',
   '2-1','2-2','2-3','2-4',
   '3-1','3-2','3-3','3-4',
   '4-1','4-2','4-3','4-4',
@@ -2809,36 +2850,41 @@ function getLessonIndex(id) {
 
 // === レッスン毎のリソース（動画・Notion解説・PDF・Canvaテンプレ） ===
 const lessonResources = {
-  // Phase 1: 基盤づくり
+  // Phase 1: 基礎作り
   '1-1': {
-    tools: ['shopName']
+    // セクション構成（(a)ブランディング / (b)ロゴ制作 / (c)ショップの自己紹介）
+    sections: [
+      {
+        label: 'ショップ名を決める',
+        videos: [
+          { title: 'Canvaでブランドカラーを決める', url: 'https://vimeo.com/1183360962/07ab4f6b88' }
+        ],
+        tools: ['shopName', 'brandColor'],
+        canvas: [
+          { title: 'ブランドカラー決定テンプレ', url: 'https://canva.link/brandcolor-olalea', note: 'このCanvaテンプレを編集してブランドカラーを決めよう' }
+        ],
+        checklistRange: [0, 3]
+      },
+      {
+        label: 'ロゴを作成する',
+        videos: [
+          { title: '私のロゴや商品台紙ができるまで', url: 'https://vimeo.com/1183363772/d9f692161c' }
+        ],
+        canvas: [
+          { title: 'ロゴ・商品台紙テンプレ', url: 'https://canva.link/rogo-olalea', note: 'ロゴ・ショップカード・商品台紙もCanvaで作れます' }
+        ],
+        checklistRange: [4, 7]
+      },
+      {
+        label: 'ショップの自己紹介',
+        notions: ['self_intro'],
+        checklistRange: [8, 8]
+      }
+    ]
   },
   '1-2': {
-    videos: [
-      { title: 'Canvaでブランドカラーを決める', url: 'https://vimeo.com/1183360962/07ab4f6b88' }
-    ],
-    tools: ['brandColor'],
-    canvas: [
-      { title: 'ブランドカラー決定テンプレ', url: 'https://canva.link/brandcolor-olalea', note: 'このCanvaテンプレを編集→シェアURLを下のフォームに貼って提出' }
-    ]
-  },
-  '1-3': {
-    videos: [
-      { title: '私のロゴや商品台紙ができるまで', url: 'https://vimeo.com/1183363772/d9f692161c' }
-    ],
-    canvas: [
-      { title: 'ロゴ・商品台紙テンプレ', url: 'https://canva.link/rogo-olalea' }
-    ]
-  },
-  '1-4': {
-    notions: ['self_intro']
-  },
-  '1-5': {
-    tools: ['storeSetup'],
+    tools: ['storeSetup', 'legalTemplates'],
     notions: ['profile_input', 'shipping_fee', 'payment']
-  },
-  '1-6': {
-    tools: ['legalTemplates']
   },
 
   // Phase 2: 商品準備
@@ -4357,6 +4403,190 @@ function updateChecklistProgress(lessonId) {
   if (el) el.textContent = `${done} / ${lesson.checklist.length} 完了`;
 }
 
+// === Notion content: ☐ を操作可能なチェックボックスに変換 ===
+function makeNotionInteractive(html, lessonId, notionKey) {
+  let idx = 0;
+  return html.replace(
+    /<span style="margin-right:8px;">☐<\/span>/g,
+    function() {
+      const i = idx++;
+      const sk = 'nC_' + (window._linkedMemberId || 'demo') + '_' + lessonId + '_' + notionKey + '_' + i;
+      const checked = localStorage.getItem(sk) === '1' ? 'checked' : '';
+      return '<input type="checkbox" ' + checked + ' data-nsk="' + sk + '" onchange="var s=this.dataset.nsk;localStorage.setItem(s,this.checked?\'1\':\'0\');var p=this.parentElement;p.style.background=this.checked?\'rgba(163,184,153,0.12)\':\'\';p.style.opacity=this.checked?\'0.65\':\'1\';" style="width:17px;height:17px;accent-color:var(--primary);cursor:pointer;vertical-align:-3px;margin-right:8px;flex-shrink:0;">';
+    }
+  );
+}
+
+// === Notion カードアコーディオン トグル ===
+function toggleNotionCard(grpId, idx) {
+  const content = document.getElementById(grpId + '_content_' + idx);
+  const arrow   = document.getElementById(grpId + '_arrow_' + idx);
+  const btn     = document.getElementById(grpId + '_btn_' + idx);
+  if (!content) return;
+  const isOpen = content.style.display !== 'none';
+  // 全部閉じる
+  let i = 0;
+  while (true) {
+    const c = document.getElementById(grpId + '_content_' + i);
+    const a = document.getElementById(grpId + '_arrow_' + i);
+    const b = document.getElementById(grpId + '_btn_' + i);
+    if (!c) break;
+    c.style.display = 'none';
+    if (a) { a.textContent = '▼'; a.style.transform = 'rotate(0deg)'; }
+    if (b) { b.style.boxShadow = '0 2px 12px rgba(232,120,74,0.2)'; b.style.filter = 'brightness(1)'; }
+    i++;
+  }
+  // 対象を開く（すでに開いていた場合は閉じたまま）
+  if (!isOpen) {
+    content.style.display = 'block';
+    arrow.textContent = '▲';
+    arrow.style.transform = 'rotate(0deg)';
+    btn.style.boxShadow = '0 4px 20px rgba(232,120,74,0.38)';
+    btn.style.filter = 'brightness(1.04)';
+    setTimeout(function() { content.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 60);
+  }
+}
+
+// === セクション構成レッスン（sections配列を持つレッスン用）===
+function buildSectionedLesson(id) {
+  const res = lessonResources[id] || {};
+  const lesson = lessons[id];
+  if (!res.sections || !lesson) return buildLessonResources(id) + renderInteractiveChecklist(id);
+
+  const saved = getSubChecks(id);
+  const totalChecked = lesson.checklist.filter((_, i) => saved[i]).length;
+  const totalItems = lesson.checklist.length;
+
+  const toolRenderers = {
+    shopName:        () => renderShopNameGuide(),
+    brandColor:      () => renderWhyBrandColor() + renderHowToChooseBrandColor() + renderBrandColorTool(),
+    legalTemplates:  () => renderLegalTemplates(),
+    storeSetup:      () => renderWhyStoreSetup() + renderStoreSetupRoadmap(),
+    productPhoto:    () => renderProductPhotoGuide(),
+    productPhotoMain:() => renderProductPhotoMain(),
+    productPhotoEdit:() => renderProductPhotoEdit(),
+    productRegister: () => renderProductRegisterGuide(),
+    snsRoadmap:      () => renderSnsRoadmap(),
+    hashtagStrategy: () => renderHashtagStrategy(),
+    fanMaking:       () => renderFanMaking(),
+    marketing:       () => renderMarketingPillars(),
+    analytics:       () => renderAnalyticsPDCA(),
+    operation:       () => renderOperationFlow(),
+    repeat:          () => renderRepeatStrategy()
+  };
+
+  let html = '';
+
+  // 上部：3つのコンテンツが分かるナビゲーションカード
+  html += `<div style="margin:0 0 28px;">
+    <p style="font-size:0.82rem;color:var(--text-light);margin:0 0 10px;">このレッスンは<strong style="color:var(--primary);">${res.sections.length}つのパート</strong>で構成されています</p>
+    <div style="display:grid;grid-template-columns:repeat(${res.sections.length},1fr);gap:8px;">`;
+  res.sections.forEach((sec, si) => {
+    html += `<a href="#sec_${id}_${si}" onclick="event.preventDefault();document.getElementById('sec_${id}_${si}')?.scrollIntoView({behavior:'smooth',block:'start'});" style="display:block;text-decoration:none;background:rgba(106,159,216,0.08);border:1.5px solid rgba(106,159,216,0.3);border-radius:8px;padding:10px 10px 10px 10px;text-align:center;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(106,159,216,0.16)'" onmouseout="this.style.background='rgba(106,159,216,0.08)'">
+      <div style="width:26px;height:26px;background:var(--brand-grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;margin:0 auto 6px;">${si + 1}</div>
+      <div style="font-size:0.78rem;font-weight:700;color:#2d6aad;line-height:1.4;">${sec.label}</div>
+    </a>`;
+  });
+  html += `</div></div>`;
+
+  // 全体進捗バー（updateChecklistProgress が参照するIDを含める）
+  html += `<div style="margin:0 0 24px;padding:14px 18px;background:var(--bg);border-radius:var(--radius);display:flex;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    <span style="font-size:0.9rem;color:var(--text-light);">やることリスト</span>
+    <span id="checklistProgress_${id}" style="margin-left:auto;font-size:0.9rem;font-weight:700;color:var(--primary);">${totalChecked} / ${totalItems} 完了</span>
+  </div>`;
+
+  res.sections.forEach((section, sIdx) => {
+    // セクションヘッダー（Notionの青いボックス風 ＋ アンカーID）
+    html += `<div id="sec_${id}_${sIdx}" style="background:rgba(100,140,210,0.10);border-left:4px solid #6a9fd8;border-radius:0 6px 6px 0;padding:11px 18px;margin:${sIdx === 0 ? '0' : '40px'} 0 18px;display:flex;align-items:center;gap:10px;">
+      <span style="width:24px;height:24px;min-width:24px;background:#6a9fd8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:#fff;">${sIdx + 1}</span>
+      <h3 style="margin:0;color:#2d6aad;font-size:1.0rem;font-weight:700;">${section.label}</h3>
+    </div>`;
+
+    // 動画
+    if (section.videos && section.videos.length) {
+      section.videos.forEach(v => {
+        const m = v.url.match(/vimeo\.com\/(\d+)(?:\/([a-f0-9]+))?/);
+        if (m) {
+          const vid = m[1], hash = m[2] ? '?h=' + m[2] : '';
+          html += `<div style="margin:0 0 16px;">
+            <p style="font-weight:600;margin-bottom:8px;color:var(--text);">${v.title}</p>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);background:#000;">
+              <iframe src="https://player.vimeo.com/video/${vid}${hash}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>`;
+        } else {
+          html += `<div style="margin:0 0 12px;padding:12px 16px;background:var(--bg);border-radius:var(--radius);"><a href="${v.url}" target="_blank" style="color:var(--primary);font-weight:600;">▶ ${v.title}</a></div>`;
+        }
+      });
+    } else if (!section.notions || !section.notions.length) {
+      html += '<div style="margin:0 0 16px;padding:16px 20px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.88rem;"><strong>動画は近日公開予定です</strong><br><span style="font-size:0.82rem;">下のチェックリストで先に進めてOK！</span></div>';
+    }
+
+    // ツール
+    if (section.tools && section.tools.length) {
+      section.tools.forEach(k => { if (toolRenderers[k]) html += toolRenderers[k](); });
+    }
+
+    // Notion カード
+    if (section.notions && section.notions.length) {
+      const grpId = 'ng_' + id.replace(/-/g, '_') + '_s' + sIdx;
+      html += '<p style="font-size:0.82rem;color:var(--text-light);margin:12px 0 10px;">各ボタンをタップすると解説が開きます。チェックリストも操作できます。</p>';
+      html += '<div class="notion-grid-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:4px;">';
+      section.notions.forEach((key, i) => {
+        const n = notionContent[key];
+        if (!n) return;
+        html += `<button id="${grpId}_btn_${i}" onclick="toggleNotionCard('${grpId}',${i})" style="text-align:left;background:var(--brand-grad);color:#fff;border:none;border-radius:8px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:10px;font-family:inherit;font-size:0.88rem;font-weight:700;box-shadow:0 2px 12px rgba(232,120,74,0.2);transition:all 0.2s;width:100%;line-height:1.3;">
+          <span style="width:28px;height:28px;min-width:28px;background:rgba(255,255,255,0.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:700;">${i + 1}</span>
+          <span style="flex:1;">${n.title}</span>
+          <span id="${grpId}_arrow_${i}" style="font-size:0.75rem;flex-shrink:0;min-width:12px;">▼</span>
+        </button>`;
+      });
+      html += '</div>';
+      section.notions.forEach((key, i) => {
+        const n = notionContent[key];
+        if (!n) return;
+        const iHtml = makeNotionInteractive(n.html, id, key);
+        html += `<div id="${grpId}_content_${i}" style="display:none;margin:0 0 16px;padding:20px;background:#fff;border:1px solid rgba(232,120,154,0.25);border-top:3px solid var(--primary);border-radius:0 0 8px 8px;">${iHtml}</div>`;
+      });
+    }
+
+    // Canva テンプレート
+    if (section.canvas && section.canvas.length) {
+      html += '<h4 style="margin:20px 0 8px;color:var(--primary-dark);font-size:0.92rem;display:flex;align-items:center;gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> テンプレート</h4>';
+      section.canvas.forEach(c => {
+        const noteHtml = c.note ? `<div style="font-size:0.78rem;color:var(--text-light);margin-top:5px;line-height:1.6;">${c.note}</div>` : '';
+        html += `<div style="margin:8px 0;padding:12px 16px;background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03));border-left:3px solid var(--primary);border-radius:var(--radius);">
+          <a href="${c.url}" target="_blank" style="color:var(--primary-dark);font-weight:600;text-decoration:none;">
+            🎨 ${c.title} <span style="font-size:0.82rem;color:var(--text-light);font-weight:400;">（Canvaで開く）</span>
+          </a>${noteHtml}
+        </div>`;
+      });
+    }
+
+    // チェックリスト（このセクション分）
+    if (section.checklistRange && lesson.checklist) {
+      const [from, to] = section.checklistRange;
+      html += '<div style="margin:16px 0 0;">';
+      for (let idx = from; idx <= to; idx++) {
+        const item = lesson.checklist[idx];
+        if (!item) continue;
+        const checked = !!saved[idx];
+        const bg = checked ? 'rgba(163,184,153,0.12)' : 'var(--bg)';
+        const ts = checked ? 'text-decoration:line-through;color:var(--text-light);' : '';
+        const hintHtml = item.hint ? `<br><span style="font-size:0.8rem;color:var(--text-light);">${item.hint}</span>` : '';
+        html += `<label style="display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-left:3px solid var(--accent);margin-bottom:8px;background:${bg};border-radius:var(--radius);cursor:pointer;transition:background 0.2s;" onmouseover="this.style.filter='brightness(0.98)'" onmouseout="this.style.filter='brightness(1)'">
+          <input type="checkbox" ${checked ? 'checked' : ''} onchange="setSubCheck('${id}', ${idx}, this.checked); this.closest('label').style.background=this.checked?'rgba(163,184,153,0.12)':'var(--bg)'; const span=this.closest('label').querySelector('.check-item-label'); if(span){span.style.textDecoration=this.checked?'line-through':'none';span.style.color=this.checked?'var(--text-light)':'var(--text)';}" style="margin-top:3px;width:18px;height:18px;flex-shrink:0;accent-color:var(--primary);cursor:pointer;">
+          <span class="check-item-label" style="flex:1;${ts}"><strong>${item.label}</strong>${hintHtml}</span>
+        </label>`;
+      }
+      html += '</div>';
+    }
+  });
+
+  return html;
+}
+
 function buildLessonResources(id) {
   const res = lessonResources[id] || {};
   const hasVideos = res.videos && res.videos.length;
@@ -4388,42 +4618,64 @@ function buildLessonResources(id) {
     html += '<div style="margin:0 0 24px;padding:20px 24px;background:var(--bg);border-radius:var(--radius);text-align:center;color:var(--text-light);font-size:0.9rem;"><strong>📺 動画は近日公開予定です。</strong><br><span style="font-size:0.85rem;">下の解説とチェックリストで先に進めてOK！</span></div>';
   }
 
-  // ② 詳しい解説（動画のすぐ下、折りたたみ）
-  if (hasNotions) {
-    html += '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> 詳しい解説（あとで読み返し用）</h3>';
-    res.notions.forEach(key => {
-      const n = notionContent[key];
-      if (!n) return;
-      html += `<details style="margin:10px 0;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);">
-        <summary style="cursor:pointer;font-weight:600;color:var(--primary-dark);font-size:0.95rem;">${n.title} を開く</summary>
-        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">${n.html}</div>
-      </details>`;
+  // ツールレンダラー定義
+  const toolRenderers = {
+    shopName: () => renderShopNameGuide(),
+    brandColor: () => renderWhyBrandColor() + renderHowToChooseBrandColor() + renderBrandColorTool(),
+    legalTemplates: () => renderLegalTemplates(),
+    storeSetup: () => renderWhyStoreSetup() + renderStoreSetupRoadmap(),
+    productPhoto: () => renderProductPhotoGuide(),
+    productPhotoMain: () => renderProductPhotoMain(),
+    productPhotoEdit: () => renderProductPhotoEdit(),
+    productRegister: () => renderProductRegisterGuide(),
+    snsRoadmap: () => renderSnsRoadmap(),
+    hashtagStrategy: () => renderHashtagStrategy(),
+    fanMaking: () => renderFanMaking(),
+    marketing: () => renderMarketingPillars(),
+    analytics: () => renderAnalyticsPDCA(),
+    operation: () => renderOperationFlow(),
+    repeat: () => renderRepeatStrategy()
+  };
+  // 「テンプレートとして後置きするべきツール」
+  const TEMPLATE_TOOLS = ['legalTemplates'];
+
+  // ②a 導入ツール（notion カードの前に表示 — なぜやるかの文脈）
+  if (res.tools && res.tools.length) {
+    res.tools.filter(k => !TEMPLATE_TOOLS.includes(k)).forEach(toolKey => {
+      if (toolRenderers[toolKey]) html += toolRenderers[toolKey]();
     });
   }
 
-  // ③ インタラクティブツール・解説ブロック
+  // ② 詳しい解説（カードグリッド + アコーディオン展開）
+  if (hasNotions) {
+    const grpId = 'ng_' + id.replace(/-/g, '_');
+    html += '<h3 style="margin-top:32px;color:var(--primary-dark);display:flex;align-items:center;gap:8px;font-size:1.05rem;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> 詳しい解説</h3>';
+    html += '<p style="font-size:0.82rem;color:var(--text-light);margin-bottom:12px;">各ボタンをタップすると解説が開きます。チェックリストも操作できます。</p>';
+    // ---- カードボタン グリッド ----
+    html += '<div class="notion-grid-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:4px;">';
+    res.notions.forEach((key, i) => {
+      const n = notionContent[key];
+      if (!n) return;
+      html += `<button id="${grpId}_btn_${i}" onclick="toggleNotionCard('${grpId}',${i})" style="text-align:left;background:var(--brand-grad);color:#fff;border:none;border-radius:8px;padding:14px 14px 14px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;font-family:inherit;font-size:0.88rem;font-weight:700;box-shadow:0 2px 12px rgba(232,120,74,0.2);transition:all 0.2s;width:100%;line-height:1.3;">
+        <span style="width:28px;height:28px;min-width:28px;background:rgba(255,255,255,0.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:700;">${i + 1}</span>
+        <span style="flex:1;">${n.title}</span>
+        <span id="${grpId}_arrow_${i}" style="font-size:0.75rem;flex-shrink:0;min-width:12px;">▼</span>
+      </button>`;
+    });
+    html += '</div>';
+    // ---- 展開コンテンツ（カードグリッドの下） ----
+    res.notions.forEach((key, i) => {
+      const n = notionContent[key];
+      if (!n) return;
+      const iHtml = makeNotionInteractive(n.html, id, key);
+      html += `<div id="${grpId}_content_${i}" style="display:none;margin:0 0 16px;padding:20px;background:#fff;border:1px solid rgba(232,120,154,0.25);border-top:3px solid var(--primary);border-radius:0 0 8px 8px;">${iHtml}</div>`;
+    });
+  }
+
+  // ②b テンプレートツール（notion カードの後に表示 — コピペして使う実務）
   if (res.tools && res.tools.length) {
-    const toolRenderers = {
-      shopName: () => renderShopNameGuide(),
-      brandColor: () => renderWhyBrandColor() + renderHowToChooseBrandColor() + renderBrandColorTool(),
-      legalTemplates: () => renderLegalTemplates(),
-      storeSetup: () => renderWhyStoreSetup() + renderStoreSetupRoadmap(),
-      productPhoto: () => renderProductPhotoGuide(),
-      productPhotoMain: () => renderProductPhotoMain(),
-      productPhotoEdit: () => renderProductPhotoEdit(),
-      productRegister: () => renderProductRegisterGuide(),
-      snsRoadmap: () => renderSnsRoadmap(),
-      hashtagStrategy: () => renderHashtagStrategy(),
-      fanMaking: () => renderFanMaking(),
-      marketing: () => renderMarketingPillars(),
-      analytics: () => renderAnalyticsPDCA(),
-      operation: () => renderOperationFlow(),
-      repeat: () => renderRepeatStrategy()
-    };
-    res.tools.forEach(toolKey => {
-      if (toolRenderers[toolKey]) {
-        html += toolRenderers[toolKey]();
-      }
+    res.tools.filter(k => TEMPLATE_TOOLS.includes(k)).forEach(toolKey => {
+      if (toolRenderers[toolKey]) html += toolRenderers[toolKey]();
     });
   }
 
@@ -4460,6 +4712,9 @@ function openLesson(id) {
   if (!lesson) return;
   window._currentLessonId = id; // Track current lesson
 
+  // スマホブラウザの「戻る」ボタン対応
+  history.pushState({ view: 'lesson', lessonId: id }, '', '#lesson-' + id);
+
   document.getElementById('contentList').style.display = 'none';
   const detail = document.getElementById('lessonDetail');
   detail.classList.add('active');
@@ -4468,10 +4723,16 @@ function openLesson(id) {
   document.getElementById('lessonMeta').textContent = lesson.meta;
   document.getElementById('lessonDuration').textContent = lesson.duration;
 
-  // Text + resources: ① 動画 → ② 詳しい解説 → ③ テンプレ・資料 → ④ やることリスト
-  const resources = buildLessonResources(id);
-  const checklistHtml = renderInteractiveChecklist(id);
-  document.getElementById('lessonTextBody').innerHTML = resources + checklistHtml;
+  // Text + resources: セクション構成か通常レイアウトかを自動判定
+  let lessonBodyHtml;
+  if (lessonResources[id] && lessonResources[id].sections) {
+    // セクション構成レッスン（動画・ツール・チェックリストを各セクション内に配置）
+    lessonBodyHtml = buildSectionedLesson(id);
+  } else {
+    // 通常レイアウト: ① 動画 → ② 詳しい解説 → ③ テンプレ・資料 → ④ やることリスト
+    lessonBodyHtml = buildLessonResources(id) + renderInteractiveChecklist(id);
+  }
+  document.getElementById('lessonTextBody').innerHTML = lessonBodyHtml;
 
   // Restore checkbox state from member data
   const lessonIdx = getLessonIndex(id);
@@ -4526,7 +4787,7 @@ function openLesson(id) {
       // URL表示
       const memberWorkUrl = (mid && members[mid] && members[mid].works[lessonIdx]) ? (members[mid].works[lessonIdx].url || '') : '';
       if (memberWorkUrl) {
-        fbHTML += `<div style="margin:8px 0;padding:10px 14px;background:rgba(31,168,184,0.07);border-radius:6px;font-size:0.82rem;"><span style="font-weight:700;color:var(--accent);">Canva URL：</span><a href="${memberWorkUrl}" target="_blank" rel="noopener" style="color:var(--accent);word-break:break-all;">${memberWorkUrl}</a></div>`;
+        fbHTML += `<div style="margin:8px 0;padding:10px 14px;background:rgba(232,120,154,0.07);border-radius:6px;font-size:0.82rem;"><span style="font-weight:700;color:var(--primary-dark);">添付URL：</span><a href="${memberWorkUrl}" target="_blank" rel="noopener" style="color:var(--primary-dark);word-break:break-all;">${memberWorkUrl}</a></div>`;
       }
       // 画像表示
       const savedImg = localStorage.getItem(`workImg_${mid}_${lessonIdx}`);
@@ -4571,7 +4832,24 @@ function openLesson(id) {
 function closeLesson() {
   document.getElementById('contentList').style.display = 'block';
   document.getElementById('lessonDetail').classList.remove('active');
+  window._currentLessonId = null;
+  // URLのハッシュを消す（ブラウザ履歴は保持）
+  if (location.hash.startsWith('#lesson-')) {
+    history.pushState({ view: 'content' }, '', location.pathname);
+  }
 }
+
+// ブラウザの「戻る」ボタン対応
+window.addEventListener('popstate', function(e) {
+  if (document.getElementById('lessonDetail') &&
+      document.getElementById('lessonDetail').classList.contains('active')) {
+    // レッスン詳細が開いていたら閉じる
+    document.getElementById('contentList').style.display = 'block';
+    document.getElementById('lessonDetail').classList.remove('active');
+    window._currentLessonId = null;
+    window.scrollTo(0, 0);
+  }
+});
 
 // === Members data ===
 // 会員データ（GASから読み込み、localStorageにキャッシュ）
@@ -4965,13 +5243,9 @@ function renderMonth1Lessons() { renderAllPhaseLessons(); }
 
 // === Progress detail renderer ===
 const monthData = [
-  { num: 1, title: '基盤づくり', locked: false, items: [
-    { name: 'ショップ名・ブランドイメージ', video: false, text: false, work: false },
-    { name: 'ブランドカラー・世界観', video: false, text: false, work: false },
-    { name: 'ロゴ・ショップカード類', video: false, text: false, work: false },
-    { name: '自己紹介文', video: false, text: false, work: false },
-    { name: 'ストア基本設定', video: false, text: false, work: false },
-    { name: '法律関係（特商法・返品）', video: false, text: false, work: false }
+  { num: 1, title: '基礎作り', locked: false, items: [
+    { name: 'ブランディング', video: false, text: false, work: false },
+    { name: 'ストア設定', video: false, text: false, work: false }
   ]},
   { num: 2, title: '商品準備', locked: false, items: [
     { name: '撮影環境・5ショット構成', video: false, text: false, work: false },
@@ -4979,7 +5253,7 @@ const monthData = [
     { name: '使用・サイズ・編集', video: false, text: false, work: false },
     { name: '商品登録', video: false, text: false, work: false }
   ]},
-  { num: 3, title: '集客の仕組みづくり', locked: false, items: [
+  { num: 3, title: '集客の仕組み', locked: false, items: [
     { name: 'SNS選び・投稿設計', video: false, text: false, work: false },
     { name: 'ハッシュタグ戦略', video: false, text: false, work: false },
     { name: 'プロフィール・最初の10投稿', video: false, text: false, work: false },
@@ -5511,7 +5785,7 @@ doLogin = function() {
     const initial = name.charAt(0).toUpperCase();
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').classList.add('active');
-    document.getElementById('welcomeName').textContent = name;
+    const wnEl = document.getElementById('dashUserName'); if(wnEl) wnEl.textContent = name + 'さん';
     document.getElementById('sidebarName').textContent = name;
     document.getElementById('sidebarAvatar').textContent = initial;
     document.getElementById('mypageName').textContent = name;
@@ -5555,13 +5829,16 @@ doLogin = function() {
   const m = members[matchedId];
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('app').classList.add('active');
-  document.getElementById('welcomeName').textContent = m.name;
+  const wnEl2 = document.getElementById('dashUserName'); if(wnEl2) wnEl2.textContent = m.name + 'さん';
   document.getElementById('sidebarName').textContent = m.name;
   document.getElementById('sidebarAvatar').textContent = m.initial;
   document.getElementById('sidebarAvatar').style.background = m.color;
   document.getElementById('mypageName').textContent = m.name;
   document.getElementById('mypageAvatar').textContent = m.initial;
   document.getElementById('mypageAvatar').style.background = m.color;
+  // Welcome greeting on dashboard
+  const dashUserNameEl = document.getElementById('dashUserName');
+  if (dashUserNameEl) { dashUserNameEl.textContent = m.name + 'さん'; }
   window._loginRole = 'student';
   window._loginName = name;
   window._currentView = 'student';
@@ -5644,14 +5921,7 @@ function renderMypageWorks(memberId) {
           <span style="display:inline-block;padding:4px 12px;border-radius:var(--radius);font-size:0.7rem;font-weight:700;background:rgba(125,155,118,0.1);color:var(--accent-green);">提出済み（${formatDate(w.date)}）</span>
         </div>
         <div style="padding:8px 10px;background:var(--bg);border-radius:var(--radius);font-size:0.82rem;margin-bottom:6px;">${w.content}</div>`;
-      if (w.feedback) {
-        html += `<div style="padding:10px 12px;background:rgba(200,149,108,0.08);border-left:3px solid var(--primary);border-radius:0 var(--radius) var(--radius) 0;margin-top:8px;">
-          <div style="font-size:0.72rem;font-weight:700;color:var(--primary-dark);margin-bottom:4px;">講師からのフィードバック</div>
-          <p style="font-size:0.82rem;margin:0;">${w.feedback}</p>
-        </div>`;
-      } else {
-        html += `<div style="padding:8px 10px;font-size:0.75rem;color:var(--text-light);margin-top:4px;">フィードバック待ち...</div>`;
-      }
+      // フィードバックは非表示（アウトプット専用ワーク）
       html += '</div>';
     }
   });
@@ -6017,7 +6287,7 @@ function renderAdminProgressTimeline(memberId) {
     return;
   }
 
-  const phaseNames = { 1: '基盤づくり', 2: '商品準備', 3: '集客の仕組みづくり', 4: '販売力強化', 5: '運営の安定化' };
+  const phaseNames = { 1: '基礎作り', 2: '商品準備', 3: '集客の仕組み', 4: '販売力強化', 5: '運営の安定化' };
   let html = '';
   let currentPhase = null;
 
