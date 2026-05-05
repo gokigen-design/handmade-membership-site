@@ -809,7 +809,7 @@
     .sidebar { transform: translateX(-100%); }
     .sidebar.open { transform: translateX(0); }
     .overlay.open { display: block; }
-    .main { margin-left: 0; padding: 72px 16px 24px; }
+    .main { margin-left: 0; padding: 72px 16px 88px; }
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .stat-card { padding: 14px 8px; text-align: center; }
     .stat-card .label { font-size: 0.78rem; margin-bottom: 6px; line-height: 1.3; }
@@ -829,6 +829,16 @@
     .dp-badges { width: 100%; justify-content: flex-start; margin-top: 4px; }
     .announce-item { flex-direction: column; gap: 8px; }
     .announce-date { flex-direction: row; gap: 6px; padding: 0; }
+    /* ダッシュボード：スマホ対応 */
+    .dash-welcome { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .dash-phase-badge { align-self: flex-end; margin-top: -52px; }
+    .dash-next-step { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .dash-next-btn { width: 100%; justify-content: center; }
+    .dash-stats { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 8px; flex-wrap: nowrap; grid-template-columns: none; }
+    .dash-stat { min-width: 140px; flex-shrink: 0; }
+    .dash-bottom { grid-template-columns: 1fr; }
+    /* タブバー表示 */
+    .mobile-tabbar { display: block; }
   }
   @media (max-width: 480px) {
     .main { padding: 64px 12px 20px; }
@@ -1430,6 +1440,13 @@
     color: rgba(255,255,255,0.55);
     margin-top: 2px;
   }
+</style>
+  /* ===== モバイル下部タブバー ===== */
+  .mobile-tabbar { display:none; position:fixed; bottom:0; left:0; right:0; height:60px; background:#fff; border-top:1px solid var(--border); z-index:200; box-shadow:0 -2px 12px rgba(0,0,0,0.08); }
+  .mobile-tabbar-inner { display:flex; height:100%; }
+  .mobile-tab { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; color:var(--text-light); font-size:0.58rem; font-weight:700; border:none; background:none; font-family:inherit; padding:0; transition:color 0.15s; position:relative; }
+  .mobile-tab.active { color:var(--primary-dark); }
+  .mobile-tab svg { flex-shrink:0; }
 </style>
 <script src="config.js"></script>
 </head>
@@ -2850,7 +2867,7 @@ function switchRoleView() {
 // === Navigation ===
 function showPage(page) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navItem = document.querySelector('[data-page="' + page + '"]');
+  const navItem = document.querySelector('.nav-item[data-page="' + page + '"]');
   if (navItem) navItem.classList.add('active');
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
@@ -2860,6 +2877,10 @@ function showPage(page) {
   if (page === 'announce') { loadAnnouncePage(); }
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
+  // モバイルタブバーのアクティブ状態を更新
+  document.querySelectorAll('.mobile-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.page === page);
+  });
 }
 
 document.querySelectorAll('.nav-item').forEach(item => {
@@ -6819,5 +6840,31 @@ document.addEventListener('DOMContentLoaded', () => {
   renderStudentQAList();
 });
 </script>
+
+<!-- ===== モバイル下部タブバー ===== -->
+<nav class="mobile-tabbar" id="mobileTabbar">
+  <div class="mobile-tabbar-inner">
+    <button class="mobile-tab active" data-page="dashboard" onclick="showPage('dashboard')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 10v9a1 1 0 001 1h3v-5h6v5h3a1 1 0 001-1v-9"/></svg>
+      ホーム
+    </button>
+    <button class="mobile-tab" data-page="content" onclick="showPage('content')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      コンテンツ
+    </button>
+    <button class="mobile-tab" data-page="glcon" onclick="showPage('glcon')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      グルコン
+    </button>
+    <button class="mobile-tab" data-page="qa" onclick="showPage('qa')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Q&A
+    </button>
+    <button class="mobile-tab" data-page="announce" onclick="showPage('announce')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      お知らせ
+    </button>
+  </div>
+</nav>
 </body>
 </html>
