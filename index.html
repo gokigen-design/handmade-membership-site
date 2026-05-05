@@ -1374,6 +1374,7 @@
     margin-top: 2px;
   }
 </style>
+<script src="config.js"></script>
 </head>
 <body>
 
@@ -5302,8 +5303,8 @@ function renderDetailProgress(containerId) {
 
 // === GAS連携 + localStorage persistence ===
 
-// ★ デプロイ後、ここにGASウェブアプリのURLを貼り付けてください
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxZHpPn8N6KQJP0DUGhN2pNFHnwLo6XpqCcFbL3Tu2wmf_x4mfCsfOkDdLm6qXYrSRt/exec';
+// GASのURLはconfig.jsで管理（変更する場合はconfig.jsのgasUrlを編集）
+const GAS_URL = (typeof SITE_CONFIG !== 'undefined') ? SITE_CONFIG.gasUrl : '';
 
 // GAS API呼び出しヘルパー
 async function gasGet(action) {
