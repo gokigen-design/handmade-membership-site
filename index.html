@@ -232,6 +232,62 @@
   .progress-bar-bg { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-top: 12px; overflow: hidden; }
   .progress-bar-fill { height: 100%; background: var(--brand-grad); border-radius: 4px; transition: width 0.8s ease; }
 
+  /* ===== REDESIGNED DASHBOARD ===== */
+  .dash-welcome { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 28px; background:linear-gradient(135deg,#b87cbf 0%,#e8789a 25%,#e87848 50%,#f5a23c 75%,#f5c842 100%); color:#fff; position:relative; overflow:hidden; box-shadow:0 4px 20px rgba(232,120,74,0.3); margin-bottom:16px; }
+  .dash-welcome-left { flex:1; }
+  .dash-welcome-label { font-size:0.72rem; letter-spacing:0.1em; opacity:0.85; margin-bottom:4px; font-family:'Cormorant Garamond',serif; }
+  .dash-welcome-name { font-size:1.25rem; font-weight:700; margin-bottom:2px; }
+  .dash-welcome-sub { font-size:0.8rem; opacity:0.88; }
+  .dash-phase-badge { flex-shrink:0; background:rgba(255,255,255,0.22); border:1px solid rgba(255,255,255,0.4); padding:10px 16px; text-align:center; min-width:80px; }
+  .dash-phase-badge .phase-num { font-family:'Cormorant Garamond',serif; font-size:1.8rem; line-height:1; font-weight:400; }
+  .dash-phase-badge .phase-total { font-size:0.65rem; opacity:0.85; margin-top:2px; }
+
+  .dash-next-step { border-left:4px solid #e8789a; background:var(--bg-card); box-shadow:var(--shadow-hover); border:1px solid var(--border); border-left:4px solid #e8789a; padding:20px 24px; margin-bottom:16px; display:flex; align-items:center; gap:16px; }
+  .dash-next-icon { flex-shrink:0; width:44px; height:44px; background:linear-gradient(135deg,#e8789a,#f5a23c); display:flex; align-items:center; justify-content:center; }
+  .dash-next-body { flex:1; }
+  .dash-next-label { font-size:0.7rem; color:var(--text-light); letter-spacing:0.08em; margin-bottom:2px; }
+  .dash-next-title { font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:2px; }
+  .dash-next-sub { font-size:0.78rem; color:var(--text-light); }
+  .dash-next-btn { flex-shrink:0; padding:10px 20px; background:linear-gradient(135deg,#e8789a,#f5a23c); color:#fff; border:none; cursor:pointer; font-family:inherit; font-size:0.85rem; font-weight:700; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+
+  .dash-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px; }
+  .dash-stat { background:var(--bg-card); border:1px solid var(--border); box-shadow:var(--shadow); padding:16px 18px; }
+  .dash-stat-label { font-size:0.72rem; color:var(--text-light); margin-bottom:4px; }
+  .dash-stat-value { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:400; color:var(--primary-dark); margin-bottom:2px; line-height:1; }
+  .dash-stat-sub { font-size:0.7rem; color:var(--text-light); margin-bottom:8px; }
+  .dash-stat-bar { height:4px; background:rgba(0,0,0,0.07); overflow:hidden; }
+  .dash-stat-fill { height:100%; background:linear-gradient(90deg,#e8789a,#f5a23c); transition:width 0.6s ease; }
+
+  .dash-phase-map { display:flex; gap:8px; margin-bottom:16px; overflow-x:auto; padding-bottom:4px; }
+  .dash-phase-block { flex:1; min-width:120px; padding:14px 12px; text-align:center; position:relative; }
+  .dash-phase-block.done { background:#e8f5ee; border:1px solid #b8d8c8; }
+  .dash-phase-block.current { background:linear-gradient(135deg,rgba(232,120,154,0.12),rgba(245,162,60,0.12)); border:1.5px solid #e8789a; }
+  .dash-phase-block.future { background:#f5f5f5; border:1px solid #ddd; }
+  .dash-phase-block-num { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--text-light); margin-bottom:4px; }
+  .dash-phase-block-name { font-size:0.7rem; font-weight:700; color:var(--text); line-height:1.4; white-space:pre-line; }
+  .dash-phase-block .phase-dot { width:8px; height:8px; background:#f5a23c; border-radius:50%; margin:6px auto 0; animation:pulseDot 1.5s infinite; }
+  @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  .dash-phase-block .phase-check { width:16px; height:16px; margin:6px auto 0; display:block; }
+
+  .dash-bottom { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+  .dash-bottom-card { background:var(--bg-card); border:1px solid var(--border); box-shadow:var(--shadow); padding:20px; }
+  .dash-bottom-title { font-size:0.8rem; font-weight:700; color:var(--text-dark); letter-spacing:0.06em; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border-soft); display:flex; align-items:center; gap:8px; }
+  .dash-announce-item { margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid var(--border-soft); }
+  .dash-announce-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .dash-announce-meta { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+  .dash-announce-date { font-size:0.7rem; color:var(--text-light); }
+  .dash-announce-tag { font-size:0.65rem; padding:2px 8px; background:var(--primary-light); color:var(--accent-pink); font-weight:700; }
+  .dash-announce-title { font-size:0.88rem; font-weight:700; color:var(--text-dark); margin-bottom:2px; }
+  .dash-announce-body { font-size:0.78rem; color:var(--text-light); line-height:1.7; }
+  .dash-link-item { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--border-soft); cursor:pointer; transition:opacity 0.15s; }
+  .dash-link-item:last-child { border-bottom:none; }
+  .dash-link-item:hover { opacity:0.72; }
+  .dash-link-icon { width:32px; height:32px; background:linear-gradient(135deg,#e8789a,#f5a23c); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .dash-link-body { flex:1; }
+  .dash-link-title { font-size:0.85rem; font-weight:700; color:var(--text-dark); }
+  .dash-link-sub { font-size:0.72rem; color:var(--text-light); }
+  .dash-link-arrow { color:var(--text-light); }
+
   /* Announce */
   .announce-list { margin-top: 16px; }
   .announce-item {
@@ -1561,74 +1617,99 @@
   <main class="main">
 
     <!-- ===== DASHBOARD ===== -->
+    <!-- ===== DASHBOARD ===== -->
     <div class="page active" id="page-dashboard">
-      <div id="dashWelcome" style="margin-bottom:24px;padding:24px 28px;background:linear-gradient(135deg,#b87cbf 0%,#e8789a 25%,#e87848 50%,#f5a23c 75%,#f5c842 100%);border-radius:8px;color:#fff;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(232,120,74,0.3);">
-        <div style="position:relative;z-index:1;">
-          <div style="font-size:0.75rem;letter-spacing:0.1em;opacity:0.85;margin-bottom:4px;">Ola lea Refine Program</div>
-          <div style="font-size:1.3rem;font-weight:700;margin-bottom:2px;">おかえりなさい、<span id="dashUserName">さん</span></div>
-          <div style="font-size:0.82rem;opacity:0.88;">今日も一歩ずつ進んでいきましょう</div>
+
+      <!-- ① ウェルカムバナー -->
+      <div class="dash-welcome">
+        <div class="dash-welcome-left">
+          <div class="dash-welcome-label">Ola lea Refine Program</div>
+          <div class="dash-welcome-name">おかえりなさい、<span id="dashUserName">さん</span></div>
+          <div class="dash-welcome-sub">今日も一歩ずつ進んでいきましょう</div>
         </div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="label">受講期間</div>
-          <div class="value">Phase 1</div>
-          <div class="sub">全5Phase</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">動画・テキスト</div>
-          <div class="value">0 / 18</div>
-          <div class="sub">全18ステップ</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">ワーク提出</div>
-          <div class="value">0 / 18</div>
-          <div class="sub">次: ブランディング</div>
+        <div class="dash-phase-badge">
+          <div class="phase-num" id="dashPhaseNum">1</div>
+          <div class="phase-total">Phase / 全5</div>
         </div>
       </div>
 
-      <!-- 項目別 進捗 -->
-      <div class="detail-progress" id="dashboardProgress"></div>
+      <!-- ② 次のステップカード -->
+      <div class="dash-next-step">
+        <div class="dash-next-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <div class="dash-next-body">
+          <div class="dash-next-label">NEXT STEP</div>
+          <div class="dash-next-title" id="dashNextTitle">ブランディング — ショップ名を決める</div>
+          <div class="dash-next-sub" id="dashNextSub">Phase 1 — ステップ 1 / 10</div>
+        </div>
+        <button class="dash-next-btn" onclick="showPage('content')">
+          始める
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
 
-      <!-- 各種リンク -->
-      <h2 style="font-size:1.1rem; margin-bottom:12px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg> 各種リンク</h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; margin-bottom:28px;">
-        <a href="https://mosh.jp/user/memberships/341756/posts" target="_blank" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-            </div>
-            <strong style="font-size:0.95rem;">Olalea会員ページ</strong>
+      <!-- ③ 進捗カード3つ -->
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="dash-stat-label">動画・テキスト</div>
+          <div class="dash-stat-value"><span id="dashStatContent">0</span> / 10</div>
+          <div class="dash-stat-sub">ステップ完了</div>
+          <div class="dash-stat-bar"><div class="dash-stat-fill" id="dashStatContentBar" style="width:0%"></div></div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-label">ワーク提出</div>
+          <div class="dash-stat-value"><span id="dashStatWork">0</span> / 10</div>
+          <div class="dash-stat-sub">提出済み</div>
+          <div class="dash-stat-bar"><div class="dash-stat-fill" id="dashStatWorkBar" style="width:0%"></div></div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-label">受講開始</div>
+          <div class="dash-stat-value"><span id="dashStatDays">1</span></div>
+          <div class="dash-stat-sub">日目</div>
+          <div class="dash-stat-bar"><div class="dash-stat-fill" id="dashStatDaysBar" style="width:1%"></div></div>
+        </div>
+      </div>
+
+      <!-- ④ フェーズ進捗マップ -->
+      <div class="dash-phase-map" id="dashPhaseMap"></div>
+
+      <!-- ⑤ 下段2カラム -->
+      <div class="dash-bottom">
+        <div class="dash-bottom-card">
+          <div class="dash-bottom-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            最新のお知らせ
           </div>
-          <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">動画コンテンツや資料はこちら</p>
-        </a>
-        <div onclick="showPage('glcon')" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <strong style="font-size:0.95rem;">セミナー・グループコンサル</strong>
-          </div>
-          <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">過去のアーカイブ動画を見る</p>
+          <div id="dashAnnounceList"><p style="font-size:0.82rem;color:var(--text-light);">読み込み中...</p></div>
         </div>
-        <a href="#" onclick="alert('LINEにて「コンサル希望」とメッセージをお送りください。\n\n【料金】\n・6ヶ月の間、3回まで無料\n・4回目以降は有料\n　30分：10,000円\n　60分：18,000円'); return false;" style="display:block; padding:18px 20px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); text-decoration:none; color:var(--text); transition:all 0.2s; box-shadow:var(--shadow); cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)';">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <div style="width:36px; height:36px; border-radius:8px; background:var(--brand-grad); display:flex; align-items:center; justify-content:center;">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            </div>
-            <strong style="font-size:0.95rem;">個別コンサル予約</strong>
+        <div class="dash-bottom-card">
+          <div class="dash-bottom-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            よく使うリンク
           </div>
-          <p style="margin:0; font-size:0.85rem; color:var(--text-light); line-height:1.6;">6ヶ月で3回まで無料（以降有料）</p>
-        </a>
+          <div onclick="showPage('glcon')" class="dash-link-item">
+            <div class="dash-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="dash-link-body"><div class="dash-link-title">グループコンサル</div><div class="dash-link-sub">アーカイブ動画・次回日程</div></div>
+            <div class="dash-link-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div onclick="handleConsultClick()" class="dash-link-item">
+            <div class="dash-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="dash-link-body"><div class="dash-link-title">個別コンサル予約</div><div class="dash-link-sub">6ヶ月で3回まで無料</div></div>
+            <div class="dash-link-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div onclick="showPage('bonus')" class="dash-link-item">
+            <div class="dash-link-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/></svg></div>
+            <div class="dash-link-body"><div class="dash-link-title">入会特典</div><div class="dash-link-sub">テンプレ・収支表など</div></div>
+            <div class="dash-link-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+        </div>
       </div>
 
-      <!-- 管理者のみ表示：対応待ちセクション -->
-      <div id="adminPendingSection" class="admin-only" style="display:none; margin-bottom:28px;"></div>
-
-      <h2 style="font-size:1.1rem; margin-bottom:12px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg> 最新のお知らせ</h2>
-      <div class="announce-list" id="dashboardAnnounceList">
-        <p style="color:var(--text-light);font-size:0.85rem;">読み込み中...</p>
-      </div>
+      <!-- 管理者専用 -->
+      <div id="adminPendingSection" class="admin-only" style="display:none;margin-bottom:24px;"></div>
+      <!-- 進捗（後方互換で残す） -->
+      <div class="detail-progress" id="dashboardProgress" style="display:none;"></div>
     </div>
 
     <!-- ===== CONTENT PAGE (module list) ===== -->
@@ -2611,6 +2692,47 @@ function handleConsultClick() {
   }
 }
 
+// === Dashboard 初期化 ===
+function initDashboard() {
+  // フェーズ進捗マップ
+  const map = document.getElementById('dashPhaseMap');
+  if (!map || typeof SITE_CONFIG === 'undefined') return;
+  const currentPhase = 1;
+  map.innerHTML = SITE_CONFIG.phases.map(ph => {
+    const done = ph.id < currentPhase;
+    const cur  = ph.id === currentPhase;
+    const cls  = done ? 'done' : cur ? 'current' : 'future';
+    const indicator = done
+      ? `<svg class="phase-check" viewBox="0 0 24 24" fill="none" stroke="#3aaa8a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
+      : cur ? `<div class="phase-dot"></div>` : '';
+    return `<div class="dash-phase-block ${cls}">
+      <div class="dash-phase-block-num">Phase ${ph.id}</div>
+      <div class="dash-phase-block-name">${ph.name}</div>
+      ${indicator}
+    </div>`;
+  }).join('');
+
+  // お知らせ
+  renderDashAnnouncements();
+}
+
+function renderDashAnnouncements(items) {
+  const el = document.getElementById('dashAnnounceList');
+  if (!el) return;
+  const list = items || (typeof SITE_CONFIG !== 'undefined' ? SITE_CONFIG.staticAnnouncements : []);
+  if (!list.length) { el.innerHTML = '<p style="font-size:0.82rem;color:var(--text-light);">お知らせはありません</p>'; return; }
+  el.innerHTML = list.slice(0, 3).map(a => `
+    <div class="dash-announce-item">
+      <div class="dash-announce-meta">
+        <span class="dash-announce-date">${a.date || ''}</span>
+        <span class="dash-announce-tag">${a.tag || a.category || 'お知らせ'}</span>
+      </div>
+      <div class="dash-announce-title">${a.title}</div>
+      <div class="dash-announce-body">${a.body || a.content || ''}</div>
+    </div>
+  `).join('');
+}
+
 // === Login ===
 function doLogout() {
   // Reset state
@@ -2663,6 +2785,7 @@ function doLogin() {
   window._currentView = selectedRole; // tracks current view mode
 
   applyRoleView(selectedRole);
+  initDashboard();
 }
 document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
