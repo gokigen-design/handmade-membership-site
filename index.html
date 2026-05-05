@@ -1866,7 +1866,7 @@
           <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">どのECサイトを使うか迷ったら、まずはこちらの比較ページから</p>
         </a>
 
-        <a href="https://drive.google.com/drive/folders/1y8QWtvR6P6WmjXytNxUkzBr0AJbVdSDe" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+        <div onclick="openBonusLink('drive')" style="cursor:pointer;display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
             <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#b87e4c,#c9a84c);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1874,9 +1874,9 @@
             <strong style="font-size:1rem;">特典2：年間計画シート</strong>
           </div>
           <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">印刷して使えるシート。時間管理マトリックスを読んだ上で「やめること・優先すること」を書き込んでみてください</p>
-        </a>
+        </div>
 
-        <a href="https://docs.google.com/spreadsheets/d/1QgeIZIG9fU_vaf8GBXYX0cpqbXx00fhUX3Kuxz0m-ZY/edit?usp=drivesdk" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
+        <div onclick="openBonusLink('sheet')" style="cursor:pointer;display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
             <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#6b8e5a,#7ac4c7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
@@ -1884,7 +1884,7 @@
             <strong style="font-size:1rem;">特典3：収支表（スプレッドシート）</strong>
           </div>
           <p style="margin:0;font-size:0.9rem;color:var(--text-light);line-height:1.7;">マキも実際に使っている収支表。開いたら<strong>右上の「ファイル」→「コピーを作成」</strong>してからお使いください</p>
-        </a>
+        </div>
 
         <a href="https://chatgpt.com/g/g-6944bf796b2c8191ad57e2293efa1e9c-maki-ai" target="_blank" rel="noopener" style="display:block;padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='var(--shadow)';">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -2588,6 +2588,26 @@ function setRole(role) {
     sBtn.style.background = 'var(--bg)';
     sBtn.style.color = 'var(--text-light)';
     sBtn.style.borderColor = 'var(--border)';
+  }
+}
+
+// === 外部リンクを安全に開く（URLをHTMLに露出させない） ===
+function openBonusLink(key) {
+  if (typeof SITE_CONFIG === 'undefined') return;
+  const map = {
+    drive: SITE_CONFIG.links.bonusDrive,
+    sheet: SITE_CONFIG.links.bonusSheet,
+  };
+  const url = map[key];
+  if (url) window.open(url, '_blank', 'noopener');
+}
+
+function handleConsultClick() {
+  if (typeof SITE_CONFIG === 'undefined') return;
+  if (SITE_CONFIG.links.consult) {
+    window.open(SITE_CONFIG.links.consult, '_blank', 'noopener');
+  } else {
+    alert(SITE_CONFIG.consultInfo);
   }
 }
 
