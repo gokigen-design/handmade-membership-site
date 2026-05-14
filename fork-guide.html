@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員サイトの引き継ぎ手順</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: #FDF8F5;
+      color: #3D2C2C;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    /* ヘッダー */
+    .hero {
+      background: linear-gradient(135deg, #E8B4B8 0%, #C89FAA 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-icon {
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+
+    .hero p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-top: 10px;
+      line-height: 1.8;
+    }
+
+    /* 全体ラッパー */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* セクションラベル */
+    .section-label {
+      text-align: center;
+      margin: 40px 0 8px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #B07880;
+      font-weight: 700;
+    }
+
+    /* ステップカード */
+    .step-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(180,120,130,0.1);
+      position: relative;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .step-badge {
+      background: linear-gradient(135deg, #E8B4B8, #C89FAA);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #3D2C2C;
+      line-height: 1.5;
+    }
+
+    /* 手順リスト */
+    .step-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .step-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+
+    .step-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .num-circle {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      background: #F5E6E8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #C17A82;
+      margin-top: 2px;
+    }
+
+    .step-list li p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #3D2C2C;
+    }
+
+    .step-list li p strong {
+      color: #C17A82;
+    }
+
+    /* URLボックス */
+    .url-box {
+      background: #F5E6E8;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 13px;
+      color: #8B4A52;
+      word-break: break-all;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ヒントボックス */
+    .hint-box {
+      background: #FFF8E7;
+      border-left: 3px solid #F5C842;
+      border-radius: 0 10px 10px 0;
+      padding: 12px 14px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #6B5A1E;
+      line-height: 1.8;
+    }
+
+    /* 区切り矢印 */
+    .arrow-divider {
+      text-align: center;
+      margin: 4px 0;
+    }
+
+    /* プロンプトセクション */
+    .prompt-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-top: 32px;
+      box-shadow: 0 2px 12px rgba(180,120,130,0.1);
+    }
+
+    .prompt-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .prompt-badge {
+      background: linear-gradient(135deg, #A8C8B8, #7CAF96);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    .prompt-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #3D2C2C;
+    }
+
+    .prompt-desc {
+      font-size: 13px;
+      color: #8A7070;
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+
+    .prompt-box {
+      background: #F8FBF9;
+      border: 1.5px solid #B8D8C8;
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #3D2C2C;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      background: linear-gradient(135deg, #A8C8B8, #7CAF96);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .copy-btn:active {
+      opacity: 0.8;
+    }
+
+    .copy-btn.copied {
+      background: linear-gradient(135deg, #7CAF96, #5A9678);
+    }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      color: #B07880;
+      line-height: 1.8;
+    }
+
+    /* 図解：Forkの流れ */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .flow-box {
+      background: #F5E6E8;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #8B4A52;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .flow-arrow {
+      color: #D4939B;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <div class="hero">
+    <div class="hero-icon">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.2)"/>
+        <rect x="16" y="14" width="16" height="20" rx="3" fill="white" opacity="0.9"/>
+        <rect x="24" y="14" width="16" height="20" rx="3" fill="white" opacity="0.6"/>
+        <circle cx="36" cy="38" r="7" fill="white" opacity="0.9"/>
+        <path d="M33 38 L35.5 40.5 L39 36" stroke="#C89FAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>会員サイトを<br>自分のClaudeで作る方法</h1>
+    <p>あやさんが作ったサイトをベースに<br>あなたオリジナルのサイトへ</p>
+  </div>
+
+  <div class="container">
+
+    <p class="section-label">STEP</p>
+
+    <!-- STEP 1 -->
+    <div class="step-card">
+      <div class="step-number">
+        <span class="step-badge">STEP 1</span>
+        <span class="step-title">リポジトリをコピー（Fork）する</span>
+      </div>
+
+      <p style="font-size:13px; color:#8A7070; margin-bottom:14px; line-height:1.8;">
+        あやさんのサイトのデータを、自分のGitHubアカウントにまるごとコピーします。
+      </p>
+
+      <div class="flow-diagram">
+        <div class="flow-box">あやさんの<br>リポジトリ</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">あなたの<br>リポジトリ</div>
+      </div>
+
+      <ul class="step-list">
+        <li>
+          <div class="num-circle">1</div>
+          <p>下のURLをブラウザで開く</p>
+        </li>
+      </ul>
+
+      <div class="url-box">
+        github.com/gokigen-design/handmade-membership-site
+      </div>
+
+      <ul class="step-list">
+        <li>
+          <div class="num-circle">2</div>
+          <p>右上にある <strong>「Fork」</strong> ボタンをタップ<br>（スマホの場合は画面を横にしてみると見つけやすいです）</p>
+        </li>
+        <li>
+          <div class="num-circle">3</div>
+          <p><strong>「Create fork」</strong> ボタンをタップして完了</p>
+        </li>
+      </ul>
+
+      <div class="hint-box">
+        これで、あなた自身のGitHubにサイトのデータがコピーされました。
+      </div>
+    </div>
+
+    <div class="arrow-divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 5v14M5 12l7 7 7-7" stroke="#D4939B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-card">
+      <div class="step-number">
+        <span class="step-badge">STEP 2</span>
+        <span class="step-title">ZIPでダウンロードしてパソコンに保存する</span>
+      </div>
+
+      <p style="font-size:13px; color:#8A7070; margin-bottom:14px; line-height:1.8;">
+        コピーしたデータをパソコンに取り込みます。
+      </p>
+
+      <ul class="step-list">
+        <li>
+          <div class="num-circle">1</div>
+          <p>STEP1でForkした、<strong>あなた自身のリポジトリページ</strong>に移動する<br>（URLがあなたのGitHubユーザー名になっていればOK）</p>
+        </li>
+        <li>
+          <div class="num-circle">2</div>
+          <p>緑色の <strong>「Code」</strong> ボタンをタップ</p>
+        </li>
+        <li>
+          <div class="num-circle">3</div>
+          <p><strong>「Download ZIP」</strong> をタップしてダウンロード</p>
+        </li>
+        <li>
+          <div class="num-circle">4</div>
+          <p>ダウンロードされたZIPファイルを<strong>解凍（ダブルクリック）</strong>してフォルダを取り出す</p>
+        </li>
+      </ul>
+
+      <div class="hint-box">
+        Macの場合はダウンロードフォルダに保存されます。フォルダの場所をメモしておきましょう。
+      </div>
+    </div>
+
+    <div class="arrow-divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 5v14M5 12l7 7 7-7" stroke="#D4939B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-card">
+      <div class="step-number">
+        <span class="step-badge">STEP 3</span>
+        <span class="step-title">Claude Codeでフォルダを開いて作業する</span>
+      </div>
+
+      <p style="font-size:13px; color:#8A7070; margin-bottom:14px; line-height:1.8;">
+        Claude Codeにフォルダを読み込ませて、カスタマイズを依頼します。
+      </p>
+
+      <ul class="step-list">
+        <li>
+          <div class="num-circle">1</div>
+          <p>Claude Codeを開く</p>
+        </li>
+        <li>
+          <div class="num-circle">2</div>
+          <p>STEP2で取り出したフォルダを、Claude Codeに指定して開く<br>（「Open Folder」や「フォルダを選択」から選びます）</p>
+        </li>
+        <li>
+          <div class="num-circle">3</div>
+          <p>下のプロンプト（依頼文）をコピーして<strong>チャット欄に貼り付け</strong>て送信する</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- プロンプトセクション -->
+    <div class="prompt-section">
+      <div class="prompt-header">
+        <span class="prompt-badge">PROMPT</span>
+        <span class="prompt-title">コピペで使える依頼文</span>
+      </div>
+      <p class="prompt-desc">
+        このままコピーしてClaudeに貼り付けてください。<br>
+        [ ] の中だけあなたの情報に書き換えてOKです。
+      </p>
+
+      <div class="prompt-box" id="promptText">このプロジェクトはハンドメイド作家向けの会員サイトです。
+
+まず、フォルダの中のHTMLファイルをすべて読み込んで、サイトの構成と機能を教えてください。
+
+その後、以下の内容に変更してほしいです。
+
+・サイト名：[あなたの教室名を入力]
+・メインカラー：[好きな色を入力　例：くすみピンク、ベージュ など]
+・講座のタイトル：[あなたの講座名を入力]
+・その他変えたいこと：[自由に書いてください]
+
+一つずつ確認しながら、ゆっくり進めてください。</div>
+
+      <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">
+        コピーする
+      </button>
+    </div>
+
+    <div class="footer">
+      分からないことがあれば<br>あやさんに気軽に聞いてください
+    </div>
+
+  </div>
+
+  <script>
+    function copyPrompt() {
+      const text = document.getElementById('promptText').innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'コピーできました！';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'コピーする';
+          btn.classList.remove('copied');
+        }, 2500);
+      }).catch(function() {
+        const range = document.createRange();
+        range.selectNode(document.getElementById('promptText'));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      });
+    }
+  </script>
+
+</body>
+</html>
