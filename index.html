@@ -5968,25 +5968,26 @@ doLogin = function() {
     return;
   }
 
-  // Student login — match against registered members
-  let matchedId = null;
-  Object.keys(members).forEach(id => {
-    if (members[id].name === name) {
-      matchedId = id;
-    }
-  });
-
-  if (!matchedId) {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('loginError').textContent = 'この名前は登録されていません。講師に確認してください。';
-    return;
-  }
-
-  const memberPass = String(members[matchedId].password || 'demo2026');
-  if (pass !== memberPass) {
+  // デモモード：パスワードが合っていれば名前は何でもOK
+  if (pass !== 'demo2026') {
     document.getElementById('loginError').style.display = 'block';
     document.getElementById('loginError').textContent = 'パスワードが正しくありません';
     return;
+  }
+  let matchedId = null;
+  Object.keys(members).forEach(id => {
+    if (members[id].name === name) matchedId = id;
+  });
+  if (!matchedId) {
+    matchedId = '__demo__';
+    const emptyLessons = Array.from({length:6}, (_,i) => ({month:Math.floor(i/2)+1, index:i, title:'', done:false, textDone:false}));
+    const emptyWorks = Array.from({length:6}, () => ({submitted:false, feedback:'', workText:'', workImg:''}));
+    members['__demo__'] = {
+      name: name, initial: name.charAt(0), sub: 'デモ受講生', color: 'linear-gradient(135deg, #E8B4B8, #C89FAA)',
+      password: 'demo2026', registeredDate: new Date().toISOString(),
+      progress: {content:0, work:'0/6', audio:'0/15', contentPct:0, workPct:0, audioPct:0},
+      lessons: emptyLessons, works: emptyWorks, announcements: [], glcon: []
+    };
   }
 
   // Student login success — link to member data
